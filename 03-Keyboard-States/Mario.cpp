@@ -2,6 +2,7 @@
 
 void CMario::Update(DWORD dt)
 {
+	CGameObject::Update(dt);
 
 	// simple fall down
 	vy += MARIO_GRAVITY;

@@ -5,7 +5,6 @@
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
-#include "Camera.h"
 
 #define KEYBOARD_BUFFER_SIZE 1024
 /*
@@ -42,7 +41,7 @@ class CGame
 
 public:
 	void InitKeyboard(LPKEYEVENTHANDLER handler);
-	void Init(HWND hWnd, int width, int height);
+	void Init(HWND hWnd);
 	void Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom);
 
 	int IsKeyDown(int KeyCode);

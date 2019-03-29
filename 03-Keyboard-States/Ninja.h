@@ -30,6 +30,8 @@ public:
 	~Ninja();
 	int getX() { return this->x; }
 	int getY() { return this->y; }
+
+	void GetBoundingBox(float &left, float &top, float &right, float &bottom) {}
 	void Update(DWORD dt);
 	void Render();
 	void SetState(int state);

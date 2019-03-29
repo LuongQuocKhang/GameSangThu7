@@ -8,8 +8,6 @@
 
 
 using namespace std;
-class CGameObject;
-typedef CGameObject * LPGAMEOBJECT;
 
 class CGameObject
 {
