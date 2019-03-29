@@ -24,7 +24,7 @@ protected:
 
 	int state;									
 
-	static vector<LPANIMATION> animations;
+	vector<LPANIMATION> animations;
 
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }
@@ -36,7 +36,7 @@ public:
 	bool sd;
 	bool jp;
 
-	static void AddAnimation(int aniId);
+	void AddAnimation(int aniId);
 
 	CGameObject();
 

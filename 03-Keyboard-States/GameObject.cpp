@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "Sprites.h"
 
-vector<LPANIMATION> CGameObject::animations;
+//vector<LPANIMATION> CGameObject::animations;
 
 CGameObject::CGameObject()
 {
@@ -27,7 +27,7 @@ void CGameObject::Render()
 void CGameObject::AddAnimation(int aniId)
 {
 	LPANIMATION ani = CAnimations::GetInstance()->Get(aniId);
-	animations.push_back(ani);
+	this->animations.push_back(ani);
 }
 
 
