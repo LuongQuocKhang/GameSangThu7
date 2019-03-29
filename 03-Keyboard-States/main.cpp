@@ -18,7 +18,6 @@
 #include "GameObject.h"
 #include "Textures.h"
 #include "camera.h"
-#include "Mario.h"
 #include "Brick.h"
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"02 - Sprite animation"
@@ -52,7 +51,7 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_SPACE:
-		ninja->SetState(MARIO_STATE_JUMP);
+		ninja->SetState(NINJA_STATE_JUMP);
 		ninja->jp = true;
 		break;
 	case DIK_DOWN:

@@ -5,7 +5,6 @@
 #include <DirectXMath.h>;
 #include "Sprites.h";
 #include "Ninja.h"
-#include "Mario.h"
 class CGame;
 
 class Camera
