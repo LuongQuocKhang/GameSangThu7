@@ -23,8 +23,8 @@ void Ninja::Update(DWORD dt)
 	}
 
 	// simple screen edge collision!!!
-	if (vx > 0 && x > 290) x = 290;
-	if (vx < 0 && x < 0) x = 0;
+	/*if (vx > 0 && x > 290) x = 290;
+	if (vx < 0 && x < 0) x = 0;*/
 	if (jp == true)
 	{
 		countTime += dt;
