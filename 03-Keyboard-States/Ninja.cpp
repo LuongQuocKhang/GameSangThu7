@@ -71,7 +71,7 @@ void Ninja::Render()
 		}
 	}
 
-	animations[ani]->Render(x, y);
+	//animations[ani]->Render(x, y);
 }
 
 void Ninja::SetState(int state)

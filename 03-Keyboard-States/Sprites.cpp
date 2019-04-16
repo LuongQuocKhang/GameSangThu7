@@ -1,92 +1,89 @@
 #include "Sprites.h"
 #include "Game.h"
-#include "debug.h"
 
-CSprite::CSprite(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex)
+
+
+Sprite::Sprite(LPCWSTR filePath, RECT rect, D3DCOLOR transColor)
 {
-	this->id = id;
-	this->left = left;
-	this->top = top;
-	this->right = right;
-	this->bottom = bottom;
-	this->texture = tex;
+	width = 0;
+	height = 0;
+	x = 0;
+	y = 0;
+	scale = 1;
+	angle = 0;
+	flipHorizontal = false;
+	flipVertical = false;
+
+	SetTexture(filePath, transColor);
+	SetRect(rect);
 }
-
-CSprites * CSprites::__instance = NULL;
-
-CSprites *CSprites::GetInstance()
+void Sprite::SetTexture(LPCWSTR filePath, D3DCOLOR transColor)
 {
-	if (__instance == NULL) __instance = new CSprites();
-	return __instance;
-}
+	HRESULT result = CGame::GetInstance()->LoadTexture(filePath, transColor, this->texture);
 
-void CSprite::Draw(float x, float y)
-{
-	CGame * game = CGame::GetInstance();
-	game->Draw(x, y, texture, left, top, right, bottom);
-}
-
-void CSprites::Add(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex)
-{
-	LPSPRITE s = new CSprite(id, left, top, right, bottom, tex);
-	sprites[id] = s;
-}
-
-LPSPRITE CSprites::Get(int id)
-{
-	return sprites[id];
-}
-
-
-
-void CAnimation::Add(int spriteId, DWORD time)
-{
-	int t = time;
-	if (time == 0) t=this->defaultTime;
-
-	LPSPRITE sprite = CSprites::GetInstance()->Get(spriteId);
-	LPANIMATION_FRAME frame = new CAnimationFrame(sprite, t);
-	frames.push_back(frame);
-}
-
-void CAnimation::Render(float x, float y)
-{
-	DWORD now = GetTickCount();
-	if (currentFrame == -1) 
+	if (result != D3D_OK)
 	{
-		currentFrame = 0; 
-		lastFrameTime = now;
+		OutputDebugString(L"[ERROR] Sprite's texture loading failed\n");
+		return;
 	}
+}
+void Sprite::SetData(SpriteData spriteData)
+{
+	width = spriteData.width;
+	height = spriteData.height;
+	x = spriteData.x;
+	y = spriteData.y;
+	scale = spriteData.scale;
+	angle = spriteData.angle;
+
+	if (spriteData.isFlipped)
+		flipHorizontal = true;
 	else
+		flipHorizontal = false;
+}
+void Sprite::SetRect(RECT rect)
+{
+	this->rect = rect;
+}
+D3DXVECTOR2 Sprite::GetCenter()
+{
+	float x = (float)this->width / 2 * this->scale;
+	float y = (float)this->height / 2 * this->scale;
+	if (flipHorizontal)
 	{
-		DWORD t = frames[currentFrame]->GetTime();
-		if (now - lastFrameTime > t)
-		{
-			currentFrame++;
-			lastFrameTime = now;
-			if (currentFrame == frames.size()) currentFrame = 0;
-			//DebugOut(L"now: %d, lastFrameTime: %d, t: %d\n", now, lastFrameTime, t);
-		}
-		
+		x -= (float)this->width * this->scale;
 	}
-
-	frames[currentFrame]->GetSprite()->Draw(x, y);
+	if (flipVertical)
+	{
+		y -= (float)this->height * this->scale;
+	}
+	return D3DXVECTOR2(x, y);
 }
-
-CAnimations * CAnimations::__instance = NULL;
-
-CAnimations * CAnimations::GetInstance()
+D3DXVECTOR2 Sprite::GetTranslate()
 {
-	if (__instance == NULL) __instance = new CAnimations();
-	return __instance;
+	float x = (float)this->x;
+	float y = (float)this->y;
+	if (flipHorizontal)
+	{
+		x += (float)this->width * this->scale;
+	}
+	if (flipVertical)
+	{
+		y += (float)this->height * this->scale;
+	}
+	return D3DXVECTOR2(x, y);
 }
-
-void CAnimations::Add(int id, LPANIMATION ani)
+D3DXVECTOR2 Sprite::GetScaling()
 {
-	animations[id] = ani;
-}
-
-LPANIMATION CAnimations::Get(int id)
-{
-	return animations[id];
+	float x = (float)this->scale;
+	float y = (float)this->scale;
+	if (flipHorizontal)
+	{
+		x *= -1;
+	}
+	if (flipVertical)
+	{
+		y *= -1;
+	}
+	return D3DXVECTOR2(x, y);
 }

@@ -1,5 +1,7 @@
-#include "Game.h"
+﻿
 #include "debug.h"
+#include "Sprites.h"
+#include "Game.h"
 
 CGame * CGame::__instance = NULL;
 
@@ -55,16 +57,7 @@ void CGame::Init(HWND hWnd)
 /*
 	Utility function to wrap LPD3DXSPRITE::Draw 
 */
-void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom)
-{
-	D3DXVECTOR3 p(x, y, 0);
-	RECT r; 
-	r.left = left;
-	r.top = top;
-	r.right = right;
-	r.bottom = bottom;
-	spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_XRGB(255, 255, 255));
-}
+
 
 int CGame::IsKeyDown(int KeyCode)
 {
@@ -189,6 +182,30 @@ void CGame::ProcessKeyboard()
 			keyHandler->OnKeyUp(KeyCode);
 	}
 }
+void CGame::Draw(Sprite * sprite, D3DCOLOR color)
+{
+	if (sprite->GetTexture() == NULL)
+		return;
+
+	D3DXVECTOR2 center = sprite->GetCenter();
+	D3DXVECTOR2 translate = sprite->GetTranslate();
+	D3DXVECTOR2 scaling = sprite->GetScaling();
+	//viewport->SetRenderData(center, translate, scaling);
+
+	D3DXMATRIX matrix;
+	D3DXMatrixTransformation2D(
+		&matrix,
+		NULL,
+		0.0f,
+		&scaling,
+		&center,
+		sprite->GetAngle(),
+		&translate
+	);
+
+	spriteHandler->SetTransform(&matrix);
+	spriteHandler->Draw(sprite->GetTexture(), &(sprite->GetRect()), NULL, NULL, color);
+}
 
 CGame::~CGame()
 {
@@ -204,3 +221,50 @@ CGame *CGame::GetInstance()
 	if (__instance == NULL) __instance = new CGame();
 	return __instance;
 }
+
+//Load textures
+HRESULT CGame::LoadTexture(LPCWSTR filePath, D3DCOLOR transColor, LPDIRECT3DTEXTURE9 &texture)
+{
+	if (filePath == NULL)
+	{
+		texture = NULL;
+		return D3DERR_INVALIDCALL;
+	}
+	HRESULT result;
+	//Thông tin texture
+	D3DXIMAGE_INFO info;
+	//Lấy thông tin texture từ đường dẫn file
+	result = D3DXGetImageInfoFromFile(filePath, &info);
+	//Kiểm tra lỗi khi lấy thông tin
+	if (result != D3D_OK)
+	{
+		DebugOut(L"[ERROR] GetImageInfoFromFile failed: %s\n", filePath);
+		return result;
+	}
+	//Tạo texture từ đường dẫn file
+	result = D3DXCreateTextureFromFileEx(
+		d3ddv,								// Pointer to Direct3D device object
+		filePath,							// Path to the image to load
+		info.Width,							// Texture width
+		info.Height,						// Texture height
+		1,
+		0,
+		D3DFMT_UNKNOWN,
+		D3DPOOL_DEFAULT,
+		D3DX_FILTER_NONE,
+		D3DX_FILTER_NONE,
+		transColor,
+		&info,
+		NULL,
+		&texture);								// Created texture pointer
+	//Kiểm tra lỗi khi tạo
+	if (result != D3D_OK)
+	{
+		OutputDebugString(L"[ERROR] CreateTextureFromFile failed\n");
+		return result;
+	}
+
+	DebugOut(L"[INFO] Texture loaded Ok: %s \n", filePath);
+	return result;
+}
+

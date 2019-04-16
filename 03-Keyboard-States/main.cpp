@@ -19,23 +19,17 @@
 #include "Textures.h"
 #include "camera.h"
 #include "Brick.h"
-#define WINDOW_CLASS_NAME L"SampleWindow"
-#define MAIN_WINDOW_TITLE L"Ninja Gaiden"
 
-#define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
+#include "TiledMap.h"
 
-#define MAX_FRAME_RATE 90
-
-#define ID_TEX_NINJA 0
-#define ID_TEX_ENEMY 10
-#define ID_TEX_MISC 20
 
 CGame *game;
 Ninja *ninja;
 Camera *camera;
 CBrick* brick;
+
+TiledMap * tiledMap;
+
 class CSampleKeyHander: public CKeyEventHandler
 {
 	virtual void KeyState(BYTE *states);
@@ -47,7 +41,7 @@ CSampleKeyHander * keyHandler;
 
 void CSampleKeyHander::OnKeyDown(int KeyCode)
 {
-	DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
+	/*DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
 	switch (KeyCode)
 	{
 	case DIK_SPACE:
@@ -57,7 +51,7 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 	case DIK_DOWN:
 		ninja->sd = true;
 		break;
-	}
+	}*/
 }
 
 void CSampleKeyHander::OnKeyUp(int KeyCode)
@@ -66,18 +60,18 @@ void CSampleKeyHander::OnKeyUp(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_DOWN:
-		ninja->sd = false;
+		//ninja->sd = false;
 		break;
 	}
 }
 
 void CSampleKeyHander::KeyState(BYTE *states)
 {
-	if (game->IsKeyDown(DIK_RIGHT))
+	/*if (game->IsKeyDown(DIK_RIGHT))
 		ninja->SetState(NINJA_STATE_WALKING_RIGHT);
 	else if (game->IsKeyDown(DIK_LEFT))
 		ninja->SetState(NINJA_STATE_WALKING_LEFT);
-	else ninja->SetState(NINJA_STATE_IDLE);
+	else ninja->SetState(NINJA_STATE_IDLE);*/
 }
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -99,111 +93,114 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 */
 void LoadResources()
 {
-	CTextures * textures = CTextures::GetInstance();
+	//CTextures * textures = CTextures::GetInstance();
 
-	textures->Add(ID_TEX_NINJA, L"textures\\ninja.png",D3DCOLOR_XRGB(255, 163, 177));
-	textures->Add(ID_TEX_MISC, L"textures\\misc.png", D3DCOLOR_XRGB(176, 224, 248));
+	//textures->Add(ID_TEX_NINJA, L"textures\\ninja.png",D3DCOLOR_XRGB(255, 163, 177));
+	//textures->Add(ID_TEX_MISC, L"textures\\misc.png", D3DCOLOR_XRGB(176, 224, 248));
 
-	CSprites * sprites = CSprites::GetInstance();
-	CAnimations * animations = CAnimations::GetInstance();
-	
-	LPDIRECT3DTEXTURE9 texninja = textures->Get(ID_TEX_NINJA);
-
-
-	sprites->Add(10000, 3, 5, 20, 37, texninja); //SPRITES FOR IDLE RIGHT
-
-	sprites->Add(10001, 339, 6, 359, 37, texninja); //SPRITES FOR RUN RIGHT
-	sprites->Add(10002, 368, 6, 390, 37, texninja);
-	sprites->Add(10003, 400, 6, 420, 37, texninja);
-
-	sprites->Add(10010, 856, 6, 873, 38, texninja);//SPRITES FOR IDLE LEFT
-
-	sprites->Add(10011, 456, 7, 476, 38, texninja);//SPRITES FOR RUN LEFT
-	sprites->Add(10012, 486, 7, 508, 38, texninja);
-	sprites->Add(10013, 517, 7, 537, 38, texninja);
-
-	sprites->Add(10021, 3, 44, 20, 76, texninja);//SPRITES FOR SIT RIGHT
-	sprites->Add(10022, 856, 45, 873, 77, texninja);//SPRITES FOR SIT LEFT
+	//CSprites * sprites = CSprites::GetInstance();
+	//CAnimations * animations = CAnimations::GetInstance();
+	//
+	//LPDIRECT3DTEXTURE9 texninja = textures->Get(ID_TEX_NINJA);
 
 
-	sprites->Add(10031, 142, 53, 158, 75, texninja);//SPRITES FOR JUMP AND RUN RIGHT
-	sprites->Add(10032, 166, 55, 188, 71, texninja);
-	sprites->Add(10033, 194, 53, 210, 75, texninja);
-	sprites->Add(10034, 217, 55, 239, 71, texninja);
+	//sprites->Add(10000, 3, 5, 20, 37, texninja); //SPRITES FOR IDLE RIGHT
 
-	sprites->Add(10041, 718, 54, 734, 76, texninja);//SPRITES FOR JUMP AND RUN LEFT
-	sprites->Add(10042, 688, 56, 710, 72, texninja);
-	sprites->Add(10043, 666, 54, 682, 76, texninja);
-	sprites->Add(10044, 637, 56, 659, 72, texninja);
-	LPANIMATION ani;
+	//sprites->Add(10001, 339, 6, 359, 37, texninja); //SPRITES FOR RUN RIGHT
+	//sprites->Add(10002, 368, 6, 390, 37, texninja);
+	//sprites->Add(10003, 400, 6, 420, 37, texninja);
 
-	ani = new CAnimation(100);//ANIMATION FOR IDLE RIGHT
-	ani->Add(10000);
-	animations->Add(400, ani);
+	//sprites->Add(10010, 856, 6, 873, 38, texninja);//SPRITES FOR IDLE LEFT
 
-	ani = new CAnimation(100);//ANIMATION FOR IDLE LEFT
-	ani->Add(10010);
-	animations->Add(401, ani);
+	//sprites->Add(10011, 456, 7, 476, 38, texninja);//SPRITES FOR RUN LEFT
+	//sprites->Add(10012, 486, 7, 508, 38, texninja);
+	//sprites->Add(10013, 517, 7, 537, 38, texninja);
 
-	ani = new CAnimation(100);//ANIMATION FOR SIT RIGHT
-	ani->Add(10021);
-	animations->Add(600, ani);
+	//sprites->Add(10021, 3, 44, 20, 76, texninja);//SPRITES FOR SIT RIGHT
+	//sprites->Add(10022, 856, 45, 873, 77, texninja);//SPRITES FOR SIT LEFT
 
-	ani = new CAnimation(100);//ANIMATION FOR SIT LEFT
-	ani->Add(10022);
-	animations->Add(601, ani);
 
-	ani = new CAnimation(100);//ANIMATION FOR RUN RIGHT
-	ani->Add(10001);
-	ani->Add(10002);
-	ani->Add(10003);
-	animations->Add(500, ani);
+	//sprites->Add(10031, 142, 53, 158, 75, texninja);//SPRITES FOR JUMP AND RUN RIGHT
+	//sprites->Add(10032, 166, 55, 188, 71, texninja);
+	//sprites->Add(10033, 194, 53, 210, 75, texninja);
+	//sprites->Add(10034, 217, 55, 239, 71, texninja);
 
-	ani = new CAnimation(100);//ANIMATION FOR RUN LEFT
-	ani->Add(10011);
-	ani->Add(10012);
-	ani->Add(10013);
-	animations->Add(501, ani);
+	//sprites->Add(10041, 718, 54, 734, 76, texninja);//SPRITES FOR JUMP AND RUN LEFT
+	//sprites->Add(10042, 688, 56, 710, 72, texninja);
+	//sprites->Add(10043, 666, 54, 682, 76, texninja);
+	//sprites->Add(10044, 637, 56, 659, 72, texninja);
+	//LPANIMATION ani;
 
-	ani = new CAnimation(100);//ANIMATION FOR JUMP AND RUN RIGHT
-	ani->Add(10031);
-	ani->Add(10032);
-	ani->Add(10033);
-	ani->Add(10034);
-	animations->Add(700, ani);
+	//ani = new CAnimation(100);//ANIMATION FOR IDLE RIGHT
+	//ani->Add(10000);
+	//animations->Add(400, ani);
 
-	ani = new CAnimation(100);//ANIMATION FOR RUN AND JUMP LEFT
-	ani->Add(10041);
-	ani->Add(10042);
-	ani->Add(10043);
-	ani->Add(10044);
-	animations->Add(701, ani);
+	//ani = new CAnimation(100);//ANIMATION FOR IDLE LEFT
+	//ani->Add(10010);
+	//animations->Add(401, ani);
 
-	LPDIRECT3DTEXTURE9 texMisc = textures->Get(ID_TEX_MISC);
-	sprites->Add(20001, 408, 225, 424, 241, texMisc);
+	//ani = new CAnimation(100);//ANIMATION FOR SIT RIGHT
+	//ani->Add(10021);
+	//animations->Add(600, ani);
 
-	ani = new CAnimation(100);		// brick
-	ani->Add(20001);
-	animations->Add(651, ani);
+	//ani = new CAnimation(100);//ANIMATION FOR SIT LEFT
+	//ani->Add(10022);
+	//animations->Add(601, ani);
 
-	ninja = new Ninja();
-	ninja->AddAnimation(400);		// idle right
-	ninja->AddAnimation(401);		// idle left
-	ninja->AddAnimation(500);		// walk right
-	ninja->AddAnimation(501);		// walk left
-	ninja->AddAnimation(600);		//sit right
-	ninja->AddAnimation(601);		//sit left
-	ninja->AddAnimation(700);		//jump right
-	ninja->AddAnimation(701);		//jump left
+	//ani = new CAnimation(100);//ANIMATION FOR RUN RIGHT
+	//ani->Add(10001);
+	//ani->Add(10002);
+	//ani->Add(10003);
+	//animations->Add(500, ani);
+
+	//ani = new CAnimation(100);//ANIMATION FOR RUN LEFT
+	//ani->Add(10011);
+	//ani->Add(10012);
+	//ani->Add(10013);
+	//animations->Add(501, ani);
+
+	//ani = new CAnimation(100);//ANIMATION FOR JUMP AND RUN RIGHT
+	//ani->Add(10031);
+	//ani->Add(10032);
+	//ani->Add(10033);
+	//ani->Add(10034);
+	//animations->Add(700, ani);
+
+	//ani = new CAnimation(100);//ANIMATION FOR RUN AND JUMP LEFT
+	//ani->Add(10041);
+	//ani->Add(10042);
+	//ani->Add(10043);
+	//ani->Add(10044);
+	//animations->Add(701, ani);
+
+	//LPDIRECT3DTEXTURE9 texMisc = textures->Get(ID_TEX_MISC);
+	//sprites->Add(20001, 408, 225, 424, 241, texMisc);
+
+	//ani = new CAnimation(100);		// brick
+	//ani->Add(20001);
+	//animations->Add(651, ani);
+
+	//ninja = new Ninja();
+	//ninja->AddAnimation(400);		// idle right
+	//ninja->AddAnimation(401);		// idle left
+	//ninja->AddAnimation(500);		// walk right
+	//ninja->AddAnimation(501);		// walk left
+	//ninja->AddAnimation(600);		//sit right
+	//ninja->AddAnimation(601);		//sit left
+	//ninja->AddAnimation(700);		//jump right
+	//ninja->AddAnimation(701);		//jump left
 
 	camera = new Camera(SCREEN_WIDTH, SCREEN_HEIGHT, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
 	camera->Follow(ninja);
 
-	ninja->SetPosition(0.0f, 100.0f);
+	//ninja->SetPosition(0.0f, 100.0f);
 
-	brick = new CBrick();
-	brick->AddAnimation(651);
-	brick->SetPosition(100 + 2 * 48.0f, 74);
+	//brick = new CBrick();
+	//brick->AddAnimation(651);
+	//brick->SetPosition(100 + 2 * 48.0f, 74);
+
+	if (tiledMap == NULL)
+		tiledMap = new TiledMap(TILES_MATRIX);
 }
 
 /*
@@ -213,8 +210,8 @@ void LoadResources()
 void Update(DWORD dt)
 {
 	camera->Update();
-	ninja->Update(dt);
-	brick->Update(dt);
+	/*ninja->Update(dt);
+	brick->Update(dt);*/
 }
 
 /*
@@ -232,9 +229,11 @@ void Render()
 		d3ddv->ColorFill(bb, NULL, BACKGROUND_COLOR);
 
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-		camera->SetTransform(game);
+		/*camera->SetTransform(game);
 		ninja->Render();
-		brick->Render();
+		brick->Render();*/
+		tiledMap->Render();
+
 		spriteHandler->End();
 		d3ddv->EndScene();
 	}
@@ -331,7 +330,7 @@ int Run()
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	HWND hWnd = CreateGameWindow(hInstance, nCmdShow, SCREEN_WIDTH*2, SCREEN_HEIGHT*2);
+	HWND hWnd = CreateGameWindow(hInstance, nCmdShow, SCREEN_WIDTH*1.5, SCREEN_HEIGHT * 2);
 
 	game = CGame::GetInstance();
 	game->Init(hWnd);

@@ -24,7 +24,7 @@ protected:
 
 	int state;									
 
-	vector<LPANIMATION> animations;
+	//vector<LPANIMATION> animations;
 
 public: 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; }

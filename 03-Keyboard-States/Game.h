@@ -19,6 +19,7 @@ public:
 };
 
 typedef CKeyEventHandler * LPKEYEVENTHANDLER;
+class Sprite;
 
 class CGame
 {
@@ -36,14 +37,14 @@ class CGame
 
 	BYTE  keyStates[256];			// DirectInput keyboard state buffer 
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
+	
 
 	LPKEYEVENTHANDLER keyHandler;
 
 public:
 	void InitKeyboard(LPKEYEVENTHANDLER handler);
 	void Init(HWND hWnd);
-	void Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom);
-
+	
 	int IsKeyDown(int KeyCode);
 	void ProcessKeyboard();
 
@@ -51,8 +52,11 @@ public:
 	LPDIRECT3DSURFACE9 GetBackBuffer() { return backBuffer; }
 	LPD3DXSPRITE GetSpriteHandler() { return this->spriteHandler; }
 
-	static CGame * GetInstance();
+	HRESULT LoadTexture(LPCWSTR filePath, D3DCOLOR transColor, LPDIRECT3DTEXTURE9 &texture);
 
+	void Draw(Sprite * sprite, D3DCOLOR color = D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	static CGame * GetInstance();
 	~CGame();
 };
 
