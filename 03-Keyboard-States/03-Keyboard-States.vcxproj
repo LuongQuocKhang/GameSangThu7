@@ -122,28 +122,53 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Brick.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="debug.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Ninja.cpp" />
-    <ClCompile Include="Sprites.cpp" />
-    <ClCompile Include="Textures.cpp" />
-    <ClCompile Include="TiledMap.cpp" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Animation.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Constants.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Debug.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Game.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\GameObject.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Graphics.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Keyboard.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\resource.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Sprite.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\TiledMap.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Viewport.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\AttackingState.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\CrouchingState.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\IdleState.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\JumpingState.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Knife.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Ninja.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Simon.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\State.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Subweapon.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\ThrowingState.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\WalkingState.h" />
+    <ClInclude Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Whip.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Brick.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="debug.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Ninja.h" />
-    <ClInclude Include="Sprites.h" />
-    <ClInclude Include="Textures.h" />
-    <ClInclude Include="TiledMap.h" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Animation.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Debug.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Game.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\GameObject.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Graphics.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Keyboard.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Sprite.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\TiledMap.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\GameComponents\Viewport.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Main.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\AttackingState.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\CrouchingState.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\IdleState.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\JumpingState.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Knife.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Ninja.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Simon.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\State.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Subweapon.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\ThrowingState.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\WalkingState.cpp" />
+    <ClCompile Include="..\..\..\..\Ninja-Gaiden-NES\NinjaGaiden\Ninja\Whip.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
