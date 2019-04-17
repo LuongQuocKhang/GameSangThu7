@@ -1,5 +1,4 @@
 ﻿#include "TiledMap.h"
-#include "Game.h"
 
 
 TiledMap::TiledMap(LPCWSTR filePath)
@@ -141,7 +140,7 @@ void TiledMap::Render()
 				spriteData.isLeft = true;
 
 				tiles.at(curRow[j])->SetData(spriteData);
-				CGame::GetInstance()->Draw(tiles.at(curRow[j]),D3DCOLOR_ARGB(255, 255, 255, 255));
+				CGame::GetInstance()->Draw(tiles.at(curRow[j]));
 			}
 		}
 	}

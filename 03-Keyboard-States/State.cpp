@@ -1,5 +1,5 @@
 #include "State.h"
-#include "Constants.h"
+#include "Ninja.h"
 #include "Game.h"
 
 void State::Update(DWORD dt)

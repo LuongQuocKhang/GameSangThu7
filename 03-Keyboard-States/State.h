@@ -1,14 +1,14 @@
 #pragma once
 #include "d3d9.h"
-#include "Ninja.h"
 
+class Ninja;
 class State
 {
 protected:
 	Ninja * ninja;
 public:
 	
-	Ninja* GetNinja() { return this->ninja; }
+	//Ninja* GetNinja() { return this->ninja; }
 
 
 	virtual void Idle() = 0;

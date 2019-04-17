@@ -27,6 +27,7 @@ CGame *game;
 Ninja *ninja;
 Camera *camera;
 CBrick* brick;
+TiledMap * tilemap;
 
 class CSampleKeyHander: public CKeyEventHandler
 {
@@ -188,8 +189,8 @@ void LoadResources()
 	//ninja->AddAnimation(700);		//jump right
 	//ninja->AddAnimation(701);		//jump left
 
-	camera = new Camera(SCREEN_WIDTH, SCREEN_HEIGHT, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
-	camera->Follow(ninja);
+	/*camera = new Camera(SCREEN_WIDTH, SCREEN_HEIGHT, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
+	camera->Follow(ninja);*/
 
 	//ninja->SetPosition(0.0f, 100.0f);
 
@@ -197,8 +198,8 @@ void LoadResources()
 	//brick->AddAnimation(651);
 	//brick->SetPosition(100 + 2 * 48.0f, 74);
 
-	if (game->GetInstance()->GetTiledMap() == NULL)
-		game->GetInstance()->SetTiledMap(new TiledMap(TILES_MATRIX));
+	if (tilemap == NULL)
+		tilemap = new TiledMap(TILES_MATRIX);
 }
 
 /*
@@ -207,7 +208,7 @@ void LoadResources()
 */
 void Update(DWORD dt)
 {
-	camera->Update();
+	//camera->Update();
 	/*ninja->Update(dt);
 	brick->Update(dt);*/
 }
@@ -230,7 +231,7 @@ void Render()
 		/*camera->SetTransform(game);
 		ninja->Render();
 		brick->Render();*/
-		game->GetInstance()->GetTiledMap()->Render();
+		tilemap->Render();
 
 		spriteHandler->End();
 		d3ddv->EndScene();

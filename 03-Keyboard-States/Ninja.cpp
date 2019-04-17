@@ -1,6 +1,4 @@
 ﻿#include "Ninja.h"
-#include "IdleState.h"
-#include "Constants.h"
 
 vector<Animation *> Ninja::animations = vector<Animation *>();
 //vector<Subweapon *> Ninja::subweapons = vector<Subweapon *>();

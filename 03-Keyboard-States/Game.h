@@ -1,7 +1,5 @@
 #pragma once
-#include <Windows.h>
-#include <d3d9.h>
-#include <d3dx9.h>
+#include "Ninja.h"
 #include "TiledMap.h"
 
 #define DIRECTINPUT_VERSION 0x0800
@@ -11,7 +9,6 @@
 Abstract class to define keyboard event handlers
 */
 
-#include "Sprites.h"
 
 class CKeyEventHandler
 {
@@ -43,7 +40,7 @@ class CGame
 
 	LPKEYEVENTHANDLER keyHandler;
 
-	TiledMap * tiledMap;
+	//TiledMap * tiledMap;
 
 public:
 	void InitKeyboard(LPKEYEVENTHANDLER handler);
@@ -59,8 +56,8 @@ public:
 	HRESULT LoadTexture(LPCWSTR filePath, D3DCOLOR transColor, LPDIRECT3DTEXTURE9 &texture);
 
 	void Draw(Sprite * sprite, D3DCOLOR color = D3DCOLOR_ARGB(255, 255, 255, 255));
-	TiledMap * GetTiledMap() { return tiledMap; }
-	void SetTiledMap(TiledMap * TileMap) { tiledMap = TileMap; }
+	/*TiledMap * GetTiledMap() { return tiledMap; }
+	void SetTiledMap(TiledMap * TileMap) { tiledMap = TileMap; }*/
 	static CGame * GetInstance();
 	~CGame();
 };

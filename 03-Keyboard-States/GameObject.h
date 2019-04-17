@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Sprites.h"
-
+#include "Animation.h"
 
 using namespace std;
 

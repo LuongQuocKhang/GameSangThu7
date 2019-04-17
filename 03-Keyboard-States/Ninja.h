@@ -1,12 +1,12 @@
 ﻿#pragma once
 #include "GameObject.h"
-#include "Animation.h"
+#include "IdleState.h"
+#include "Constants.h"
 
-class Sprite;
 class State;
 class Ninja : public CGameObject
 {
-
+	Ninja();
 	static Ninja * __instance;
 	State* idleState;
 	/*State * walkingState;
@@ -28,7 +28,7 @@ class Ninja : public CGameObject
 	int curSubweapon;
 	//static vector<Subweapon *> subweapons;
 public:
-	Ninja();
+	
 
 	float getX() { return this->x; }
 	float getY() { return this->y; }
