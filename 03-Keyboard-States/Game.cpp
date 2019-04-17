@@ -1,6 +1,5 @@
 ﻿
 #include "debug.h"
-#include "Sprites.h"
 #include "Game.h"
 
 CGame * CGame::__instance = NULL;
@@ -52,6 +51,8 @@ void CGame::Init(HWND hWnd)
 	D3DXCreateSprite(d3ddv, &spriteHandler);
 
 	OutputDebugString(L"[INFO] InitGame done;\n");
+
+	tiledMap = new TiledMap(TILES_MATRIX);
 }
 
 /*

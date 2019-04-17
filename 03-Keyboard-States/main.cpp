@@ -28,8 +28,6 @@ Ninja *ninja;
 Camera *camera;
 CBrick* brick;
 
-TiledMap * tiledMap;
-
 class CSampleKeyHander: public CKeyEventHandler
 {
 	virtual void KeyState(BYTE *states);
@@ -199,8 +197,8 @@ void LoadResources()
 	//brick->AddAnimation(651);
 	//brick->SetPosition(100 + 2 * 48.0f, 74);
 
-	if (tiledMap == NULL)
-		tiledMap = new TiledMap(TILES_MATRIX);
+	if (game->GetInstance()->GetTiledMap() == NULL)
+		game->GetInstance()->SetTiledMap(new TiledMap(TILES_MATRIX));
 }
 
 /*
@@ -232,7 +230,7 @@ void Render()
 		/*camera->SetTransform(game);
 		ninja->Render();
 		brick->Render();*/
-		tiledMap->Render();
+		game->GetInstance()->GetTiledMap()->Render();
 
 		spriteHandler->End();
 		d3ddv->EndScene();

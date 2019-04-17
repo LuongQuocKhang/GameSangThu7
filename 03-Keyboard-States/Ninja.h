@@ -1,38 +1,80 @@
-#pragma once
+﻿#pragma once
 #include "GameObject.h"
+#include "Animation.h"
 
-#define NINJA_WALKING_SPEED		0.1f
-#define NINJA_JUMP_SPEED_Y		0.4f
-#define NINJA_GRAVITY			0.02f
-
-#define NINJA_STATE_IDLE			0
-#define NINJA_STATE_WALKING_RIGHT	100
-#define NINJA_STATE_WALKING_LEFT	200
-#define NINJA_STATE_JUMP			300
-#define NINJA_STATE_IDLE_SIT		400
-#define NINJA_STATE_JUMP_RIGHT		500
-#define NINJA_STATE_JUMP_LEFT		600
-
-
-#define NINJA_ANI_IDLE_RIGHT		0
-#define NINJA_ANI_IDLE_LEFT			1
-#define NINJA_ANI_WALKING_RIGHT		2
-#define NINJA_ANI_WALKING_LEFT		3
-#define NINJA_ANI_SIT_RIGHT			4
-#define NINJA_ANI_SIT_LEFT			5
-#define NINJA_ANI_JUMP_RUN_RIGHT	6
-#define NINJA_ANI_JUMP_RUN_LEFT		7
-
+class Sprite;
+class State;
 class Ninja : public CGameObject
 {
+
+	static Ninja * __instance;
+	State* idleState;
+	/*State * walkingState;
+	State * crouchingState;
+	State * jumpingState;
+	State * attackingState;
+	State * throwingState;*/
+
+	State* state;
+
+	bool isGrounded = false;
+	bool isCrouching = false;
+	//Vector chứa các animations
+	static vector<Animation *> animations;
+	DWORD lastFrameTime;
+	//Roi
+	//Whip * whip;
+	//Vũ khí phụ
+	int curSubweapon;
+	//static vector<Subweapon *> subweapons;
 public:
 	Ninja();
-	~Ninja();
-	int getX() { return this->x; }
-	int getY() { return this->y; }
 
-	void GetBoundingBox(float &left, float &top, float &right, float &bottom) {}
-	void Update(DWORD dt);
-	void Render();
-	void SetState(int state);
+	float getX() { return this->x; }
+	float getY() { return this->y; }
+
+	void LoadResources();
+	//Hàm set
+	void SetIsGrounded(bool isGrounded) { this->isGrounded = isGrounded; }
+	void SetIsCrouching(bool isCrouching) { this->isCrouching = isCrouching; }
+	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
+	void SetState(State * state);
+	//void SetWhip(int type) { this->whip->SetType(type); }
+	//Hàm get
+	static Ninja * GetInstance();
+
+	DWORD GetLastFrameTime() { return this->lastFrameTime; }
+	//vector<Subweapon *> GetSubweapon() { return this->subweapons; }
+
+	State * GetIdleState();
+	/*State * GetWalkingState();
+	State * GetAttackingState();
+	State * GetThrowingState();
+	State * GetCrouchingState();
+	State * GetJumpingState();
+
+	Whip * GetWhip() { return this->whip; }*/
+	//Hàm trạng thái
+	//bool IsAttacking() { return state == attackingState || state == throwingState; }
+	bool IsGrounded() { return isGrounded; }
+	bool IsCrouching() { return isCrouching; }
+	bool IsLeft() { return isLeft; }
+	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
+
+	vector<Animation *> GetAnimationsList() { return animations; }
+	//Các hàm hành động nhân vật
+	void Idle();
+	void Attack();
+	void Walk();
+	void Throw();
+	void Jump();
+	void Crouch();
+
+	void CreateThrownWeapon();
+	void TurnLeft();
+	void TurnRight();
+	//Hàm cập nhật
+	void Update(DWORD dt) override;
+	//Hàm render
+	void Render() override;
 };

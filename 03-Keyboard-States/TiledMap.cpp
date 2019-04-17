@@ -141,7 +141,7 @@ void TiledMap::Render()
 				spriteData.isLeft = true;
 
 				tiles.at(curRow[j])->SetData(spriteData);
-				CGame::GetInstance()->Draw(tiles.at(curRow[j]));
+				CGame::GetInstance()->Draw(tiles.at(curRow[j]),D3DCOLOR_ARGB(255, 255, 255, 255));
 			}
 		}
 	}

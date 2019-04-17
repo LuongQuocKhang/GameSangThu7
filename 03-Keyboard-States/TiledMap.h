@@ -27,9 +27,10 @@ private:
 	int mapWidth, mapHeight;
 	int tileSetWidth, tileSetHeight;
 	LPCWSTR infoLocation;
-	unordered_map<int, Sprite*> tiles;
 public:
 	TiledMap(LPCWSTR filePath);
+
+	unordered_map<int, Sprite*> tiles;
 
 	int GetWidth();
 	int GetHeight();

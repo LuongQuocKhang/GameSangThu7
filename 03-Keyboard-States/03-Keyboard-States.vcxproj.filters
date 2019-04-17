@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Ninja">
+      <UniqueIdentifier>{0a1e675d-898e-4b10-9baa-cd0b93c3b6a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{f7b5a089-1f7d-4904-8e21-66c0dcb350aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ninja">
+      <UniqueIdentifier>{ef7e5dbb-19e2-4f61-bfda-7fedef517aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{b78a39ee-9820-4a74-bc20-61f3cf9c364c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug.cpp">
@@ -36,14 +48,23 @@
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ninja.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TiledMap.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Source Files\Ninja</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,13 +89,22 @@
     <ClInclude Include="Brick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ninja.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TiledMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja.h">
+      <Filter>Header Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

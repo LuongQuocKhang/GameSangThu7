@@ -20,7 +20,7 @@
 //
 
 #define TILES_LOCATION L"map\\3-1_tiles.png"
-#define TILES_MATRIX L"map\\test1.txt"
+#define TILES_MATRIX L"Resources\\map\\test1.txt"
 #define TILES_MATRIX_DELIMITER ","
 #define TILES_WIDTH_PER_TILE	16
 #define TILES_HEIGHT_PER_TILE	16
