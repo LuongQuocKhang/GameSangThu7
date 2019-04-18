@@ -13,10 +13,10 @@ void Game::Init()
 	graphics = Graphics::GetInstance();
 	graphics->Init(hWnd);
 
+	this->stage = STAGE_31;
+
 	keyboard = Keyboard::GetInstance();
 	keyboard->InitKeyboard(hWnd);
-
-	this->stage = STAGE_31;
 
 	LoadResources();
 	OutputDebugString(L"[INFO] InitGame done;\n");
@@ -85,17 +85,13 @@ void Game::LoadResources()
 	}
 	else
 	{
-		if (Game::GetInstance()->GetStage() == STAGE_31)
+		if (Game::GetInstance()->GetStage() == STAGE_32)
 		{
-			tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
-		}
-		else if (Game::GetInstance()->GetStage() == STAGE_32)
-		{
-
+			tiledMap = new TiledMap(TILES_MATRIX_STAGE_32);
 		}
 		else if (Game::GetInstance()->GetStage() == STAGE_BOSS)
 		{
-
+			tiledMap = new TiledMap(TILES_MATRIX_STAGE_BOSS);
 		}
 	}
 	if (viewport == NULL)
