@@ -147,7 +147,12 @@ void TiledMap::Render()
 				spriteData.height = TILES_HEIGHT_PER_TILE;
 				spriteData.x = j * TILES_WIDTH_PER_TILE;
 				spriteData.y = (matrix.size() - i) * TILES_HEIGHT_PER_TILE;
+
 				spriteData.scale = 1;
+				if (Game::GetInstance()->GetStage() == STAGE_BOSS)
+				{
+					spriteData.scale = 2;
+				}
 				spriteData.angle = 0;
 				//spriteData.isLeft = true;
 
