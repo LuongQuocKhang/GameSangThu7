@@ -205,10 +205,13 @@ void State::Attack()
 			break;
 		case NINJA_ANI_IDLE:
 		case NINJA_ANI_CROUCHING:
+		{
+			ninja->SetState(ninja->GetAttackingState());
+			break;
+		}
 		case NINJA_ANI_JUMPING:
 		{
-			// chỗ này cần sữa
-			//ninja->SetState(ninja->GetAttackingState());
+			// chỗ này cần sữa trạng thái cuộn tròn chém
 		}
 			break;
 		case NINJA_ANI_WALKING:
