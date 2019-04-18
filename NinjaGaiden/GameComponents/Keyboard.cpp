@@ -98,47 +98,43 @@ void Keyboard::Poll_Keyboard()
 		}
 	}
 }
+// update trạng thái nhân vật khi nhấn nút
 void Keyboard::UpdateKeyStates()
 {
 	Ninja * ninja = Game::GetInstance()->GetNinja();
 
-	//Nếu đang nhấn phím phải thì mario đi phải
 	if (IsKeyDown(DIK_RIGHT))
 	{
 		if (!IsKeyDown(DIK_LEFT) && !ninja->IsAttacking() && ninja->IsGrounded())
 		{
 			ninja->TurnRight();
-			if (!IsKeyDown(DIK_LCONTROL))
+			if (!IsKeyDown(DIK_DOWN))
 			{
-				//ninja->Idle();
 				ninja->Walk();
 			}
 			else
 				ninja->Crouch();
 		}
-		else if (!IsKeyDown(DIK_LCONTROL))
+		else if (!IsKeyDown(DIK_DOWN))
 			ninja->Idle();
 	}
-	//Nếu đang nhấn phím trái thì mario đi trái
 	else if (IsKeyDown(DIK_LEFT))
 	{
 		if (!IsKeyDown(DIK_RIGHT) && !ninja->IsAttacking() && ninja->IsGrounded())
 		{
 			ninja->TurnLeft();
-			if (!IsKeyDown(DIK_LCONTROL))
+			if (!IsKeyDown(DIK_DOWN))
 			{
-				//ninja->Idle();
 				ninja->Walk();
 			}
 			else
 				ninja->Crouch();
 		}
-		else if (!IsKeyDown(DIK_LCONTROL))
+		else if (!IsKeyDown(DIK_DOWN))
 			ninja->Idle();
 	}
-	else if (IsKeyDown(DIK_LCONTROL))
+	else if (IsKeyDown(DIK_DOWN))
 		ninja->Crouch();
-	//Nếu không thì mario ở trạng thái idle
 	else
 		ninja->Idle();
 }
@@ -148,17 +144,16 @@ void Keyboard::OnKeyDown(int KeyCode)
 	DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
 	switch (KeyCode)
 	{
-	//Nếu là phím Space thì đổi mario sang trạng thái nhảy
-	case DIK_SPACE:
-		ninja->Jump();
-		break;
-	case DIK_S:
-		ninja->Attack();
-		break;
+		case DIK_SPACE:
+			ninja->Jump();
+			break;
+		case DIK_S:
+			ninja->Attack();
+			break;
 	/*case DIK_D:
 		ninja->Throw();
 		break;*/
-	case DIK_1:
+	/*case DIK_1:
 		ninja->SetWhip(WHIP_NORMAL);
 		break;
 	case DIK_2:
@@ -166,7 +161,7 @@ void Keyboard::OnKeyDown(int KeyCode)
 		break;
 	case DIK_3:
 		ninja->SetWhip(WHIP_LONG_CHAIN);
-		break;
+		break;*/
 	}
 }
 void Keyboard::OnKeyUp(int KeyCode)

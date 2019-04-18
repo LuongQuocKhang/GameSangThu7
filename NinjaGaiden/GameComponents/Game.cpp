@@ -77,25 +77,21 @@ HWND Game::CreateGameWindow(HINSTANCE hInstance, int ScreenWidth, int ScreenHeig
 }
 void Game::LoadResources()
 {
-	if (ninja == NULL) 
+	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
-	if (tiledMap == NULL)
+	if (NULL == tiledMap)
 	{
 		tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
 	}
 	else
 	{
-		if (Game::GetInstance()->GetStage() == STAGE_31)
+		if (STAGE_32 == Game::GetInstance()->GetStage())
 		{
-			tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
+			tiledMap = new TiledMap(TILES_MATRIX_STAGE_32);
 		}
-		else if (Game::GetInstance()->GetStage() == STAGE_32)
+		else if (STAGE_BOSS == Game::GetInstance()->GetStage())
 		{
-
-		}
-		else if (Game::GetInstance()->GetStage() == STAGE_BOSS)
-		{
-
+			tiledMap = new TiledMap(TILES_MATRIX_STAGE_BOSS);
 		}
 	}
 	if (viewport == NULL)

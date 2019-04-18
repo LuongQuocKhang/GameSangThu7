@@ -10,17 +10,11 @@ Ninja::Ninja()
 
 	whip = new Whip();
 
-	
-
-	
-	//id tu 0 - 5 tung ung voi cac state 
-	
-	idleState = new State(this, 0);
-	walkingState = new State(this, 1);
-	attackingState = new State(this, 23);
-	jumpingState = new State(this, 4);
-	crouchingState = new State(this, 5);
-	
+	idleState = new State(this, NINJA_ANI_IDLE);
+	walkingState = new State(this, NINJA_ANI_WALKING);
+	attackingState = new State(this, NINJA_ANI_STANDING_ATTACKING);
+	jumpingState = new State(this, NINJA_ANI_JUMPING);
+	crouchingState = new State(this, NINJA_ANI_CROUCHING);
 
 	state = idleState;
 
@@ -67,7 +61,7 @@ void Ninja::LoadResources()
 	anim = new Animation(100);
 	for (int i = 10; i < 15; i++)
 	{
-		if (i == 10)
+		if (10 == i)
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -78,7 +72,7 @@ void Ninja::LoadResources()
 
 			anim->AddFrame(sprite);
 		}
-		else if (i == 11 || i == 13)
+		else if (11 == i || 13 == i )
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -96,7 +90,7 @@ void Ninja::LoadResources()
 	anim = new Animation(100);
 	for (int i = 25; i < 30; i++)
 	{
-		if (i == 25)
+		if (25 == i)
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -107,7 +101,7 @@ void Ninja::LoadResources()
 
 			anim->AddFrame(sprite);
 		}
-		else if (i == 26 || i == 28)
+		else if (26 == i || 28 == i )
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
