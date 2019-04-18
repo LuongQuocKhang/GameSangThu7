@@ -9,17 +9,17 @@ State::State(Ninja * ninja, int states)
 }
 void State::Update(DWORD dt)
 {
-	int test = this->states;
-	switch (test)
+	int state = this->states;
+	switch (state)
 	{
-	case 3:
-	{
-		if (ninja->IsGrounded())
+		case 4: //jumping state
 		{
-			ninja->SetState(ninja->GetIdleState());
-		}
-	}break;
-	default:break;
+			if (ninja->IsGrounded())
+			{
+				ninja->SetState(ninja->GetIdleState());
+			}
+		}break;
+		default:break;
 	}
 	ninja->SetPositionX((int)(ninja->GetPositionX() + ninja->GetSpeedX()* dt));
 	ninja->SetPositionY((int)(ninja->GetPositionY() + ninja->GetSpeedY()* dt));
@@ -61,10 +61,10 @@ void State::Render()
 			subweapons[i]->Render(spriteData);
 		}
 	}*/
-	int test = this->states;
-	switch (test)
+	int state = this->states;
+	switch (state)
 	{
-	case 0:
+	case 23: //attackingState
 	{
 		SpriteData spriteData;
 		spriteData.width = NINJA_SPRITE_WIDTH;
@@ -103,7 +103,7 @@ void State::Render()
 			}
 		}
 	}break;
-	case 2:
+	case 0://idleState
 	{
 		SpriteData spriteData;
 		spriteData.width = NINJA_SPRITE_WIDTH;
@@ -117,7 +117,7 @@ void State::Render()
 
 		ninja->GetAnimationsList()[NINJA_ANI_IDLE]->Render(spriteData);
 	}break;
-	case 1:
+	case 5://crouchingState
 	{
 		SpriteData spriteData;
 		spriteData.width = NINJA_SPRITE_WIDTH;
@@ -131,7 +131,7 @@ void State::Render()
 
 		ninja->GetAnimationsList()[NINJA_ANI_CROUCHING]->Render(spriteData);
 	}break;
-	case 3:
+	case 4://jumpingState
 	{
 		SpriteData spriteData;
 		spriteData.width = NINJA_SPRITE_WIDTH;
@@ -145,7 +145,7 @@ void State::Render()
 
 		ninja->GetAnimationsList()[NINJA_ANI_JUMPING]->Render(spriteData);
 	}break;
-	case 4:
+	case 1://walkingState
 	{
 		SpriteData spriteData;
 		spriteData.width = NINJA_SPRITE_WIDTH;
@@ -165,22 +165,21 @@ void State::Render()
 
 void State::Idle()
 {
-	int test = this->states;
+	int state = this->states;
 
-	switch (test)
+	switch (state)
 	{
-	case 0:
+	case 23://attackingState
+	case 0://idleState
 		break;
-	case 2:
-		break;
-	case 1:
+	case 5://crouchingState
 	{
 		ninja->SetIsCrouching(false);
 		ninja->SetState(ninja->GetIdleState());
 	}break;
 	case 3:
 		break;
-	case 4:
+	case 1://walkingState
 	{
 		ninja->SetSpeedX(0);
 		ninja->SetState(ninja->GetIdleState());
@@ -189,26 +188,19 @@ void State::Idle()
 }
 void State::Attack()
 {
-	int test = this->states;
+	int state = this->states;
 
-	switch (test)
+	switch (state)
 	{
-	case 0:
+	case 23://attackingState
 		break;
-	case 2:
+	case 0://idleState
+	case 5://crouchingState
+	case 4://jumpingState
 	{
 		ninja->SetState(ninja->GetAttackingState());
 	}break;
-	case 1:
-	{
-		ninja->SetState(ninja->GetAttackingState());
-	}break;
-	case 3:
-	{
-		ninja->SetState(ninja->GetAttackingState());
-	}break;
-
-	case 4:
+	case 1://walkingState
 	{
 		ninja->SetSpeedX(0);
 		ninja->SetState(ninja->GetAttackingState());
@@ -217,22 +209,20 @@ void State::Attack()
 }
 void State::Walk()
 {
-	int test = this->states;
+	int state = this->states;
 
-	switch (test)
+	switch (state)
 	{
-	case 0:
+	case 23://attackingState
+	case 5://crouchingState
+	case 4://jumpingState
 		break;
-	case 2:
+	case 0://idleState
 	{
 		ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
 		ninja->SetState(ninja->GetWalkingState());
 	}break;
-	case 1:
-		break;
-	case 3:
-		break;
-	case 4:
+	case 1://walkingState
 	{
 		ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
 	}break;
@@ -240,9 +230,9 @@ void State::Walk()
 }
 //void State::Throw()
 //{
-//	int test = this->states;
+//	int state = this->states;
 //
-//	switch (test)
+//	switch (state)
 //	{
 //	case '0':
 //		break;
@@ -267,13 +257,15 @@ void State::Walk()
 //}
 void State::Jump()
 {
-	int test = this->states;
+	int state = this->states;
 
-	switch (test)
+	switch (state)
 	{
-	case 0:
+	case 23://attackingState
+	case 5://crouchingState
+	case 4://jumpingState
 		break;
-	case 2:
+	case 0://idleState
 	{
 		if (ninja->IsGrounded())
 		{
@@ -282,11 +274,7 @@ void State::Jump()
 			ninja->SetState(ninja->GetJumpingState());
 		}
 	}break;
-	case 1:
-		break;
-	case 3:
-		break;
-	case 4:
+	case 1://walkingState
 	{
 		if (ninja->IsGrounded())
 		{
@@ -299,22 +287,20 @@ void State::Jump()
 }
 void State::Crouch()
 {
-	int test = this->states;
+	int state = this->states;
 
-	switch (test)
+	switch (state)
 	{
-	case 0:
+	case 23:
+	case 5:
+	case 4://attackingState,crouchingState,jumpingState
 		break;
-	case 2:
+	case 0://idleState
 	{
 		ninja->SetIsCrouching(true);
 		ninja->SetState(ninja->GetCrouchingState());
 	}break;
-	case 1:
-		break;
-	case 3:
-		break;
-	case 4:
+	case 1://walkingState
 	{
 		ninja->SetSpeedX(0);
 		ninja->SetIsCrouching(true);

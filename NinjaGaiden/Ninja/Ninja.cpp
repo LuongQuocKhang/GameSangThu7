@@ -10,12 +10,17 @@ Ninja::Ninja()
 
 	whip = new Whip();
 
-	idleState = new State(this, 2);
-	walkingState = new State(this, 4);
-	crouchingState = new State(this, 1);
-	jumpingState = new State(this, 3);
-	attackingState = new State(this, 0);
-	//throwingState = new State(this, 5);
+	
+
+	
+	//id tu 0 - 5 tung ung voi cac state 
+	
+	idleState = new State(this, 0);
+	walkingState = new State(this, 1);
+	attackingState = new State(this, 23);
+	jumpingState = new State(this, 4);
+	crouchingState = new State(this, 5);
+	
 
 	state = idleState;
 
