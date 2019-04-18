@@ -66,23 +66,8 @@
     <ClCompile Include="Ninja\Whip.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
-    <ClCompile Include="Ninja\AttackingState.cpp">
-      <Filter>Source Files\Ninja\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\CrouchingState.cpp">
-      <Filter>Source Files\Ninja\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\IdleState.cpp">
-      <Filter>Source Files\Ninja\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\JumpingState.cpp">
-      <Filter>Source Files\Ninja\States</Filter>
-    </ClCompile>
     <ClCompile Include="Ninja\State.cpp">
       <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\WalkingState.cpp">
-      <Filter>Source Files\Ninja\States</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
@@ -98,21 +83,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ninja\WalkingState.h">
-      <Filter>Header Files\Ninja\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\AttackingState.h">
-      <Filter>Header Files\Ninja\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\IdleState.h">
-      <Filter>Header Files\Ninja\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\JumpingState.h">
-      <Filter>Header Files\Ninja\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\CrouchingState.h">
-      <Filter>Header Files\Ninja\States</Filter>
-    </ClInclude>
     <ClInclude Include="Ninja\Knife.h">
       <Filter>Header Files\Ninja</Filter>
     </ClInclude>

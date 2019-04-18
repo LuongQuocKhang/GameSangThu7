@@ -155,9 +155,9 @@ void Keyboard::OnKeyDown(int KeyCode)
 	case DIK_S:
 		ninja->Attack();
 		break;
-	case DIK_D:
+	/*case DIK_D:
 		ninja->Throw();
-		break;
+		break;*/
 	case DIK_1:
 		ninja->SetWhip(WHIP_NORMAL);
 		break;

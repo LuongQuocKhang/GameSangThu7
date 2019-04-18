@@ -10,12 +10,12 @@ Ninja::Ninja()
 
 	whip = new Whip();
 
-	idleState = new IdleState(this);
-	walkingState = new WalkingState(this);
-	crouchingState = new CrouchingState(this);
-	jumpingState = new JumpingState(this);
-	attackingState = new AttackingState(this);
-	throwingState = new ThrowingState(this);
+	idleState = new State(this, 2);
+	walkingState = new State(this, 4);
+	crouchingState = new State(this, 1);
+	jumpingState = new State(this, 3);
+	attackingState = new State(this, 0);
+	//throwingState = new State(this, 5);
 
 	state = idleState;
 
@@ -162,10 +162,10 @@ State * Ninja::GetAttackingState()
 {
 	return attackingState;
 }
-State * Ninja::GetThrowingState()
-{
-	return throwingState;
-}
+//State * Ninja::GetThrowingState()
+//{
+//	return throwingState;
+//}
 State * Ninja::GetCrouchingState()
 {
 	return crouchingState;
@@ -188,10 +188,10 @@ void Ninja::Walk()
 {
 	state->Walk();
 }
-void Ninja::Throw()
-{
-	state->Throw();
-}
+//void Ninja::Throw()
+//{
+//	state->Throw();
+//}
 void Ninja::Jump()
 {
 	state->Jump();
@@ -217,9 +217,9 @@ void Ninja::CreateThrownWeapon()
 	{
 	case SUBWEAPON_KNIFE:
 		subweapon = new Knife();
-		if (isLeft) 
+		if (isLeft)
 			subweapon->TurnLeft();
-		else 
+		else
 			subweapon->TurnRight();
 		subweapon->SetThrownPosition(this->x, this->y, isCrouching);
 		this->subweapons.push_back(subweapon);

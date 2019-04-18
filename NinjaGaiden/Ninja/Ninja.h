@@ -4,14 +4,7 @@
 
 #include "Whip.h"
 #include "Knife.h"
-
-#include "IdleState.h"
-#include "WalkingState.h"
-#include "JumpingState.h"
-#include "CrouchingState.h"
-#include "AttackingState.h"
-#include "ThrowingState.h"
-
+#include "State.h"
 #include "Constants.h"
 class State;
 class Ninja : public GameObject
@@ -55,7 +48,7 @@ public:
 	State * GetIdleState();
 	State * GetWalkingState();
 	State * GetAttackingState();
-	State * GetThrowingState();
+	//State * GetThrowingState();
 	State * GetCrouchingState();
 	State * GetJumpingState();
 
@@ -72,7 +65,7 @@ public:
 	void Idle();
 	void Attack();
 	void Walk();
-	void Throw();
+	//void Throw();
 	void Jump();
 	void Crouch();
 

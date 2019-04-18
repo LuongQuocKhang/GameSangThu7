@@ -6,14 +6,16 @@ class State
 {
 protected:
 	Ninja * ninja;
+	int states;
 public:
-	virtual void Idle() = 0;
-	virtual void Attack() = 0;
-	virtual void Walk() = 0;
-	virtual void Throw() = 0;
-	virtual void Jump() = 0;
-	virtual void Crouch() = 0;
-	virtual void Update(DWORD dt);
-	virtual void Render();
+	State(Ninja * ninja, int states);
+	void Idle();
+	void Attack();
+	void Walk();
+	//void Throw() ;
+	void Jump();
+	void Crouch();
+	void Update(DWORD dt);
+	void Render();
 };
 

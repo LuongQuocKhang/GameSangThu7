@@ -27,17 +27,12 @@
     <ClCompile Include="GameComponents\Keyboard.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\Viewport.cpp" />
-    <ClCompile Include="Ninja\AttackingState.cpp" />
-    <ClCompile Include="Ninja\CrouchingState.cpp" />
-    <ClCompile Include="Ninja\IdleState.cpp" />
-    <ClCompile Include="Ninja\JumpingState.cpp" />
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
     <ClCompile Include="Ninja\State.cpp" />
     <ClCompile Include="Ninja\Subweapon.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
-    <ClCompile Include="Ninja\WalkingState.cpp" />
     <ClCompile Include="Ninja\Whip.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
   </ItemGroup>
@@ -51,16 +46,11 @@
     <ClInclude Include="GameComponents\Keyboard.h" />
     <ClInclude Include="GameComponents\resource.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
-    <ClInclude Include="Ninja\AttackingState.h" />
-    <ClInclude Include="Ninja\CrouchingState.h" />
-    <ClInclude Include="Ninja\IdleState.h" />
-    <ClInclude Include="Ninja\JumpingState.h" />
     <ClInclude Include="Ninja\Knife.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\State.h" />
     <ClInclude Include="Ninja\Subweapon.h" />
     <ClInclude Include="Ninja\ThrowingState.h" />
-    <ClInclude Include="Ninja\WalkingState.h" />
     <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
