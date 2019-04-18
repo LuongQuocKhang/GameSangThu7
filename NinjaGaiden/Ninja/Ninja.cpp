@@ -45,7 +45,7 @@ void Ninja::LoadResources()
 
 	// NINJA_ANI_WALKING
 	anim = new Animation(100);
-	for (int i = 0; i < 4; i++)
+	for (int i = 1; i < 4; i++)
 	{
 		RECT rect;
 		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;

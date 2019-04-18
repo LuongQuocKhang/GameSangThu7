@@ -81,9 +81,13 @@ void Game::LoadResources()
 		ninja = Ninja::GetInstance();
 	if (tiledMap == NULL)
 	{
+		tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
+	}
+	else
+	{
 		if (Game::GetInstance()->GetStage() == STAGE_31)
 		{
-			tiledMap = new TiledMap(TILES_MATRIX);
+			tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
 		}
 		else if (Game::GetInstance()->GetStage() == STAGE_32)
 		{
