@@ -1,5 +1,5 @@
 ﻿#include "TiledMap.h"
-
+#include "Game.h"
 
 TiledMap::TiledMap(LPCWSTR filePath)
 {
@@ -82,6 +82,19 @@ void TiledMap::LoadTileSet(LPCWSTR tilesLocation)
 	}
 	this->tileSetWidth = info.Width / TILES_WIDTH_PER_TILE;
 	this->tileSetHeight = info.Height / TILES_HEIGHT_PER_TILE;
+
+	if (Game::GetInstance()->GetStage() == STAGE_31)
+	{
+		result = D3DXGetImageInfoFromFile(BACKGROUND_3_1, &info);
+	}
+	else if (Game::GetInstance()->GetStage() == STAGE_32)
+	{
+		result = D3DXGetImageInfoFromFile(BACKGROUND_3_2, &info);
+	}
+	else if (Game::GetInstance()->GetStage() == STAGE_BOSS)
+	{
+		result = D3DXGetImageInfoFromFile(BACKGROUND_BOSS, &info);
+	}
 	this->mapWidth = info.Width;
 	this->mapHeight = info.Height;
 	tiles[0] = 0;
@@ -136,7 +149,7 @@ void TiledMap::Render()
 				spriteData.y = (matrix.size() - i) * TILES_HEIGHT_PER_TILE;
 				spriteData.scale = 1;
 				spriteData.angle = 0;
-				spriteData.isLeft = true;
+				//spriteData.isLeft = true;
 
 				tiles.at(curRow[j])->SetData(spriteData);
 				Graphics::GetInstance()->Draw(tiles.at(curRow[j]));

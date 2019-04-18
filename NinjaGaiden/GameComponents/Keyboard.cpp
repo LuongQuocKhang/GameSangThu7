@@ -110,7 +110,7 @@ void Keyboard::UpdateKeyStates()
 			ninja->TurnRight();
 			if (!IsKeyDown(DIK_LCONTROL))
 			{
-				ninja->Idle();
+				//ninja->Idle();
 				ninja->Walk();
 			}
 			else
@@ -127,7 +127,7 @@ void Keyboard::UpdateKeyStates()
 			ninja->TurnLeft();
 			if (!IsKeyDown(DIK_LCONTROL))
 			{
-				ninja->Idle();
+				//ninja->Idle();
 				ninja->Walk();
 			}
 			else

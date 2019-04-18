@@ -14,7 +14,7 @@ class Game
 
 	static Game * __instance;
 	static HINSTANCE hInstance;
-	HWND hWnd;									//Xử lí cửa sổ
+	HWND hWnd;									
 
 	Keyboard * keyboard;
 	Graphics * graphics;
@@ -22,21 +22,22 @@ class Game
 	Ninja * ninja;
 	TiledMap * tiledMap;
 	Viewport * viewport;
+
+	Stage stage;
 public:
-	//Khởi tạo game chính
+	Stage GetStage() { return this->stage; }
+
 	void Init();
 	HWND CreateGameWindow(HINSTANCE hInstance, int ScreenWidth, int ScreenHeight);
 	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void LoadResources();
-	//Xử lí
+
 	void Update(DWORD dt);
 	void Render();
 	int Run();
-	//Lấy đối tượng
 	Ninja * GetNinja();
 	TiledMap * GetTiledMap() { return tiledMap; }
 	static Game * GetInstance();
-	//Hàm hủy đối tượng
 	~Game();
 };
 

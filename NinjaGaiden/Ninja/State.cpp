@@ -35,7 +35,7 @@ void State::Update(DWORD dt)
 
 void State::Render()
 {
-	vector <Subweapon *> subweapons = ninja->GetSubweapon();
+	/*vector <Subweapon *> subweapons = ninja->GetSubweapon();
 	if (subweapons.size() > 0)
 	{
 		for (int i = 0; i < subweapons.size(); i++)
@@ -43,5 +43,5 @@ void State::Render()
 			SpriteData spriteData;
 			subweapons[i]->Render(spriteData);
 		}
-	}
+	}*/
 }

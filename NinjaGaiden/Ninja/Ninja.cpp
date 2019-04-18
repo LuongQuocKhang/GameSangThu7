@@ -28,8 +28,8 @@ Ninja * Ninja::GetInstance()
 }
 void Ninja::LoadResources()
 {
-	// 0
-	Animation * anim = new Animation(50);
+	// NINJA_ANI_IDLE
+	Animation * anim = new Animation(100);
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
@@ -43,8 +43,8 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 1
-	anim = new Animation(50);
+	// NINJA_ANI_WALKING
+	anim = new Animation(100);
 	for (int i = 0; i < 4; i++)
 	{
 		RECT rect;
@@ -58,8 +58,8 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 2
-	anim = new Animation(50);
+	// NINJA_ANI_STANDING_ATTACKING 
+	anim = new Animation(100);
 	for (int i = 10; i < 15; i++)
 	{
 		if (i == 10)
@@ -88,7 +88,7 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// 3
-	anim = new Animation(50);
+	anim = new Animation(100);
 	for (int i = 25; i < 30; i++)
 	{
 		if (i == 25)
@@ -116,8 +116,8 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 4
-	anim = new Animation(50);
+	// NINJA_ANI_JUMPING
+	anim = new Animation(100);
 	for (int i = 6; i < 10; i++)
 	{
 		RECT rect;
@@ -132,7 +132,7 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// 5
-	anim = new Animation(50);
+	anim = new Animation(100);
 	for (int i = 24; i < 25; i++)
 	{
 		RECT rect;

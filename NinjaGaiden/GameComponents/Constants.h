@@ -16,11 +16,21 @@
 #define ID_TEX_ENEMY 10
 #define ID_TEX_MISC 20
 //
+
+enum Stage {
+	STAGE_31,
+	STAGE_32,
+	STAGE_BOSS
+};
 //TiledMap
 //
-
-#define TILES_LOCATION L"Resources\\TiledMap\\3-1_tiles.png"
-#define TILES_MATRIX L"Resources\\TiledMap\\3-1_matrix.txt"
+// MAP
+#define BACKGROUND_3_1 L"Resources\\TiledMap\\MAP_31.png"
+#define BACKGROUND_3_2 L"Resources\\TiledMap\\MAP_31.png"
+#define BACKGROUND_BOSS L"Resources\\TiledMap\\MAP_31.png"
+// TiLE
+#define TILES_LOCATION L"Resources\\TiledMap\\MAP_31_tiles.png"
+#define TILES_MATRIX L"Resources\\TiledMap\\MAP_31_Matrix.txt"
 #define TILES_MATRIX_DELIMITER ","
 #define TILES_WIDTH_PER_TILE	16
 #define TILES_HEIGHT_PER_TILE	16
