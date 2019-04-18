@@ -18,11 +18,14 @@ class Ninja : public GameObject
 	State * jumpingState;
 	State * attackingState;
 	State * throwingState;
+	State * climbState;
+
 
 	State * state;
 
 	bool isGrounded = false;
 	bool isCrouching = false;
+	bool isClimbing = false;
 	//Vector chứa các animations
 	static vector<Animation *> animations;
 	DWORD lastFrameTime;
@@ -36,6 +39,7 @@ public:
 	//Hàm set
 	void SetIsGrounded(bool isGrounded) { this->isGrounded = isGrounded; }
 	void SetIsCrouching(bool isCrouching) { this->isCrouching = isCrouching; }
+	void SetIsClimbing(bool isClimbing) { this->isClimbing = isClimbing; }
 	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
 	void SetState(State * state);
 	void SetWhip(int type) { this->whip->SetType(type); }
@@ -51,12 +55,14 @@ public:
 	//State * GetThrowingState();
 	State * GetCrouchingState();
 	State * GetJumpingState();
+	State * GetClimbState();
 
 	Whip * GetWhip() { return this->whip; }
 	//Hàm trạng thái
 	bool IsAttacking() { return state == attackingState || state == throwingState; }
 	bool IsGrounded() { return isGrounded; }
 	bool IsCrouching() { return isCrouching; }
+	bool IsClimbing() { return isClimbing; }
 	bool IsLeft() { return isLeft; }
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
 
@@ -68,6 +74,7 @@ public:
 	//void Throw();
 	void Jump();
 	void Crouch();
+	void Climb();
 
 	void CreateThrownWeapon();
 	void TurnLeft();

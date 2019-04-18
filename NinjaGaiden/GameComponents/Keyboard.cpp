@@ -105,7 +105,7 @@ void Keyboard::UpdateKeyStates()
 
 	if (IsKeyDown(DIK_RIGHT))
 	{
-		if (!IsKeyDown(DIK_LEFT) && !ninja->IsAttacking() && ninja->IsGrounded())
+		if (!IsKeyDown(DIK_LEFT) && !ninja->IsAttacking() && ninja->IsGrounded() && !ninja->IsClimbing())
 		{
 			ninja->TurnRight();
 			if (!IsKeyDown(DIK_DOWN))
@@ -120,7 +120,7 @@ void Keyboard::UpdateKeyStates()
 	}
 	else if (IsKeyDown(DIK_LEFT))
 	{
-		if (!IsKeyDown(DIK_RIGHT) && !ninja->IsAttacking() && ninja->IsGrounded())
+		if (!IsKeyDown(DIK_RIGHT) && !ninja->IsAttacking() && ninja->IsGrounded() && !ninja->IsClimbing())
 		{
 			ninja->TurnLeft();
 			if (!IsKeyDown(DIK_DOWN))
@@ -149,6 +149,9 @@ void Keyboard::OnKeyDown(int KeyCode)
 			break;
 		case DIK_S:
 			ninja->Attack();
+			break;
+		case DIK_W:
+			ninja->Climb();
 			break;
 	/*case DIK_D:
 		ninja->Throw();

@@ -15,6 +15,8 @@ Ninja::Ninja()
 	attackingState = new State(this, NINJA_ANI_STANDING_ATTACKING);
 	jumpingState = new State(this, NINJA_ANI_JUMPING);
 	crouchingState = new State(this, NINJA_ANI_CROUCHING);
+	climbState = new State(this, NINJA_ANI_CLIMBING);
+
 
 	state = idleState;
 
@@ -144,6 +146,35 @@ void Ninja::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	animations.push_back(anim);
+
+	//6
+	anim = new Animation(100);
+	for (int i = 4; i < 6; i++)
+	{
+		RECT rect;
+		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+		rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
+	//7
+	anim = new Animation(100);
+	for (int i = 15; i < 20; i++)
+	{
+			RECT rect;
+			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH;
+			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
 }
 void Ninja::SetState(State * state)
 {
@@ -173,6 +204,10 @@ State * Ninja::GetJumpingState()
 {
 	return jumpingState;
 }
+State * Ninja::GetClimbState()
+{
+	return climbState;
+}
 
 //Các hàm hành động nhân vật
 void Ninja::Idle()
@@ -198,6 +233,10 @@ void Ninja::Jump()
 void Ninja::Crouch()
 {
 	state->Crouch();
+}
+void Ninja::Climb()
+{
+	state->Climb();
 }
 void Ninja::TurnLeft()
 {

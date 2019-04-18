@@ -12,6 +12,7 @@ public:
 	void Idle();
 	void Attack();
 	void Walk();
+	void Climb();
 	//void Throw() ;
 	void Jump();
 	void Crouch();
