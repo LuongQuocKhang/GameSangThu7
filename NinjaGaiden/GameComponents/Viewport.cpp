@@ -26,6 +26,13 @@ Viewport * Viewport::GetInstance()
 		__instance = new Viewport();
 	return __instance;
 }
+void Viewport::Reset()
+{
+	width = 313;
+	height = 176;
+	x = 0;
+	y = 176;
+}
 void Viewport::Update(DWORD dt)
 {
 	Ninja * ninja = Ninja::GetInstance();

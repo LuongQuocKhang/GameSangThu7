@@ -83,23 +83,23 @@ void Game::LoadResources()
 	{
 		tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
 	}
-	else
-	{
-		if (STAGE_32 == Game::GetInstance()->GetStage())
-		{
-			tiledMap = new TiledMap(TILES_MATRIX_STAGE_32);
-		}
-		else if (STAGE_BOSS == Game::GetInstance()->GetStage())
-		{
-			tiledMap = new TiledMap(TILES_MATRIX_STAGE_BOSS);
-		}
-	}
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
 }
 //Xử lí
 void Game::Update(DWORD dt)
 {
+
+	if (STAGE_32 == Game::GetInstance()->GetStage())
+	{
+		tiledMap = new TiledMap(TILES_MATRIX_STAGE_32);
+		viewport->Reset();
+	}
+	else if (STAGE_BOSS == Game::GetInstance()->GetStage())
+	{
+		tiledMap = new TiledMap(TILES_MATRIX_STAGE_BOSS);
+		viewport->Reset();
+	}
 	keyboard->Update();
 	ninja->Update(dt);
 	viewport->Update(dt);

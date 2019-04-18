@@ -35,9 +35,21 @@ void State::Update(DWORD dt)
 		ninja->SetIsGrounded(true);
 	}
 	if (ninja->GetSpeedX() > 0 && ninja->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
-		ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+	{
+		if (STAGE_BOSS != Game::GetInstance()->GetStage())
+		{
+			Game::GetInstance()->SetStage((int)Game::GetInstance()->GetStage() + 1);
+			ninja->SetPositionX(0);
+		}
+		else
+		{
+			ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+		}
+	}
 	if (ninja->GetSpeedX() < 0 && ninja->GetPositionX() < 0)
+	{
 		ninja->SetPositionX(0);
+	}
 
 	vector<Subweapon *> subweapons = ninja->GetSubweapon();
 	if (subweapons.size() > 0)

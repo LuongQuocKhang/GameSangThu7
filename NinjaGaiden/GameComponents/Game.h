@@ -26,6 +26,7 @@ class Game
 	Stage stage;
 public:
 	Stage GetStage() { return this->stage; }
+	void SetStage(int stage) { this->stage = (Stage)stage; }
 
 	void Init();
 	HWND CreateGameWindow(HINSTANCE hInstance, int ScreenWidth, int ScreenHeight);

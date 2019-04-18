@@ -14,6 +14,7 @@ public:
 	static Viewport * GetInstance();
 	~Viewport();
 
+	void Reset();
 	void Update(DWORD dt);
 	void SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVECTOR2 &scaling);
 };
