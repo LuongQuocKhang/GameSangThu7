@@ -44,7 +44,7 @@ enum Stage {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define NINJA_WALKING_SPEED		0.125f
-#define NINJA_JUMP_SPEED_Y		0.5f
+#define NINJA_JUMP_SPEED_Y		0.4f
 #define NINJA_GRAVITY			0.025f
 //Các số để chạy animation của Ninja
 #define NINJA_ANI_IDLE					0

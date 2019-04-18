@@ -38,6 +38,10 @@ public:
 	int Run();
 	Ninja * GetNinja();
 	TiledMap * GetTiledMap() { return tiledMap; }
+	void SetTileMap(TiledMap * tiledMap) {
+		this->tiledMap = tiledMap;
+	}
+	void ResetViewPort() { this->viewport->Reset(); }
 	static Game * GetInstance();
 	~Game();
 };

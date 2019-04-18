@@ -36,15 +36,26 @@ void State::Update(DWORD dt)
 	}
 	if (ninja->GetSpeedX() > 0 && ninja->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
 	{
-		if (STAGE_BOSS != Game::GetInstance()->GetStage())
+		int map = (int)Game::GetInstance()->GetStage() + 1;
+		if (map < 3)
 		{
-			Game::GetInstance()->SetStage((int)Game::GetInstance()->GetStage() + 1);
+			Game::GetInstance()->SetStage(map);
 			ninja->SetPositionX(0);
+			if (STAGE_32 == Game::GetInstance()->GetStage())
+			{
+				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_32));
+				Game::GetInstance()->ResetViewPort();
+				ninja->SetSpeedY(0);
+			}
+			else if (STAGE_BOSS == Game::GetInstance()->GetStage())
+			{
+				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
+				Game::GetInstance()->ResetViewPort();
+				ninja->SetSpeedY(0);
+				ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+			}
 		}
-		else
-		{
-			ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
-		}
+		ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
 	}
 	if (ninja->GetSpeedX() < 0 && ninja->GetPositionX() < 0)
 	{
