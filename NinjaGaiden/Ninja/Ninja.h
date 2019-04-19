@@ -17,6 +17,7 @@ class Ninja : public GameObject
 	State * crouchingState;
 	State * jumpingState;
 	State * attackingState;
+	State * jumpattackingState;
 	State * throwingState;
 	State * climbState;
 
@@ -56,6 +57,7 @@ public:
 	State * GetCrouchingState();
 	State * GetJumpingState();
 	State * GetClimbState();
+	State * GetJumpAttackState();
 
 	Whip * GetWhip() { return this->whip; }
 	//Hàm trạng thái
@@ -75,6 +77,7 @@ public:
 	void Jump();
 	void Crouch();
 	void Climb();
+	void JumpAttack();
 
 	void CreateThrownWeapon();
 	void TurnLeft();

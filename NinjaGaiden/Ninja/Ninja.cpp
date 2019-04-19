@@ -16,7 +16,7 @@ Ninja::Ninja()
 	jumpingState = new State(this, NINJA_ANI_JUMPING);
 	crouchingState = new State(this, NINJA_ANI_CROUCHING);
 	climbState = new State(this, NINJA_ANI_CLIMBING);
-
+	jumpattackingState = new State(this, NINJA_ANI_JUMPING_ATTACKING);
 
 	state = idleState;
 
@@ -88,7 +88,7 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 3
+	// NINJA_ANI_CROUCHING_ATTACKING
 	anim = new Animation(100);
 	for (int i = 25; i < 30; i++)
 	{
@@ -132,7 +132,7 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 5
+	// NINJA_ANI_CROUCHING
 	anim = new Animation(100);
 	for (int i = 24; i < 25; i++)
 	{
@@ -147,7 +147,7 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	//6
+	// NINJA_ANI_CLIMBING
 	anim = new Animation(100);
 	for (int i = 4; i < 6; i++)
 	{
@@ -161,7 +161,7 @@ void Ninja::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	animations.push_back(anim);
-	//7
+	// NINJA_ANI_JUMPING_ATTACKING
 	anim = new Animation(100);
 	for (int i = 15; i < 20; i++)
 	{
@@ -209,6 +209,11 @@ State * Ninja::GetClimbState()
 	return climbState;
 }
 
+State * Ninja::GetJumpAttackState()
+{
+	return this->jumpattackingState;
+}
+
 //Các hàm hành động nhân vật
 void Ninja::Idle()
 {
@@ -237,6 +242,10 @@ void Ninja::Crouch()
 void Ninja::Climb()
 {
 	state->Climb();
+}
+void Ninja::JumpAttack()
+{
+	state->JumpAttack();
 }
 void Ninja::TurnLeft()
 {

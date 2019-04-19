@@ -16,6 +16,8 @@ public:
 	//void Throw() ;
 	void Jump();
 	void Crouch();
+	void JumpAttack();
+
 	void Update(DWORD dt);
 	void Render();
 };

@@ -19,14 +19,8 @@
     <Filter Include="Source Files\GameComponents">
       <UniqueIdentifier>{fec4c2fb-ac1b-4785-b7fd-58d7d2fa5734}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Ninja\States">
-      <UniqueIdentifier>{d05c021e-6a04-459c-abdd-a3794d0f253c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Ninja">
       <UniqueIdentifier>{f67f1c3c-17c2-4c8d-b185-73ba5e9f2433}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Ninja\States">
-      <UniqueIdentifier>{0afe953d-eb61-481c-b7b8-68df63d3b3a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GameComponents">
       <UniqueIdentifier>{0ab44ba1-2f6b-405a-b538-c68042c09e3d}</UniqueIdentifier>

@@ -133,10 +133,6 @@ void Keyboard::UpdateKeyStates()
 		else if (!IsKeyDown(DIK_DOWN))
 			ninja->Idle();
 	}
-	else if (IsKeyDown(DIK_DOWN))
-		ninja->Crouch();
-	else
-		ninja->Idle();
 }
 void Keyboard::OnKeyDown(int KeyCode)
 {
@@ -148,7 +144,14 @@ void Keyboard::OnKeyDown(int KeyCode)
 			ninja->Jump();
 			break;
 		case DIK_S:
-			ninja->Attack();
+			if (true == ninja->IsGrounded())
+			{
+				ninja->Attack();
+			}
+			else
+			{
+				ninja->JumpAttack();
+			}
 			break;
 		case DIK_W:
 			ninja->Climb();
