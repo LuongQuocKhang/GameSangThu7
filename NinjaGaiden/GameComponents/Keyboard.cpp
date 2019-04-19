@@ -133,6 +133,15 @@ void Keyboard::UpdateKeyStates()
 		else if (!IsKeyDown(DIK_DOWN))
 			ninja->Idle();
 	}
+	else if (IsKeyDown(DIK_DOWN))
+	{
+		ninja->Crouch();
+		if (IsKeyDown(DIK_S))
+		{
+			ninja->SetIsCrouching(true);
+			ninja->Attack();
+		}
+	}
 }
 void Keyboard::OnKeyDown(int KeyCode)
 {
@@ -178,6 +187,8 @@ void Keyboard::OnKeyUp(int KeyCode)
 	{
 	case 0:
 		break;
+	case DIK_DOWN:
+		ninja->SetIsCrouching(false);
 	case DIK_LEFT:
 	case DIK_RIGHT:
 		ninja->SetSpeedX(0);
