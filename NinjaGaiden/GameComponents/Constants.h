@@ -6,8 +6,8 @@
 #define MAIN_WINDOW_TITLE L"Ninja Gaiden"
 //Màu background, kích cỡ màn hình
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
-#define SCREEN_WIDTH 500
-#define SCREEN_HEIGHT 320
+#define SCREEN_WIDTH 313
+#define SCREEN_HEIGHT 176
 
 //Framerate tối đa
 #define MAX_FRAME_RATE 90

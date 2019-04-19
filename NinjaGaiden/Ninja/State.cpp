@@ -63,7 +63,10 @@ void State::Update(DWORD dt)
 				ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
 			}
 		}
-		ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+		else if (STAGE_BOSS == Game::GetInstance()->GetStage())
+		{
+			ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+		}
 	}
 	if (ninja->GetSpeedX() < 0 && ninja->GetPositionX() < 0)
 	{

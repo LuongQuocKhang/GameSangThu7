@@ -10,7 +10,7 @@ Viewport::Viewport()
 	width = 313;
 	height = 176;
 	x = 0;
-	y = 320;
+	y = 176;
 }
 
 
@@ -31,7 +31,7 @@ void Viewport::Reset()
 	width = 313;
 	height = 176;
 	x = 0;
-	y = 360;
+	y = 176;
 }
 void Viewport::Update(DWORD dt)
 {
