@@ -7,10 +7,10 @@ Viewport * Viewport::__instance = NULL;
 
 Viewport::Viewport()
 {
-	width = 313;
-	height = 176;
+	width = 450;
+	height = 360;
 	x = 0;
-	y = 176;
+	y = 250;
 }
 
 
@@ -28,19 +28,19 @@ Viewport * Viewport::GetInstance()
 }
 void Viewport::Reset()
 {
-	width = 313;
-	height = 176;
+	width = 450;
+	height = 360;
 	x = 0;
-	y = 176;
+	y = 250;
 }
 void Viewport::Update(DWORD dt)
 {
 	Ninja * ninja = Ninja::GetInstance();
-	int rightBoundary = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - SCREEN_WIDTH / 2);
-	int leftBoundary = (int)SCREEN_WIDTH / 2;
-	if (ninja->GetPositionX() > leftBoundary && ninja->GetPositionX() < rightBoundary)
+	int right = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - SCREEN_WIDTH / 2);
+	int left = (int)SCREEN_WIDTH / 2;
+	if (ninja->GetPositionX() > left && ninja->GetPositionX() < right)
 	{
-		this->x = ninja->GetPositionX() - leftBoundary;
+		this->x = ninja->GetPositionX() - left;
 	}
 
 }

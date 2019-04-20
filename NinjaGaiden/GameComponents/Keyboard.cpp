@@ -185,15 +185,18 @@ void Keyboard::OnKeyUp(int KeyCode)
 	DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
 	switch (KeyCode)
 	{
-	case 0:
-		break;
-	case DIK_DOWN:
-		ninja->SetIsCrouching(false);
-	case DIK_LEFT:
-	case DIK_RIGHT:
-		ninja->SetSpeedX(0);
-		ninja->SetState(ninja->GetIdleState());
-		break;
+		case 0:
+			break;
+		case DIK_DOWN:
+			ninja->SetIsCrouching(false);
+		case DIK_LEFT:
+		case DIK_RIGHT:
+			if (false == ninja->IsCrouching())
+			{
+				ninja->SetSpeedX(0);
+				ninja->SetState(ninja->GetIdleState());
+			}
+			break;
 	}
 }
 

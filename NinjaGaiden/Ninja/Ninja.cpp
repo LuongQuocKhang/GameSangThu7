@@ -162,7 +162,16 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 	// NINJA_ANI_JUMPING_ATTACKING
-	anim = new Animation(100);
+	anim = new Animation(70);
+	RECT rect;
+	rect.left = (7 % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+	rect.right = rect.left + NINJA_SPRITE_WIDTH;
+	rect.top = (7 / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+	rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+	Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+	anim->AddFrame(sprite);
+
 	for (int i = 16; i < 20; i++)
 	{
 			RECT rect;
@@ -174,14 +183,7 @@ void Ninja::LoadResources()
 
 			anim->AddFrame(sprite);
 	}
-	RECT rect;
-	rect.left = (7 % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
-	rect.right = rect.left + NINJA_SPRITE_WIDTH;
-	rect.top = (7 / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
-	rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
-	Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 
-	anim->AddFrame(sprite);
 	rect.left = (9 % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
 	rect.right = rect.left + NINJA_SPRITE_WIDTH;
 	rect.top = (9 / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
