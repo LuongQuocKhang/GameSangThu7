@@ -22,6 +22,12 @@ enum Stage {
 	STAGE_32,
 	STAGE_BOSS
 };
+
+enum ObjectType
+{
+	DEFAULT,
+	BRICK
+};
 //TiledMap
 //
 // MAP

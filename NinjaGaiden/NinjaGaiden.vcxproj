@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="GameComponents\TiledMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\Constants.h" />
     <ClInclude Include="GameComponents\Debug.h" />

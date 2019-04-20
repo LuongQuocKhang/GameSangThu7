@@ -6,6 +6,10 @@ TiledMap::TiledMap(LPCWSTR filePath)
 	infoLocation = filePath;
 	
 	LoadMap(filePath);
+
+	mapsObject.clear();
+
+	AddObjects(Game::GetInstance()->GetStage());
 }
 //Lấy dữ liệu đọc chuyển thành dòng trong ma trận
 Row GetMatrixRow(string line, string delimiter)
@@ -112,6 +116,64 @@ void TiledMap::LoadTileSet(LPCWSTR tilesLocation)
 	}
 }
 
+void TiledMap::AddObjects(Stage stage)
+{
+	
+	for (int i = 0; i < matrix.size(); i++)
+	{
+		Row curRow = matrix[i];
+		BrickRow Row;
+		for (int j = 0; j < curRow.size(); j++)
+		{
+			if (Stage::STAGE_31 == stage)
+			{
+				Brick * brick = new Brick();
+				if (71 == curRow[j] || 72 == curRow[j] || 24 == curRow[j] || 26 == curRow[j] || 25 == curRow[j]
+					|| 76 == curRow[j] || 70 == curRow[j] || 77 == curRow[j] || 61 == curRow[j])
+				{
+					brick->SetType(ObjectType::BRICK);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				else if (36 == curRow[j] || 38 == curRow[j])
+				{
+					brick->SetType(ObjectType::BRICK);
+					brick->SetPositionX(j * (TILES_WIDTH_PER_TILE - 10));
+					brick->SetPositionY((matrix.size() - i) * (TILES_HEIGHT_PER_TILE - 10));
+				}
+				else
+				{
+					brick->SetType(ObjectType::DEFAULT);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				Row.push_back(brick);
+			}
+			else if (Stage::STAGE_32 == stage) {
+				Brick * brick = new Brick();
+				if (19 == curRow[j] || 8 == curRow[j] || 18 == curRow[j] || 20 == curRow[j] || 21 == curRow[j] || 30 == curRow[j]
+					|| 26 == curRow[j] || 32 == curRow[j] || 33 == curRow[j] || 47 == curRow[j])
+				{
+					brick->SetType(ObjectType::BRICK);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				else
+				{
+					brick->SetType(ObjectType::DEFAULT);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				Row.push_back(brick);
+			}
+			else if (Stage::STAGE_BOSS == stage) {
+				// load gach5 map boss
+			}
+		}
+		mapsObject.push_back(Row);
+	}
+}
+
 TiledMap::~TiledMap()
 {
 
@@ -149,10 +211,26 @@ void TiledMap::Render()
 				spriteData.y = (matrix.size() - i) * TILES_HEIGHT_PER_TILE;
 				spriteData.scale = 1;
 				spriteData.angle = 0;
-				//spriteData.isLeft = true;
-
-				tiles.at(curRow[j])->SetData(spriteData);
-				Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
+				//spriteData.isLeft = true;		
+				if (mapsObject.size() > 0)
+				{
+					auto type = mapsObject[i].at(j)->GetType();
+					if (ObjectType::BRICK == type)
+					{
+						tiles.at(curRow[j])->SetData(spriteData);
+						//Graphics::GetInstance()->Draw(tiles.at(curRow[j]), D3DCOLOR_XRGB(200, 200, 255));
+					}
+					else if (ObjectType::DEFAULT == type)
+					{
+						tiles.at(curRow[j])->SetData(spriteData);
+						Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
+					}
+				}
+				else
+				{
+					tiles.at(curRow[j])->SetData(spriteData);
+					Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
+				}
 			}
 		}
 	}

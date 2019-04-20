@@ -60,7 +60,7 @@ void State::Update(DWORD dt)
 				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
 				Game::GetInstance()->ResetViewPort();
 				ninja->SetSpeedY(0);
-				ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+				
 			}
 		}
 		else if (STAGE_BOSS == Game::GetInstance()->GetStage())
