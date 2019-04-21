@@ -167,7 +167,29 @@ void TiledMap::AddObjects(Stage stage)
 				Row.push_back(brick);
 			}
 			else if (Stage::STAGE_BOSS == stage) {
-				// load gach5 map boss
+				Brick * brick = new Brick();
+				
+				if (40 == curRow[j] || 68 == curRow[j] || 23 == curRow[j] || 151 == curRow[j] 	
+					|| 130 == curRow[j] || 113 == curRow[j] || 99 == curRow[j]
+					|| 78 == curRow[j] || 47 == curRow[j] || 31 == curRow[j] || 4 == curRow[j] )
+				{
+					brick->SetType(ObjectType::BRICK);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				else if (curRow[j]>=154 && curRow[j]<176)
+				{
+					brick->SetType(ObjectType::BRICK);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				else
+				{
+					brick->SetType(ObjectType::DEFAULT);
+					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
+					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
+				}
+				Row.push_back(brick);
 			}
 		}
 		mapsObject.push_back(Row);

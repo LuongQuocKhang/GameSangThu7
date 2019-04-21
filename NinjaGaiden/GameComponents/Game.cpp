@@ -16,7 +16,7 @@ void Game::Init()
 	keyboard = Keyboard::GetInstance();
 	keyboard->InitKeyboard(hWnd);
 
-	this->stage = STAGE_32;
+	this->stage = STAGE_BOSS;
 
 	LoadResources();
 	OutputDebugString(L"[INFO] InitGame done;\n");
@@ -81,7 +81,7 @@ void Game::LoadResources()
 		ninja = Ninja::GetInstance();
 	if (NULL == tiledMap)
 	{
-		tiledMap = new TiledMap(TILES_MATRIX_STAGE_32);
+		tiledMap = new TiledMap(TILES_MATRIX_STAGE_BOSS);
 	}
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
