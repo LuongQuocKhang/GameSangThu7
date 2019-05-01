@@ -4,6 +4,7 @@
 #include "Keyboard.h"
 #include "Ninja.h"
 #include "TiledMap.h"
+#include "Enemy.h"
 
 class Graphics;
 class Keyboard;
@@ -20,6 +21,7 @@ class Game
 	Graphics * graphics;
 
 	Ninja * ninja;
+	Enemy * enemy;
 	TiledMap * tiledMap;
 	Viewport * viewport;
 
@@ -37,6 +39,7 @@ public:
 	void Render();
 	int Run();
 	Ninja * GetNinja();
+	Enemy * GetEnemy();
 	TiledMap * GetTiledMap() { return tiledMap; }
 	void SetTileMap(TiledMap * tiledMap) {
 		this->tiledMap = tiledMap;

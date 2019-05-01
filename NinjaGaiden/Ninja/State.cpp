@@ -1,11 +1,17 @@
 ﻿#include "State.h"
 #include "Ninja.h"
 #include "Game.h"
+#include "Enemy.h"
 
 State::State(Ninja * ninja, int states)
 {
 	this->ninja = ninja;
 	this->states = states;
+}
+State::State(Enemy * enemy, int enemystates)
+{
+	this->enemy = enemy;
+	this->enemystates = enemystates;
 }
 void State::Update(DWORD dt)
 {
@@ -19,7 +25,7 @@ void State::Update(DWORD dt)
 				ninja->SetState(ninja->GetIdleState());
 			}
 		}
-			break;
+		break;
 		case NINJA_ANI_JUMPING_ATTACKING:
 		{
 			if (ninja->IsGrounded())
@@ -31,48 +37,57 @@ void State::Update(DWORD dt)
 		default:
 			break;
 	}
-	ninja->SetPositionX((int)(ninja->GetPositionX() + ninja->GetSpeedX()* dt));
-	ninja->SetPositionY((int)(ninja->GetPositionY() + ninja->GetSpeedY()* dt));
+	if (this->enemy != NULL)
+	{
+ 		//Handle when enemy update
 
-	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
-	if (ninja->GetPositionY() < NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE)
-	{
-		ninja->SetSpeedY(0);
-		ninja->SetPositionY(NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE);
-		ninja->SetSpeedX(0);
-		ninja->SetIsGrounded(true);
 	}
-	if (ninja->GetSpeedX() > 0 && ninja->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
+	else
 	{
-		int map = (int)Game::GetInstance()->GetStage() + 1;
-		if (map < 3)
+		ninja->SetPositionX((int)(ninja->GetPositionX() + ninja->GetSpeedX()* dt));
+		ninja->SetPositionY((int)(ninja->GetPositionY() + ninja->GetSpeedY()* dt));
+
+
+
+		ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
+		if (ninja->GetPositionY() < NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE)
 		{
-			Game::GetInstance()->SetStage(map);
-			ninja->SetPositionX(0);
-			if (STAGE_32 == Game::GetInstance()->GetStage())
+			ninja->SetSpeedY(0);
+			ninja->SetPositionY(NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE);
+			ninja->SetSpeedX(0);
+			ninja->SetIsGrounded(true);
+		}
+		if (ninja->GetSpeedX() > 0 && ninja->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
+		{
+			int map = (int)Game::GetInstance()->GetStage() + 1;
+			if (map < 3)
 			{
-				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_32));
-				Game::GetInstance()->ResetViewPort();
-				ninja->SetSpeedY(0);
+				Game::GetInstance()->SetStage(map);
+				ninja->SetPositionX(0);
+				if (STAGE_32 == Game::GetInstance()->GetStage())
+				{
+					Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_32));
+					Game::GetInstance()->ResetViewPort();
+					ninja->SetSpeedY(0);
+				}
+				else if (STAGE_BOSS == Game::GetInstance()->GetStage())
+				{
+					Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
+					Game::GetInstance()->ResetViewPort();
+					ninja->SetSpeedY(0);
+
+				}
 			}
 			else if (STAGE_BOSS == Game::GetInstance()->GetStage())
 			{
-				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
-				Game::GetInstance()->ResetViewPort();
-				ninja->SetSpeedY(0);
-				
+				ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
 			}
 		}
-		else if (STAGE_BOSS == Game::GetInstance()->GetStage())
+		if (ninja->GetSpeedX() < 0 && ninja->GetPositionX() < 0)
 		{
-			ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
+			ninja->SetPositionX(0);
 		}
 	}
-	if (ninja->GetSpeedX() < 0 && ninja->GetPositionX() < 0)
-	{
-		ninja->SetPositionX(0);
-	}
-
 	vector<Subweapon *> subweapons = ninja->GetSubweapon();
 	if (subweapons.size() > 0)
 	{
@@ -98,17 +113,35 @@ void State::Render()
 		}
 	}*/
 	int state = this->states;
-
+	
 	SpriteData spriteData;
-	spriteData.width = NINJA_SPRITE_WIDTH;
-	spriteData.height = NINJA_SPRITE_HEIGHT;
-	spriteData.x = ninja->GetPositionX();
-	spriteData.y = ninja->GetPositionY();
-	spriteData.scale = 1;
-	spriteData.angle = 0;
-	spriteData.isLeft = ninja->IsLeft();
-	spriteData.isFlipped = ninja->IsFlipped();
+	if (this->ninja != NULL)
+	{
+		spriteData.width = NINJA_SPRITE_WIDTH;
+		spriteData.height = NINJA_SPRITE_HEIGHT;
+		spriteData.x = ninja->GetPositionX();
+		spriteData.y = ninja->GetPositionY();
+		spriteData.scale = 1;
+		spriteData.angle = 0;
+		spriteData.isLeft = ninja->IsLeft();
+		spriteData.isFlipped = ninja->IsFlipped();
+	}
 
+	int enemystate = this->enemystates;
+	
+	SpriteData spriteEnemyData;
+	if (this->enemy != NULL)
+	{
+		spriteEnemyData.width = ENEMY_SPRITE_WIDTH;
+		spriteEnemyData.height = ENEMY_SPRITE_HEIGHT;
+		spriteEnemyData.x = 200;
+		spriteEnemyData.y = 60;
+
+		spriteEnemyData.scale = 1;
+		spriteEnemyData.angle = 0;
+		/*spriteData.isLeft = ninja->IsLeft();
+		spriteData.isFlipped = ninja->IsFlipped();*/
+	}
 	switch (state)
 	{
 		case NINJA_ANI_STANDING_ATTACKING:
@@ -190,6 +223,18 @@ void State::Render()
 		break;
 	}
 
+	switch (enemystate) {
+		case ENEMY_ANI_IDLE:
+		{
+			enemy->GetAnimationsList()[ENEMY_ANI_IDLE]->Render(spriteEnemyData);
+		}
+		break;
+		case ENEMY_ANI_WALKING:
+		{
+			enemy->GetAnimationsList()[ENEMY_ANI_WALKING]->Render(spriteEnemyData);
+		}
+		break;
+	}
 }
 
 void State::Idle()
@@ -254,9 +299,11 @@ void State::Attack()
 void State::Walk()
 {
 	int state = this->states;
-
-	switch (state)
+	int enemystate = this->enemystates;
+	if (this->ninja != NULL)
 	{
+		switch (state)
+		{
 		case NINJA_ANI_STANDING_ATTACKING:
 		case NINJA_ANI_CROUCHING_ATTACKING:
 		case NINJA_ANI_CROUCHING:
@@ -268,12 +315,24 @@ void State::Walk()
 			ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
 			ninja->SetState(ninja->GetWalkingState());
 		}
-			break;
+		break;
 		case NINJA_ANI_WALKING:
 		{
 			ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
 		}
-			break;
+		break;
+		}
+	}
+	else
+	{
+		switch (enemystate)
+		{
+		case ENEMY_ANI_WALKING:
+		{
+			enemy->SetSpeedX(ENEMY_WALKING_SPEED * (enemy->IsLeft() ? -1 : 1));
+		}
+		break;
+		}
 	}
 }
 void State::Jump()

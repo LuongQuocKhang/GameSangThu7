@@ -11,7 +11,6 @@ TiledMap::TiledMap(LPCWSTR filePath)
 
 	AddObjects(Game::GetInstance()->GetStage());
 }
-//Lấy dữ liệu đọc chuyển thành dòng trong ma trận
 Row GetMatrixRow(string line, string delimiter)
 {
 	size_t pos = 0;
@@ -26,7 +25,6 @@ Row GetMatrixRow(string line, string delimiter)
 
 	return result;
 }
-// -> stackoverflow.com => chuyển string thành wstring
 std::wstring s2ws(const string& s)
 {
 	int len;
@@ -101,7 +99,7 @@ void TiledMap::LoadTileSet(LPCWSTR tilesLocation)
 	}
 	this->mapWidth = info.Width;
 	this->mapHeight = info.Height;
-	tiles[0] = 0;
+	
 	for (int i = 0; i < this->tileSetHeight * this->tileSetWidth; i++)
 	{
 		RECT rect;
@@ -234,25 +232,27 @@ void TiledMap::Render()
 				spriteData.scale = 1;
 				spriteData.angle = 0;
 				//spriteData.isLeft = true;		
-				if (mapsObject.size() > 0)
-				{
-					auto type = mapsObject[i].at(j)->GetType();
-					if (ObjectType::BRICK == type)
-					{
-						tiles.at(curRow[j])->SetData(spriteData);
-						//Graphics::GetInstance()->Draw(tiles.at(curRow[j]), D3DCOLOR_XRGB(200, 200, 255));
-					}
-					else if (ObjectType::DEFAULT == type)
-					{
-						tiles.at(curRow[j])->SetData(spriteData);
-						Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
-					}
-				}
-				else
-				{
-					tiles.at(curRow[j])->SetData(spriteData);
-					Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
-				}
+				//if (mapsObject.size() > 0)
+				//{
+				//	auto type = mapsObject[i].at(j)->GetType();
+				//	if (ObjectType::BRICK == type)
+				//	{
+				//		tiles.at(curRow[j])->SetData(spriteData);
+				//		//Graphics::GetInstance()->Draw(tiles.at(curRow[j]), D3DCOLOR_XRGB(200, 200, 255));
+				//	}
+				//	else if (ObjectType::DEFAULT == type)
+				//	{
+				//		tiles.at(curRow[j])->SetData(spriteData);
+				//		Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
+				//	}
+				//}
+				//else
+				//{
+				//	tiles.at(curRow[j])->SetData(spriteData);
+				//	Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
+				//}
+				tiles.at(curRow[j])->SetData(spriteData);
+				Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
 			}
 		}
 	}

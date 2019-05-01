@@ -70,6 +70,31 @@ enum ObjectType
 #define NINJA_SPRITE_HEIGHT 36
 
 //
+//Enemy
+//
+
+//Giá trị tốc độ đi, tốc độ nhảy, trọng lực
+#define ENEMY_WALKING_SPEED		0.100f
+#define ENEMY_JUMP_SPEED_Y		0.4f
+#define ENEMY_GRAVITY			0.025f
+//Các số để chạy animation của ENEMY
+#define ENEMY_ANI_IDLE					0
+#define ENEMY_ANI_WALKING 				1
+#define ENEMY_ANI_STANDING_ATTACKING 	2
+#define ENEMY_ANI_CROUCHING_ATTACKING 	3
+#define ENEMY_ANI_JUMPING 				4
+#define ENEMY_ANI_CROUCHING 			5
+#define ENEMY_ANI_CLIMBING				6
+#define ENEMY_ANI_JUMPING_ATTACKING 	7
+
+#define ENEMY_TEXTURE_LOCATION L"Resources\\Enemy\\Enemy.png"
+#define ENEMY_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(255, 0, 255)
+#define ENEMY_TEXTURE_COLUMNS 3
+#define ENEMY_TEXTURE_ROWS 1
+#define ENEMY_SPRITE_WIDTH 30
+#define ENEMY_SPRITE_HEIGHT 40
+
+//
 //Whip
 //
 #define WHIP_NORMAL			0

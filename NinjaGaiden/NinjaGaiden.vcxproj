@@ -22,6 +22,7 @@
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
+    <ClCompile Include="GameComponents\Enemy.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\Constants.h" />
     <ClInclude Include="GameComponents\Debug.h" />
+    <ClInclude Include="GameComponents\Enemy.h" />
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />

@@ -16,7 +16,7 @@ void Game::Init()
 	keyboard = Keyboard::GetInstance();
 	keyboard->InitKeyboard(hWnd);
 
-	this->stage = STAGE_BOSS;
+	this->stage = STAGE_31;
 
 	LoadResources();
 	OutputDebugString(L"[INFO] InitGame done;\n");
@@ -79,9 +79,11 @@ void Game::LoadResources()
 {
 	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
+	if (NULL == enemy)
+		enemy = new Enemy();
 	if (NULL == tiledMap)
 	{
-		tiledMap = new TiledMap(TILES_MATRIX_STAGE_BOSS);
+		tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
 	}
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
@@ -91,6 +93,7 @@ void Game::Update(DWORD dt)
 {
 	keyboard->Update();
 	ninja->Update(dt);
+	enemy->Update(dt);
 	viewport->Update(dt);
 }
 void Game::Render()
@@ -109,6 +112,7 @@ void Game::Render()
 
 		tiledMap->Render();
 		ninja->Render();
+		enemy->Render();
 
 		//Kết thúc xử lí sprite
 		spriteHandler->End();
@@ -170,6 +174,10 @@ int Game::Run()
 Game::~Game()
 {
 
+}
+Enemy * Game::GetEnemy()
+{
+	return enemy;
 }
 Ninja * Game::GetNinja()
 {
