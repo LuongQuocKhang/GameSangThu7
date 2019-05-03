@@ -1,0 +1,28 @@
+#pragma once
+#include "State.h"
+#include "Constants.h"
+#include "Enemy.h"
+
+class EnemyState :
+	public State
+{
+private:
+	Enemy* enemy;
+	int enemystate;
+public:
+	EnemyState(Enemy* enemy, int enemystates);
+	~EnemyState();
+
+	void Jump() override;
+	void Crouch() override;
+	void JumpAttack() override;
+	void Climb() override;
+
+	void Idle() override;
+	void Attack() override;
+	void Walk() override;
+
+	void Update(DWORD dt) override;
+	void Render() override;
+};
+

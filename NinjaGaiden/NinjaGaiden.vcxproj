@@ -23,6 +23,7 @@
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
     <ClCompile Include="GameComponents\Enemy.cpp" />
+    <ClCompile Include="GameComponents\EnemyState.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
+    <ClCompile Include="Ninja\NinjaSate.cpp" />
     <ClCompile Include="Ninja\State.cpp" />
     <ClCompile Include="Ninja\Subweapon.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
@@ -44,6 +46,7 @@
     <ClInclude Include="GameComponents\Constants.h" />
     <ClInclude Include="GameComponents\Debug.h" />
     <ClInclude Include="GameComponents\Enemy.h" />
+    <ClInclude Include="GameComponents\EnemyState.h" />
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />
@@ -52,6 +55,7 @@
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="Ninja\Knife.h" />
     <ClInclude Include="Ninja\Ninja.h" />
+    <ClInclude Include="Ninja\NinjaSate.h" />
     <ClInclude Include="Ninja\State.h" />
     <ClInclude Include="Ninja\Subweapon.h" />
     <ClInclude Include="Ninja\ThrowingState.h" />
@@ -111,7 +115,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;.\GameComponents;.\Ninja;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;.\GameComponents;.\Ninja;.\StaticObject;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -8,18 +8,17 @@ Ninja::Ninja()
 {
 	LoadResources();
 
-	whip = new Whip();
+	//whip = new Whip();
 
-	idleState = new State(this, NINJA_ANI_IDLE);
-	walkingState = new State(this, NINJA_ANI_WALKING);
-	attackingState = new State(this, NINJA_ANI_STANDING_ATTACKING);
-	jumpingState = new State(this, NINJA_ANI_JUMPING);
-	crouchingState = new State(this, NINJA_ANI_CROUCHING);
-	climbState = new State(this, NINJA_ANI_CLIMBING);
-	jumpattackingState = new State(this, NINJA_ANI_JUMPING_ATTACKING);
+	idleState = new NinjaSate(this,NINJA_ANI_IDLE);
+	walkingState = new NinjaSate(this, NINJA_ANI_WALKING);
+	attackingState = new NinjaSate(this, NINJA_ANI_STANDING_ATTACKING);
+	jumpingState = new NinjaSate(this, NINJA_ANI_JUMPING);
+	crouchingState = new NinjaSate(this, NINJA_ANI_CROUCHING);
+	climbState = new NinjaSate(this, NINJA_ANI_CLIMBING);
+	jumpattackingState = new NinjaSate(this, NINJA_ANI_JUMPING_ATTACKING);
 
 	state = idleState;
-
 }
 Ninja * Ninja::GetInstance()
 {
@@ -267,12 +266,12 @@ void Ninja::JumpAttack()
 }
 void Ninja::TurnLeft()
 {
-	whip->TurnLeft();
+	//whip->TurnLeft();
 	isLeft = true;
 }
 void Ninja::TurnRight()
 {
-	whip->TurnRight();
+	//whip->TurnRight();
 	isLeft = false;
 }
 void Ninja::CreateThrownWeapon()
@@ -294,11 +293,11 @@ void Ninja::CreateThrownWeapon()
 //Hàm cập nhật
 void Ninja::Update(DWORD dt)
 {
-	whip->Update(dt);
+	/*whip->Update(dt);
 	for (int i = 0; i < subweapons.size(); i++)
 	{
 		subweapons[i]->Update(dt);
-	}
+	}*/
 	this->SetPositionX((int)(this->GetPositionX() + this->GetSpeedX()* dt));
 	this->SetPositionY((int)(this->GetPositionY() + this->GetSpeedY()* dt));
 

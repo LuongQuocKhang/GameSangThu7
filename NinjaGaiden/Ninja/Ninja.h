@@ -7,6 +7,7 @@
 #include "State.h"
 #include "Constants.h"
 #include "Game.h"
+#include "NinjaSate.h"
 
 class State;
 class Ninja : public GameObject

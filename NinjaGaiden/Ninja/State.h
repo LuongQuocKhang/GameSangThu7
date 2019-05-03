@@ -6,23 +6,19 @@ class Enemy;
 class State
 {
 protected:
-	Ninja * ninja;
-	int states;
-	Enemy * enemy;
-	int enemystates;
+	
 public:
-	State(Ninja * ninja, int states);
-	State(Enemy * enemy, int enemystates);
-	void Idle();
-	void Attack();
-	void Walk();
-	void Climb();
-	//void Throw() ;
-	void Jump();
-	void Crouch();
-	void JumpAttack();
+	State();
+	virtual void Jump();
+	virtual void Crouch();
+	virtual void JumpAttack();
+	virtual void Climb();
+	virtual void Idle();
+	virtual void Attack();
+	virtual void Walk();
 
-	void Update(DWORD dt);
-	void Render();
+
+	virtual void Update(DWORD dt);
+	virtual void Render();
 };
 

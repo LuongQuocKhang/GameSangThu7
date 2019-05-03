@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "State.h"
 #include "Constants.h"
+#include "EnemyState.h"
+
 class State;
 class Enemy:public GameObject
 {

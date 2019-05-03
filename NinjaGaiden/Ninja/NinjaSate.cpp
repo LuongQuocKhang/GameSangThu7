@@ -1,0 +1,311 @@
+﻿#include "NinjaSate.h"
+
+NinjaSate::NinjaSate(Ninja * ninja, int states)
+{
+	this->ninja = ninja;
+	this->states = states;
+}
+
+NinjaSate::~NinjaSate()
+{
+}
+
+void NinjaSate::Jump()
+{
+	int state = this->states;
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+	case NINJA_ANI_CROUCHING_ATTACKING:
+	case NINJA_ANI_CROUCHING:
+	case NINJA_ANI_JUMPING:
+	case NINJA_ANI_JUMPING_ATTACKING:
+		break;
+	case NINJA_ANI_IDLE:
+	case NINJA_ANI_WALKING:
+	{
+		if (ninja->IsGrounded())
+		{
+			ninja->SetIsGrounded(false);
+			ninja->SetSpeedY(NINJA_JUMP_SPEED_Y);
+			ninja->SetState(ninja->GetJumpingState());
+		}
+	}
+	break;
+
+	}
+}
+
+void NinjaSate::Crouch()
+{
+	int state = this->states;
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+	case NINJA_ANI_CROUCHING_ATTACKING:
+	case NINJA_ANI_CROUCHING:
+	case NINJA_ANI_JUMPING:
+	case NINJA_ANI_JUMPING_ATTACKING:
+		break;
+	case NINJA_ANI_IDLE:
+	{
+		ninja->SetIsCrouching(true);
+		ninja->SetState(ninja->GetCrouchingState());
+	}
+	break;
+	case NINJA_ANI_WALKING:
+	{
+		ninja->SetSpeedX(0);
+		ninja->SetIsCrouching(true);
+		ninja->SetState(ninja->GetCrouchingState());
+	}
+	break;
+	}
+}
+
+void NinjaSate::JumpAttack()
+{
+	int state = this->states;
+	if (NINJA_ANI_JUMPING == state)
+	{
+		ninja->SetIsGrounded(false);
+		ninja->SetState(ninja->GetJumpAttackState());
+	}
+}
+
+void NinjaSate::Climb()
+{
+	int state = this->states;
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+	case NINJA_ANI_CROUCHING:
+	case NINJA_ANI_JUMPING_ATTACKING:
+		break;
+	case NINJA_ANI_IDLE:
+	{
+		/*ninja->SetIsClimbing(true);*/
+		ninja->SetState(ninja->GetClimbState());
+	}
+	break;
+	case NINJA_ANI_CROUCHING_ATTACKING:
+		break;
+	case NINJA_ANI_WALKING:
+	{
+		ninja->SetSpeedX(0);
+		ninja->SetState(ninja->GetClimbState());
+	}
+	break;
+	}
+}
+
+void NinjaSate::Idle()
+{
+	int state = this->states;
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+	case NINJA_ANI_IDLE:
+	case NINJA_ANI_JUMPING_ATTACKING:
+		break;
+	case NINJA_ANI_CROUCHING:
+	{
+		ninja->SetIsCrouching(false);
+		ninja->SetState(ninja->GetIdleState());
+	}
+	break;
+	case NINJA_ANI_CROUCHING_ATTACKING:
+		break;
+	case NINJA_ANI_WALKING:
+	{
+		ninja->SetSpeedX(0);
+		ninja->SetState(ninja->GetIdleState());
+	}
+	break;
+	}
+}
+
+void NinjaSate::Attack()
+{
+	int state = this->states;
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+		break;
+	case NINJA_ANI_IDLE:
+	case NINJA_ANI_CROUCHING:
+	{
+		ninja->SetState(ninja->GetAttackingState());
+		break;
+	}
+	break;
+	case NINJA_ANI_WALKING:
+	{
+		ninja->SetSpeedX(0);
+		ninja->SetState(ninja->GetAttackingState());
+	}
+	break;
+	case NINJA_ANI_JUMPING_ATTACKING:
+	{
+		ninja->SetState(ninja->GetAttackingState());
+		break;
+	}
+	break;
+	}
+}
+
+void NinjaSate::Walk()
+{
+	int state = this->states;
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+	case NINJA_ANI_CROUCHING_ATTACKING:
+	case NINJA_ANI_CROUCHING:
+	case NINJA_ANI_JUMPING:
+	case NINJA_ANI_JUMPING_ATTACKING:
+		break;
+	case NINJA_ANI_IDLE:
+	{
+		ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
+		ninja->SetState(ninja->GetWalkingState());
+	}
+	break;
+	case NINJA_ANI_WALKING:
+	{
+		ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
+	}
+	break;
+	}
+}
+
+void NinjaSate::Update(DWORD dt)
+{
+	int state = this->states;
+	switch (state)
+	{
+	case NINJA_ANI_JUMPING:
+	{
+		if (ninja->IsGrounded())
+		{
+			ninja->SetState(ninja->GetIdleState());
+		}
+	}
+	break;
+	case NINJA_ANI_JUMPING_ATTACKING:
+	{
+		if (ninja->IsGrounded())
+		{
+			ninja->SetState(ninja->GetIdleState());
+		}
+	}
+	break;
+	default:
+		break;
+	}
+}
+
+void NinjaSate::Render()
+{
+	int state = this->states;
+
+	SpriteData spriteData;
+	if (this->ninja != NULL)
+	{
+		spriteData.width = NINJA_SPRITE_WIDTH;
+		spriteData.height = NINJA_SPRITE_HEIGHT;
+		spriteData.x = ninja->GetPositionX();
+		spriteData.y = ninja->GetPositionY();
+		spriteData.scale = 1;
+		spriteData.angle = 0;
+		spriteData.isLeft = ninja->IsLeft();
+		spriteData.isFlipped = ninja->IsFlipped();
+	}
+
+	switch (state)
+	{
+	case NINJA_ANI_STANDING_ATTACKING:
+	{
+
+		//ninja->GetWhip()->SetPosition(ninja->GetPositionX(), ninja->GetPositionY(), ninja->IsCrouching());
+		if (ninja->IsCrouching())
+		{
+			ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Render(spriteData);
+			//ninja->GetWhip()->Render(spriteData);
+
+			if (ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->IsDone())
+			{
+				ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
+				ninja->GetWhip()->ResetAnim();
+				ninja->SetIsCrouching(true);
+				ninja->SetState(ninja->GetCrouchingState());
+			}
+		}
+		else
+		{
+			ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Render(spriteData);
+			//ninja->GetWhip()->Render(spriteData);
+
+			if (ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->IsDone())
+			{
+				ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
+				ninja->GetWhip()->ResetAnim();
+				ninja->SetState(ninja->GetIdleState());
+			}
+		}
+	}
+	break;
+	case NINJA_ANI_IDLE:
+	{
+		ninja->GetAnimationsList()[NINJA_ANI_IDLE]->Render(spriteData);
+	}
+	break;
+	case NINJA_ANI_CROUCHING:
+	{
+		ninja->GetAnimationsList()[NINJA_ANI_CROUCHING]->Render(spriteData);
+	}
+	break;
+	case NINJA_ANI_JUMPING:
+	{
+		ninja->GetAnimationsList()[NINJA_ANI_JUMPING]->Render(spriteData);
+	}
+	break;
+	case NINJA_ANI_CLIMBING:
+	{
+		ninja->GetAnimationsList()[NINJA_ANI_CLIMBING]->Render(spriteData);
+
+		if (ninja->GetAnimationsList()[NINJA_ANI_CLIMBING]->IsDone())
+		{
+			ninja->GetAnimationsList()[NINJA_ANI_CLIMBING]->Reset();
+			//ninja->GetWhip()->ResetAnim();
+			ninja->SetState(ninja->GetIdleState());
+		}
+	}
+	break;
+	case NINJA_ANI_WALKING:
+	{
+
+		ninja->GetAnimationsList()[NINJA_ANI_WALKING]->Render(spriteData);
+	}
+	break;
+	case NINJA_ANI_JUMPING_ATTACKING:
+	{
+		ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Render(spriteData);
+
+		if (ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->IsDone())
+		{
+			ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Reset();
+			//ninja->GetWhip()->ResetAnim();
+			//ninja->SetIsGrounded(true);
+			ninja->SetState(ninja->GetJumpingState());
+		}
+	}
+	break;
+	}
+}

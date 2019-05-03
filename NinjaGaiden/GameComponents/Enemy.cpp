@@ -6,8 +6,8 @@ Enemy::Enemy()
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new State(this,ENEMY_ANI_IDLE);
-	walkingState = new State(this, ENEMY_ANI_WALKING);
+	idleState = new EnemyState(this,ENEMY_ANI_IDLE);
+	walkingState = new EnemyState(this, ENEMY_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
@@ -15,7 +15,6 @@ Enemy::Enemy()
 }
 void Enemy::LoadResources()
 {
-	
 	// Enemy_ANI_IDLE
 	Animation * anim = new Animation(100);
 	for (int i = 0; i < 1 ; i++)

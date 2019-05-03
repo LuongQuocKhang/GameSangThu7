@@ -87,6 +87,12 @@
     <ClCompile Include="GameComponents\Enemy.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="Ninja\NinjaSate.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\EnemyState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\Knife.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="GameComponents\Enemy.h">
       <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\EnemyState.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\NinjaSate.h">
+      <Filter>Header Files\Ninja</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
