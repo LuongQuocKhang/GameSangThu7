@@ -9,6 +9,9 @@ Enemy::Enemy()
 	idleState = new State(this,ENEMY_ANI_IDLE);
 	walkingState = new State(this, ENEMY_ANI_WALKING);
 	state = walkingState;
+
+	this->isLeft = true;
+	this->vx = -0.2f;
 }
 void Enemy::LoadResources()
 {

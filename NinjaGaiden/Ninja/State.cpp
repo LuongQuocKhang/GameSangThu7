@@ -44,50 +44,10 @@ void State::Update(DWORD dt)
 	}
 	else
 	{
-		ninja->SetPositionX((int)(ninja->GetPositionX() + ninja->GetSpeedX()* dt));
-		ninja->SetPositionY((int)(ninja->GetPositionY() + ninja->GetSpeedY()* dt));
-
-
-
-		ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
-		if (ninja->GetPositionY() < NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE)
-		{
-			ninja->SetSpeedY(0);
-			ninja->SetPositionY(NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE);
-			ninja->SetSpeedX(0);
-			ninja->SetIsGrounded(true);
-		}
-		if (ninja->GetSpeedX() > 0 && ninja->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
-		{
-			int map = (int)Game::GetInstance()->GetStage() + 1;
-			if (map < 3)
-			{
-				Game::GetInstance()->SetStage(map);
-				ninja->SetPositionX(0);
-				if (STAGE_32 == Game::GetInstance()->GetStage())
-				{
-					Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_32));
-					Game::GetInstance()->ResetViewPort();
-					ninja->SetSpeedY(0);
-				}
-				else if (STAGE_BOSS == Game::GetInstance()->GetStage())
-				{
-					Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
-					Game::GetInstance()->ResetViewPort();
-					ninja->SetSpeedY(0);
-
-				}
-			}
-			else if (STAGE_BOSS == Game::GetInstance()->GetStage())
-			{
-				ninja->SetPositionX(Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH);
-			}
-		}
-		if (ninja->GetSpeedX() < 0 && ninja->GetPositionX() < 0)
-		{
-			ninja->SetPositionX(0);
-		}
+		
 	}
+
+/*
 	vector<Subweapon *> subweapons = ninja->GetSubweapon();
 	if (subweapons.size() > 0)
 	{
@@ -98,7 +58,7 @@ void State::Update(DWORD dt)
 			else if (subweapons[i]->GetSpeedX() < 0 && subweapons[i]->GetPositionX() < 0)
 				subweapons.erase(subweapons.begin() + i);
 		}
-	}
+	}*/
 }
 
 void State::Render()

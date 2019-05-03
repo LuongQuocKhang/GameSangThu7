@@ -6,6 +6,8 @@
 #include "Knife.h"
 #include "State.h"
 #include "Constants.h"
+#include "Game.h"
+
 class State;
 class Ninja : public GameObject
 {
