@@ -8,7 +8,7 @@ Enemy::Enemy()
 
 	idleState = new State(this,ENEMY_ANI_IDLE);
 	walkingState = new State(this, ENEMY_ANI_WALKING);
-	state = idleState;
+	state = walkingState;
 }
 void Enemy::LoadResources()
 {
@@ -29,7 +29,7 @@ void Enemy::LoadResources()
 	this->animations.push_back(anim);
 	// NINJA_ANI_WALKING
 	anim = new Animation(100);
-	for (int i = 1; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		RECT rect;
 		rect.left = (i % ENEMY_TEXTURE_COLUMNS) * ENEMY_SPRITE_WIDTH;
