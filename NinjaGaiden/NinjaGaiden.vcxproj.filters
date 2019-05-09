@@ -93,6 +93,18 @@
     <ClCompile Include="GameComponents\EnemyState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="YellowSolider.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="YellowSoliderState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="BrownBird.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="BrownBirdState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\Knife.h">
@@ -157,6 +169,18 @@
     </ClInclude>
     <ClInclude Include="Ninja\NinjaSate.h">
       <Filter>Header Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="YellowSolider.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="YellowSoliderState.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="BrownBird.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="BrownBirdState.h">
+      <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

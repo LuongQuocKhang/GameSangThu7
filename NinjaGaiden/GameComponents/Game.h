@@ -5,6 +5,8 @@
 #include "Ninja.h"
 #include "TiledMap.h"
 #include "Enemy.h"
+#include "YellowSolider.h"
+#include "BrownBird.h"
 
 class Graphics;
 class Keyboard;
@@ -21,7 +23,9 @@ class Game
 	Graphics * graphics;
 
 	Ninja * ninja;
-	Enemy * enemy;
+	YellowSolider * enemy;
+	BrownBird * bird;
+	 
 	TiledMap * tiledMap;
 	Viewport * viewport;
 
@@ -39,7 +43,8 @@ public:
 	void Render();
 	int Run();
 	Ninja * GetNinja();
-	Enemy * GetEnemy();
+	YellowSolider * GetEnemy();
+	BrownBird * GetBirdEnemy();
 	TiledMap * GetTiledMap() { return tiledMap; }
 	void SetTileMap(TiledMap * tiledMap) {
 		this->tiledMap = tiledMap;

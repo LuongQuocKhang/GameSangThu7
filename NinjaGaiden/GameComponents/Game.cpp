@@ -80,7 +80,9 @@ void Game::LoadResources()
 	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
 	if (NULL == enemy)
-		enemy = new Enemy();
+		enemy = new YellowSolider();
+	if (NULL == bird)
+		bird = new BrownBird();
 	if (NULL == tiledMap)
 	{
 		tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
@@ -94,6 +96,7 @@ void Game::Update(DWORD dt)
 	keyboard->Update();
 	ninja->Update(dt);
 	enemy->Update(dt);
+	bird->Update(dt);
 	viewport->Update(dt);
 }
 void Game::Render()
@@ -113,6 +116,7 @@ void Game::Render()
 		tiledMap->Render();
 		ninja->Render();
 		enemy->Render();
+		bird->Render();
 
 		//Kết thúc xử lí sprite
 		spriteHandler->End();
@@ -175,10 +179,17 @@ Game::~Game()
 {
 
 }
-Enemy * Game::GetEnemy()
+YellowSolider * Game::GetEnemy()
 {
 	return enemy;
 }
+
+BrownBird * Game::GetBirdEnemy()
+{
+	return bird;
+}
+
+
 Ninja * Game::GetNinja()
 {
 	return ninja;
