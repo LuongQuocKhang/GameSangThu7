@@ -7,6 +7,7 @@ class Brick : public GameObject
 	ObjectType Type;
 public:
 	Brick();
+	Brick(float x, float y);
 	~Brick();
 
 	ObjectType GetType() { return this->Type; }

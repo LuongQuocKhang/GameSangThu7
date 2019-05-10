@@ -15,11 +15,27 @@
 
 using namespace std;
 
-typedef vector<vector <int>> Matrix;
-typedef vector<int> Row;
+struct Tile {
+	int tileId;
+	ObjectType type; 
+	int x, y;
+	int width = 16, height = 16;
+};
+
+typedef vector<Tile> Row;
+typedef vector<Row> Matrix;
 
 typedef vector<vector<Brick*>> BrickMatrix;
 typedef vector<Brick*> BrickRow;
+
+typedef GameObject * BrickTile;
+
+typedef vector<BrickTile> BrickTileSet;
+
+const vector<int> _BrickStage_31{ 71 , 72 , 24 , 26 , 25 , 76 , 70 , 77 , 61 };
+const vector<int> _BrickStage_32{ 19 , 8 , 18 , 20 , 21 , 30 , 26 , 32 , 33 , 47 };
+const vector<int> _BrickStage_BOSS{ 40 , 68 , 23 , 151 , 130 , 113 , 99 , 78 , 47 , 31 , 4 };
+
 class TiledMap
 {
 private:
@@ -31,9 +47,10 @@ private:
 	void AddObjects(Stage stage);
 	int mapWidth, mapHeight;
 	int tileSetWidth, tileSetHeight;
+
 	LPCWSTR infoLocation;
 	unordered_map<int, Sprite*> tiles;
-	BrickMatrix mapsObject;
+
 public:
 	TiledMap(LPCWSTR filePath);
 
@@ -41,6 +58,9 @@ public:
 	int GetHeight();
 	int GetTileWidth();
 	int GetTileHeight();
+
+	Row GetMatrixRow(int lineNum, string line, string delimiter);
+	Matrix& GetMatrix() { return this->matrix; }
 
 	void Render();
 

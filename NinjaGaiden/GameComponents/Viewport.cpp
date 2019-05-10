@@ -19,6 +19,16 @@ Viewport::~Viewport()
 
 }
 
+RECT Viewport::GetRect()
+{
+	RECT rect;
+	rect.top = y;
+	rect.left = x;
+	rect.right = x + width;
+	rect.bottom = y - height;
+	return rect;
+}
+
 
 Viewport * Viewport::GetInstance()
 {

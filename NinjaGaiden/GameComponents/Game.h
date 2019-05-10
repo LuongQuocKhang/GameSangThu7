@@ -5,6 +5,7 @@
 #include "Ninja.h"
 #include "TiledMap.h"
 #include "Enemy.h"
+#include "Grid.h"
 
 class Graphics;
 class Keyboard;
@@ -25,6 +26,8 @@ class Game
 	TiledMap * tiledMap;
 	Viewport * viewport;
 
+	Grid * grid;
+
 	Stage stage;
 public:
 	Stage GetStage() { return this->stage; }
@@ -34,6 +37,7 @@ public:
 	HWND CreateGameWindow(HINSTANCE hInstance, int ScreenWidth, int ScreenHeight);
 	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void LoadResources();
+
 
 	void Update(DWORD dt);
 	void Render();
@@ -45,6 +49,8 @@ public:
 		this->tiledMap = tiledMap;
 	}
 	void ResetViewPort() { this->viewport->Reset(); }
+
+	static float SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly);
 	static Game * GetInstance();
 	~Game();
 };

@@ -36,7 +36,6 @@ public:
 	//Các hàm hành động nhân vật
 	void Idle();
 	void Walk();
-
 	void TurnLeft();
 	void TurnRight();
 	//Hàm cập nhật

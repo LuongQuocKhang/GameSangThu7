@@ -17,6 +17,7 @@
 #define ID_TEX_MISC 20
 //
 
+#define GRID_SIZE 64
 enum Stage {
 	STAGE_31,
 	STAGE_32,

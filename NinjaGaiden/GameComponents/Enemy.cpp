@@ -11,7 +11,7 @@ Enemy::Enemy()
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = 0.2f;
 }
 void Enemy::LoadResources()
 {
@@ -77,6 +77,7 @@ void Enemy::TurnRight()
 //Hàm cập nhật
 void Enemy::Update(DWORD dt)
 {
+	this->SetPositionX((int)(this->GetPositionX() + this->GetSpeedX()* dt));
 	state->Update(dt);
 }
 //Hàm render

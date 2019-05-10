@@ -6,21 +6,32 @@ TiledMap::TiledMap(LPCWSTR filePath)
 	infoLocation = filePath;
 	
 	LoadMap(filePath);
-
-	mapsObject.clear();
-
-	AddObjects(Game::GetInstance()->GetStage());
 }
-Row GetMatrixRow(string line, string delimiter)
+Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
 {
 	size_t pos = 0;
 	string token;
 	Row result = Row();
+	int rowNum = 0;
+	Stage stage = Game::GetInstance()->GetStage();
 	while ((pos = line.find(delimiter)) != string::npos)
 	{
 		token = line.substr(0, pos);
-		result.push_back(stoi(token));
+
+		Tile curTile;
+		curTile.x = rowNum * TILES_WIDTH_PER_TILE;
+		curTile.y = this->mapHeight - lineNum * TILES_HEIGHT_PER_TILE;
+		curTile.tileId = stoi(token);
+		if (Stage::STAGE_31 == stage)
+		{
+			if (find(_BrickStage_31.begin(), _BrickStage_31.end(), curTile.tileId) != _BrickStage_31.end())
+				curTile.type = ObjectType::BRICK;
+			else
+				curTile.type = ObjectType::DEFAULT;
+		}
+		result.push_back(curTile);
 		line.erase(0, pos + delimiter.length());
+		rowNum++;
 	}
 
 	return result;
@@ -59,10 +70,13 @@ string TiledMap::LoadMatrix(LPCWSTR filePath)
 		string line;
 		Row matrixRow;
 		this->matrix.clear();
+
+		int lineNum = 0;
 		while (getline(tilesInfo, line))
 		{
-			matrixRow = GetMatrixRow(line, TILES_MATRIX_DELIMITER);
+			matrixRow = GetMatrixRow(lineNum,line, TILES_MATRIX_DELIMITER);
 			this->matrix.push_back(matrixRow);
+			lineNum++;
 		}
 		tilesInfo.close();
 	}
@@ -117,81 +131,6 @@ void TiledMap::LoadTileSet(LPCWSTR tilesLocation)
 void TiledMap::AddObjects(Stage stage)
 {
 	
-	for (int i = 0; i < matrix.size(); i++)
-	{
-		Row curRow = matrix[i];
-		BrickRow Row;
-		for (int j = 0; j < curRow.size(); j++)
-		{
-			if (Stage::STAGE_31 == stage)
-			{
-				Brick * brick = new Brick();
-				if (71 == curRow[j] || 72 == curRow[j] || 24 == curRow[j] || 26 == curRow[j] || 25 == curRow[j]
-					|| 76 == curRow[j] || 70 == curRow[j] || 77 == curRow[j] || 61 == curRow[j])
-				{
-					brick->SetType(ObjectType::BRICK);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				else if (36 == curRow[j] || 38 == curRow[j])
-				{
-					brick->SetType(ObjectType::BRICK);
-					brick->SetPositionX(j * (TILES_WIDTH_PER_TILE - 10));
-					brick->SetPositionY((matrix.size() - i) * (TILES_HEIGHT_PER_TILE - 10));
-				}
-				else
-				{
-					brick->SetType(ObjectType::DEFAULT);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				Row.push_back(brick);
-			}
-			else if (Stage::STAGE_32 == stage) {
-				Brick * brick = new Brick();
-				if (19 == curRow[j] || 8 == curRow[j] || 18 == curRow[j] || 20 == curRow[j] || 21 == curRow[j] || 30 == curRow[j]
-					|| 26 == curRow[j] || 32 == curRow[j] || 33 == curRow[j] || 47 == curRow[j])
-				{
-					brick->SetType(ObjectType::BRICK);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				else
-				{
-					brick->SetType(ObjectType::DEFAULT);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				Row.push_back(brick);
-			}
-			else if (Stage::STAGE_BOSS == stage) {
-				Brick * brick = new Brick();
-				
-				if (40 == curRow[j] || 68 == curRow[j] || 23 == curRow[j] || 151 == curRow[j] 	
-					|| 130 == curRow[j] || 113 == curRow[j] || 99 == curRow[j]
-					|| 78 == curRow[j] || 47 == curRow[j] || 31 == curRow[j] || 4 == curRow[j] )
-				{
-					brick->SetType(ObjectType::BRICK);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				else if (curRow[j]>=154 && curRow[j]<176)
-				{
-					brick->SetType(ObjectType::BRICK);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				else
-				{
-					brick->SetType(ObjectType::DEFAULT);
-					brick->SetPositionX(j * TILES_WIDTH_PER_TILE);
-					brick->SetPositionY((matrix.size() - i) * TILES_HEIGHT_PER_TILE);
-				}
-				Row.push_back(brick);
-			}
-		}
-		mapsObject.push_back(Row);
-	}
 }
 
 TiledMap::~TiledMap()
@@ -222,7 +161,7 @@ void TiledMap::Render()
 		Row curRow = matrix[i];
 		for (int j = 0; j < curRow.size(); j++)
 		{
-			if (curRow[j] != 0)
+			if (curRow[j].tileId != 0)
 			{
 				SpriteData spriteData;
 				spriteData.width = TILES_WIDTH_PER_TILE;
@@ -231,28 +170,9 @@ void TiledMap::Render()
 				spriteData.y = (matrix.size() - i) * TILES_HEIGHT_PER_TILE;
 				spriteData.scale = 1;
 				spriteData.angle = 0;
-				//spriteData.isLeft = true;		
-				//if (mapsObject.size() > 0)
-				//{
-				//	auto type = mapsObject[i].at(j)->GetType();
-				//	if (ObjectType::BRICK == type)
-				//	{
-				//		tiles.at(curRow[j])->SetData(spriteData);
-				//		//Graphics::GetInstance()->Draw(tiles.at(curRow[j]), D3DCOLOR_XRGB(200, 200, 255));
-				//	}
-				//	else if (ObjectType::DEFAULT == type)
-				//	{
-				//		tiles.at(curRow[j])->SetData(spriteData);
-				//		Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
-				//	}
-				//}
-				//else
-				//{
-				//	tiles.at(curRow[j])->SetData(spriteData);
-				//	Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
-				//}
-				tiles.at(curRow[j])->SetData(spriteData);
-				Graphics::GetInstance()->Draw(tiles.at(curRow[j]));
+				
+				tiles.at(curRow[j].tileId)->SetData(spriteData);
+				Graphics::GetInstance()->Draw(tiles.at(curRow[j].tileId));
 			}
 		}
 	}

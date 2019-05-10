@@ -50,6 +50,7 @@ void EnemyState::Walk()
 
 void EnemyState::Update(DWORD dt)
 {
+	
 }
 
 void EnemyState::Render()

@@ -81,9 +81,6 @@
     <ClCompile Include="Ninja\Ninja.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
     <ClCompile Include="GameComponents\Enemy.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
@@ -91,6 +88,12 @@
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
     <ClCompile Include="GameComponents\EnemyState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCell.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,9 +149,6 @@
     <ClInclude Include="GameComponents\Viewport.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
     <ClInclude Include="GameComponents\Enemy.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
@@ -157,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="Ninja\NinjaSate.h">
       <Filter>Header Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCell.h">
+      <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
