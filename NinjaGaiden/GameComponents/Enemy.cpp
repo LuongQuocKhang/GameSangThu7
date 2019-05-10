@@ -1,16 +1,10 @@
 ﻿#include "Enemy.h"
+#include "Constants.h"
 
 Enemy::Enemy()
 {
-	__instance = NULL;
+	//__instance = NULL;
 	LoadResources();
-
-	idleState = new EnemyState(this,ENEMY_ANI_IDLE);
-	walkingState = new EnemyState(this, ENEMY_ANI_WALKING);
-	state = walkingState;
-
-	this->isLeft = true;
-	this->vx = -0.2f;
 }
 void Enemy::LoadResources()
 {
@@ -29,6 +23,14 @@ State * Enemy::GetWalkingState()
 	return walkingState;
 }
 //Các hàm hành động nhân vật
+
+void Enemy::Idle()
+{
+}
+
+void Enemy::Walk()
+{
+}
 
 void Enemy::TurnLeft()
 {

@@ -39,6 +39,8 @@ const vector<int> _BrickStage_BOSS{ 40 , 68 , 23 , 151 , 130 , 113 , 99 , 78 , 4
 class TiledMap
 {
 private:
+	static TiledMap * __instance;
+
 	void LoadMap(LPCWSTR filePath);
 	string LoadMatrix(LPCWSTR filePath);
 	void LoadTileSet(LPCWSTR tilesLocation);
@@ -48,10 +50,13 @@ private:
 	int mapWidth, mapHeight;
 	int tileSetWidth, tileSetHeight;
 
+	Row GetMatrixRow(int lineNum, string line, string delimiter);
+
 	LPCWSTR infoLocation;
 	unordered_map<int, Sprite*> tiles;
 
 public:
+	static TiledMap * GetInstance(LPCWSTR filePath = NULL);
 	TiledMap(LPCWSTR filePath);
 
 	int GetWidth();
@@ -59,9 +64,9 @@ public:
 	int GetTileWidth();
 	int GetTileHeight();
 
-	Row GetMatrixRow(int lineNum, string line, string delimiter);
 	Matrix& GetMatrix() { return this->matrix; }
 
+	void RenderTile(Tile * curTile);
 	void Render();
 
 	~TiledMap();

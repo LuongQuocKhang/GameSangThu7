@@ -1,14 +1,11 @@
 ﻿#include "Ninja.h"
 
 vector<Animation *> Ninja::animations = vector<Animation *>();
-vector<Subweapon *> Ninja::subweapons = vector<Subweapon *>();
 Ninja * Ninja::__instance = NULL;
 
 Ninja::Ninja()
 {
 	LoadResources();
-
-	//whip = new Whip();
 
 	idleState = new NinjaSate(this,NINJA_ANI_IDLE);
 	walkingState = new NinjaSate(this, NINJA_ANI_WALKING);
@@ -19,6 +16,17 @@ Ninja::Ninja()
 	jumpattackingState = new NinjaSate(this, NINJA_ANI_JUMPING_ATTACKING);
 
 	state = idleState;
+
+	this->x = 100;
+	this->y = 100;
+	this->width = NINJA_SPRITE_WIDTH;
+	this->height = NINJA_SPRITE_HEIGHT;
+	collider.x = x;
+	collider.y = y;
+	collider.vx = 0;
+	collider.vy = 0;
+	collider.width = NINJA_SPRITE_WIDTH;
+	collider.height = NINJA_SPRITE_HEIGHT;
 }
 Ninja * Ninja::GetInstance()
 {
@@ -244,10 +252,6 @@ void Ninja::Walk()
 {
 	state->Walk();
 }
-//void Ninja::Throw()
-//{
-//	state->Throw();
-//}
 void Ninja::Jump()
 {
 	state->Jump();
@@ -266,51 +270,19 @@ void Ninja::JumpAttack()
 }
 void Ninja::TurnLeft()
 {
-	//whip->TurnLeft();
 	isLeft = true;
 }
 void Ninja::TurnRight()
 {
-	//whip->TurnRight();
 	isLeft = false;
 }
 void Ninja::CreateThrownWeapon()
 {
-	Subweapon * subweapon;
-	switch (curSubweapon)
-	{
-	case SUBWEAPON_KNIFE:
-		subweapon = new Knife();
-		if (isLeft)
-			subweapon->TurnLeft();
-		else
-			subweapon->TurnRight();
-		subweapon->SetThrownPosition(this->x, this->y, isCrouching);
-		this->subweapons.push_back(subweapon);
-		break;
-	}
+	
 }
 //Hàm cập nhật
 void Ninja::Update(DWORD dt)
 {
-	/*whip->Update(dt);
-	for (int i = 0; i < subweapons.size(); i++)
-	{
-		subweapons[i]->Update(dt);
-	}*/
-	this->SetPositionX((int)(this->GetPositionX() + this->GetSpeedX()* dt));
-	this->SetPositionY((int)(this->GetPositionY() + this->GetSpeedY()* dt));
-
-
-
-	this->SetSpeedY(this->GetSpeedY() - NINJA_GRAVITY);
-	if (this->GetPositionY() < NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE)
-	{
-		this->SetSpeedY(0);
-		this->SetPositionY(NINJA_SPRITE_HEIGHT + TILES_HEIGHT_PER_TILE);
-		this->SetSpeedX(0);
-		this->SetIsGrounded(true);
-	}
 	if (this->GetSpeedX() > 0 && this->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
 	{
 		int map = (int)Game::GetInstance()->GetStage() + 1;
@@ -329,7 +301,6 @@ void Ninja::Update(DWORD dt)
 				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
 				Game::GetInstance()->ResetViewPort();
 				this->SetSpeedY(0);
-
 			}
 		}
 		else if (STAGE_BOSS == Game::GetInstance()->GetStage())

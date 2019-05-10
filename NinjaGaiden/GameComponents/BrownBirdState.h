@@ -1,4 +1,4 @@
-ragma once
+#pragma once
 #include "State.h"
 #include "Constants.h"
 #include "Enemy.h"

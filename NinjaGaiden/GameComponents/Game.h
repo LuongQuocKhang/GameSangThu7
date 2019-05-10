@@ -5,9 +5,15 @@
 #include "Ninja.h"
 #include "TiledMap.h"
 #include "Enemy.h"
+#include "Grid.h"
+#include "YellowSolider.h"
+#include "BrownBird.h"
+
+#include <chrono>
 
 class Graphics;
 class Keyboard;
+class Grid;
 
 class Game
 {

@@ -19,19 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
+    <ClCompile Include="GameComponents\BrownBird.cpp" />
+    <ClCompile Include="GameComponents\BrownBirdState.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
     <ClCompile Include="GameComponents\Enemy.cpp" />
     <ClCompile Include="GameComponents\EnemyState.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
+    <ClCompile Include="GameComponents\Grid.cpp" />
+    <ClCompile Include="GameComponents\GridCell.cpp" />
     <ClCompile Include="GameComponents\Keyboard.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\Viewport.cpp" />
-    <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="GridCell.cpp" />
+    <ClCompile Include="GameComponents\YellowSolider.cpp" />
+    <ClCompile Include="GameComponents\YellowSoliderState.cpp" />
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
@@ -41,12 +44,11 @@
     <ClCompile Include="Ninja\ThrowingState.cpp" />
     <ClCompile Include="Ninja\Whip.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
-    <ClCompile Include="YellowSolider.cpp" />
-    <ClCompile Include="YellowSoliderState.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Brick.h" />
     <ClInclude Include="GameComponents\Animation.h" />
+    <ClInclude Include="GameComponents\BrownBird.h" />
+    <ClInclude Include="GameComponents\BrownBirdState.h" />
     <ClInclude Include="GameComponents\Constants.h" />
     <ClInclude Include="GameComponents\Debug.h" />
     <ClInclude Include="GameComponents\Enemy.h" />
@@ -54,11 +56,13 @@
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />
+    <ClInclude Include="GameComponents\Grid.h" />
+    <ClInclude Include="GameComponents\GridCell.h" />
     <ClInclude Include="GameComponents\Keyboard.h" />
     <ClInclude Include="GameComponents\resource.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="GridCell.h" />
+    <ClInclude Include="GameComponents\YellowSolider.h" />
+    <ClInclude Include="GameComponents\YellowSoliderState.h" />
     <ClInclude Include="Ninja\Knife.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\NinjaSate.h" />
@@ -68,8 +72,6 @@
     <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
-    <ClInclude Include="YellowSolider.h" />
-    <ClInclude Include="YellowSoliderState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

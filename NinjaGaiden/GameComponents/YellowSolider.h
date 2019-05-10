@@ -20,6 +20,10 @@ public:
 	YellowSolider();
 	void LoadResources();
 	vector<Animation *> GetAnimationsList() { return this->animations; }
+
+	void Idle();
+	void Walk();
+
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render

@@ -1,6 +1,7 @@
 ﻿#include "Game.h"
 #include "Debug.h"
 
+
 Game * Game::__instance = NULL;
 HINSTANCE Game::hInstance = NULL;
 //Khởi tạo game chính
@@ -79,16 +80,12 @@ void Game::LoadResources()
 {
 	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
-	if (NULL == enemy)
-		enemy = new YellowSolider();
-	if (NULL == bird)
-		bird = new BrownBird();
 	if (NULL == tiledMap)
-	{
-		tiledMap = new TiledMap(TILES_MATRIX_STAGE_31);
-	}
+		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_31);
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
+	if (grid == NULL)
+		grid = Grid::GetInstance();
 }
 //Xử lí
 
@@ -252,37 +249,28 @@ float Game::SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly)
 void Game::Update(DWORD dt)
 {
 	keyboard->Update();
-	ninja->Update(dt);
-	enemy->Update(dt);
-	bird->Update(dt);
 	viewport->Update(dt);
+	grid->Update(dt);
 }
 void Game::Render()
 {
-	//Lấy thông tin các đối tượng cần thiết từ game chính
 	LPDIRECT3DDEVICE9 d3ddv = graphics->GetDirect3DDevice();
 	LPDIRECT3DSURFACE9 bb = graphics->GetBackBuffer();
 	LPD3DXSPRITE spriteHandler = graphics->GetSpriteHandler();
-	//Bắt đầu render
 	if (SUCCEEDED(d3ddv->BeginScene()))
 	{
-		//Tô màu backbuffer
+		
 		d3ddv->ColorFill(bb, NULL, BACKGROUND_COLOR);
-		//Bắt đầu xử lí sprite
+		
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
-		tiledMap->Render();
-		ninja->Render();
-		enemy->Render();
-		bird->Render();
+		grid->Render();
 
-		//Kết thúc xử lí sprite
 		spriteHandler->End();
-		//Kết thúc render
+		
 		d3ddv->EndScene();
 	}
 
-	//Hiển thị backbuffer lên màn hình
 	d3ddv->Present(NULL, NULL, NULL, NULL);
 }
 int Game::Run()

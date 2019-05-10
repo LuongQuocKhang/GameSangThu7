@@ -1,10 +1,21 @@
 ﻿#include "TiledMap.h"
 #include "Game.h"
+TiledMap * TiledMap::__instance = NULL;
+TiledMap * TiledMap::GetInstance(LPCWSTR filePath)
+{
+	if (__instance == NULL || filePath != NULL)
+	{
+		if (__instance != NULL)
+		{
+			delete __instance;
+		}
+		__instance = new TiledMap(filePath);
+	}
+	return __instance;
+}
 
 TiledMap::TiledMap(LPCWSTR filePath)
 {
-	infoLocation = filePath;
-	
 	LoadMap(filePath);
 }
 Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
@@ -54,6 +65,7 @@ void TiledMap::LoadMap(LPCWSTR filePath)
 
 	std::wstring stemp = s2ws(tilesLocation);
 	LPCWSTR wstrTilesLocation = stemp.c_str();
+
 	LoadTileSet(wstrTilesLocation);
 }
 string TiledMap::LoadMatrix(LPCWSTR filePath)
@@ -66,6 +78,12 @@ string TiledMap::LoadMatrix(LPCWSTR filePath)
 	if (tilesInfo.is_open())
 	{
 		getline(tilesInfo, tilesLocation);
+
+		string tmp;
+		getline(tilesInfo, tmp);
+		this->mapWidth = stoi(tmp);
+		getline(tilesInfo, tmp);
+		this->mapHeight = stoi(tmp);
 
 		string line;
 		Row matrixRow;
@@ -176,4 +194,19 @@ void TiledMap::Render()
 			}
 		}
 	}
+}
+void TiledMap::RenderTile(Tile * curTile)
+{
+	SpriteData spriteData;
+	spriteData.width = TILES_WIDTH_PER_TILE;
+	spriteData.height = TILES_HEIGHT_PER_TILE;
+	spriteData.x = curTile->x;
+	spriteData.y = curTile->y;
+	spriteData.scale = 1;
+	spriteData.angle = 0;
+	spriteData.isLeft = true;
+
+	tiles.at(curTile->tileId)->SetData(spriteData);
+	Graphics::GetInstance()->Draw(tiles.at(curTile->tileId));
+
 }

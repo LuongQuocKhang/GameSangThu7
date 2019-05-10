@@ -24,6 +24,6 @@ void GridCell::Render()
 	}
 }
 
-GridCell::~Cell()
+GridCell::~GridCell()
 {
 }

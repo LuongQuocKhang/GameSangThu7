@@ -17,7 +17,6 @@
 #define ID_TEX_MISC 20
 //
 
-#define GRID_SIZE 64
 enum Stage {
 	STAGE_31,
 	STAGE_32,
@@ -51,7 +50,7 @@ enum ObjectType
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define NINJA_WALKING_SPEED		0.125f
-#define NINJA_JUMP_SPEED_Y		0.4f
+#define NINJA_JUMP_SPEED_Y		0.5f
 #define NINJA_GRAVITY			0.025f
 //Các số để chạy animation của Ninja
 #define NINJA_ANI_IDLE					0
@@ -143,3 +142,7 @@ enum ObjectType
 #define SUBWEAPON_KNIFE_TEXTURE_ROWS 1
 #define SUBWEAPON_KNIFE_SPRITE_WIDTH 32
 #define SUBWEAPON_KNIFE_SPRITE_HEIGHT 18
+
+#define GRID_SIZE 64
+#define GRID_MAX_X 48
+#define GRID_MAX_Y 5

@@ -8,7 +8,7 @@ Viewport * Viewport::__instance = NULL;
 Viewport::Viewport()
 {
 	width = 450;
-	height = 360;
+	height = 250;
 	x = 0;
 	y = 250;
 }
@@ -39,7 +39,7 @@ Viewport * Viewport::GetInstance()
 void Viewport::Reset()
 {
 	width = 450;
-	height = 360;
+	height = 250;
 	x = 0;
 	y = 250;
 }

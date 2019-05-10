@@ -1,4 +1,5 @@
 ﻿#include"Grid.h"
+#include "Game.h"
 
 Grid * Grid::__instance = NULL;
 bool CellGameObjectAABB(GridCell * cell, GameObject * obj)
@@ -43,6 +44,9 @@ Grid::Grid()
 	this->viewport = Viewport::GetInstance();
 	//Lưu ninja
 	this->ninja = Ninja::GetInstance();
+
+	enemies.push_back(new YellowSolider());
+	enemies.push_back(new BrownBird());
 }
 
 void Grid::LoadCells()
@@ -60,9 +64,6 @@ void Grid::LoadCells()
 			cells[cellY][cellX]->AddTile(dummyPtr);
 		}
 	}
-	// Load Object
-	// ---> Place holder
-	// ...
 }
 
 void Grid::GetCameraPosOnGrid(int &l, int &r, int &t, int &b) {
@@ -132,6 +133,10 @@ void Grid::Update(DWORD dt)
 		}
 	}
 	ninja->Update(dt);
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		enemies[i]->Update(dt);
+	}
 }
 void Grid::Render()
 {
@@ -150,7 +155,10 @@ void Grid::Render()
 	}
 
 	ninja->Render();
-
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		enemies[i]->Render();
+	}
 }
 
 Grid * Grid::GetInstance()

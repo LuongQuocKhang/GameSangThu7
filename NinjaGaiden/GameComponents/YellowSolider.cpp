@@ -7,8 +7,8 @@ YellowSolider::YellowSolider()
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new YellowSoliderState(this, ENEMY_ANI_IDLE);
-	walkingState = new YellowSoliderState(this, ENEMY_ANI_WALKING);
+	idleState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_IDLE);
+	walkingState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
@@ -23,11 +23,11 @@ void YellowSolider::LoadResources()
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i % ENEMY_TEXTURE_COLUMNS) * ENEMY_SPRITE_WIDTH;
-		rect.right = rect.left + ENEMY_SPRITE_WIDTH;
-		rect.top = (i / ENEMY_TEXTURE_COLUMNS) * ENEMY_SPRITE_HEIGHT;
-		rect.bottom = rect.top + ENEMY_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(ENEMY_TEXTURE_LOCATION, rect, ENEMY_TEXTURE_TRANS_COLOR);
+		rect.left = (i % YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_WIDTH;
+		rect.right = rect.left + YELLOW_SOLIDER_SPRITE_WIDTH;
+		rect.top = (i / YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_HEIGHT;
+		rect.bottom = rect.top + YELLOW_SOLIDER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(YELLOW_SOLIDER_TEXTURE_LOCATION, rect, YELLOW_SOLIDER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -37,19 +37,25 @@ void YellowSolider::LoadResources()
 	for (int i = 0; i < 3; i++)
 	{
 		RECT rect;
-		rect.left = (i % ENEMY_TEXTURE_COLUMNS) * ENEMY_SPRITE_WIDTH;
-		rect.right = rect.left + ENEMY_SPRITE_WIDTH;
-		rect.top = (i / ENEMY_TEXTURE_COLUMNS) * ENEMY_SPRITE_HEIGHT;
-		rect.bottom = rect.top + ENEMY_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(ENEMY_TEXTURE_LOCATION, rect, ENEMY_TEXTURE_TRANS_COLOR);
+		rect.left = (i % YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_WIDTH;
+		rect.right = rect.left + YELLOW_SOLIDER_SPRITE_WIDTH;
+		rect.top = (i / YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_HEIGHT;
+		rect.bottom = rect.top + YELLOW_SOLIDER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(YELLOW_SOLIDER_TEXTURE_LOCATION, rect, YELLOW_SOLIDER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
 	this->animations.push_back(anim);
 }
 
-//Các hàm hành động nhân vật
-
+void YellowSolider::Idle()
+{
+	state->Idle();
+}
+void YellowSolider::Walk()
+{
+	state->Walk();
+}
 //Hàm cập nhật
 void YellowSolider::Update(DWORD dt)
 {
