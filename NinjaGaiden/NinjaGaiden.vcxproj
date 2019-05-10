@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
     <ClCompile Include="GameComponents\Enemy.cpp" />
@@ -40,8 +41,11 @@
     <ClCompile Include="Ninja\ThrowingState.cpp" />
     <ClCompile Include="Ninja\Whip.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
+    <ClCompile Include="YellowSolider.cpp" />
+    <ClCompile Include="YellowSoliderState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\Constants.h" />
     <ClInclude Include="GameComponents\Debug.h" />
@@ -64,6 +68,8 @@
     <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
+    <ClInclude Include="YellowSolider.h" />
+    <ClInclude Include="YellowSoliderState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
