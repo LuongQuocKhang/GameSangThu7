@@ -47,6 +47,10 @@ Grid::Grid()
 
 	enemies.push_back(new YellowSolider());
 	enemies.push_back(new BrownBird());
+	enemies.push_back(new RedBird());
+	enemies.push_back(new YellowPanther());
+	enemies.push_back(new GreenSolider());
+	enemies.push_back(new PinkWitch());
 }
 
 void Grid::LoadCells()

@@ -8,6 +8,10 @@
 #include "Grid.h"
 #include "YellowSolider.h"
 #include "BrownBird.h"
+#include "RedBird.h"
+#include "YellowPanther.h"
+#include "GreenSolider.h"
+#include "PinkWitch.h"
 
 #include <chrono>
 
@@ -28,8 +32,12 @@ class Game
 
 	Ninja * ninja;
 	YellowSolider * enemy;
-	BrownBird * bird;
-	 
+	BrownBird * brownbird;
+	RedBird * redbird;
+	YellowPanther * yellowpanther;
+	GreenSolider * greensolider;
+	PinkWitch * pinkwitch;
+
 	TiledMap * tiledMap;
 	Viewport * viewport;
 
@@ -51,7 +59,11 @@ public:
 	int Run();
 	Ninja * GetNinja();
 	YellowSolider * GetEnemy();
-	BrownBird * GetBirdEnemy();
+	BrownBird * GetBrownBirdEnemy();
+	RedBird * GetRedBirdEnemy();
+	YellowPanther * GetYellowPantherEnemy();
+	GreenSolider * GetGreenSoliderEnemy();
+	PinkWitch * GetPinkWitchEnemy();
 	TiledMap * GetTiledMap() { return tiledMap; }
 	void SetTileMap(TiledMap * tiledMap) {
 		this->tiledMap = tiledMap;

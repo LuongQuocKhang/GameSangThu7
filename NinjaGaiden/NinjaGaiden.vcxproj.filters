@@ -108,6 +108,30 @@
     <ClCompile Include="GameComponents\BrownBirdState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="RedBird.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="RedBirdState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="YellowPanther.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="YellowPantherState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenSolider.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenSoliderState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="PinkWitch.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="PinkWitchState.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\Knife.h">
@@ -186,6 +210,30 @@
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\BrownBirdState.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBird.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBirdState.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="YellowPanther.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="YellowPantherState.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenSolider.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenSoliderState.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="PinkWitch.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="PinkWitchState.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

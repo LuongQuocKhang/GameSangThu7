@@ -330,11 +330,26 @@ YellowSolider * Game::GetEnemy()
 	return enemy;
 }
 
-BrownBird * Game::GetBirdEnemy()
+BrownBird * Game::GetBrownBirdEnemy()
 {
-	return bird;
+	return brownbird;
 }
-
+RedBird * Game::GetRedBirdEnemy()
+{
+	return redbird;
+}
+YellowPanther * Game::GetYellowPantherEnemy()
+{
+	return yellowpanther;
+}
+GreenSolider  * Game::GetGreenSoliderEnemy()
+{
+	return greensolider;
+}
+PinkWitch  * Game::GetPinkWitchEnemy()
+{
+	return pinkwitch;
+}
 
 Ninja * Game::GetNinja()
 {
