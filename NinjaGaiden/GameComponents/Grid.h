@@ -27,9 +27,10 @@ private:
 	Viewport *viewport;
 	Ninja * ninja;
 
-	Grid();
 
 public:
+	Grid();
+
 	static Grid * GetInstance();
 	void LoadCells();
 

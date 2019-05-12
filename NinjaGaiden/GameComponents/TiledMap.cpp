@@ -40,6 +40,13 @@ Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
 			else
 				curTile.type = ObjectType::DEFAULT;
 		}
+		else if (Stage::STAGE_32 == stage)
+		{
+			if (find(_BrickStage_32.begin(), _BrickStage_32.end(), curTile.tileId) != _BrickStage_32.end())
+				curTile.type = ObjectType::BRICK;
+			else
+				curTile.type = ObjectType::DEFAULT;
+		}
 		result.push_back(curTile);
 		line.erase(0, pos + delimiter.length());
 		rowNum++;
@@ -132,7 +139,8 @@ void TiledMap::LoadTileSet(LPCWSTR tilesLocation)
 	this->mapWidth = info.Width;
 	this->mapHeight = info.Height;
 	
-	for (int i = 0; i < this->tileSetHeight * this->tileSetWidth; i++)
+	tiles[0] = NULL;
+	for (int i = 0; i < this->tileSetWidth; i++)
 	{
 		RECT rect;
 		rect.left = (i % this->tileSetWidth) * TILES_WIDTH_PER_TILE;

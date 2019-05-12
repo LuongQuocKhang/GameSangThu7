@@ -292,14 +292,18 @@ void Ninja::Update(DWORD dt)
 			this->SetPositionX(0);
 			if (STAGE_32 == Game::GetInstance()->GetStage())
 			{
-				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_32));
-				Game::GetInstance()->ResetViewPort();
+				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
+				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_32));
+				Game::GetInstance()->SetGrid(new Grid());
+				Viewport::GetInstance()->Reset();
 				this->SetSpeedY(0);
+				
 			}
 			else if (STAGE_BOSS == Game::GetInstance()->GetStage())
 			{
-				Game::GetInstance()->SetTileMap(new TiledMap(TILES_MATRIX_STAGE_BOSS));
-				Game::GetInstance()->ResetViewPort();
+				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
+				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_BOSS));
+				Viewport::GetInstance()->Reset();
 				this->SetSpeedY(0);
 			}
 		}

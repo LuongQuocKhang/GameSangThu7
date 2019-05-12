@@ -249,8 +249,8 @@ float Game::SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly)
 void Game::Update(DWORD dt)
 {
 	keyboard->Update();
-	viewport->Update(dt);
 	grid->Update(dt);
+	viewport->Update(dt);
 }
 void Game::Render()
 {
@@ -325,32 +325,6 @@ Game::~Game()
 {
 
 }
-YellowSolider * Game::GetEnemy()
-{
-	return enemy;
-}
-
-BrownBird * Game::GetBrownBirdEnemy()
-{
-	return brownbird;
-}
-RedBird * Game::GetRedBirdEnemy()
-{
-	return redbird;
-}
-YellowPanther * Game::GetYellowPantherEnemy()
-{
-	return yellowpanther;
-}
-GreenSolider  * Game::GetGreenSoliderEnemy()
-{
-	return greensolider;
-}
-PinkWitch  * Game::GetPinkWitchEnemy()
-{
-	return pinkwitch;
-}
-
 Ninja * Game::GetNinja()
 {
 	return ninja;

@@ -66,6 +66,10 @@ public:
 
 	Matrix& GetMatrix() { return this->matrix; }
 
+	static void ResetTiledMap()
+	{
+		__instance = NULL;
+	}
 	void RenderTile(Tile * curTile);
 	void Render();
 

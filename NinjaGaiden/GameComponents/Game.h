@@ -58,18 +58,14 @@ public:
 	void Render();
 	int Run();
 	Ninja * GetNinja();
-	YellowSolider * GetEnemy();
-	BrownBird * GetBrownBirdEnemy();
-	RedBird * GetRedBirdEnemy();
-	YellowPanther * GetYellowPantherEnemy();
-	GreenSolider * GetGreenSoliderEnemy();
-	PinkWitch * GetPinkWitchEnemy();
 	TiledMap * GetTiledMap() { return tiledMap; }
 	void SetTileMap(TiledMap * tiledMap) {
 		this->tiledMap = tiledMap;
 	}
-	void ResetViewPort() { this->viewport->Reset(); }
-
+	void SetGrid(Grid* grid)
+	{
+		this->grid = grid;
+	}
 	static float SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly);
 	static Game * GetInstance();
 	~Game();
