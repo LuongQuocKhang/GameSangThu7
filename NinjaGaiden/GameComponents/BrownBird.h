@@ -18,12 +18,11 @@ class BrownBird :public Enemy
 	static vector<Animation *> animations;
 public:
 	BrownBird();
+	BrownBird(int posx , int posy);
 	void LoadResources();
 	void Idle();
 	void Walk();
 
-	/*void TurnLeft();
-	void TurnRight();*/
 	vector<Animation *> GetAnimationsList() { return this->animations; }
 	//Hàm cập nhật
 	void Update(DWORD dt) override;

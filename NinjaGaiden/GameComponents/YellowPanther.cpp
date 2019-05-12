@@ -1,4 +1,4 @@
-ï»¿#include "YellowPanther.h"
+#include "YellowPanther.h"
 #include "YellowPantherState.h"
 
 vector<Animation *> YellowPanther::animations = vector<Animation *>();
@@ -7,14 +7,28 @@ YellowPanther::YellowPanther()
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new YellowPantherState(this, BROWN_BIRD_ANI_IDLE);
-	walkingState = new YellowPantherState(this, BROWN_BIRD_ANI_WALKING);
+	idleState = new YellowPantherState(this,  YELLOW_PANTHER_ANI_IDLE);
+	walkingState = new YellowPantherState(this,  YELLOW_PANTHER_ANI_WALKING);
 	state = walkingState;
 
-	this->isLeft = true;
+	this->isLeft = false;
 	this->vx = -0.2f;
-	this->SetPositionX(360);
-	this->SetPositionY(70);
+	this->SetPositionX(350);
+	this->SetPositionY(60);
+}
+YellowPanther::YellowPanther(int posx , int posy)
+{
+	__instance = NULL;
+	LoadResources();
+
+	idleState = new YellowPantherState(this, YELLOW_PANTHER_ANI_IDLE);
+	walkingState = new YellowPantherState(this, YELLOW_PANTHER_ANI_WALKING);
+	state = walkingState;
+
+	this->isLeft = false;
+	this->vx = -0.2f;
+	this->SetPositionX(posx);
+	this->SetPositionY(posy);
 }
 void YellowPanther::LoadResources()
 {
@@ -23,25 +37,25 @@ void YellowPanther::LoadResources()
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i % BROWN_BIRD_TEXTURE_COLUMNS) * BROWN_BIRD_SPRITE_WIDTH;
-		rect.right = rect.left + BROWN_BIRD_SPRITE_WIDTH;
-		rect.top = (i / BROWN_BIRD_TEXTURE_COLUMNS) * BROWN_BIRD_SPRITE_HEIGHT;
-		rect.bottom = rect.top + BROWN_BIRD_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(BROWN_BIRD_TEXTURE_LOCATION, rect, BROWN_BIRD_TEXTURE_TRANS_COLOR);
+		rect.left = (i %  YELLOW_PANTHER_TEXTURE_COLUMNS) *  YELLOW_PANTHER_SPRITE_WIDTH;
+		rect.right = rect.left +  YELLOW_PANTHER_SPRITE_WIDTH;
+		rect.top = (i /  YELLOW_PANTHER_TEXTURE_COLUMNS) *  YELLOW_PANTHER_SPRITE_HEIGHT;
+		rect.bottom = rect.top +  YELLOW_PANTHER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite( YELLOW_PANTHER_TEXTURE_LOCATION, rect,  YELLOW_PANTHER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
 	this->animations.push_back(anim);
 	// NINJA_ANI_WALKING
-	anim = new Animation(200);
+	anim = new Animation(100);
 	for (int i = 0; i < 2; i++)
 	{
 		RECT rect;
-		rect.left = (i % BROWN_BIRD_TEXTURE_COLUMNS) * BROWN_BIRD_SPRITE_WIDTH;
-		rect.right = rect.left + BROWN_BIRD_SPRITE_WIDTH;
-		rect.top = (i / BROWN_BIRD_TEXTURE_COLUMNS) * BROWN_BIRD_SPRITE_HEIGHT;
-		rect.bottom = rect.top + BROWN_BIRD_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(BROWN_BIRD_TEXTURE_LOCATION, rect, BROWN_BIRD_TEXTURE_TRANS_COLOR);
+		rect.left = (i %  YELLOW_PANTHER_TEXTURE_COLUMNS) *  YELLOW_PANTHER_SPRITE_WIDTH;
+		rect.right = rect.left +  YELLOW_PANTHER_SPRITE_WIDTH;
+		rect.top = (i /  YELLOW_PANTHER_TEXTURE_COLUMNS) *  YELLOW_PANTHER_SPRITE_HEIGHT;
+		rect.bottom = rect.top +  YELLOW_PANTHER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite( YELLOW_PANTHER_TEXTURE_LOCATION, rect,  YELLOW_PANTHER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -56,7 +70,7 @@ void YellowPanther::Walk()
 {
 	state->Walk();
 }
-//HÃ m c?p nh?t
+//Hàm c?p nh?t
 void YellowPanther::Update(DWORD dt)
 {
 	state->Update(dt);
@@ -66,7 +80,7 @@ void YellowPanther::Update(DWORD dt)
 		this->TurnRight();
 	}*/
 }
-//HÃ m render
+//Hàm render
 void YellowPanther::Render()
 {
 	state->Render();

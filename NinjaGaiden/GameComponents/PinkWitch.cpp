@@ -7,15 +7,31 @@ PinkWitch::PinkWitch()
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new PinkWitchState(this, GREEN_SOLIDER_ANI_IDLE);
-	walkingState = new PinkWitchState(this, GREEN_SOLIDER_ANI_WALKING);
+	idleState = new PinkWitchState(this, PINK_WITCH_ANI_IDLE);
+	walkingState = new PinkWitchState(this, PINK_WITCH_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
 	this->vx = -0.2f;
-	this->SetPositionX(400);
-	this->SetPositionY(60);
+	this->SetPositionX(450);
+	this->SetPositionY(65);
 }
+
+PinkWitch::PinkWitch(int posx , int posy)
+{
+	__instance = NULL;
+	LoadResources();
+
+	idleState = new PinkWitchState(this, PINK_WITCH_ANI_IDLE);
+	walkingState = new PinkWitchState(this, PINK_WITCH_ANI_WALKING);
+	state = walkingState;
+
+	this->isLeft = true;
+	this->vx = -0.2f;
+	this->SetPositionX(posx);
+	this->SetPositionY(posy);
+}
+
 void PinkWitch::LoadResources()
 {
 	// Enemy_ANI_IDLE
@@ -23,11 +39,11 @@ void PinkWitch::LoadResources()
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i %  GREEN_SOLIDER_TEXTURE_COLUMNS) *  GREEN_SOLIDER_SPRITE_WIDTH;
-		rect.right = rect.left + GREEN_SOLIDER_SPRITE_WIDTH;
-		rect.top = (i / GREEN_SOLIDER_TEXTURE_COLUMNS) *  GREEN_SOLIDER_SPRITE_HEIGHT;
-		rect.bottom = rect.top + GREEN_SOLIDER_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(GREEN_SOLIDER_TEXTURE_LOCATION, rect, GREEN_SOLIDER_TEXTURE_TRANS_COLOR);
+		rect.left = (i %  PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_WIDTH;
+		rect.right = rect.left + PINK_WITCH_SPRITE_WIDTH;
+		rect.top = (i / PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_HEIGHT;
+		rect.bottom = rect.top + PINK_WITCH_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(PINK_WITCH_TEXTURE_LOCATION, rect, PINK_WITCH_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -37,11 +53,11 @@ void PinkWitch::LoadResources()
 	for (int i = 0; i < 2; i++)
 	{
 		RECT rect;
-		rect.left = (i %  GREEN_SOLIDER_TEXTURE_COLUMNS) *  GREEN_SOLIDER_SPRITE_WIDTH;
-		rect.right = rect.left + GREEN_SOLIDER_SPRITE_WIDTH;
-		rect.top = (i / GREEN_SOLIDER_TEXTURE_COLUMNS) *  GREEN_SOLIDER_SPRITE_HEIGHT;
-		rect.bottom = rect.top + GREEN_SOLIDER_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(GREEN_SOLIDER_TEXTURE_LOCATION, rect, GREEN_SOLIDER_TEXTURE_TRANS_COLOR);
+		rect.left = (i %  PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_WIDTH;
+		rect.right = rect.left + PINK_WITCH_SPRITE_WIDTH;
+		rect.top = (i / PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_HEIGHT;
+		rect.bottom = rect.top + PINK_WITCH_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(PINK_WITCH_TEXTURE_LOCATION, rect, PINK_WITCH_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}

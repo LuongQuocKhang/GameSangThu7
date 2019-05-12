@@ -18,12 +18,12 @@ class YellowSolider :public Enemy
 	static vector<Animation *> animations;
 public:
 	YellowSolider();
+	YellowSolider(int posx, int posy);
 	void LoadResources();
-	vector<Animation *> GetAnimationsList() { return this->animations; }
-
 	void Idle();
 	void Walk();
 
+	vector<Animation *> GetAnimationsList() { return this->animations; }
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render

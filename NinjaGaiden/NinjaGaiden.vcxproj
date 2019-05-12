@@ -28,15 +28,21 @@
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
+    <ClCompile Include="GameComponents\GreenSolider.cpp" />
+    <ClCompile Include="GameComponents\GreenSoliderState.cpp" />
     <ClCompile Include="GameComponents\Grid.cpp" />
     <ClCompile Include="GameComponents\GridCell.cpp" />
     <ClCompile Include="GameComponents\Keyboard.cpp" />
+    <ClCompile Include="GameComponents\PinkWitch.cpp" />
+    <ClCompile Include="GameComponents\PinkWitchState.cpp" />
+    <ClCompile Include="GameComponents\RedBird.cpp" />
+    <ClCompile Include="GameComponents\RedBirdState.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\Viewport.cpp" />
+    <ClCompile Include="GameComponents\YellowPanther.cpp" />
+    <ClCompile Include="GameComponents\YellowPantherState.cpp" />
     <ClCompile Include="GameComponents\YellowSolider.cpp" />
     <ClCompile Include="GameComponents\YellowSoliderState.cpp" />
-    <ClCompile Include="GreenSolider.cpp" />
-    <ClCompile Include="GreenSoliderState.cpp" />
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
@@ -46,12 +52,6 @@
     <ClCompile Include="Ninja\ThrowingState.cpp" />
     <ClCompile Include="Ninja\Whip.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
-    <ClCompile Include="PinkWitch.cpp" />
-    <ClCompile Include="PinkWitchState.cpp" />
-    <ClCompile Include="RedBird.cpp" />
-    <ClCompile Include="RedBirdState.cpp" />
-    <ClCompile Include="YellowPanther.cpp" />
-    <ClCompile Include="YellowPantherState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Animation.h" />
@@ -64,15 +64,21 @@
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />
+    <ClInclude Include="GameComponents\GreenSolider.h" />
+    <ClInclude Include="GameComponents\GreenSoliderState.h" />
     <ClInclude Include="GameComponents\Grid.h" />
     <ClInclude Include="GameComponents\GridCell.h" />
     <ClInclude Include="GameComponents\Keyboard.h" />
+    <ClInclude Include="GameComponents\PinkWitch.h" />
+    <ClInclude Include="GameComponents\PinkWitchState.h" />
+    <ClInclude Include="GameComponents\RedBird.h" />
+    <ClInclude Include="GameComponents\RedBirdState.h" />
     <ClInclude Include="GameComponents\resource.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
+    <ClInclude Include="GameComponents\YellowPanther.h" />
+    <ClInclude Include="GameComponents\YellowPantherState.h" />
     <ClInclude Include="GameComponents\YellowSolider.h" />
     <ClInclude Include="GameComponents\YellowSoliderState.h" />
-    <ClInclude Include="GreenSolider.h" />
-    <ClInclude Include="GreenSoliderState.h" />
     <ClInclude Include="Ninja\Knife.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\NinjaSate.h" />
@@ -82,12 +88,6 @@
     <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
-    <ClInclude Include="PinkWitch.h" />
-    <ClInclude Include="PinkWitchState.h" />
-    <ClInclude Include="RedBird.h" />
-    <ClInclude Include="RedBirdState.h" />
-    <ClInclude Include="YellowPanther.h" />
-    <ClInclude Include="YellowPantherState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

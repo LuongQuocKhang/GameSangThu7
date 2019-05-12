@@ -18,6 +18,7 @@ class GreenSolider :public Enemy
 	static vector<Animation *> animations;
 public:
 	GreenSolider();
+	GreenSolider(int posx, int posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

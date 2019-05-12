@@ -14,7 +14,21 @@ BrownBird::BrownBird()
 	this->isLeft = true;
 	this->vx = -0.2f;
 	this->SetPositionX(270);
-	this->SetPositionY(100);
+	this->SetPositionY(80);
+}
+BrownBird::BrownBird(int posx, int posy)
+{
+	__instance = NULL;
+	LoadResources();
+
+	idleState = new BrownBirdState(this, BROWN_BIRD_ANI_IDLE);
+	walkingState = new BrownBirdState(this, BROWN_BIRD_ANI_WALKING);
+	state = walkingState;
+
+	this->isLeft = true;
+	this->vx = -0.2f;
+	this->SetPositionX(posx);
+	this->SetPositionY(posy);
 }
 void BrownBird::LoadResources()
 {
@@ -60,11 +74,6 @@ void BrownBird::Walk()
 void BrownBird::Update(DWORD dt)
 {
 	state->Update(dt);
-	/*this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
-	{
-		this->TurnRight();
-	}*/
 }
 //Hàm render
 void BrownBird::Render()

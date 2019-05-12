@@ -41,6 +41,8 @@ public:
 
 	vector<Tile *> GetCurTiles() { return this->curTiles; }
 	vector<GameObject *> GetCurGameObjects() { return this->curGameObjects; }
+	vector<Enemy*> GetEnemies() { return enemies; }
+
 	void Update(DWORD dt);
 	void Render();
 

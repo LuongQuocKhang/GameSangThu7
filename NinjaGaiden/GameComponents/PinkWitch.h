@@ -18,6 +18,7 @@ class PinkWitch :public Enemy
 	static vector<Animation *> animations;
 public:
 	PinkWitch();
+	PinkWitch(int posx, int posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

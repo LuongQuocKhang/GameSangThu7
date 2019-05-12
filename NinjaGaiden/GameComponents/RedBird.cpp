@@ -11,10 +11,24 @@ RedBird::RedBird()
 	walkingState = new RedBirdState(this, RED_BIRD_ANI_WALKING);
 	state = walkingState;
 
-	this->isLeft = true;
+	this->isLeft = false;
 	this->vx = -0.2f;
-	this->SetPositionX(270);
-	this->SetPositionY(100);
+	this->SetPositionX(350);
+	this->SetPositionY(90);
+}
+RedBird::RedBird(int posx , int posy)
+{
+	__instance = NULL;
+	LoadResources();
+
+	idleState = new RedBirdState(this, RED_BIRD_ANI_IDLE);
+	walkingState = new RedBirdState(this, RED_BIRD_ANI_WALKING);
+	state = walkingState;
+
+	this->isLeft = false;
+	this->vx = -0.2f;
+	this->SetPositionX(posx);
+	this->SetPositionY(posy);
 }
 void RedBird::LoadResources()
 {

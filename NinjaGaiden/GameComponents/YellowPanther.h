@@ -18,6 +18,7 @@ class YellowPanther :public Enemy
 	static vector<Animation *> animations;
 public:
 	YellowPanther();
+	YellowPanther(int posx, int posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

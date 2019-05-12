@@ -49,56 +49,54 @@ void YellowSoliderState::Walk()
 
 void YellowSoliderState::Update(DWORD dt)
 {
-	//vector<LPGAMEOBJECT> coObjects; //Placeholder
-	//vector<LPCOLLISIONEVENT> coEvents;
-	//vector<LPCOLLISIONEVENT> coEventsResult;
+	vector<LPGAMEOBJECT> coObjects; //Placeholder
+	vector<LPCOLLISIONEVENT> coEvents;
+	vector<LPCOLLISIONEVENT> coEventsResult;
 
-	//vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
+	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
 
-	//enemy->SetSpeedY(enemy->GetSpeedY() - NINJA_GRAVITY);
+	enemy->SetSpeedY(enemy->GetSpeedY() - NINJA_GRAVITY);
 
-	//coEvents.clear();
-	//enemy->SetDt(dt);
-	//enemy->CalcPotentialCollisions(tiles, coObjects, coEvents);
-
-
-	//if (coEvents.size() == 0)
-	//{
-	//	int moveX = trunc(enemy->GetSpeedX()* dt);
-	//	int moveY = trunc(enemy->GetSpeedY()* dt);
-
-	//	enemy->SetPositionX(enemy->GetPositionX() + moveX);
-	//	enemy->SetPositionY(enemy->GetPositionY() + moveY);
-
-	//}
-	//else
-	//{
-	//	float min_tx, min_ty, nx = 0, ny;
-
-	//	enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
-
-	//	int moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
-	//	int moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
-
-	//	enemy->SetPositionX((int)(enemy->GetPositionX() + moveX));
-	//	enemy->SetPositionY((int)(enemy->GetPositionY() + moveY));
+	coEvents.clear();
+	enemy->SetDt(dt);
+	enemy->CalcPotentialCollisions(tiles, coObjects, coEvents);
 
 
-	//	if (nx != 0) enemy->SetSpeedX(0);
-	//	if (ny != 0) enemy->SetSpeedY(0);
+	if (coEvents.size() == 0)
+	{
+		float moveX = trunc(enemy->GetSpeedX()* dt);
+		float moveY = trunc(enemy->GetSpeedY()* dt);
 
-	//	if (coEventsResult[0]->collisionID == 1)
-	//	{
-	//		if (ny == 1)
-	//		{
-	//			//enemy->SetIsGrounded(true);
-	//		}
-	//	}
-	//}
-	//for (UINT i = 0; i < coEvents.size(); i++)
-	//	delete coEvents[i];
+		enemy->SetPositionX(enemy->GetPositionX() + moveX);
+		enemy->SetPositionY(enemy->GetPositionY() + moveY);
+
+	}
+	else
+	{
+		float min_tx, min_ty, nx = 0, ny;
+
+		enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+
+		int moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
+		int moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
+
+		enemy->SetPositionX((int)(enemy->GetPositionX() + moveX));
+		enemy->SetPositionY((int)(enemy->GetPositionY() + moveY));
 
 
+		if (nx != 0) enemy->SetSpeedX(0);
+		if (ny != 0) enemy->SetSpeedY(0);
+
+		if (coEventsResult[0]->collisionID == 1)
+		{
+			if (ny == 1)
+			{
+				//enemy->SetIsGrounded(true);
+			}
+		}
+	}
+	for (UINT i = 0; i < coEvents.size(); i++)
+		delete coEvents[i];
 }
 
 void YellowSoliderState::Render()

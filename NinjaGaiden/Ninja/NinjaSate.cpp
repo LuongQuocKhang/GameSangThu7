@@ -215,22 +215,18 @@ void NinjaSate::Update(DWORD dt)
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
 	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
-
 	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
 
 	coEvents.clear();
 	ninja->SetDt(dt);
 	ninja->CalcPotentialCollisions(tiles, coObjects, coEvents);
 
-
 	if (coEvents.size() == 0)
 	{
 		int moveX = trunc(ninja->GetSpeedX()* dt);
 		int moveY = trunc(ninja->GetSpeedY()* dt);
-
 		ninja->SetPositionX(ninja->GetPositionX() + moveX);
 		ninja->SetPositionY(ninja->GetPositionY() + moveY);
-
 	}
 	else
 	{

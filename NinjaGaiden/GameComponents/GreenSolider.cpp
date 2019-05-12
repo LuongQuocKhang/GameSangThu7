@@ -11,10 +11,24 @@ GreenSolider::GreenSolider()
 	walkingState = new GreenSoliderState(this, GREEN_SOLIDER_ANI_WALKING);
 	state = walkingState;
 
-	this->isLeft = false;
+	this->isLeft = true;
 	this->vx = -0.2f;
-	this->SetPositionX(380);
+	this->SetPositionX(400);
 	this->SetPositionY(60);
+}
+GreenSolider::GreenSolider(int posx , int posy)
+{
+	__instance = NULL;
+	LoadResources();
+
+	idleState = new GreenSoliderState(this, GREEN_SOLIDER_ANI_IDLE);
+	walkingState = new GreenSoliderState(this, GREEN_SOLIDER_ANI_WALKING);
+	state = walkingState;
+
+	this->isLeft = true;
+	this->vx = -0.2f;
+	this->SetPositionX(posx);
+	this->SetPositionY(posy);
 }
 void GreenSolider::LoadResources()
 {
@@ -33,8 +47,8 @@ void GreenSolider::LoadResources()
 	}
 	this->animations.push_back(anim);
 	// NINJA_ANI_WALKING
-	anim = new Animation(100);
-	for (int i = 0; i < 4; i++)
+	anim = new Animation(200);
+	for (int i = 0; i < 2; i++)
 	{
 		RECT rect;
 		rect.left = (i %  GREEN_SOLIDER_TEXTURE_COLUMNS) *  GREEN_SOLIDER_SPRITE_WIDTH;

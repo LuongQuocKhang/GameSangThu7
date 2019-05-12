@@ -56,8 +56,8 @@ void PinkWitchState::Render()
 	SpriteData spriteEnemyData;
 	if (this->enemy != NULL)
 	{
-		spriteEnemyData.width = GREEN_SOLIDER_SPRITE_WIDTH;
-		spriteEnemyData.height = GREEN_SOLIDER_SPRITE_HEIGHT;
+		spriteEnemyData.width = PINK_WITCH_SPRITE_WIDTH;
+		spriteEnemyData.height = PINK_WITCH_SPRITE_HEIGHT;
 		//spriteEnemyData.x = 200;
 		spriteEnemyData.x = enemy->GetPositionX();
 		//spriteEnemyData.y = 60;
@@ -71,14 +71,14 @@ void PinkWitchState::Render()
 	}
 	switch (enemystate)
 	{
-	case  GREEN_SOLIDER_ANI_IDLE:
+	case  PINK_WITCH_ANI_IDLE:
 	{
-		enemy->GetAnimationsList()[GREEN_SOLIDER_ANI_IDLE]->Render(spriteEnemyData);
+		enemy->GetAnimationsList()[PINK_WITCH_ANI_IDLE]->Render(spriteEnemyData);
 	}
 	break;
-	case  GREEN_SOLIDER_ANI_WALKING:
+	case  PINK_WITCH_ANI_WALKING:
 	{
-		enemy->GetAnimationsList()[GREEN_SOLIDER_ANI_WALKING]->Render(spriteEnemyData);
+		enemy->GetAnimationsList()[PINK_WITCH_ANI_WALKING]->Render(spriteEnemyData);
 
 		/*enemy->Walk();*/
 	}

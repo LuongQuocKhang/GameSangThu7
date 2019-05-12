@@ -15,14 +15,36 @@ YellowSolider::YellowSolider()
 	this->isLeft = true;
 	this->vx = -0.2f;
 	this->SetPositionX(270);
-	this->SetPositionY(60);
+	this->SetPositionY(100);
 
 	collider.x = x;
 	collider.y = y;
 	collider.vx = 0;
 	collider.vy = 0;
-	collider.width = NINJA_SPRITE_WIDTH;
-	collider.height = NINJA_SPRITE_HEIGHT;
+	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
+	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+}
+
+YellowSolider::YellowSolider(int posx , int posy )
+{
+	__instance = NULL;
+	LoadResources();
+
+	idleState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_IDLE);
+	walkingState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_WALKING);
+	state = walkingState;
+
+	this->isLeft = true;
+	this->vx = -0.2f;
+	this->SetPositionX(posx);
+	this->SetPositionY(posy);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = 0;
+	collider.vy = 0;
+	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
+	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
 }
 void YellowSolider::LoadResources()
 {
@@ -73,57 +95,6 @@ void YellowSolider::Update(DWORD dt)
 	{
 		this->TurnRight();
 	}
-
-	vector<LPGAMEOBJECT> coObjects; //Placeholder
-	vector<LPCOLLISIONEVENT> coEvents;
-	vector<LPCOLLISIONEVENT> coEventsResult;
-
-	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
-
-	this->SetSpeedY(this->GetSpeedY() - NINJA_GRAVITY);
-
-	coEvents.clear();
-	this->SetDt(dt);
-	this->CalcPotentialCollisions(tiles, coObjects, coEvents);
-
-
-	if (coEvents.size() == 0)
-	{
-		int moveX = trunc(this->GetSpeedX()* dt);
-		int moveY = trunc(this->GetSpeedY()* dt);
-
-		this->SetPositionX(this->GetPositionX() + moveX);
-		this->SetPositionY(this->GetPositionY() + moveY);
-
-	}
-	else
-	{
-		float min_tx, min_ty, nx = 0, ny;
-
-		this->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
-
-		int moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
-		int moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
-
-		this->SetPositionX((int)(this->GetPositionX() + moveX));
-		this->SetPositionY((int)(this->GetPositionY() + moveY));
-
-
-		if (nx != 0) this->SetSpeedX(0);
-		if (ny != 0) this->SetSpeedY(0);
-
-		if (coEventsResult[0]->collisionID == 1)
-		{
-			if (ny == 1)
-			{
-				this->SetIsGrounded(true);
-			}
-		}
-	}
-	for (UINT i = 0; i < coEvents.size(); i++)
-		delete coEvents[i];
-
-
 }
 //Hàm render
 void YellowSolider::Render()

@@ -52,12 +52,12 @@ Grid::Grid()
 }
 void Grid::LoadEnemy()
 {
-	enemies.push_back(new YellowSolider());
-	enemies.push_back(new BrownBird());
-	enemies.push_back(new RedBird());
-	enemies.push_back(new YellowPanther());
-	enemies.push_back(new GreenSolider());
-	enemies.push_back(new PinkWitch());
+	enemies.push_back(new YellowSolider(270,60));
+	enemies.push_back(new BrownBird(270,80));
+	enemies.push_back(new RedBird(350,90));
+	enemies.push_back(new YellowPanther(350,60));
+	enemies.push_back(new GreenSolider(400,60));
+	enemies.push_back(new PinkWitch(450,65));
 }
 void Grid::LoadCells()
 {
