@@ -21,6 +21,7 @@ Ninja::Ninja()
 	this->y = 100;
 	this->width = NINJA_SPRITE_WIDTH;
 	this->height = NINJA_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = 0;
@@ -217,10 +218,6 @@ State * Ninja::GetAttackingState()
 {
 	return attackingState;
 }
-//State * Ninja::GetThrowingState()
-//{
-//	return throwingState;
-//}
 State * Ninja::GetCrouchingState()
 {
 	return crouchingState;
@@ -239,7 +236,6 @@ State * Ninja::GetJumpAttackState()
 	return this->jumpattackingState;
 }
 
-//Các hàm hành động nhân vật
 void Ninja::Idle()
 {
 	state->Idle();
@@ -280,7 +276,6 @@ void Ninja::CreateThrownWeapon()
 {
 	
 }
-//Hàm cập nhật
 void Ninja::Update(DWORD dt)
 {
 	if (this->GetSpeedX() > 0 && this->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
@@ -294,17 +289,19 @@ void Ninja::Update(DWORD dt)
 			{
 				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
 				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_32));
-				Game::GetInstance()->SetGrid(new Grid());
+				Grid::SetNewGrid();
+				Game::GetInstance()->SetGrid(Grid::GetInstance());
 				Viewport::GetInstance()->Reset();
-				this->SetSpeedY(0);
-				
+				this->SetSpeedY(0.0f);
 			}
 			else if (STAGE_BOSS == Game::GetInstance()->GetStage())
 			{
 				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
 				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_BOSS));
+				Grid::SetNewGrid();
+				Game::GetInstance()->SetGrid(Grid::GetInstance());
 				Viewport::GetInstance()->Reset();
-				this->SetSpeedY(0);
+				this->SetSpeedY(0.0f);
 			}
 		}
 		else if (STAGE_BOSS == Game::GetInstance()->GetStage())
@@ -318,7 +315,6 @@ void Ninja::Update(DWORD dt)
 	}
 	state->Update(dt);
 }
-//Hàm render
 void Ninja::Render()
 {
 	state->Render();

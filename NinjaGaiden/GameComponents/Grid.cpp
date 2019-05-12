@@ -23,6 +23,8 @@ bool CellTileAABB(GridCell * cell, Tile & tile)
 
 Grid::Grid()
 {
+	curTiles.clear();
+
 	//khoi tao danh sach cac o trong
 	this->width = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() / 64) + 2;
 	this->height = (int)(Game::GetInstance()->GetTiledMap()->GetHeight() / 64) + 2;
@@ -45,6 +47,11 @@ Grid::Grid()
 	//Lưu ninja
 	this->ninja = Ninja::GetInstance();
 
+	LoadEnemy();
+
+}
+void Grid::LoadEnemy()
+{
 	enemies.push_back(new YellowSolider());
 	enemies.push_back(new BrownBird());
 	enemies.push_back(new RedBird());
@@ -52,7 +59,6 @@ Grid::Grid()
 	enemies.push_back(new GreenSolider());
 	enemies.push_back(new PinkWitch());
 }
-
 void Grid::LoadCells()
 {
 	Matrix &tiledMapMatrix = Game::GetInstance()->GetTiledMap()->GetMatrix();

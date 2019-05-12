@@ -27,9 +27,11 @@ private:
 	Viewport *viewport;
 	Ninja * ninja;
 
+	void LoadEnemy();
+
+	Grid();
 
 public:
-	Grid();
 
 	static Grid * GetInstance();
 	void LoadCells();
@@ -42,6 +44,11 @@ public:
 	void Update(DWORD dt);
 	void Render();
 
+	static void SetNewGrid()
+	{
+		__instance = NULL;
+		__instance = new Grid();
+	}
 	~Grid() {
 		for (int i = 0; i < width; i++)
 			for (int j = 0; j < height; j++)
