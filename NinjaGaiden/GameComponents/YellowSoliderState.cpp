@@ -53,14 +53,13 @@ void YellowSoliderState::Update(DWORD dt)
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
-	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
+	vector<Tile *> tiles = Grid::GetInstance()->GetCollisionTiles();
 
 	enemy->SetSpeedY(enemy->GetSpeedY() - NINJA_GRAVITY);
 
 	coEvents.clear();
 	enemy->SetDt(dt);
 	enemy->CalcPotentialCollisions(tiles, coObjects, coEvents);
-
 
 	if (coEvents.size() == 0)
 	{
@@ -69,7 +68,6 @@ void YellowSoliderState::Update(DWORD dt)
 
 		enemy->SetPositionX(enemy->GetPositionX() + moveX);
 		enemy->SetPositionY(enemy->GetPositionY() + moveY);
-
 	}
 	else
 	{

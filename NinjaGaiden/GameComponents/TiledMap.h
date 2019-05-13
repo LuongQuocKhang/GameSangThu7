@@ -20,6 +20,7 @@ struct Tile {
 	ObjectType type; 
 	int x, y;
 	int width = 16, height = 16;
+	Collider * colider;
 };
 
 typedef vector<Tile> Row;

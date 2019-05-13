@@ -32,6 +32,13 @@ Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
 		Tile curTile;
 		curTile.x = rowNum * TILES_WIDTH_PER_TILE;
 		curTile.y = this->mapHeight - lineNum * TILES_HEIGHT_PER_TILE;
+
+		curTile.colider = new Collider();
+		curTile.colider->x = rowNum * TILES_WIDTH_PER_TILE;
+		curTile.colider->y = this->mapHeight - lineNum * TILES_HEIGHT_PER_TILE;
+		curTile.colider->width = TILES_WIDTH_PER_TILE;
+		curTile.colider->height = TILES_HEIGHT_PER_TILE;
+
 		curTile.tileId = stoi(token);
 		if (Stage::STAGE_31 == stage)
 		{

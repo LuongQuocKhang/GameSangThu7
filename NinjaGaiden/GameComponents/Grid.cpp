@@ -52,7 +52,7 @@ Grid::Grid()
 }
 void Grid::LoadEnemy()
 {
-	enemies.push_back(new YellowSolider(270,60));
+	enemies.push_back(new YellowSolider(100,100));
 	enemies.push_back(new BrownBird(270,80));
 	enemies.push_back(new RedBird(350,90));
 	enemies.push_back(new YellowPanther(350,60));
@@ -72,6 +72,11 @@ void Grid::LoadCells()
 
 			Tile * dummyPtr = &tiledMapMatrix[i][j];
 			cells[cellY][cellX]->AddTile(dummyPtr);
+
+			if (tiledMapMatrix[i][j].type == ObjectType::BRICK)
+			{
+				CollisionTiles.push_back(dummyPtr);
+			}
 		}
 	}
 }

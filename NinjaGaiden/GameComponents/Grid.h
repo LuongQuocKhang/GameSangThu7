@@ -22,6 +22,7 @@ private:
 	CellMatrix cells;
 
 	vector<Tile *> curTiles;
+	vector<Tile *> CollisionTiles;
 	vector<GameObject *> curGameObjects;
 	vector<Enemy* > enemies;
 	Viewport *viewport;
@@ -40,11 +41,14 @@ public:
 	void GetNinjaPosOnGrid(int &l, int &r, int &t, int &b);
 
 	vector<Tile *> GetCurTiles() { return this->curTiles; }
+	vector<Tile *> GetCollisionTiles() { return this->CollisionTiles; }
 	vector<GameObject *> GetCurGameObjects() { return this->curGameObjects; }
 	vector<Enemy*> GetEnemies() { return enemies; }
 
 	void Update(DWORD dt);
 	void Render();
+
+	CellMatrix GetTile() { return this->cells; }
 
 	static void SetNewGrid()
 	{

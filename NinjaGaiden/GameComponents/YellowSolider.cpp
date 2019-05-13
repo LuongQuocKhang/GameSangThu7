@@ -23,6 +23,7 @@ YellowSolider::YellowSolider()
 	collider.vy = 0;
 	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
 	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+
 }
 
 YellowSolider::YellowSolider(int posx , int posy )
@@ -91,7 +92,7 @@ void YellowSolider::Update(DWORD dt)
 {
 	state->Update(dt);
 	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
+	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 50)
 	{
 		this->TurnRight();
 	}
