@@ -29,6 +29,7 @@ GreenSolider::GreenSolider(int posx , int posy)
 	this->vx = -0.2f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
 }
 void GreenSolider::LoadResources()
 {

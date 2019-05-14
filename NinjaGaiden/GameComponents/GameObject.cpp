@@ -198,8 +198,6 @@ void GameObject::UpdateObjectCollider()
 	collider.vx = vx;
 	collider.vy = vy;
 	collider.dt = dt;
-	collider.width = width;
-	collider.height = height;
 }
 void GameObject::UpdateTileCollider()
 {
