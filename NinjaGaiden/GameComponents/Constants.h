@@ -26,7 +26,8 @@ enum Stage {
 enum ObjectType
 {
 	DEFAULT,
-	BRICK
+	BRICK,
+	VINES
 };
 //TiledMap
 //

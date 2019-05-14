@@ -147,38 +147,33 @@ void GameObject::FilterCollision(
 	if (min_iy >= 0) coEventsResult.push_back(coEvents[min_iy]);
 }
 
-void GameObject::CalcPotentialCollisionsWithEnemy(vector<Enemy*>& enemies, vector<LPGAMEOBJECT>& coObjects, vector<LPCOLLISIONEVENT>& coEvents)
+void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, vector<LPGAMEOBJECT>& coObjects, vector<LPCOLLISIONEVENT>& coEvents)
 {
 	this->UpdateObjectCollider();
-	CalcPotentialNinjaAndEnemyCollisions(enemies, coEvents);
-	//CalcPotentialGameObjectCollisions(coObjects, coEvents);
-
-	//sort(coEvents.begin(), coEvents.end(), CollisionEvent::compare);
+	CalcPotentialNinjaAttackEnemyCollisions(enemies, coEvents);
 }
 
-void GameObject::CalcPotentialNinjaAndEnemyCollisions(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents)
+void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents)
 {
 	LPGAMEOBJECT CollisionEnemy = new GameObject(0, 0, 16, 16);
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		if (enemies[i]->IsActive() == true)
+		if (enemies[i]->IsActive() == true )
 		{
 			Enemy * enemy = enemies[i];
+
 			CollisionEnemy->SetPositionX(enemy->x);
 			CollisionEnemy->SetPositionY(enemy->y);
-
 			CollisionEnemy->SetSpeedX(enemy->vx);
 			CollisionEnemy->SetSpeedY(enemy->vy);
-
 			CollisionEnemy->height = enemy->height;
 			CollisionEnemy->width = enemy->width;
-
 			CollisionEnemy->UpdateObjectCollider();
 
 			LPCOLLISIONEVENT e = SweptAABBEx(CollisionEnemy);
 			e->collisionID = 1;
 
-			if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
+			if (e->t >= 0 && e->t < 1.0f)
 			{
 				enemies[i]->SetActive(false);
 			}

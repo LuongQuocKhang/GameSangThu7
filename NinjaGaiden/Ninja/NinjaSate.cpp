@@ -267,14 +267,7 @@ void NinjaSate::Update(DWORD dt)
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
 		vector<Enemy * > enemies = Grid::GetInstance()->GetEnemies();
-		vector<LPGAMEOBJECT> coObjects; //Placeholder
-		vector<LPCOLLISIONEVENT> coEvents;
-		vector<LPCOLLISIONEVENT> coEventsResult;
-
-		ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
-
-		coEvents.clear();
-		ninja->CalcPotentialCollisionsWithEnemy(enemies, coObjects, coEvents);
+		ninja->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
 	}
 	#pragma endregion
 
@@ -307,17 +300,13 @@ void NinjaSate::Render()
 	{
 	case NINJA_ANI_STANDING_ATTACKING:
 	{
-
-		//ninja->GetWhip()->SetPosition(ninja->GetPositionX(), ninja->GetPositionY(), ninja->IsCrouching());
 		if (ninja->IsCrouching())
 		{
 			ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Render(spriteData);
-			//ninja->GetWhip()->Render(spriteData);
 
 			if (ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->IsDone())
 			{
 				ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
-				ninja->GetWhip()->ResetAnim();
 				ninja->SetIsCrouching(true);
 				ninja->SetState(ninja->GetCrouchingState());
 			}
@@ -325,12 +314,9 @@ void NinjaSate::Render()
 		else
 		{
 			ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Render(spriteData);
-			//ninja->GetWhip()->Render(spriteData);
-
 			if (ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->IsDone())
 			{
 				ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
-				ninja->GetWhip()->ResetAnim();
 				ninja->SetState(ninja->GetIdleState());
 			}
 		}
@@ -358,7 +344,6 @@ void NinjaSate::Render()
 		if (ninja->GetAnimationsList()[NINJA_ANI_CLIMBING]->IsDone())
 		{
 			ninja->GetAnimationsList()[NINJA_ANI_CLIMBING]->Reset();
-			//ninja->GetWhip()->ResetAnim();
 			ninja->SetState(ninja->GetIdleState());
 		}
 	}
@@ -376,8 +361,6 @@ void NinjaSate::Render()
 		if (ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->IsDone())
 		{
 			ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Reset();
-			//ninja->GetWhip()->ResetAnim();
-			//ninja->SetIsGrounded(true);
 			ninja->SetState(ninja->GetJumpingState());
 		}
 	}

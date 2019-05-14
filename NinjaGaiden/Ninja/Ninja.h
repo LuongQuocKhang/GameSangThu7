@@ -24,20 +24,19 @@ class Ninja : public GameObject
 	State * throwingState;
 	State * climbState;
 
-
 	State * state;
 
 	bool isGrounded = false;
 	bool isCrouching = false;
 	bool isClimbing = false;
+
 	//Vector chứa các animations
 	static vector<Animation *> animations;
 	DWORD lastFrameTime;
-	//Roi
-	Whip * whip;
-	//Vũ khí phụ
-	int curSubweapon;
+
 	static vector<Subweapon *> subweapons;
+
+	int stamina;
 public:
 	void LoadResources();
 	//Hàm set
@@ -46,7 +45,6 @@ public:
 	void SetIsClimbing(bool isClimbing) { this->isClimbing = isClimbing; }
 	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
 	void SetState(State * state);
-	void SetWhip(int type) { this->whip->SetType(type); }
 	//Hàm get
 	static Ninja * GetInstance();
 
@@ -62,7 +60,6 @@ public:
 	State * GetClimbState();
 	State * GetJumpAttackState();
 
-	Whip * GetWhip() { return this->whip; }
 	//Hàm trạng thái
 	bool IsAttacking() { return state == attackingState || state == throwingState; }
 	bool IsGrounded() { return isGrounded; }

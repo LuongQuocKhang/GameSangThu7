@@ -15,6 +15,8 @@ class Enemy:public GameObject
 	DWORD lastFrameTime;
 
 	bool active = true;
+
+	int damage = 5;
 public:
 	Enemy();
 	void LoadResources();

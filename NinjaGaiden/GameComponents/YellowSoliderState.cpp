@@ -49,7 +49,7 @@ void YellowSoliderState::Walk()
 
 void YellowSoliderState::Update(DWORD dt)
 {
-	vector<LPGAMEOBJECT> coObjects; //Placeholder
+	vector<LPGAMEOBJECT> coObjects; 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -84,14 +84,6 @@ void YellowSoliderState::Update(DWORD dt)
 
 		if (nx != 0) enemy->SetSpeedX(0);
 		if (ny != 0) enemy->SetSpeedY(0);
-
-		if (coEventsResult[0]->collisionID == 1)
-		{
-			if (ny == 1)
-			{
-				//enemy->SetIsGrounded(true);
-			}
-		}
 	}
 	for (UINT i = 0; i < coEvents.size(); i++)
 		delete coEvents[i];

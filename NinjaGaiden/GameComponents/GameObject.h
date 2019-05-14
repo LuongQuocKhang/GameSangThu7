@@ -115,11 +115,11 @@ public:
 		float &nx,
 		float &ny);
 
-	void CalcPotentialCollisionsWithEnemy(
+	void CalcPotentialCollisionsAttackingEnemy(
 		vector<Enemy *> &enemies,
 		vector<LPGAMEOBJECT> &coObjects,
 		vector<LPCOLLISIONEVENT> &coEvents);
-	void CalcPotentialNinjaAndEnemyCollisions(
+	void CalcPotentialNinjaAttackEnemyCollisions(
 		vector<Enemy *> &enemies,
 		vector<LPCOLLISIONEVENT> &coEvents);
 

@@ -117,8 +117,8 @@ float Game::SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly)
 	c1.vx = c1.vx - c2.vx;
 	c1.vy = c1.vy - c2.vy;
 
-	float dx = c1.vx * c1.dt - c2.vx * c2.dt;
-	float dy = c1.vy * c1.dt - c2.vy * c2.dt;
+	float dx = c1.vx * c1.dt;
+	float dy = c1.vy * c1.dt;
 
 	Collider broadphaseBox = GetSweptBroadphaseRect(c1);
 	if (AABB(broadphaseBox, c2))
