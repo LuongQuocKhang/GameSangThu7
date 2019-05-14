@@ -12,9 +12,16 @@ YellowPanther::YellowPanther()
 	state = walkingState;
 
 	this->isLeft = false;
-	this->vx = -0.2f;
+	this->vx = YELLOW_PANTHER_WALKING_SPEED;
 	this->SetPositionX(350);
 	this->SetPositionY(60);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = YELLOW_PANTHER_SPRITE_WIDTH;
+	collider.height = YELLOW_PANTHER_SPRITE_HEIGHT;
 }
 YellowPanther::YellowPanther(int posx , int posy)
 {
@@ -26,9 +33,16 @@ YellowPanther::YellowPanther(int posx , int posy)
 	state = walkingState;
 
 	this->isLeft = false;
-	this->vx = -0.2f;
+	this->vx = YELLOW_PANTHER_WALKING_SPEED;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = YELLOW_PANTHER_SPRITE_WIDTH;
+	collider.height = YELLOW_PANTHER_SPRITE_HEIGHT;
 }
 void YellowPanther::LoadResources()
 {
@@ -74,8 +88,8 @@ void YellowPanther::Walk()
 void YellowPanther::Update(DWORD dt)
 {
 	state->Update(dt);
-	/*this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
+	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
+	/*if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
 	{
 		this->TurnRight();
 	}*/

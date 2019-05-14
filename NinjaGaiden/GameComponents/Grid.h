@@ -50,6 +50,10 @@ public:
 
 	CellMatrix GetTile() { return this->cells; }
 
+	void AddEnemy(Enemy* enemy)
+	{
+		enemies.push_back(enemy);
+	}
 	static void SetNewGrid()
 	{
 		__instance = NULL;

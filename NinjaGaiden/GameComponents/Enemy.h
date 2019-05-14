@@ -13,6 +13,8 @@ class Enemy:public GameObject
 	State * state;
 
 	DWORD lastFrameTime;
+
+	bool active = true;
 public:
 	Enemy();
 	void LoadResources();
@@ -32,6 +34,15 @@ public:
 
 	void TurnLeft();
 	void TurnRight();
+
+	void SetActive(bool value)
+	{
+		this->active = value;
+	}
+	bool IsActive()
+	{
+		return this->active;
+	}
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render

@@ -17,10 +17,13 @@ YellowSolider::YellowSolider()
 	this->SetPositionX(270);
 	this->SetPositionY(100);
 
+	this->width = YELLOW_SOLIDER_SPRITE_WIDTH;
+	this->height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
-	collider.vx = 0;
-	collider.vy = 0;
+	collider.vx = vx;
+	collider.vy = vy;
 	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
 	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
 
@@ -40,10 +43,13 @@ YellowSolider::YellowSolider(int posx , int posy )
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	this->width = YELLOW_SOLIDER_SPRITE_WIDTH;
+	this->height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
-	collider.vx = 0;
-	collider.vy = 0;
+	collider.vx = vx;
+	collider.vy = vy;
 	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
 	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
 }

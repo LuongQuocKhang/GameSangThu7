@@ -41,6 +41,7 @@ struct Tile;
 typedef vector<Tile> Row;
 typedef vector<Row> Matrix;
 
+class Enemy;
 class GameObject
 {
 
@@ -113,6 +114,15 @@ public:
 		float &min_ty,
 		float &nx,
 		float &ny);
+
+	void CalcPotentialCollisionsWithEnemy(
+		vector<Enemy *> &enemies,
+		vector<LPGAMEOBJECT> &coObjects,
+		vector<LPCOLLISIONEVENT> &coEvents);
+	void CalcPotentialNinjaAndEnemyCollisions(
+		vector<Enemy *> &enemies,
+		vector<LPCOLLISIONEVENT> &coEvents);
+
 	//virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
 	//Hàm khởi tạo
 	GameObject();

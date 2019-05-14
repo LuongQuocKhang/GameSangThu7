@@ -52,10 +52,9 @@ Grid::Grid()
 }
 void Grid::LoadEnemy()
 {
-	enemies.push_back(new YellowSolider(100,100));
-	enemies.push_back(new BrownBird(270,80));
+	enemies.push_back(new YellowSolider(280,80));
+	enemies.push_back(new BrownBird(270,100));
 	enemies.push_back(new RedBird(350,90));
-	enemies.push_back(new YellowPanther(350,60));
 	enemies.push_back(new GreenSolider(400,60));
 	enemies.push_back(new PinkWitch(450,65));
 }
@@ -150,7 +149,10 @@ void Grid::Update(DWORD dt)
 	ninja->Update(dt);
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
-		enemies[i]->Update(dt);
+		if (enemies[i]->IsActive() == true)
+		{
+			enemies[i]->Update(dt);
+		}
 	}
 }
 void Grid::Render()
@@ -172,7 +174,10 @@ void Grid::Render()
 	ninja->Render();
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
-		enemies[i]->Render();
+		if (enemies[i]->IsActive() == true)
+		{
+			enemies[i]->Render();
+		}
 	}
 }
 

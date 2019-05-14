@@ -276,8 +276,14 @@ void Ninja::CreateThrownWeapon()
 {
 	
 }
+bool PantherAppear = false;
 void Ninja::Update(DWORD dt)
 {
+	if (this->GetPositionX() >= 400 && this->GetPositionX() <= 450 && PantherAppear == false)
+	{
+		Grid::GetInstance()->AddEnemy(new YellowPanther(330, 80));
+		PantherAppear = true;
+	}
 	if (this->GetSpeedX() > 0 && this->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
 	{
 		int map = (int)Game::GetInstance()->GetStage() + 1;
