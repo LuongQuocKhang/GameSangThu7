@@ -12,9 +12,18 @@ BrownBird::BrownBird()
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = 0.0f;
 	this->SetPositionX(270);
 	this->SetPositionY(80);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = BROWN_BIRD_SPRITE_WIDTH;
+	collider.height = BROWN_BIRD_SPRITE_HEIGHT;
+
+	Type = EnemyType::BROWNBIRD;
 }
 BrownBird::BrownBird(int posx, int posy)
 {
@@ -26,9 +35,18 @@ BrownBird::BrownBird(int posx, int posy)
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = 0.0f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = BROWN_BIRD_SPRITE_WIDTH;
+	collider.height = BROWN_BIRD_SPRITE_HEIGHT;
+
+	Type = EnemyType::BROWNBIRD;
 }
 void BrownBird::LoadResources()
 {

@@ -22,6 +22,8 @@ YellowPanther::YellowPanther()
 	collider.vy = vy;
 	collider.width = YELLOW_PANTHER_SPRITE_WIDTH;
 	collider.height = YELLOW_PANTHER_SPRITE_HEIGHT;
+
+	Type = EnemyType::YELLOWPANTHER;
 }
 YellowPanther::YellowPanther(int posx , int posy)
 {
@@ -43,6 +45,8 @@ YellowPanther::YellowPanther(int posx , int posy)
 	collider.vy = vy;
 	collider.width = YELLOW_PANTHER_SPRITE_WIDTH;
 	collider.height = YELLOW_PANTHER_SPRITE_HEIGHT;
+
+	Type = EnemyType::YELLOWPANTHER;
 }
 void YellowPanther::LoadResources()
 {
@@ -89,10 +93,6 @@ void YellowPanther::Update(DWORD dt)
 {
 	state->Update(dt);
 	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-	/*if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
-	{
-		this->TurnRight();
-	}*/
 }
 //Hàm render
 void YellowPanther::Render()

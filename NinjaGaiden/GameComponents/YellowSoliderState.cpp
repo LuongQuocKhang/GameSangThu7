@@ -39,9 +39,9 @@ void YellowSoliderState::Walk()
 {
 	switch (enemystate)
 	{
-	case YELLOW_SOLIDER_ANI_WALKING:
+	case YELLOW_SOLDIER_ANI_WALKING:
 	{
-		enemy->SetSpeedX(YELLOW_SOLIDER_WALKING_SPEED * (enemy->IsLeft() ? -1 : 1));
+		enemy->SetSpeedX(YELLOW_SOLDIER_WALKING_SPEED * (enemy->IsLeft() ? -1 : 1));
 	}
 	break;
 	}
@@ -94,8 +94,8 @@ void YellowSoliderState::Render()
 	SpriteData spriteEnemyData;
 	if (this->enemy != NULL)
 	{
-		spriteEnemyData.width = YELLOW_SOLIDER_SPRITE_WIDTH;
-		spriteEnemyData.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+		spriteEnemyData.width = YELLOW_SOLDIER_SPRITE_WIDTH;
+		spriteEnemyData.height = YELLOW_SOLDIER_SPRITE_HEIGHT;
 		spriteEnemyData.x = enemy->GetPositionX();
 		spriteEnemyData.y = enemy->GetPositionY();
 
@@ -106,14 +106,14 @@ void YellowSoliderState::Render()
 	}
 	switch (enemystate)
 	{
-	case YELLOW_SOLIDER_ANI_IDLE:
+	case YELLOW_SOLDIER_ANI_IDLE:
 	{
-		enemy->GetAnimationsList()[YELLOW_SOLIDER_ANI_IDLE]->Render(spriteEnemyData);
+		enemy->GetAnimationsList()[YELLOW_SOLDIER_ANI_IDLE]->Render(spriteEnemyData);
 	}
 	break;
-	case YELLOW_SOLIDER_ANI_WALKING:
+	case YELLOW_SOLDIER_ANI_WALKING:
 	{
-		enemy->GetAnimationsList()[YELLOW_SOLIDER_ANI_WALKING]->Render(spriteEnemyData);
+		enemy->GetAnimationsList()[YELLOW_SOLDIER_ANI_WALKING]->Render(spriteEnemyData);
 
 		enemy->Walk();
 	}

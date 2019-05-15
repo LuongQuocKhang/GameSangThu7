@@ -12,9 +12,18 @@ RedBird::RedBird()
 	state = walkingState;
 
 	this->isLeft = false;
-	this->vx = -0.2f;
+	this->vx = 0;
 	this->SetPositionX(350);
 	this->SetPositionY(90);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = RED_BIRD_SPRITE_WIDTH;
+	collider.height = RED_BIRD_SPRITE_HEIGHT;
+
+	Type = EnemyType::REDBIRD;
 }
 RedBird::RedBird(int posx , int posy)
 {
@@ -26,9 +35,18 @@ RedBird::RedBird(int posx , int posy)
 	state = walkingState;
 
 	this->isLeft = false;
-	this->vx = -0.2f;
+	this->vx = 0;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = RED_BIRD_SPRITE_WIDTH;
+	collider.height = RED_BIRD_SPRITE_HEIGHT;
+
+	Type = EnemyType::REDBIRD;
 }
 void RedBird::LoadResources()
 {
@@ -70,17 +88,11 @@ void RedBird::Walk()
 {
 	state->Walk();
 }
-//Hàm c?p nh?t
+
 void RedBird::Update(DWORD dt)
 {
 	state->Update(dt);
-	/*this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
-	{
-		this->TurnRight();
-	}*/
 }
-//Hàm render
 void RedBird::Render()
 {
 	state->Render();

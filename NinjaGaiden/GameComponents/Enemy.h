@@ -7,7 +7,7 @@
 class State;
 class Enemy:public GameObject
 {
-	
+protected:
 	State * idleState;
 	State * walkingState;
 	State * state;
@@ -17,6 +17,8 @@ class Enemy:public GameObject
 	bool active = true;
 
 	int damage = 5;
+
+	EnemyType Type;
 public:
 	Enemy();
 	void LoadResources();

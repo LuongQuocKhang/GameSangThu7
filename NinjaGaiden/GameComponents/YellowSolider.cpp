@@ -8,8 +8,8 @@ YellowSolider::YellowSolider()
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_IDLE);
-	walkingState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_WALKING);
+	idleState = new YellowSoliderState(this, YELLOW_SOLDIER_ANI_IDLE);
+	walkingState = new YellowSoliderState(this, YELLOW_SOLDIER_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
@@ -17,16 +17,17 @@ YellowSolider::YellowSolider()
 	this->SetPositionX(270);
 	this->SetPositionY(100);
 
-	this->width = YELLOW_SOLIDER_SPRITE_WIDTH;
-	this->height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+	this->width = YELLOW_SOLDIER_SPRITE_WIDTH;
+	this->height = YELLOW_SOLDIER_SPRITE_HEIGHT;
 
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;
-	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
-	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+	collider.width = YELLOW_SOLDIER_SPRITE_WIDTH;
+	collider.height = YELLOW_SOLDIER_SPRITE_HEIGHT;
 
+	Type = EnemyType::YELLOWSOLDIER;
 }
 
 YellowSolider::YellowSolider(int posx , int posy )
@@ -34,8 +35,8 @@ YellowSolider::YellowSolider(int posx , int posy )
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_IDLE);
-	walkingState = new YellowSoliderState(this, YELLOW_SOLIDER_ANI_WALKING);
+	idleState = new YellowSoliderState(this, YELLOW_SOLDIER_ANI_IDLE);
+	walkingState = new YellowSoliderState(this, YELLOW_SOLDIER_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
@@ -43,15 +44,17 @@ YellowSolider::YellowSolider(int posx , int posy )
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
-	this->width = YELLOW_SOLIDER_SPRITE_WIDTH;
-	this->height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+	this->width = YELLOW_SOLDIER_SPRITE_WIDTH;
+	this->height = YELLOW_SOLDIER_SPRITE_HEIGHT;
 
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;
-	collider.width = YELLOW_SOLIDER_SPRITE_WIDTH;
-	collider.height = YELLOW_SOLIDER_SPRITE_HEIGHT;
+	collider.width = YELLOW_SOLDIER_SPRITE_WIDTH;
+	collider.height = YELLOW_SOLDIER_SPRITE_HEIGHT;
+
+	Type = EnemyType::YELLOWSOLDIER;
 }
 void YellowSolider::LoadResources()
 {
@@ -60,11 +63,11 @@ void YellowSolider::LoadResources()
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i % YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_WIDTH;
-		rect.right = rect.left + YELLOW_SOLIDER_SPRITE_WIDTH;
-		rect.top = (i / YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_HEIGHT;
-		rect.bottom = rect.top + YELLOW_SOLIDER_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(YELLOW_SOLIDER_TEXTURE_LOCATION, rect, YELLOW_SOLIDER_TEXTURE_TRANS_COLOR);
+		rect.left = (i % YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_WIDTH;
+		rect.right = rect.left + YELLOW_SOLDIER_SPRITE_WIDTH;
+		rect.top = (i / YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_HEIGHT;
+		rect.bottom = rect.top + YELLOW_SOLDIER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(YELLOW_SOLDIER_TEXTURE_LOCATION, rect, YELLOW_SOLDIER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -74,11 +77,11 @@ void YellowSolider::LoadResources()
 	for (int i = 0; i < 3; i++)
 	{
 		RECT rect;
-		rect.left = (i % YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_WIDTH;
-		rect.right = rect.left + YELLOW_SOLIDER_SPRITE_WIDTH;
-		rect.top = (i / YELLOW_SOLIDER_TEXTURE_COLUMNS) * YELLOW_SOLIDER_SPRITE_HEIGHT;
-		rect.bottom = rect.top + YELLOW_SOLIDER_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(YELLOW_SOLIDER_TEXTURE_LOCATION, rect, YELLOW_SOLIDER_TEXTURE_TRANS_COLOR);
+		rect.left = (i % YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_WIDTH;
+		rect.right = rect.left + YELLOW_SOLDIER_SPRITE_WIDTH;
+		rect.top = (i / YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_HEIGHT;
+		rect.bottom = rect.top + YELLOW_SOLDIER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(YELLOW_SOLDIER_TEXTURE_LOCATION, rect, YELLOW_SOLDIER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}

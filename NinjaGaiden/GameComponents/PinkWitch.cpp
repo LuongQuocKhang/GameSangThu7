@@ -15,6 +15,15 @@ PinkWitch::PinkWitch()
 	this->vx = -0.2f;
 	this->SetPositionX(450);
 	this->SetPositionY(65);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = PINK_WITCH_SPRITE_WIDTH;
+	collider.height = PINK_WITCH_SPRITE_HEIGHT;
+
+	Type = EnemyType::PINKWITCH;
 }
 
 PinkWitch::PinkWitch(int posx , int posy)
@@ -30,6 +39,15 @@ PinkWitch::PinkWitch(int posx , int posy)
 	this->vx = -0.2f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
+	collider.width = PINK_WITCH_SPRITE_WIDTH;
+	collider.height = PINK_WITCH_SPRITE_HEIGHT;
+
+	Type = EnemyType::PINKWITCH;
 }
 
 void PinkWitch::LoadResources()

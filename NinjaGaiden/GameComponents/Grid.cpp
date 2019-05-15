@@ -52,19 +52,26 @@ Grid::Grid()
 }
 void Grid::LoadEnemy()
 {
-	enemies.push_back(new YellowSolider(244,80));
-	enemies.push_back(new YellowSolider(289,80));
-	enemies.push_back(new YellowSolider(336,80));
-	enemies.push_back(new YellowSolider(434,80));
+	if (Game::GetInstance()->GetStage() == Stage::STAGE_31)
+	{
+		enemies.push_back(new YellowSolider(244, 80));
+		enemies.push_back(new YellowSolider(289, 80));
+		enemies.push_back(new YellowSolider(336, 80));
+		enemies.push_back(new YellowSolider(434, 80));
 
-	enemies.push_back(new RedBird(328, 120));
-	enemies.push_back(new RedBird(427, 120));
-	enemies.push_back(new RedBird(566, 120));
-	enemies.push_back(new RedBird(632, 102));
+		enemies.push_back(new RedBird(328, 120));
+		enemies.push_back(new RedBird(427, 120));
+		enemies.push_back(new RedBird(566, 120));
+		enemies.push_back(new RedBird(632, 102));
+	}
+	else if (Game::GetInstance()->GetStage() == Stage::STAGE_32)
+	{
 
-	/*enemies.push_back(new BrownBird(270,100));
-	enemies.push_back(new GreenSolider(400,60));
-	enemies.push_back(new PinkWitch(450,65));*/
+	}
+	else if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
+	{
+
+	}
 }
 void Grid::LoadCells()
 {

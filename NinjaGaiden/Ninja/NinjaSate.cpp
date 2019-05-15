@@ -197,6 +197,10 @@ void NinjaSate::Update(DWORD dt)
 		{
 			ninja->SetState(ninja->GetIdleState());
 		}
+		if (ninja->GetPositionY() >= TiledMap::GetInstance()->GetHeight() + 20)
+		{
+			ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
+		}
 	}
 	break;
 	case NINJA_ANI_JUMPING_ATTACKING:
