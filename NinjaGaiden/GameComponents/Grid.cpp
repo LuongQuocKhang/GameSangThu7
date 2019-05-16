@@ -73,7 +73,7 @@ void Grid::LoadEnemy(LPCWSTR filePath)
 					type = token;
 				}
 				else if (rowNum == Column::PosX) posx = token;
-				else if (rowNum == Column::PosY) posy = token;
+				else if (rowNum == Column::PosY) posy = MAP_HEIGHT -token;
 
 				line.erase(0, pos + 1);
 				rowNum++;
@@ -84,10 +84,10 @@ void Grid::LoadEnemy(LPCWSTR filePath)
 				enemy = new YellowSolider(posx, posy);
 				break;
 			case REDBIRD:
-				enemy = new RedBird(posx, posy);
+				enemy = new RedBird(posx,posy);
 				break;
 			case BROWNBIRD:
-				enemy = new BrownBird(posx, posy);
+				enemy = new BrownBird(posx,posy);
 				break;
 			case YELLOWPANTHER:
 				enemy = new YellowPanther(posx, posy);

@@ -8,6 +8,7 @@
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
 #define SCREEN_WIDTH 450
 #define SCREEN_HEIGHT 250
+#define MAP_HEIGHT 176
 
 //Framerate tối đa
 #define MAX_FRAME_RATE 90

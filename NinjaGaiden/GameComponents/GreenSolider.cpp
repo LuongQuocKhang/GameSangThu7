@@ -14,7 +14,7 @@ GreenSolider::GreenSolider()
 	this->isLeft = true;
 	this->vx = 0.0f;
 	this->SetPositionX(400);
-	this->SetPositionY(60);
+	this->SetPositionY(90);
 
 	Type = EnemyType::GREENSOLDIER;
 }

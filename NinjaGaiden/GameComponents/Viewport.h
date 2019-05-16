@@ -1,6 +1,7 @@
 #pragma once
 #include "d3d9.h"
 #include "d3dx9.h"
+#include "Constants.h"
 
 class Viewport
 {
@@ -9,7 +10,7 @@ class Viewport
 	int width;
 	int height;
 	int x = 0;
-	int y = 176;
+	int y = MAP_HEIGHT;
 public:
 	static Viewport * GetInstance();
 	~Viewport();
