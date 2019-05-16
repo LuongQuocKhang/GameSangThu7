@@ -29,7 +29,17 @@ enum ObjectType
 	BRICK,
 	VINES
 };
-
+enum Column
+{
+	No,
+	Type,
+	NoInfo_2,
+	PosX,
+	PosY,
+	Width,
+	Height,
+	NoInfo_7,
+};
 enum EnemyType {
 	YELLOWSOLDIER,
 	REDBIRD,

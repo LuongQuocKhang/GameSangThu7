@@ -51,49 +51,33 @@ Grid::Grid()
 }
 void Grid::LoadEnemy(LPCWSTR filePath)
 {
-	/*if (Game::GetInstance()->GetStage() == Stage::STAGE_31)
-	{
-		enemies.push_back(new YellowSolider(244, 80));
-		enemies.push_back(new YellowSolider(289, 80));
-		enemies.push_back(new YellowSolider(336, 80));
-		enemies.push_back(new YellowSolider(434, 80));
-
-		enemies.push_back(new RedBird(328, 120));
-		enemies.push_back(new RedBird(427, 120));
-		enemies.push_back(new RedBird(566, 120));
-		enemies.push_back(new RedBird(632, 102));
-	}*/
-
 	ifstream tilesInfo;
 	DebugOut(L"filepath: %s\n", filePath);
 	tilesInfo.open(filePath);
 	string line;
 	int token;
-
 	if (tilesInfo.is_open())
 	{
 		while (getline(tilesInfo, line))
 		{
 			size_t pos = 0;
-			int rowNum = 0;
+			int rowNum = 0 , posx = 0, posy = 0 , type = 0;
 
-			int posx = 0, posy = 0 , type = 0;
 			Enemy * enemy = NULL;
 
 			while ((pos = line.find(" ")) != string::npos)
 			{
 				token = stoi(line.substr(0, pos));
-				if (rowNum == 1)
+				if (rowNum == Column::Type)
 				{
 					type = token;
 				}
-				else if (rowNum == 3) posx = token;
-				else if (rowNum == 4) posy = token;
+				else if (rowNum == Column::PosX) posx = token;
+				else if (rowNum == Column::PosY) posy = token;
 
 				line.erase(0, pos + 1);
 				rowNum++;
 			}
-		
 			switch (type)
 			{
 			case YELLOWSOLDIER:
