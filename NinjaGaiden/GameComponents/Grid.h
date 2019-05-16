@@ -4,10 +4,15 @@
 #include "GridCell.h"
 #include "Ninja.h"
 #include <vector>
+
+#include <fstream>
+#include <string>
+
 #define POSTOCELL(K) (int)(K/GRID_SIZE);
 #define POSXTOCELL(K) (int)(K/GRID_SIZE);
 #define POSYTOCELL(K) (int)(K % GRID_SIZE == 0 ? K/GRID_SIZE - 1 : K/GRID_SIZE);
 
+using namespace std;
 
 class Cell;
 
@@ -28,7 +33,7 @@ private:
 	Viewport *viewport;
 	Ninja * ninja;
 
-	void LoadEnemy();
+	void LoadEnemy(LPCWSTR filePath);
 
 	Grid();
 
@@ -45,6 +50,7 @@ public:
 	vector<GameObject *> GetCurGameObjects() { return this->curGameObjects; }
 	vector<Enemy*> GetEnemies() { return enemies; }
 
+	void ReadEnemiesFromFIle(Stage GameStage);
 	void Update(DWORD dt);
 	void Render();
 

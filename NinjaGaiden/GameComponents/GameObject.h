@@ -86,6 +86,7 @@ public:
 	void SetCollider(Collider col) { this->collider = col; }
 
 	void UpdateObjectCollider();
+	void UpdateNinjaAttackingtCollider();
 	void UpdateTileCollider();
 
 	void SetDt(float dt) { this->dt = dt; }

@@ -214,11 +214,20 @@ void NinjaSate::Update(DWORD dt)
 	default:
 		break;
 	}
-	#pragma region xử lý va chạm với gạch
-
 	vector<LPGAMEOBJECT> coObjects; //Placeholder
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
+
+	#pragma region xử lý khi chém vào quái
+	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
+	{
+		vector<Enemy * > enemies = Grid::GetInstance()->GetEnemies();
+		ninja->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
+	}
+	#pragma endregion
+
+	#pragma region xử lý va chạm với gạch
+	coObjects.clear();
 
 	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
 	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
@@ -260,20 +269,13 @@ void NinjaSate::Update(DWORD dt)
 	}
 	for (UINT i = 0; i < coEvents.size(); i++)
 		delete coEvents[i];
-
 	#pragma endregion
 
 	#pragma region Xử lý va chạm với quái
 
 	#pragma endregion
 
-	#pragma region xử lý khi chém vào quái
-	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
-	{
-		vector<Enemy * > enemies = Grid::GetInstance()->GetEnemies();
-		ninja->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
-	}
-	#pragma endregion
+	
 
 	if (ninja->GetPositionY() < 0)
 	{

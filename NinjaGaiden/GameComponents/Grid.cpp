@@ -47,12 +47,11 @@ Grid::Grid()
 	//Lưu ninja
 	this->ninja = Ninja::GetInstance();
 
-	LoadEnemy();
-
+	ReadEnemiesFromFIle(Game::GetInstance()->GetStage());
 }
-void Grid::LoadEnemy()
+void Grid::LoadEnemy(LPCWSTR filePath)
 {
-	if (Game::GetInstance()->GetStage() == Stage::STAGE_31)
+	/*if (Game::GetInstance()->GetStage() == Stage::STAGE_31)
 	{
 		enemies.push_back(new YellowSolider(244, 80));
 		enemies.push_back(new YellowSolider(289, 80));
@@ -63,14 +62,71 @@ void Grid::LoadEnemy()
 		enemies.push_back(new RedBird(427, 120));
 		enemies.push_back(new RedBird(566, 120));
 		enemies.push_back(new RedBird(632, 102));
-	}
-	else if (Game::GetInstance()->GetStage() == Stage::STAGE_32)
-	{
+	}*/
 
-	}
-	else if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
-	{
+	ifstream tilesInfo;
+	DebugOut(L"filepath: %s\n", filePath);
+	tilesInfo.open(filePath);
+	string line;
+	int token;
 
+	if (tilesInfo.is_open())
+	{
+		while (getline(tilesInfo, line))
+		{
+			size_t pos = 0;
+			int rowNum = 0;
+
+			int posx = 0, posy = 0 , type = 0;
+			Enemy * enemy = NULL;
+
+			while ((pos = line.find(" ")) != string::npos)
+			{
+				token = stoi(line.substr(0, pos));
+				if (rowNum == 1)
+				{
+					type = token;
+				}
+				else if (rowNum == 3) posx = token;
+				else if (rowNum == 4) posy = token;
+
+				line.erase(0, pos + 1);
+				rowNum++;
+			}
+		
+			switch (type)
+			{
+			case YELLOWSOLDIER:
+				enemy = new YellowSolider(posx, posy);
+				break;
+			case REDBIRD:
+				enemy = new RedBird(posx, posy);
+				break;
+			case BROWNBIRD:
+				enemy = new BrownBird(posx, posy);
+				break;
+			case YELLOWPANTHER:
+				enemy = new YellowPanther(posx, posy);
+				break;
+			case PINKWITCH:
+				enemy = new PinkWitch(posx, posy);
+				break;
+			case GREENSOLDIER:
+				enemy = new GreenSolider(posx, posy);
+				break;
+			default:
+				break;
+			}	
+			if (enemy != NULL)
+			{
+				if (type != YELLOWPANTHER)
+				{
+					enemy->TurnLeft();
+				}
+				enemies.push_back(enemy);
+			}
+		}
+		tilesInfo.close();
 	}
 }
 void Grid::LoadCells()
@@ -110,6 +166,26 @@ void Grid::GetNinjaPosOnGrid(int &l, int &r, int &t, int &b)
 	t = (int)(rect.top % GRID_SIZE == 0 ? rect.top / GRID_SIZE - 1 : rect.top / GRID_SIZE);
 	r = (int)(rect.right / GRID_SIZE);
 	b = (int)(rect.bottom / GRID_SIZE);
+}
+void Grid::ReadEnemiesFromFIle(Stage GameStage)
+{
+	LPCWSTR filePath = L"";
+	if (GameStage == Stage::STAGE_31)
+	{
+		enemies.clear();
+		filePath = ENEMIES_MAP_31;
+	}
+	else if (GameStage == Stage::STAGE_32)
+	{
+		enemies.clear();
+		filePath = ENEMIES_MAP_32;
+	}
+	else if (GameStage == Stage::STAGE_BOSS)
+	{
+		enemies.clear();
+		filePath = ENEMIES_MAP_BOSS;
+	}
+	LoadEnemy(filePath);
 }
 void Grid::Update(DWORD dt)
 {

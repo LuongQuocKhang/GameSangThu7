@@ -49,6 +49,10 @@ enum EnemyType {
 #define TILES_MATRIX_STAGE_32 L"Resources\\TiledMap\\MAP_32_Matrix.txt"
 #define TILES_MATRIX_STAGE_BOSS L"Resources\\TiledMap\\MAP_BOSS_Matrix.txt"
 
+#define ENEMIES_MAP_31 L"Resources\\Enemy\\ENEMIES_MAP_31_Matrix.txt"
+#define ENEMIES_MAP_32 L"Resources\\Enemy\\ENEMIES_MAP_32_Matrix.txt"
+#define ENEMIES_MAP_BOSS L"Resources\\Enemy\\ENEMIES_MAP_BOSS_Matrix.txt"
+
 #define TILES_MATRIX_DELIMITER ","
 #define TILES_WIDTH_PER_TILE	16
 #define TILES_HEIGHT_PER_TILE	16
