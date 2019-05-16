@@ -4,8 +4,6 @@ GameObject::GameObject()
 {
 	x = y = 0;
 	vx = vy = 0;
-	isLeft = false;
-	isFlipped = false;
 
 	collider.x = x;
 	collider.y = y;
@@ -21,8 +19,6 @@ GameObject::GameObject(float x, float y, float width, float height)
 	this->width = width;
 	this->height = height;
 	vx = vy = 0;
-	isLeft = false;
-	isFlipped = false;
 
 	collider.x = x;
 	collider.y = y;
@@ -175,7 +171,7 @@ void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies
 
 			if (e->t >= 0 && e->t < 1.0f)
 			{
-				enemies[i]->SetActive(false);
+				Grid::GetInstance()->DeleteEnemy(i);
 			}
 			else
 			{
@@ -188,7 +184,8 @@ void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies
 
 void GameObject::UpdateObjectCollider()
 {
-	collider.x = x;
+	int direction = (isLeft == true) ? -1 : 1;
+	collider.x = x + (collider.width / 1.25) * direction;;
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;
@@ -197,7 +194,7 @@ void GameObject::UpdateObjectCollider()
 void GameObject::UpdateNinjaAttackingtCollider()
 {
 	int direction = (isLeft == true) ? -1 : 1;
-	collider.x = x + (collider.width / 1.5) * direction;
+	collider.x = x + (collider.width / 1.25) * direction;
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;

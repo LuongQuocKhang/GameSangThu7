@@ -60,6 +60,10 @@ public:
 	{
 		enemies.push_back(enemy);
 	}
+	void DeleteEnemy(int pos)
+	{
+		this->enemies.erase(enemies.begin() + pos);
+	}
 	static void SetNewGrid()
 	{
 		__instance = NULL;

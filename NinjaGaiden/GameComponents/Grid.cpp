@@ -81,7 +81,7 @@ void Grid::LoadEnemy(LPCWSTR filePath)
 			switch (type)
 			{
 			case YELLOWSOLDIER:
-				enemy = new YellowSolider(posx, posy);
+				enemy = new YellowSolider(posx, 70);
 				break;
 			case REDBIRD:
 				enemy = new RedBird(posx,posy);
