@@ -8,6 +8,9 @@
 #include "Grid.h"
 #include "YellowSolider.h"
 #include "BrownBird.h"
+#include "GreenCanonSoldier.h"
+#include "GreenRunningSoldier.h"
+#include "BloodyBird.h"
 #include "RedBird.h"
 #include "YellowPanther.h"
 #include "GreenSolider.h"
@@ -32,7 +35,10 @@ class Game
 
 	Ninja * ninja;
 	YellowSolider * enemy;
+	GreenCanonSoldier * greencanonsoldier;
+	GreenRunningSoldier * greenrunningsoldier;
 	BrownBird * brownbird;
+	BloodyBird * bloodybird;
 	RedBird * redbird;
 	YellowPanther * yellowpanther;
 	GreenSolider * greensolider;

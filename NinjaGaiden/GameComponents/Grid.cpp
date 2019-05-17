@@ -129,7 +129,38 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 }
 void Grid::LoadEnemy_Map32(int type, int posx, int posy)
 {
-
+	Enemy * enemy = NULL;
+	switch (type)
+	{
+	case YELLOWSOLDIER:
+		enemy = new YellowSolider(posx, 200);
+		break;
+	case BLOODYBIRD:
+		enemy = new BloodyBird(posx, posy);
+		break;
+	case BROWNBIRD:
+		enemy = new BrownBird(posx, posy);
+		break;
+	case YELLOWPANTHER:
+		enemy = new YellowPanther(posx, posy);
+		break;
+	case GREENCANONSOLDIER:
+		enemy = new GreenCanonSoldier(posx, posy);
+		break;
+	case GREENRUNNINGSOLDIER:
+		enemy = new GreenRunningSoldier(posx, posy);
+		break;
+	default:
+		break;
+	}
+	if (enemy != NULL)
+	{
+		if (type != YELLOWPANTHER)
+		{
+			enemy->TurnLeft();
+		}
+		enemies.push_back(enemy);
+	}
 }
 void Grid::LoadEnemy_MapBOSS(int type, int posx, int posy)
 {
