@@ -54,6 +54,16 @@ void Viewport::Update(DWORD dt)
 	}
 
 }
+bool Viewport::IsEnemyInCamera(Enemy * enemy)
+{
+	RECT rec = GetRect();
+
+	int EnemyPosX = enemy->GetPositionX();
+	int EnemyPosY = enemy->GetPositionY();
+	if (EnemyPosX >= rec.left && EnemyPosX <= rec.right && EnemyPosY >= rec.bottom && EnemyPosY <= rec.top)
+		return true;
+	return false;
+}
 void Viewport::SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVECTOR2 &scaling)
 {
 	D3DXMATRIX mt;
@@ -71,4 +81,3 @@ void Viewport::SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVE
 	translate.x = curTranslate.x;
 	translate.y = curTranslate.y;
 }
-

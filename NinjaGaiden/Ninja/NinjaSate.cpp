@@ -275,14 +275,14 @@ void NinjaSate::Update(DWORD dt)
 
 	#pragma endregion
 
-	
-
+	#pragma region Ninja chết
 	if (ninja->GetPositionY() < 0)
 	{
 		ninja->SetPositionX(100);
 		ninja->SetPositionY(100);
 		Viewport::GetInstance()->Reset();
 	}
+	#pragma endregion
 }
 
 void NinjaSate::Render()

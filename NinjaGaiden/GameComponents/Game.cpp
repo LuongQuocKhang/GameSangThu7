@@ -123,7 +123,7 @@ float Game::SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly)
 	Collider broadphaseBox = GetSweptBroadphaseRect(c1);
 	if (AABB(broadphaseBox, c2))
 	{
-		//int i = 0;
+
 	}
 	else if (!AABB(broadphaseBox, c2))
 	{

@@ -3,6 +3,8 @@
 #include "Constants.h" 
 #include "GridCell.h"
 #include "Ninja.h"
+#include "Viewport.h"
+
 #include <vector>
 
 #include <fstream>
@@ -33,8 +35,11 @@ private:
 	Viewport *viewport;
 	Ninja * ninja;
 
-	void LoadEnemy(LPCWSTR filePath);
+	void LoadEnemy(LPCWSTR filePath, Stage gamestage);
 
+	void LoadEnemy_Map31(int type, int posx, int posy);
+	void LoadEnemy_Map32(int type, int posx, int posy);
+	void LoadEnemy_MapBOSS(int type, int posx, int posy);
 	Grid();
 
 public:

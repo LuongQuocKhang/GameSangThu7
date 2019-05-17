@@ -14,8 +14,6 @@ YellowSolider::YellowSolider()
 
 	this->isLeft = true;
 	this->vx = -0.2f;
-	this->SetPositionX(270);
-	this->SetPositionY(100);
 
 	this->width = YELLOW_SOLDIER_SPRITE_WIDTH;
 	this->height = YELLOW_SOLDIER_SPRITE_HEIGHT;

@@ -49,7 +49,7 @@ Grid::Grid()
 
 	ReadEnemiesFromFIle(Game::GetInstance()->GetStage());
 }
-void Grid::LoadEnemy(LPCWSTR filePath)
+void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 {
 	ifstream tilesInfo;
 	DebugOut(L"filepath: %s\n", filePath);
@@ -62,8 +62,6 @@ void Grid::LoadEnemy(LPCWSTR filePath)
 		{
 			size_t pos = 0;
 			int rowNum = 0 , posx = 0, posy = 0 , type = 0;
-
-			Enemy * enemy = NULL;
 
 			while ((pos = line.find(" ")) != string::npos)
 			{
@@ -78,41 +76,67 @@ void Grid::LoadEnemy(LPCWSTR filePath)
 				line.erase(0, pos + 1);
 				rowNum++;
 			}
-			switch (type)
+			if (gamestage == Stage::STAGE_31)
 			{
-			case YELLOWSOLDIER:
-				enemy = new YellowSolider(posx, 70);
-				break;
-			case REDBIRD:
-				enemy = new RedBird(posx,posy);
-				break;
-			case BROWNBIRD:
-				enemy = new BrownBird(posx,posy);
-				break;
-			case YELLOWPANTHER:
-				enemy = new YellowPanther(posx, posy);
-				break;
-			case PINKWITCH:
-				enemy = new PinkWitch(posx, posy);
-				break;
-			case GREENSOLDIER:
-				enemy = new GreenSolider(posx, posy);
-				break;
-			default:
-				break;
-			}	
-			if (enemy != NULL)
+				LoadEnemy_Map31(type, posx, posy);
+			}
+			else if (gamestage == Stage::STAGE_32)
 			{
-				if (type != YELLOWPANTHER)
-				{
-					enemy->TurnLeft();
-				}
-				enemies.push_back(enemy);
+				LoadEnemy_Map32(type, posx, posy);
+			}
+			else if (gamestage == Stage::STAGE_BOSS)
+			{
+				LoadEnemy_MapBOSS(type, posx, posy);
 			}
 		}
 		tilesInfo.close();
 	}
 }
+void Grid::LoadEnemy_Map31(int type , int posx , int posy)
+{
+	Enemy * enemy = NULL;
+	switch (type)
+	{
+	case YELLOWSOLDIER:
+		enemy = new YellowSolider(posx, 70);
+		break;
+	case REDBIRD:
+		enemy = new RedBird(posx, posy);
+		break;
+	case BROWNBIRD:
+		enemy = new BrownBird(posx, posy);
+		break;
+	case YELLOWPANTHER:
+		enemy = new YellowPanther(posx, posy);
+		break;
+	case PINKWITCH:
+		enemy = new PinkWitch(posx, posy);
+		break;
+	case GREENSOLDIER:
+		enemy = new GreenSolider(posx, posy);
+		break;
+	default:
+		break;
+	}
+	if (enemy != NULL)
+	{
+		if (type != YELLOWPANTHER)
+		{
+			enemy->TurnLeft();
+		}
+		enemies.push_back(enemy);
+	}
+}
+void Grid::LoadEnemy_Map32(int type, int posx, int posy)
+{
+
+}
+void Grid::LoadEnemy_MapBOSS(int type, int posx, int posy)
+{
+
+}
+
+
 void Grid::LoadCells()
 {
 	Matrix &tiledMapMatrix = Game::GetInstance()->GetTiledMap()->GetMatrix();
@@ -169,7 +193,7 @@ void Grid::ReadEnemiesFromFIle(Stage GameStage)
 		enemies.clear();
 		filePath = ENEMIES_MAP_BOSS;
 	}
-	LoadEnemy(filePath);
+	LoadEnemy(filePath, GameStage);
 }
 void Grid::Update(DWORD dt)
 {
@@ -224,6 +248,7 @@ void Grid::Update(DWORD dt)
 	ninja->Update(dt);
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
+		//if (Viewport::GetInstance()->IsEnemyInCamera(enemies[i]))
 		if (enemies[i]->IsActive() == true)
 		{
 			enemies[i]->Update(dt);
@@ -249,6 +274,7 @@ void Grid::Render()
 	ninja->Render();
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
+		//if (Viewport::GetInstance()->IsEnemyInCamera(enemies[i]))
 		if (enemies[i]->IsActive() == true)
 		{
 			enemies[i]->Render();
