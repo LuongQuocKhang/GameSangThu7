@@ -20,7 +20,6 @@ class Cell;
 
 typedef vector<GridCell *> CellRow;
 typedef vector<CellRow> CellMatrix;
-
 class Grid {
 private:
 	static Grid * __instance;
@@ -29,8 +28,9 @@ private:
 	CellMatrix cells;
 
 	vector<Tile *> curTiles;
+	vector<Enemy *> curEnemies;
+
 	vector<Tile *> CollisionTiles;
-	vector<GameObject *> curGameObjects;
 	vector<Enemy* > enemies;
 	Viewport *viewport;
 	Ninja * ninja;
@@ -52,7 +52,6 @@ public:
 
 	vector<Tile *> GetCurTiles() { return this->curTiles; }
 	vector<Tile *> GetCollisionTiles() { return this->CollisionTiles; }
-	vector<GameObject *> GetCurGameObjects() { return this->curGameObjects; }
 	vector<Enemy*> GetEnemies() { return enemies; }
 
 	void ReadEnemiesFromFIle(Stage GameStage);

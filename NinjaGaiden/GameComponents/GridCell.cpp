@@ -2,14 +2,14 @@
 #include "Grid.h"
 
 
-void GridCell::ExtractTiles(vector<Tile *> &output)
+void GridCell::InsertTiles(vector<Tile *> &output)
 {
 	output.insert(output.end(), this->tiles.begin(), this->tiles.end());
 }
 
-void GridCell::ExtractGameObjects(vector<GameObject *> &output)
+void GridCell::InsertEnemies(vector<Enemy *> &output)
 {
-	output.insert(output.end(), this->gameObjects.begin(), this->gameObjects.end());
+	output.insert(output.end(), this->enemies.begin(), this->enemies.end());
 }
 
 void GridCell::Update(DWORD dt)

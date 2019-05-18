@@ -21,6 +21,7 @@ class Ninja : public GameObject
 	State * jumpingState;
 	State * attackingState;
 	State * jumpattackingState;
+	State * jumpattackedState;
 	State * throwingState;
 	State * climbState;
 
@@ -54,6 +55,7 @@ public:
 	State * GetIdleState();
 	State * GetWalkingState();
 	State * GetAttackingState();
+	State * GetAttackedState();
 	//State * GetThrowingState();
 	State * GetCrouchingState();
 	State * GetJumpingState();

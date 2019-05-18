@@ -13,8 +13,8 @@ GreenSolider::GreenSolider()
 
 	this->isLeft = true;
 	this->vx = 0.0f;
-	this->SetPositionX(400);
-	this->SetPositionY(90);
+	this->SetPositionX(200);
+	this->SetPositionY(100);
 
 	Type = EnemyType::GREENSOLDIER;
 }
@@ -59,16 +59,41 @@ void GreenSolider::LoadResources()
 	this->animations.push_back(anim);
 	// NINJA_ANI_WALKING
 	anim = new Animation(200);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		RECT rect;
-		rect.left = (i %  GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_WIDTH;
-		rect.right = rect.left + GREEN_SOLDIER_SPRITE_WIDTH;
-		rect.top = (i / GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_HEIGHT;
-		rect.bottom = rect.top + GREEN_SOLDIER_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(GREEN_SOLDIER_TEXTURE_LOCATION, rect, GREEN_SOLDIER_TEXTURE_TRANS_COLOR);
+		if (i == 0 || i == 1 )
+		{
+			RECT rect;
+			rect.left = (i %  GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_WIDTH;
+			rect.right = rect.left + GREEN_SOLDIER_SPRITE_WIDTH;
+			rect.top = (i / GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_HEIGHT;
+			rect.bottom = rect.top + GREEN_SOLDIER_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(GREEN_SOLDIER_TEXTURE_LOCATION, rect, GREEN_SOLDIER_TEXTURE_TRANS_COLOR);
 
-		anim->AddFrame(sprite);
+			anim->AddFrame(sprite);
+		}
+		if (i == 3 )
+		{
+			RECT rect;
+			rect.left = (i %  GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_WIDTH;
+			rect.right = rect.left + GREEN_SOLDIER_SPRITE_WIDTH* 1.5;
+			rect.top = (i / GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_HEIGHT;
+			rect.bottom = rect.top + GREEN_SOLDIER_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(GREEN_SOLDIER_TEXTURE_LOCATION, rect, GREEN_SOLDIER_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}
+		if (i == 4)
+		{
+			RECT rect;
+			rect.left = (i %  GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_WIDTH+6;
+			rect.right = rect.left + GREEN_SOLDIER_SPRITE_WIDTH * 2;
+			rect.top = (i / GREEN_SOLDIER_TEXTURE_COLUMNS) *  GREEN_SOLDIER_SPRITE_HEIGHT;
+			rect.bottom = rect.top + GREEN_SOLDIER_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(GREEN_SOLDIER_TEXTURE_LOCATION, rect, GREEN_SOLDIER_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}
 	}
 	this->animations.push_back(anim);
 }

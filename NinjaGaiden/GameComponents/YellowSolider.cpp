@@ -74,14 +74,28 @@ void YellowSolider::LoadResources()
 	anim = new Animation(250);
 	for (int i = 0; i < 3; i++)
 	{
-		RECT rect;
-		rect.left = (i % YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_WIDTH;
-		rect.right = rect.left + YELLOW_SOLDIER_SPRITE_WIDTH;
-		rect.top = (i / YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_HEIGHT;
-		rect.bottom = rect.top + YELLOW_SOLDIER_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(YELLOW_SOLDIER_TEXTURE_LOCATION, rect, YELLOW_SOLDIER_TEXTURE_TRANS_COLOR);
+		/*if (i == 0 || i== 1)
+		{*/
+			RECT rect;
+			rect.left = (i % YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_WIDTH;
+			rect.right = rect.left + YELLOW_SOLDIER_SPRITE_WIDTH;
+			rect.top = (i / YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_HEIGHT;
+			rect.bottom = rect.top + YELLOW_SOLDIER_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(YELLOW_SOLDIER_TEXTURE_LOCATION, rect, YELLOW_SOLDIER_TEXTURE_TRANS_COLOR);
 
-		anim->AddFrame(sprite);
+			anim->AddFrame(sprite);
+	/*	}
+		if (i == 2 )
+		{*/
+		/*	RECT rect;
+			rect.left = (i % YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_WIDTH;
+			rect.right = rect.left + YELLOW_SOLDIER_SPRITE_WIDTH*2;
+			rect.top = (i / YELLOW_SOLDIER_TEXTURE_COLUMNS) * YELLOW_SOLDIER_SPRITE_HEIGHT;
+			rect.bottom = rect.top + YELLOW_SOLDIER_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(YELLOW_SOLDIER_TEXTURE_LOCATION, rect, YELLOW_SOLDIER_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}*/
 	}
 	this->animations.push_back(anim);
 }

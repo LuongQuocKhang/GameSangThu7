@@ -39,7 +39,6 @@ Grid::Grid()
 		}
 		cells.push_back(curRow);
 	}
-
 	LoadCells();
 
 	//Luu viewport
@@ -98,7 +97,7 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 	switch (type)
 	{
 	case YELLOWSOLDIER:
-		enemy = new YellowSolider(posx, 70);
+		enemy = new YellowSolider(posx, 100);
 		break;
 	case REDBIRD:
 		enemy = new RedBird(posx, posy);
@@ -124,6 +123,10 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 		{
 			enemy->TurnLeft();
 		}
+		int cellX = POSXTOCELL(posx);
+		int cellY = POSYTOCELL(posy);
+
+		cells[cellY][cellX]->AddEnemy(enemy);
 		enemies.push_back(enemy);
 	}
 }
@@ -159,6 +162,10 @@ void Grid::LoadEnemy_Map32(int type, int posx, int posy)
 		{
 			enemy->TurnLeft();
 		}
+		int cellX = POSXTOCELL(posx);
+		int cellY = POSYTOCELL(posy);
+
+		cells[cellY][cellX]->AddEnemy(enemy);
 		enemies.push_back(enemy);
 	}
 }
@@ -233,7 +240,15 @@ void Grid::Update(DWORD dt)
 
 	//Update ninja
 	curTiles.clear();
-	curGameObjects.clear();
+	curEnemies.clear();
+
+	/*for (int i = 0; i < enemies.size(); i++)
+	{
+		int cellX = POSXTOCELL((int)enemies[i]->GetPositionX());
+		int cellY = POSYTOCELL((int)enemies[i]->GetPositionY());
+
+		cells[cellY][cellX]->AddEnemy(enemies[i]);
+	}*/
 
 	int ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell;
 	this->GetNinjaPosOnGrid(ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell);
@@ -241,39 +256,8 @@ void Grid::Update(DWORD dt)
 	{
 		for (int j = ninjaLCell; j <= ninjaRCell; j++)
 		{
-			cells[i][j]->ExtractTiles(curTiles);
-			cells[i][j]->ExtractGameObjects(curGameObjects);
-			//Kiểm tra với các đối tượng khác thuộc các cell lân cận
-			if (j > lCell)
-			{
-				cells[i][j - 1]->ExtractTiles(curTiles);
-				cells[i][j - 1]->ExtractGameObjects(curGameObjects);
-				if (i > bCell)
-				{
-					cells[i - 1][j - 1]->ExtractTiles(curTiles);
-					cells[i - 1][j - 1]->ExtractGameObjects(curGameObjects);
-				}
-				if (i < tCell)
-				{
-					cells[i + 1][j - 1]->ExtractTiles(curTiles);
-					cells[i + 1][j - 1]->ExtractGameObjects(curGameObjects);
-				}
-			}
-			if (j < rCell)
-			{
-				cells[i][j + 1]->ExtractTiles(curTiles);
-				cells[i][j + 1]->ExtractGameObjects(curGameObjects);
-				if (i > bCell)
-				{
-					cells[i - 1][j + 1]->ExtractTiles(curTiles);
-					cells[i - 1][j + 1]->ExtractGameObjects(curGameObjects);
-				}
-				if (i < tCell)
-				{
-					cells[i + 1][j + 1]->ExtractTiles(curTiles);
-					cells[i + 1][j + 1]->ExtractGameObjects(curGameObjects);
-				}
-			}
+			cells[i][j]->InsertTiles(curTiles);			
+			cells[i][j]->InsertEnemies(curEnemies);		
 		}
 	}
 	ninja->Update(dt);
@@ -291,7 +275,7 @@ void Grid::Render()
 	int lCell, rCell, tCell, bCell;
 	this->GetCameraPosOnGrid(lCell, rCell, tCell, bCell);
 	curTiles.clear();
-	curGameObjects.clear();
+	curEnemies.clear();
 
 
 	for (int i = bCell; i <= tCell; i++)

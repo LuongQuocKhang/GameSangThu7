@@ -14,6 +14,7 @@ Ninja::Ninja()
 	crouchingState = new NinjaSate(this, NINJA_ANI_CROUCHING);
 	climbState = new NinjaSate(this, NINJA_ANI_CLIMBING);
 	jumpattackingState = new NinjaSate(this, NINJA_ANI_JUMPING_ATTACKING);
+	jumpattackedState = new NinjaSate(this, NINJA_ANI_JUMPING_ATTACKED);
 
 	state = idleState;
 
@@ -201,6 +202,21 @@ void Ninja::LoadResources()
 	anim->AddFrame(sprite);
 
 	animations.push_back(anim);
+
+	// NINJA_ANI_JUMPING_ATTACKED
+	anim = new Animation(100);
+	for (int i = 6; i < 7; i++)
+	{
+		RECT rect;
+		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+		rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
 }
 void Ninja::SetState(State * state)
 {
@@ -209,6 +225,10 @@ void Ninja::SetState(State * state)
 State * Ninja::GetIdleState()
 {
 	return idleState;
+}
+State * Ninja::GetAttackedState()
+{
+	return jumpattackedState;
 }
 State * Ninja::GetWalkingState()
 {

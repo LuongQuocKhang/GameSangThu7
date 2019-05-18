@@ -33,7 +33,7 @@ typedef GameObject * BrickTile;
 
 typedef vector<BrickTile> BrickTileSet;
 
-const vector<int> _BrickStage_31{ 71 , 72 , 24 , 26 , 25 , 76 , 70 };
+const vector<int> _BrickStage_31{ 67 , 68 , 24 , 26 , 25 , 76 , 70 };
 const vector<int> _BrickStage_32{ 19 , 8 , 18 , 20 , 21 , 30 , 26 , 32 , 33 , 47 };
 const vector<int> _BrickStage_BOSS{ 40 , 68 , 23 , 151 , 130 , 113 , 99 , 78 , 47 , 31 , 4 };
 
