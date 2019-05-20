@@ -1,4 +1,5 @@
 ﻿#include "NinjaSate.h"
+#include "Sword.h"
 
 NinjaSate::NinjaSate(Ninja * ninja, int states)
 {
@@ -222,7 +223,12 @@ void NinjaSate::Update(DWORD dt)
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
 		vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
-		ninja->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
+
+		int direction = (ninja->IsLeft() == true) ? -1 : 1;
+		Sword * sword = Sword::GetInstance();
+		sword->SetPosition(ninja->GetPositionX() + ninja->GetWidth() * direction, ninja->GetPositionY() - 5,dt);
+
+		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
 	}
 	#pragma endregion
 

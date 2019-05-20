@@ -42,15 +42,6 @@ void GameObject::Render()
 {
 
 }
-void GameObject::DrawBoundingBox(LPDIRECT3DDEVICE9 Device_Interface, D3DCOLOR COLOR)
-{
-	D3DRECT rec;
-	rec.x1 = this->x - this->width;
-	rec.y1 = this->y;
-		rec.x2 = this->x + this->width;
-	rec.y2 = this->y + 1;
-	Device_Interface->Clear(1, &rec, D3DCLEAR_TARGET, COLOR, 0, 0);
-}
 
 LPCOLLISIONEVENT GameObject::SweptAABBEx(LPGAMEOBJECT coO)
 {
@@ -154,10 +145,9 @@ void GameObject::FilterCollision(
 
 void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, vector<LPGAMEOBJECT>& coObjects, vector<LPCOLLISIONEVENT>& coEvents)
 {
-	this->UpdateNinjaAttackingtCollider();
+	this->UpdateSwordCollider();
 	CalcPotentialNinjaAttackEnemyCollisions(enemies, coEvents);
 }
-
 void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents)
 {
 	LPGAMEOBJECT CollisionEnemy = new GameObject(0, 0, 16, 16);
@@ -175,8 +165,11 @@ void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies
 			CollisionEnemy->width = enemy->width;
 			CollisionEnemy->UpdateObjectCollider();
 
+			CollisionEnemy->collider.width = enemy->width;
+			CollisionEnemy->collider.height = enemy->height;
+
 			LPCOLLISIONEVENT e = SweptAABBEx(CollisionEnemy);
-			e->collisionID = 1;
+			e->collisionID = 0;
 
 			if (e->t >= 0 && e->t < 1.0f)
 			{
@@ -189,8 +182,6 @@ void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies
 		}
 	}
 }
-
-
 void GameObject::UpdateObjectCollider()
 {
 	collider.x = x;
@@ -198,6 +189,14 @@ void GameObject::UpdateObjectCollider()
 	collider.vx = vx;
 	collider.vy = vy;
 	collider.dt = dt;
+}
+void GameObject::UpdateSwordCollider()
+{
+	collider.x = x;
+	collider.y = y;
+	collider.dt = dt;
+	collider.width = width;
+	collider.height = height;
 }
 void GameObject::UpdateNinjaAttackingtCollider()
 {

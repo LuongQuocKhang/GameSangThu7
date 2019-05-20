@@ -24,9 +24,6 @@ typedef CollisionEvent * LPCOLLISIONEVENT;
 struct CollisionEvent
 {
 	int collisionID;
-	//0 = other objects
-	//1 = tiles
-	//.... <placeholder>
 	LPGAMEOBJECT coO;
 	float t, nx, ny;
 	CollisionEvent(float t, float nx, float ny, LPGAMEOBJECT coO = NULL) { this->t = t; this->nx = nx; this->ny = ny; this->coO = coO; }
@@ -46,7 +43,6 @@ class GameObject
 {
 
 protected:
-	//Các giá trị vị trí, tốc độ, trạng thái
 	float x;
 	float y;
 
@@ -63,10 +59,9 @@ protected:
 
 	Collider collider;
 public:
-	//Hàm đặt vị trí
 	void SetPositionX(float x) { this->x = x; }
 	void SetPositionY(float y) { this->y = y; }
-	//Hàm đặt tốc độ
+
 	void SetSpeedX(float vx) { this->vx = vx; }
 	void SetSpeedY(float vy) { this->vy = vy; }
 
@@ -86,6 +81,7 @@ public:
 	void SetCollider(Collider col) { this->collider = col; }
 
 	void UpdateObjectCollider();
+	void UpdateSwordCollider();
 	void UpdateNinjaAttackingtCollider();
 	void UpdateTileCollider();
 
@@ -124,16 +120,10 @@ public:
 		vector<Enemy *> &enemies,
 		vector<LPCOLLISIONEVENT> &coEvents);
 
-	//virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
-	void DrawBoundingBox(LPDIRECT3DDEVICE9 Device_Interface, D3DCOLOR COLOR = D3DCOLOR_XRGB(200, 200, 255));
-	//Hàm khởi tạo
 	GameObject();
 	GameObject(float x, float y, float width, float height);
-	//Hàm cập nhật
 	virtual void Update(DWORD dt);
-	//Hàm render
 	virtual void Render();
-	//Hàm hủy đối tượng
 	~GameObject();
 };
 

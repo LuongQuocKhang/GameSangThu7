@@ -44,6 +44,7 @@
     <ClCompile Include="GameComponents\RedBird.cpp" />
     <ClCompile Include="GameComponents\RedBirdState.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
+    <ClCompile Include="GameComponents\Sword.cpp" />
     <ClCompile Include="GameComponents\Viewport.cpp" />
     <ClCompile Include="GameComponents\YellowPanther.cpp" />
     <ClCompile Include="GameComponents\YellowPantherState.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="GameComponents\RedBirdState.h" />
     <ClInclude Include="GameComponents\resource.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
+    <ClInclude Include="GameComponents\Sword.h" />
     <ClInclude Include="GameComponents\YellowPanther.h" />
     <ClInclude Include="GameComponents\YellowPantherState.h" />
     <ClInclude Include="GameComponents\YellowSolider.h" />
