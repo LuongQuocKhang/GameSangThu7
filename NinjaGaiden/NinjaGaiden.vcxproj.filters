@@ -63,9 +63,6 @@
     <ClCompile Include="Ninja\ThrowingState.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
-    <ClCompile Include="Ninja\Whip.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
     <ClCompile Include="Ninja\State.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
@@ -153,9 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\Knife.h">
-      <Filter>Header Files\Ninja</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\Whip.h">
       <Filter>Header Files\Ninja</Filter>
     </ClInclude>
     <ClInclude Include="Ninja\ThrowingState.h">

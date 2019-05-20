@@ -116,8 +116,7 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 		enemy = new BrownBird(posx, posy);
 		break;
 	case YELLOWPANTHER:
-		enemy = new YellowPanther(posx, posy);
-		enemy->SetActive(false);
+		enemy = new YellowPanther(posx, posy);	
 		break;
 	case PINKWITCH:
 		enemy = new PinkWitch(posx, posy);
@@ -147,7 +146,7 @@ void Grid::LoadEnemy_Map32(int type, int posx, int posy)
 	switch (type)
 	{
 	case YELLOWSOLDIER:
-		enemy = new YellowSolider(posx, 200);
+		enemy = new YellowSolider(posx, posy);
 		break;
 	case BLOODYBIRD:
 		enemy = new BloodyBird(posx, posy);
@@ -252,14 +251,26 @@ void Grid::Update(DWORD dt)
 	//Update ninja
 	curTiles.clear();
 	curEnemies.clear();
+	
+	for (size_t i = 0; i < cells.size(); i++)
+	{
+		for (size_t j = 0; j < cells[i].size(); j++)
+		{
+			cells[i][j]->clear();
+		}
+	}
 
-	/*for (int i = 0; i < enemies.size(); i++)
+
+	for (int i = 0; i < enemies.size(); i++)
 	{
 		int cellX = POSXTOCELL((int)enemies[i]->GetPositionX());
 		int cellY = POSYTOCELL((int)enemies[i]->GetPositionY());
 
-		cells[cellY][cellX]->AddEnemy(enemies[i]);
-	}*/
+		if (enemies[i]->Isdeath() == false && enemies[i]->IsActive() == true )
+		{
+			cells[cellY][cellX]->AddEnemy(enemies[i]);
+		}
+	}
 
 	int ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell;
 	this->GetNinjaPosOnGrid(ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell);
@@ -267,11 +278,12 @@ void Grid::Update(DWORD dt)
 	{
 		for (int j = ninjaLCell; j <= ninjaRCell; j++)
 		{
-			cells[i][j]->InsertTiles(curTiles);			
+			cells[i][j]->InsertTiles(curTiles);		
 			cells[i][j]->InsertEnemies(curEnemies);		
 		}
 	}
 	ninja->Update(dt);
+	
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
 		enemies[i]->Update(dt);
@@ -283,7 +295,6 @@ void Grid::Render()
 	this->GetCameraPosOnGrid(lCell, rCell, tCell, bCell);
 	curTiles.clear();
 	curEnemies.clear();
-
 
 	for (int i = bCell; i <= tCell; i++)
 	{

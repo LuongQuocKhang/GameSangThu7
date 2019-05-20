@@ -1,8 +1,6 @@
 ﻿#pragma once
 
 #include "GameObject.h"
-
-#include "Whip.h"
 #include "Knife.h"
 #include "State.h"
 #include "Constants.h"
@@ -81,6 +79,11 @@ public:
 	void Climb();
 	void JumpAttack();
 
+	void SetColliderDemension(int width, int height)
+	{
+		this->collider.width = width;
+		this->collider.height = height;
+	}
 	void CreateThrownWeapon();
 	void TurnLeft();
 	void TurnRight();

@@ -52,9 +52,10 @@ void YellowPantherState::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true && enemy->IsActive() == true)
 	{
-		if (enemy->GetPositionY() < 0)
+		if (enemy->GetPositionY() < 35)
 		{
 			enemy->SetActive(false);
+			enemy->SetStatus(true);
 			return;
 		}
 		vector<LPGAMEOBJECT> coObjects;

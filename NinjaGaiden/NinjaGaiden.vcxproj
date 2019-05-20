@@ -56,7 +56,6 @@
     <ClCompile Include="Ninja\State.cpp" />
     <ClCompile Include="Ninja\Subweapon.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
-    <ClCompile Include="Ninja\Whip.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +96,6 @@
     <ClInclude Include="Ninja\State.h" />
     <ClInclude Include="Ninja\Subweapon.h" />
     <ClInclude Include="Ninja\ThrowingState.h" />
-    <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
   </ItemGroup>

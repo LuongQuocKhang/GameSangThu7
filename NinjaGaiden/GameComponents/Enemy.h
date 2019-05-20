@@ -19,6 +19,8 @@ protected:
 	int damage = 5;
 
 	EnemyType Type;
+
+	bool death = false;
 public:
 	Enemy();
 	void LoadResources();
@@ -46,6 +48,14 @@ public:
 	bool IsActive()
 	{
 		return this->active;
+	}
+	void SetStatus(bool death)
+	{
+		death = death;
+	}
+	bool Isdeath()
+	{
+		return this->death;
 	}
 	//Hàm cập nhật
 	void Update(DWORD dt) override;

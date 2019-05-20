@@ -154,7 +154,7 @@ void GameObject::FilterCollision(
 
 void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, vector<LPGAMEOBJECT>& coObjects, vector<LPCOLLISIONEVENT>& coEvents)
 {
-	this->UpdateObjectCollider();
+	this->UpdateNinjaAttackingtCollider();
 	CalcPotentialNinjaAttackEnemyCollisions(enemies, coEvents);
 }
 

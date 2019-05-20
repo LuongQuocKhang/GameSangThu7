@@ -164,7 +164,6 @@ void NinjaSate::Attack()
 void NinjaSate::Walk()
 {
 	int state = this->states;
-
 	switch (state)
 	{
 	case NINJA_ANI_STANDING_ATTACKING:

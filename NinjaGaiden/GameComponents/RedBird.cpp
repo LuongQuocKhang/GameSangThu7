@@ -39,6 +39,9 @@ RedBird::RedBird(int posx , int posy)
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	width = RED_BIRD_SPRITE_WIDTH;
+	height = RED_BIRD_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;

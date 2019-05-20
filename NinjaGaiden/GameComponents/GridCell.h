@@ -17,7 +17,7 @@ public:
 
 	void AddTile(Tile * tile) { this->tiles.push_back(tile); }
 	void AddEnemy(Enemy * enemy) { this->enemies.push_back(enemy); }
-
+	void clear() { enemies.clear(); }
 	int GetPositionX() { return iX * GRID_SIZE; }
 	int GetPositionY() { return (iY + 1) * GRID_SIZE; }
 
