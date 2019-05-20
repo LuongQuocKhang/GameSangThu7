@@ -302,6 +302,7 @@ void Ninja::Update(DWORD dt)
 	if (this->GetPositionX() >= 400 && this->GetPositionX() <= 450 && PantherAppear == false)
 	{
 		YellowPanther * enemy = new YellowPanther(220, 100);
+		enemy->SetActive(true);
 		Grid::GetInstance()->AddEnemy(enemy);
 		PantherAppear = true;
 	}
