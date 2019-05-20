@@ -40,7 +40,14 @@ void BrownBirdState::Walk()
 
 void BrownBirdState::Update(DWORD dt)
 {
-
+	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
+	{
+		enemy->SetActive(true);
+	}
+	else
+	{
+		enemy->SetActive(false);
+	}
 }
 
 void BrownBirdState::Render()

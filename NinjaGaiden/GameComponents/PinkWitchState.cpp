@@ -1,4 +1,5 @@
 #include "PinkWitchState.h"
+#include "Grid.h"
 
 PinkWitchState::PinkWitchState(PinkWitch * enemy, int enemystate)
 {
@@ -36,19 +37,56 @@ void PinkWitchState::Attack()
 
 void PinkWitchState::Walk()
 {
-	/*switch (enemystate)
-	{
-	case ENEMY_ANI_WALKING:
-	{
-		enemy->SetSpeedX(ENEMY_WALKING_SPEED * (enemy->IsLeft() ? -1 : 1));
-	}
-	break;
-	}*/
 }
 
 void PinkWitchState::Update(DWORD dt)
 {
+	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
+	{
+		enemy->SetActive(true);
+		vector<LPGAMEOBJECT> coObjects;
+		vector<LPCOLLISIONEVENT> coEvents;
+		vector<LPCOLLISIONEVENT> coEventsResult;
 
+		vector<Tile *> tiles = Grid::GetInstance()->GetCollisionTiles();
+
+		enemy->SetSpeedY(enemy->GetSpeedY() - NINJA_GRAVITY);
+
+		coEvents.clear();
+		enemy->SetDt(dt);
+		enemy->CalcPotentialCollisions(tiles, coObjects, coEvents);
+
+		if (coEvents.size() == 0)
+		{
+			float moveX = trunc(enemy->GetSpeedX()* dt);
+			float moveY = trunc(enemy->GetSpeedY()* dt);
+
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
+		}
+		else
+		{
+			float min_tx, min_ty, nx = 0, ny;
+
+			enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+
+			int moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
+			int moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
+
+			enemy->SetPositionX((int)(enemy->GetPositionX() + moveX));
+			enemy->SetPositionY((int)(enemy->GetPositionY() + moveY));
+
+
+			if (nx != 0) enemy->SetSpeedX(0);
+			if (ny != 0) enemy->SetSpeedY(0);
+		}
+		for (UINT i = 0; i < coEvents.size(); i++)
+			delete coEvents[i];
+	}
+	else
+	{
+		enemy->SetActive(false);
+	}
 }
 
 void PinkWitchState::Render()
@@ -58,9 +96,7 @@ void PinkWitchState::Render()
 	{
 		spriteEnemyData.width = PINK_WITCH_SPRITE_WIDTH;
 		spriteEnemyData.height = PINK_WITCH_SPRITE_HEIGHT;
-		//spriteEnemyData.x = 200;
 		spriteEnemyData.x = enemy->GetPositionX();
-		//spriteEnemyData.y = 60;
 		spriteEnemyData.y = enemy->GetPositionY();
 
 
@@ -79,8 +115,6 @@ void PinkWitchState::Render()
 	case  PINK_WITCH_ANI_WALKING:
 	{
 		enemy->GetAnimationsList()[PINK_WITCH_ANI_WALKING]->Render(spriteEnemyData);
-
-		/*enemy->Walk();*/
 	}
 	break;
 	}

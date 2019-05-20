@@ -222,7 +222,7 @@ void NinjaSate::Update(DWORD dt)
 	#pragma region xử lý khi chém vào quái
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
-		vector<Enemy * > enemies = Grid::GetInstance()->GetEnemies();
+		vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
 		ninja->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
 	}
 	#pragma endregion

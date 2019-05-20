@@ -5,7 +5,7 @@
 #include "RedBird.h"
 
 class RedBirdState :
-	public State
+	public EnemyState
 {
 private:
 	RedBird* enemy;

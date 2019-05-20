@@ -266,7 +266,7 @@ void Game::Render()
 		grid->Render();
 
 		spriteHandler->End();
-		
+
 		d3ddv->EndScene();
 	}
 

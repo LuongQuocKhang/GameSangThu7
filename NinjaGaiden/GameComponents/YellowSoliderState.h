@@ -5,7 +5,7 @@
 #include "YellowSolider.h"
 
 class YellowSoliderState :
-	public State
+	public EnemyState
 {
 private:
 	YellowSolider* enemy;

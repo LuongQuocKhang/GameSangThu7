@@ -54,6 +54,13 @@ Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
 			else
 				curTile.type = ObjectType::DEFAULT;
 		}
+		else if (Stage::STAGE_BOSS == stage)
+		{
+			if (find(_BrickStage_BOSS.begin(), _BrickStage_BOSS.end(), curTile.tileId) != _BrickStage_BOSS.end())
+				curTile.type = ObjectType::BRICK;
+			else
+				curTile.type = ObjectType::DEFAULT;
+		}
 		result.push_back(curTile);
 		line.erase(0, pos + delimiter.length());
 		rowNum++;

@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BloodyBird.cpp" />
-    <ClCompile Include="BloodyBirdState.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
+    <ClCompile Include="GameComponents\BloodyBird.cpp" />
+    <ClCompile Include="GameComponents\BloodyBirdState.cpp" />
     <ClCompile Include="GameComponents\BrownBird.cpp" />
     <ClCompile Include="GameComponents\BrownBirdState.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
@@ -30,6 +30,10 @@
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
+    <ClCompile Include="GameComponents\GreenCanonSoldier.cpp" />
+    <ClCompile Include="GameComponents\GreenCanonSoldierState.cpp" />
+    <ClCompile Include="GameComponents\GreenRunningSoldier.cpp" />
+    <ClCompile Include="GameComponents\GreenRunningSoldierState.cpp" />
     <ClCompile Include="GameComponents\GreenSolider.cpp" />
     <ClCompile Include="GameComponents\GreenSoliderState.cpp" />
     <ClCompile Include="GameComponents\Grid.cpp" />
@@ -45,10 +49,6 @@
     <ClCompile Include="GameComponents\YellowPantherState.cpp" />
     <ClCompile Include="GameComponents\YellowSolider.cpp" />
     <ClCompile Include="GameComponents\YellowSoliderState.cpp" />
-    <ClCompile Include="GreenCanonSoldier.cpp" />
-    <ClCompile Include="GreenCanonSoldierState.cpp" />
-    <ClCompile Include="GreenRunningSoldier.cpp" />
-    <ClCompile Include="GreenRunningSoldierState.cpp" />
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
@@ -60,9 +60,9 @@
     <ClCompile Include="GameComponents\TiledMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BloodyBird.h" />
-    <ClInclude Include="BloodyBirdState.h" />
     <ClInclude Include="GameComponents\Animation.h" />
+    <ClInclude Include="GameComponents\BloodyBird.h" />
+    <ClInclude Include="GameComponents\BloodyBirdState.h" />
     <ClInclude Include="GameComponents\BrownBird.h" />
     <ClInclude Include="GameComponents\BrownBirdState.h" />
     <ClInclude Include="GameComponents\Constants.h" />
@@ -72,6 +72,10 @@
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />
+    <ClInclude Include="GameComponents\GreenCanonSoldier.h" />
+    <ClInclude Include="GameComponents\GreenCanonSoldierState.h" />
+    <ClInclude Include="GameComponents\GreenRunningSoldier.h" />
+    <ClInclude Include="GameComponents\GreenRunningSoldierState.h" />
     <ClInclude Include="GameComponents\GreenSolider.h" />
     <ClInclude Include="GameComponents\GreenSoliderState.h" />
     <ClInclude Include="GameComponents\Grid.h" />
@@ -87,10 +91,6 @@
     <ClInclude Include="GameComponents\YellowPantherState.h" />
     <ClInclude Include="GameComponents\YellowSolider.h" />
     <ClInclude Include="GameComponents\YellowSoliderState.h" />
-    <ClInclude Include="GreenCanonSoldier.h" />
-    <ClInclude Include="GreenCanonSoldierState.h" />
-    <ClInclude Include="GreenRunningSoldier.h" />
-    <ClInclude Include="GreenRunningSoldierState.h" />
     <ClInclude Include="Ninja\Knife.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\NinjaSate.h" />

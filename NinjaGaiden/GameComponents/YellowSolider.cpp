@@ -38,7 +38,7 @@ YellowSolider::YellowSolider(int posx , int posy )
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = 0;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 

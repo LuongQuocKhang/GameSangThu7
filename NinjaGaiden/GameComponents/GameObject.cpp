@@ -42,6 +42,15 @@ void GameObject::Render()
 {
 
 }
+void GameObject::DrawBoundingBox(LPDIRECT3DDEVICE9 Device_Interface, D3DCOLOR COLOR)
+{
+	D3DRECT rec;
+	rec.x1 = this->x - this->width;
+	rec.y1 = this->y;
+		rec.x2 = this->x + this->width;
+	rec.y2 = this->y + 1;
+	Device_Interface->Clear(1, &rec, D3DCLEAR_TARGET, COLOR, 0, 0);
+}
 
 LPCOLLISIONEVENT GameObject::SweptAABBEx(LPGAMEOBJECT coO)
 {

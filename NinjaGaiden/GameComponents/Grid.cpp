@@ -70,7 +70,17 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 					type = token;
 				}
 				else if (rowNum == Column::PosX) posx = token;
-				else if (rowNum == Column::PosY) posy = MAP_HEIGHT -token;
+				else if (rowNum == Column::PosY)
+				{
+					if (type == YELLOWSOLDIER)
+					{
+						posy = MAP_HEIGHT - token + 50;
+					}
+					else
+					{
+						posy = MAP_HEIGHT - token;
+					}
+				}
 
 				line.erase(0, pos + 1);
 				rowNum++;
@@ -97,7 +107,7 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 	switch (type)
 	{
 	case YELLOWSOLDIER:
-		enemy = new YellowSolider(posx, 100);
+		enemy = new YellowSolider(posx, posy);
 		break;
 	case REDBIRD:
 		enemy = new RedBird(posx, posy);
@@ -107,6 +117,7 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 		break;
 	case YELLOWPANTHER:
 		enemy = new YellowPanther(posx, posy);
+		enemy->SetActive(false);
 		break;
 	case PINKWITCH:
 		enemy = new PinkWitch(posx, posy);
@@ -263,11 +274,7 @@ void Grid::Update(DWORD dt)
 	ninja->Update(dt);
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
-		//if (Viewport::GetInstance()->IsEnemyInCamera(enemies[i]))
-		if (enemies[i]->IsActive() == true)
-		{
-			enemies[i]->Update(dt);
-		}
+		enemies[i]->Update(dt);
 	}
 }
 void Grid::Render()

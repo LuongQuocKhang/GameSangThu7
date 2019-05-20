@@ -4,6 +4,7 @@
 Enemy::Enemy()
 {
 	//__instance = NULL;
+	SetActive(false);
 	LoadResources();
 }
 void Enemy::LoadResources()

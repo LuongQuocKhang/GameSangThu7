@@ -104,7 +104,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define YELLOW_SOLDIER_WALKING_SPEED		0.025f
-#define YELLOW_SOLDIER_JUMP_SPEED_Y		0.4f
 #define YELLOW_SOLDIER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY YELLOW SOLDIER
 #define YELLOW_SOLDIER_ANI_IDLE					0
@@ -119,7 +118,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define GREEN_CANON_SOLDIER_WALKING_SPEED		0.025f
-#define GREEN_CANON_SOLDIER_JUMP_SPEED_Y		0.4f
 #define GREEN_CANON_SOLDIER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY GREEN CANON SOLDIER
 #define GREEN_CANON_SOLDIER_ANI_IDLE					0
@@ -135,7 +133,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define GREEN_RUNNING_SOLDIER_WALKING_SPEED		0.025f
-#define GREEN_RUNNING_SOLDIER_JUMP_SPEED_Y		0.4f
 #define GREEN_RUNNING_SOLDIER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY GREEN RUNNING SOLDIER
 #define GREEN_RUNNING_SOLDIER_ANI_IDLE					0
@@ -151,7 +148,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define BROWN_BIRD_WALKING_SPEED		0.025f
-#define BROWN_BIRD_JUMP_SPEED_Y		0.4f
 #define BROWN_BIRD_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY BROWN BIRD
 #define BROWN_BIRD_ANI_IDLE					0
@@ -167,7 +163,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define BLOODY_BIRD_WALKING_SPEED		0.025f
-#define BLOODY_BIRD_JUMP_SPEED_Y		0.4f
 #define BLOODY_BIRD_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY BLOODY BIRD
 #define BLOODY_BIRD_ANI_IDLE					0
@@ -183,7 +178,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define RED_BIRD_WALKING_SPEED		0.025f
-#define RED_BIRD_JUMP_SPEED_Y		0.4f
 #define RED_BIRD_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY RED BIRD
 #define RED_BIRD_ANI_IDLE					0
@@ -198,8 +192,7 @@ enum EnemyType {
 //
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
-#define YELLOW_PANTHER_WALKING_SPEED		0.065f
-#define YELLOW_PANTHER_JUMP_SPEED_Y		0.4f
+#define YELLOW_PANTHER_WALKING_SPEED		0.1f
 #define YELLOW_PANTHER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY YELLOW PANTHER
 #define YELLOW_PANTHER_ANI_IDLE					0
@@ -210,12 +203,11 @@ enum EnemyType {
 #define YELLOW_PANTHER_TEXTURE_COLUMNS 2
 #define YELLOW_PANTHER_TEXTURE_ROWS 1
 #define YELLOW_PANTHER_SPRITE_WIDTH 37
-#define YELLOW_PANTHER_SPRITE_HEIGHT 40
+#define YELLOW_PANTHER_SPRITE_HEIGHT 25
 //
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define	GREEN_SOLDIER_WALKING_SPEED		0.025f
-#define	GREEN_SOLDIER_JUMP_SPEED_Y		0.4f
 #define	GREEN_SOLDIER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY GREEN SOLDIER
 #define	GREEN_SOLDIER_ANI_IDLE					0
@@ -231,7 +223,6 @@ enum EnemyType {
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define	PINK_WITCH_WALKING_SPEED		0.025f
-#define	PINK_WITCH_JUMP_SPEED_Y		0.4f
 #define	PINK_WITCH_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY PINK WITCH
 #define	PINK_WITCH_ANI_IDLE					0

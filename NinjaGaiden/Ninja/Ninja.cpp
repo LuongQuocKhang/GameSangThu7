@@ -301,7 +301,8 @@ void Ninja::Update(DWORD dt)
 {
 	if (this->GetPositionX() >= 400 && this->GetPositionX() <= 450 && PantherAppear == false)
 	{
-		Grid::GetInstance()->AddEnemy(new YellowPanther(220, 80));
+		YellowPanther * enemy = new YellowPanther(220, 100);
+		Grid::GetInstance()->AddEnemy(enemy);
 		PantherAppear = true;
 	}
 	if (this->GetSpeedX() > 0 && this->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
@@ -313,20 +314,22 @@ void Ninja::Update(DWORD dt)
 			this->SetPositionX(0);
 			if (STAGE_32 == Game::GetInstance()->GetStage())
 			{
+				Viewport::GetInstance()->Reset();
 				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
 				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_32));
 				Grid::SetNewGrid();
 				Game::GetInstance()->SetGrid(Grid::GetInstance());
-				Viewport::GetInstance()->Reset();
 				this->SetSpeedY(0.0f);
 			}
 			else if (STAGE_BOSS == Game::GetInstance()->GetStage())
 			{
+				Viewport::GetInstance()->Reset();
 				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
 				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_BOSS));
 				Grid::SetNewGrid();
 				Game::GetInstance()->SetGrid(Grid::GetInstance());
-				Viewport::GetInstance()->Reset();
+				this->SetPositionX(200);
+				this->SetPositionX(100);
 				this->SetSpeedY(0.0f);
 			}
 		}

@@ -125,6 +125,7 @@ public:
 		vector<LPCOLLISIONEVENT> &coEvents);
 
 	//virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
+	void DrawBoundingBox(LPDIRECT3DDEVICE9 Device_Interface, D3DCOLOR COLOR = D3DCOLOR_XRGB(200, 200, 255));
 	//Hàm khởi tạo
 	GameObject();
 	GameObject(float x, float y, float width, float height);

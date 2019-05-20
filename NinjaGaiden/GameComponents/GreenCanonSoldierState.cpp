@@ -40,7 +40,14 @@ void GreenCanonSoldierState::Walk()
 
 void GreenCanonSoldierState::Update(DWORD dt)
 {
-
+	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
+	{
+		enemy->SetActive(true);
+	}
+	else
+	{
+		enemy->SetActive(false);
+	}
 }
 
 void GreenCanonSoldierState::Render()

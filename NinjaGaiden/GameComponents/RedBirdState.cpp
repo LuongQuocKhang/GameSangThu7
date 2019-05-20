@@ -36,19 +36,18 @@ void RedBirdState::Attack()
 
 void RedBirdState::Walk()
 {
-	/*switch (enemystate)
-	{
-	case ENEMY_ANI_WALKING:
-	{
-		enemy->SetSpeedX(ENEMY_WALKING_SPEED * (enemy->IsLeft() ? -1 : 1));
-	}
-	break;
-	}*/
 }
 
 void RedBirdState::Update(DWORD dt)
 {
-
+	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
+	{
+		enemy->SetActive(true);
+	}
+	else
+	{
+		enemy->SetActive(false);
+	}
 }
 
 void RedBirdState::Render()

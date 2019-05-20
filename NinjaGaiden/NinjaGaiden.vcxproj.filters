@@ -132,22 +132,22 @@
     <ClCompile Include="GameComponents\BrownBirdState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="BloodyBird.cpp">
+    <ClCompile Include="GameComponents\BloodyBird.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="BloodyBirdState.cpp">
+    <ClCompile Include="GameComponents\BloodyBirdState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GreenCanonSoldier.cpp">
+    <ClCompile Include="GameComponents\GreenCanonSoldier.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GreenCanonSoldierState.cpp">
+    <ClCompile Include="GameComponents\GreenCanonSoldierState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GreenRunningSoldier.cpp">
+    <ClCompile Include="GameComponents\GreenRunningSoldier.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GreenRunningSoldierState.cpp">
+    <ClCompile Include="GameComponents\GreenRunningSoldierState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -254,22 +254,22 @@
     <ClInclude Include="GameComponents\YellowSoliderState.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="BloodyBird.h">
+    <ClInclude Include="GameComponents\BloodyBird.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="BloodyBirdState.h">
+    <ClInclude Include="GameComponents\BloodyBirdState.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GreenCanonSoldier.h">
+    <ClInclude Include="GameComponents\GreenCanonSoldier.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GreenCanonSoldierState.h">
+    <ClInclude Include="GameComponents\GreenCanonSoldierState.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GreenRunningSoldier.h">
+    <ClInclude Include="GameComponents\GreenRunningSoldier.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GreenRunningSoldierState.h">
+    <ClInclude Include="GameComponents\GreenRunningSoldierState.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,7 @@
 #include "PinkWitch.h"
 
 class PinkWitchState :
-	public State
+	public EnemyState
 {
 private:
 	PinkWitch* enemy;

@@ -10,6 +10,7 @@ private:
 	Enemy* enemy;
 	int enemystate;
 public:
+	EnemyState(){};
 	EnemyState(Enemy* enemy, int enemystates);
 	~EnemyState();
 

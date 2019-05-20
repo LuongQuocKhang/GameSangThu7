@@ -7,8 +7,8 @@ GreenCanonSoldier::GreenCanonSoldier()
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new GreenCanonSoldierState(this, BLOODY_BIRD_ANI_IDLE);
-	walkingState = new GreenCanonSoldierState(this, BLOODY_BIRD_ANI_WALKING);
+	idleState = new GreenCanonSoldierState(this, GREEN_CANON_SOLDIER_ANI_IDLE);
+	walkingState = new GreenCanonSoldierState(this, GREEN_CANON_SOLDIER_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
@@ -20,8 +20,8 @@ GreenCanonSoldier::GreenCanonSoldier()
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;
-	collider.width = BLOODY_BIRD_SPRITE_WIDTH;
-	collider.height = BLOODY_BIRD_SPRITE_HEIGHT;
+	collider.width = GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+	collider.height = GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
 
 	Type = EnemyType::BLOODYBIRD;
 }
@@ -30,8 +30,8 @@ GreenCanonSoldier::GreenCanonSoldier(int posx, int posy)
 	__instance = NULL;
 	LoadResources();
 
-	idleState = new GreenCanonSoldierState(this, BLOODY_BIRD_ANI_IDLE);
-	walkingState = new GreenCanonSoldierState(this, BLOODY_BIRD_ANI_WALKING);
+	idleState = new GreenCanonSoldierState(this, GREEN_CANON_SOLDIER_ANI_IDLE);
+	walkingState = new GreenCanonSoldierState(this, GREEN_CANON_SOLDIER_ANI_WALKING);
 	state = walkingState;
 
 	this->isLeft = true;
@@ -43,8 +43,8 @@ GreenCanonSoldier::GreenCanonSoldier(int posx, int posy)
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;
-	collider.width = BLOODY_BIRD_SPRITE_WIDTH;
-	collider.height = BLOODY_BIRD_SPRITE_HEIGHT;
+	collider.width = GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+	collider.height = GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
 
 	Type = EnemyType::BLOODYBIRD;
 }
@@ -55,11 +55,11 @@ void GreenCanonSoldier::LoadResources()
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i % BLOODY_BIRD_TEXTURE_COLUMNS) * BLOODY_BIRD_SPRITE_WIDTH;
-		rect.right = rect.left + BLOODY_BIRD_SPRITE_WIDTH;
-		rect.top = (i / BLOODY_BIRD_TEXTURE_COLUMNS) * BLOODY_BIRD_SPRITE_HEIGHT;
-		rect.bottom = rect.top + BLOODY_BIRD_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(BLOODY_BIRD_TEXTURE_LOCATION, rect, BLOODY_BIRD_TEXTURE_TRANS_COLOR);
+		rect.left = (i % GREEN_CANON_SOLDIER_TEXTURE_COLUMNS) * GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+		rect.right = rect.left + GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+		rect.top = (i / GREEN_CANON_SOLDIER_TEXTURE_COLUMNS) * GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
+		rect.bottom = rect.top + GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(GREEN_CANON_SOLDIER_TEXTURE_LOCATION, rect, GREEN_CANON_SOLDIER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -69,11 +69,11 @@ void GreenCanonSoldier::LoadResources()
 	for (int i = 0; i < 2; i++)
 	{
 		RECT rect;
-		rect.left = (i % BLOODY_BIRD_TEXTURE_COLUMNS) * BLOODY_BIRD_SPRITE_WIDTH;
-		rect.right = rect.left + BLOODY_BIRD_SPRITE_WIDTH;
-		rect.top = (i / BLOODY_BIRD_TEXTURE_COLUMNS) * BLOODY_BIRD_SPRITE_HEIGHT;
-		rect.bottom = rect.top + BLOODY_BIRD_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(BLOODY_BIRD_TEXTURE_LOCATION, rect, BLOODY_BIRD_TEXTURE_TRANS_COLOR);
+		rect.left = (i % GREEN_CANON_SOLDIER_TEXTURE_COLUMNS) * GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+		rect.right = rect.left + GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+		rect.top = (i / GREEN_CANON_SOLDIER_TEXTURE_COLUMNS) * GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
+		rect.bottom = rect.top + GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(GREEN_CANON_SOLDIER_TEXTURE_LOCATION, rect, GREEN_CANON_SOLDIER_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}

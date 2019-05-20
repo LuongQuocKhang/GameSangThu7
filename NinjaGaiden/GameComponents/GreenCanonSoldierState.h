@@ -5,7 +5,7 @@
 #include "GreenCanonSoldier.h"
 
 class GreenCanonSoldierState :
-	public State
+	public EnemyState
 {
 private:
 	GreenCanonSoldier* enemy;

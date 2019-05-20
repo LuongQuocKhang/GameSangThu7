@@ -12,7 +12,7 @@ PinkWitch::PinkWitch()
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = -0.075f;
 	this->SetPositionX(450);
 	this->SetPositionY(65);
 
@@ -36,7 +36,7 @@ PinkWitch::PinkWitch(int posx , int posy)
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = -0.075f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
@@ -90,17 +90,11 @@ void PinkWitch::Walk()
 {
 	state->Walk();
 }
-//Hàm c?p nh?t
 void PinkWitch::Update(DWORD dt)
 {
 	state->Update(dt);
-	/*this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 0)
-	{
-		this->TurnRight();
-	}*/
 }
-//Hàm render
+
 void PinkWitch::Render()
 {
 	state->Render();
