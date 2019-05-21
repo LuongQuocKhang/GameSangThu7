@@ -61,7 +61,7 @@ void PinkWitchState::Update(DWORD dt)
 			float moveX = trunc(enemy->GetSpeedX()* dt);
 			float moveY = trunc(enemy->GetSpeedY()* dt);
 
-			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			//enemy->SetPositionX(enemy->GetPositionX() + moveX);
 			enemy->SetPositionY(enemy->GetPositionY() + moveY);
 		}
 		else
@@ -73,7 +73,7 @@ void PinkWitchState::Update(DWORD dt)
 			int moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
 			int moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
 
-			enemy->SetPositionX((int)(enemy->GetPositionX() + moveX));
+			//enemy->SetPositionX((int)(enemy->GetPositionX() + moveX));
 			enemy->SetPositionY((int)(enemy->GetPositionY() + moveY));
 
 
@@ -98,8 +98,6 @@ void PinkWitchState::Render()
 		spriteEnemyData.height = PINK_WITCH_SPRITE_HEIGHT;
 		spriteEnemyData.x = enemy->GetPositionX();
 		spriteEnemyData.y = enemy->GetPositionY();
-
-
 		spriteEnemyData.scale = 1;
 		spriteEnemyData.angle = 0;
 		spriteEnemyData.isLeft = enemy->IsLeft();

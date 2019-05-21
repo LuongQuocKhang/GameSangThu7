@@ -40,6 +40,9 @@ PinkWitch::PinkWitch(int posx , int posy)
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	width = PINK_WITCH_SPRITE_WIDTH;
+	height = PINK_WITCH_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;

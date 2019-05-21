@@ -126,6 +126,9 @@ void Grid::LoadEnemy(int type , int posx , int posy)
 	case GREENRUNNINGSOLDIER:
 		enemy = new GreenRunningSoldier(posx, posy);
 		break;
+	case BOSS:
+		enemy = new Boss(posx, posy);
+		break;
 	default:
 		break;
 	}
