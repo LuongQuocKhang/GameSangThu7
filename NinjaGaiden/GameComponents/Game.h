@@ -15,6 +15,7 @@
 #include "YellowPanther.h"
 #include "GreenSolider.h"
 #include "PinkWitch.h"
+#include "Boss.h"
 
 #include <chrono>
 
@@ -34,15 +35,6 @@ class Game
 	Graphics * graphics;
 
 	Ninja * ninja;
-	YellowSolider * enemy;
-	GreenCanonSoldier * greencanonsoldier;
-	GreenRunningSoldier * greenrunningsoldier;
-	BrownBird * brownbird;
-	BloodyBird * bloodybird;
-	RedBird * redbird;
-	YellowPanther * yellowpanther;
-	GreenSolider * greensolider;
-	PinkWitch * pinkwitch;
 
 	TiledMap * tiledMap;
 	Viewport * viewport;

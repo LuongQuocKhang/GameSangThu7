@@ -181,7 +181,21 @@ void Grid::LoadEnemy_Map32(int type, int posx, int posy)
 }
 void Grid::LoadEnemy_MapBOSS(int type, int posx, int posy)
 {
+	Enemy * enemy = NULL;
+	switch (type)
+	{
+	case BOSS:
+		enemy = new Boss(posx, posy);
+		break;
+	}
+	if (enemy != NULL)
+	{
+		int cellX = POSXTOCELL(posx);
+		int cellY = POSYTOCELL(posy);
 
+		cells[cellY][cellX]->AddEnemy(enemy);
+		enemies.push_back(enemy);
+	}
 }
 
 

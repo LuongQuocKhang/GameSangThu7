@@ -22,6 +22,8 @@
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\BloodyBird.cpp" />
     <ClCompile Include="GameComponents\BloodyBirdState.cpp" />
+    <ClCompile Include="GameComponents\Boss.cpp" />
+    <ClCompile Include="GameComponents\BossState.cpp" />
     <ClCompile Include="GameComponents\BrownBird.cpp" />
     <ClCompile Include="GameComponents\BrownBirdState.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
@@ -63,6 +65,8 @@
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\BloodyBird.h" />
     <ClInclude Include="GameComponents\BloodyBirdState.h" />
+    <ClInclude Include="GameComponents\Boss.h" />
+    <ClInclude Include="GameComponents\BossState.h" />
     <ClInclude Include="GameComponents\BrownBird.h" />
     <ClInclude Include="GameComponents\BrownBirdState.h" />
     <ClInclude Include="GameComponents\Constants.h" />

@@ -23,7 +23,7 @@ GreenCanonSoldier::GreenCanonSoldier()
 	collider.width = GREEN_CANON_SOLDIER_SPRITE_WIDTH;
 	collider.height = GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
 
-	Type = EnemyType::BLOODYBIRD;
+	Type = EnemyType::GREENCANONSOLDIER;
 }
 GreenCanonSoldier::GreenCanonSoldier(int posx, int posy)
 {
@@ -46,7 +46,7 @@ GreenCanonSoldier::GreenCanonSoldier(int posx, int posy)
 	collider.width = GREEN_CANON_SOLDIER_SPRITE_WIDTH;
 	collider.height = GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
 
-	Type = EnemyType::BLOODYBIRD;
+	Type = EnemyType::GREENCANONSOLDIER;
 }
 void GreenCanonSoldier::LoadResources()
 {
