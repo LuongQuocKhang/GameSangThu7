@@ -46,7 +46,7 @@ GreenRunningSoldier::GreenRunningSoldier(int posx, int posy)
 	collider.width = GREEN_RUNNING_SOLDIER_SPRITE_WIDTH;
 	collider.height = GREEN_RUNNING_SOLDIER_SPRITE_HEIGHT;
 
-	Type = EnemyType::BLOODYBIRD;
+	Type = EnemyType::GREENRUNNINGSOLDIER;
 }
 void GreenRunningSoldier::LoadResources()
 {

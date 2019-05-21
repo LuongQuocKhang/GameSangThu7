@@ -50,7 +50,8 @@ enum EnemyType {
 	GREENSOLDIER,
 	BLOODYBIRD,
 	GREENCANONSOLDIER,
-	GREENRUNNINGSOLDIER
+	GREENRUNNINGSOLDIER,
+	BOSS
 };
 //TiledMap
 //
@@ -174,6 +175,21 @@ enum EnemyType {
 #define BLOODY_BIRD_TEXTURE_ROWS 1
 #define BLOODY_BIRD_SPRITE_WIDTH 20
 #define BLOODY_BIRD_SPRITE_HEIGHT 30
+//
+
+//Giá trị tốc độ đi, tốc độ nhảy, trọng lực
+#define BOSS_WALKING_SPEED		0.025f
+#define BOSS_GRAVITY			0.025f
+//Các số để chạy animation của ENEMY BOSS
+#define BOSS_ANI_IDLE					0
+#define BOSS_ANI_WALKING 				1
+
+#define BOSS_TEXTURE_LOCATION L"Resources\\Enemy\\BOSS.png"
+#define BOSS_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(255, 0, 255)
+#define BOSS_TEXTURE_COLUMNS 2
+#define BOSS_TEXTURE_ROWS 1
+#define BOSS_SPRITE_WIDTH 50
+#define BOSS_SPRITE_HEIGHT 70
 //
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
