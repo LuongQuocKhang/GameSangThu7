@@ -37,9 +37,7 @@ private:
 
 	void LoadEnemy(LPCWSTR filePath, Stage gamestage);
 
-	void LoadEnemy_Map31(int type, int posx, int posy);
-	void LoadEnemy_Map32(int type, int posx, int posy);
-	void LoadEnemy_MapBOSS(int type, int posx, int posy);
+	void LoadEnemy(int type, int posx, int posy);
 	Grid();
 
 public:

@@ -53,6 +53,9 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 	ifstream tilesInfo;
 	DebugOut(L"filepath: %s\n", filePath);
 	tilesInfo.open(filePath);
+
+	int mapheight = TiledMap::GetInstance()->GetHeight();
+
 	string line;
 	int token;
 	if (tilesInfo.is_open())
@@ -74,34 +77,24 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 				{
 					if (type == YELLOWSOLDIER)
 					{
-						posy = MAP_HEIGHT - token + 50;
+						posy = mapheight - token + 50;
 					}
 					else
 					{
-						posy = MAP_HEIGHT - token;
+						posy = mapheight - token;
 					}
 				}
 
 				line.erase(0, pos + 1);
 				rowNum++;
 			}
-			if (gamestage == Stage::STAGE_31)
-			{
-				LoadEnemy_Map31(type, posx, posy);
-			}
-			else if (gamestage == Stage::STAGE_32)
-			{
-				LoadEnemy_Map32(type, posx, posy);
-			}
-			else if (gamestage == Stage::STAGE_BOSS)
-			{
-				LoadEnemy_MapBOSS(type, posx, posy);
-			}
+			LoadEnemy(type, posx, posy);
+
 		}
 		tilesInfo.close();
 	}
 }
-void Grid::LoadEnemy_Map31(int type , int posx , int posy)
+void Grid::LoadEnemy(int type , int posx , int posy)
 {
 	Enemy * enemy = NULL;
 	switch (type)
@@ -124,38 +117,8 @@ void Grid::LoadEnemy_Map31(int type , int posx , int posy)
 	case GREENSOLDIER:
 		enemy = new GreenSolider(posx, posy);
 		break;
-	default:
-		break;
-	}
-	if (enemy != NULL)
-	{
-		if (type != YELLOWPANTHER)
-		{
-			enemy->TurnLeft();
-		}
-		int cellX = POSXTOCELL(posx);
-		int cellY = POSYTOCELL(posy);
-
-		cells[cellY][cellX]->AddEnemy(enemy);
-		enemies.push_back(enemy);
-	}
-}
-void Grid::LoadEnemy_Map32(int type, int posx, int posy)
-{
-	Enemy * enemy = NULL;
-	switch (type)
-	{
-	case YELLOWSOLDIER:
-		enemy = new YellowSolider(posx, posy);
-		break;
 	case BLOODYBIRD:
 		enemy = new BloodyBird(posx, posy);
-		break;
-	case BROWNBIRD:
-		enemy = new BrownBird(posx, posy);
-		break;
-	case YELLOWPANTHER:
-		enemy = new YellowPanther(posx, posy);
 		break;
 	case GREENCANONSOLDIER:
 		enemy = new GreenCanonSoldier(posx, posy);
@@ -178,10 +141,6 @@ void Grid::LoadEnemy_Map32(int type, int posx, int posy)
 		cells[cellY][cellX]->AddEnemy(enemy);
 		enemies.push_back(enemy);
 	}
-}
-void Grid::LoadEnemy_MapBOSS(int type, int posx, int posy)
-{
-
 }
 
 
@@ -260,6 +219,17 @@ void Grid::Update(DWORD dt)
 		}
 	}
 
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		if (enemies[i]->GetPositionY() < 50)
+		{
+			enemies.erase(enemies.begin() + i);
+		}
+		else
+		{
+			enemies[i]->Update(dt);
+		}
+	}
 
 	for (int i = 0; i < enemies.size(); i++)
 	{
@@ -283,11 +253,6 @@ void Grid::Update(DWORD dt)
 		}
 	}
 	ninja->Update(dt);
-	
-	for (size_t i = 0; i < enemies.size(); i++)
-	{
-		enemies[i]->Update(dt);
-	}
 }
 void Grid::Render()
 {
