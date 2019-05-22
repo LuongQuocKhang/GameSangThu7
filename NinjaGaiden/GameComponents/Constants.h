@@ -53,6 +53,12 @@ enum EnemyType {
 	GREENRUNNINGSOLDIER,
 	BOSS
 };
+
+enum CollisionWithEnemy
+{
+	ATACKING,
+	COLLIDING
+};
 //TiledMap
 //
 // MAP

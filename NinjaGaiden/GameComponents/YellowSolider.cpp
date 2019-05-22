@@ -112,7 +112,7 @@ void YellowSolider::Walk()
 void YellowSolider::Update(DWORD dt)
 {
 	state->Update(dt);
-	//this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
+	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
 	if (this->GetSpeedX() < 0 && this->GetPositionX() <= 50)
 	{
 		this->TurnRight();

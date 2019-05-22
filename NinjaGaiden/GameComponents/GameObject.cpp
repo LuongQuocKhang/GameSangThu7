@@ -102,7 +102,14 @@ void GameObject::CalcPotentialCollisions(
 
 	sort(coEvents.begin(), coEvents.end(), CollisionEvent::compare);
 }
-
+void GameObject::CalcPotentialCollisionsWithEnemy(
+	vector<Enemy *> &enemies,
+	vector<LPGAMEOBJECT> &coObjects,
+	vector<LPCOLLISIONEVENT> &coEvents)
+{
+	UpdateObjectCollider();
+	CalcPotentialNinjaCollideWithEnemy(enemies, coEvents,CollisionWithEnemy::COLLIDING);
+}
 
 void GameObject::FilterCollision(
 	vector<LPCOLLISIONEVENT> &coEvents,
@@ -147,9 +154,9 @@ void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, 
 {
 	int direction = (Ninja::GetInstance()->IsLeft() == true) ? -1 : 1;
 	this->UpdateSwordCollider(direction);
-	CalcPotentialNinjaAttackEnemyCollisions(enemies, coEvents);
+	CalcPotentialNinjaCollideWithEnemy(enemies, coEvents, CollisionWithEnemy::ATACKING);
 }
-void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents)
+void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents, CollisionWithEnemy HitType)
 {
 	LPGAMEOBJECT CollisionEnemy = new GameObject(0, 0, 16, 16);
 	for (int i = 0; i < enemies.size(); i++)
@@ -169,35 +176,96 @@ void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies
 			CollisionEnemy->collider.width = enemy->width;
 			CollisionEnemy->collider.height = enemy->height;
 
-			LPCOLLISIONEVENT e = SweptAABBEx(CollisionEnemy);
-			e->collisionID = 0;
-
-			if (e->t >= 0 && e->t < 1.0f)
+			if (HitType == CollisionWithEnemy::ATACKING)
 			{
-				Grid::GetInstance()->DeleteEnemy(i);
+				if (this->IsCollide(CollisionEnemy))
+				{
+					Grid::GetInstance()->DeleteEnemy(i);
+				}
 			}
 			else
 			{
-				delete e;
+				LPCOLLISIONEVENT e = SweptAABBEx(CollisionEnemy);
+				e->collisionID = 0;
+
+				if (e->t >= 0 && e->t < 1.0f)
+				{
+					coEvents.push_back(e);
+				}
+				else
+				{
+					delete e;
+				}
 			}
+		}
+	}
+}
+// hàm sai
+bool GameObject::IsCollide(GameObject * CollisionObject)
+{
+	Collider MainObject = this->collider;
+	RECT rec;
+	rec.top = MainObject.y;
+	rec.left = MainObject.x;
+	rec.right = MainObject.x + MainObject.width * MainObject.direction;
+	rec.bottom = MainObject.y - MainObject.height;
+
+	Collider TargetObject = CollisionObject->collider;
+	if (MainObject.direction == 1)
+	{
+		if (TargetObject.x > rec.left && TargetObject.x < rec.right )
+		{
+			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
+				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
+			{
+				return true;
+			}
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	else if (MainObject.direction == -1)
+	{
+		if (TargetObject.x + TargetObject.width > rec.left && TargetObject.x + TargetObject.width < rec.right)
+		{
+			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
+				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else 
+		{
+			return false;
 		}
 	}
 }
 void GameObject::UpdateObjectCollider()
 {
+	int direction = (isLeft == true) ? -1 : 1;
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;
 	collider.dt = dt;
+	collider.direction = direction;
 }
 void GameObject::UpdateSwordCollider(int direction)
 {
-	collider.x = x + direction * width;
+	collider.x = x + direction * 5;
 	collider.y = y;
+	collider.vx = vx;
+	collider.vy = vy;
 	collider.dt = dt;
 	collider.width = width;
 	collider.height = height;
+	collider.direction = direction;
 }
 void GameObject::UpdateNinjaAttackingtCollider()
 {
@@ -207,6 +275,7 @@ void GameObject::UpdateNinjaAttackingtCollider()
 	collider.vx = vx;
 	collider.vy = vy;
 	collider.dt = dt;
+	collider.direction = direction;
 }
 void GameObject::UpdateTileCollider()
 {

@@ -239,7 +239,7 @@ void Grid::Update(DWORD dt)
 		int cellX = POSXTOCELL((int)enemies[i]->GetPositionX());
 		int cellY = POSYTOCELL((int)enemies[i]->GetPositionY());
 
-		if (enemies[i]->Isdeath() == false && enemies[i]->IsActive() == true )
+		if (enemies[i]->Isdeath() == false && enemies[i]->IsActive() == true)
 		{
 			cells[cellY][cellX]->AddEnemy(enemies[i]);
 		}

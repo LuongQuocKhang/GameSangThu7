@@ -101,7 +101,7 @@ bool AABB(const Collider &c1, const Collider &c2)
 Collider GetSweptBroadphaseRect(const Collider &object)
 {
 	Collider broadphaseBox;
-	broadphaseBox.x = object.vx > 0 ? object.x : object.x + object.vx * object.dt;
+	broadphaseBox.x = object.vx > 0 ? object.x + object.vx * object.dt : object.x;
 	broadphaseBox.y = object.vy > 0 ? object.y + object.vy * object.dt : object.y;
 	broadphaseBox.width = object.width + abs(object.vx * object.dt);
 	broadphaseBox.height = object.height + abs(object.vy * object.dt);
@@ -120,16 +120,16 @@ float Game::SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly)
 	float dx = c1.vx * c1.dt;
 	float dy = c1.vy * c1.dt;
 
-	Collider broadphaseBox = GetSweptBroadphaseRect(c1);
-	if (AABB(broadphaseBox, c2))
-	{
 
-	}
-	else if (!AABB(broadphaseBox, c2))
-	{
-		return 1.0f;
-	}
-	
+	//Collider broadphaseBox = GetSweptBroadphaseRect(c1);
+	//if (AABB(broadphaseBox, c2))
+	//{
+
+	//}
+	//else if (!AABB(broadphaseBox, c2))
+	//{
+	//	return 1.0f;
+	//}
 	if (dx > 0.0f)
 	{
 		dxEntry = c2.x - (c1.x + c1.width);

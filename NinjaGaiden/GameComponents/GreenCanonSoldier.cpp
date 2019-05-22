@@ -39,6 +39,9 @@ GreenCanonSoldier::GreenCanonSoldier(int posx, int posy)
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	width = GREEN_CANON_SOLDIER_SPRITE_WIDTH;
+	height = GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;

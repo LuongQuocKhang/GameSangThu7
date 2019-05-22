@@ -219,14 +219,15 @@ void NinjaSate::Update(DWORD dt)
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
+	vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
+
 	#pragma region xử lý khi chém vào quái
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
-		vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
-
 		int direction = (ninja->IsLeft() == true) ? -1 : 1;
 		Sword * sword = Sword::GetInstance();
-		sword->SetPosition(ninja->GetPositionX() + ninja->GetWidth() * direction, ninja->GetPositionY() - 5,dt);
+		sword->SetPosition(ninja->GetPositionX(), ninja->GetPositionY() - ninja->GetHeight() / 2,dt);
+		sword->SetSpeedX(ninja->GetSpeedX());
 
 		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
 	}
@@ -278,7 +279,38 @@ void NinjaSate::Update(DWORD dt)
 	#pragma endregion
 
 	#pragma region Xử lý va chạm với quái
+	coObjects.clear();
 
+	coEvents.clear();
+	ninja->SetDt(dt);
+	ninja->CalcPotentialCollisionsWithEnemy(enemies, coObjects, coEvents);
+
+	if (coEvents.size() > 0)
+	{
+		float min_tx, min_ty, nx = 0, ny;
+
+		ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+
+		int moveX = min_tx * ninja->GetSpeedX() * dt + nx * 0.8;
+		int moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
+
+		ninja->SetPositionX((int)(ninja->GetPositionX() + moveX));
+		ninja->SetPositionY((int)(ninja->GetPositionY() + moveY));
+
+
+		if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
+		if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+
+		if (coEventsResult[0]->collisionID == 1)
+		{
+			if (ny == 1)
+			{
+				ninja->SetIsGrounded(true);
+			}
+		}
+	}
+	for (UINT i = 0; i < coEvents.size(); i++)
+		delete coEvents[i];
 	#pragma endregion
 
 	#pragma region Ninja chết

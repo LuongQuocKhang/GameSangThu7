@@ -16,6 +16,9 @@ GreenRunningSoldier::GreenRunningSoldier()
 	this->SetPositionX(270);
 	this->SetPositionY(80);
 
+	width = GREEN_RUNNING_SOLDIER_SPRITE_WIDTH;
+	height = GREEN_RUNNING_SOLDIER_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;
@@ -38,6 +41,9 @@ GreenRunningSoldier::GreenRunningSoldier(int posx, int posy)
 	this->vx = 0.0f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
+	width = GREEN_RUNNING_SOLDIER_SPRITE_WIDTH;
+	height = GREEN_RUNNING_SOLDIER_SPRITE_HEIGHT;
 
 	collider.x = x;
 	collider.y = y;

@@ -165,18 +165,6 @@ void Keyboard::OnKeyDown(int KeyCode)
 		case DIK_W:
 			ninja->Climb();
 			break;
-	/*case DIK_D:
-		ninja->Throw();
-		break;*/
-	/*case DIK_1:
-		ninja->SetWhip(WHIP_NORMAL);
-		break;
-	case DIK_2:
-		ninja->SetWhip(WHIP_SHORT_CHAIN);
-		break;
-	case DIK_3:
-		ninja->SetWhip(WHIP_LONG_CHAIN);
-		break;*/
 	}
 }
 void Keyboard::OnKeyUp(int KeyCode)
@@ -189,6 +177,8 @@ void Keyboard::OnKeyUp(int KeyCode)
 			break;
 		case DIK_DOWN:
 			ninja->SetIsCrouching(false);
+		case DIK_S:
+			ninja->SetState(ninja->GetIdleState());
 		case DIK_LEFT:
 		case DIK_RIGHT:
 			if (false == ninja->IsCrouching())

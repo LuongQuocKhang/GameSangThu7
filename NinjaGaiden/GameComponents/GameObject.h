@@ -14,6 +14,7 @@ struct Collider
 	float width, height;
 	float vx = 0, vy = 0;
 	float dt = 0;
+	int direction;
 };
 
 class GameObject;
@@ -75,7 +76,6 @@ public:
 
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; }
 
-
 	RECT GetRect();
 
 	void SetCollider(Collider col) { this->collider = col; }
@@ -116,9 +116,18 @@ public:
 		vector<Enemy *> &enemies,
 		vector<LPGAMEOBJECT> &coObjects,
 		vector<LPCOLLISIONEVENT> &coEvents);
-	void CalcPotentialNinjaAttackEnemyCollisions(
+
+	void CalcPotentialNinjaCollideWithEnemy(
 		vector<Enemy *> &enemies,
+		vector<LPCOLLISIONEVENT> &coEvents,
+		CollisionWithEnemy HitType);
+
+	void CalcPotentialCollisionsWithEnemy(
+		vector<Enemy *> &enemies,
+		vector<LPGAMEOBJECT> &coObjects,
 		vector<LPCOLLISIONEVENT> &coEvents);
+
+	bool IsCollide(GameObject * CollisionObject);
 
 	GameObject();
 	GameObject(float x, float y, float width, float height);
