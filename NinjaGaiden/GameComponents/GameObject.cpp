@@ -145,7 +145,8 @@ void GameObject::FilterCollision(
 
 void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, vector<LPGAMEOBJECT>& coObjects, vector<LPCOLLISIONEVENT>& coEvents)
 {
-	this->UpdateSwordCollider();
+	int direction = (Ninja::GetInstance()->IsLeft() == true) ? -1 : 1;
+	this->UpdateSwordCollider(direction);
 	CalcPotentialNinjaAttackEnemyCollisions(enemies, coEvents);
 }
 void GameObject::CalcPotentialNinjaAttackEnemyCollisions(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents)
@@ -190,9 +191,9 @@ void GameObject::UpdateObjectCollider()
 	collider.vy = vy;
 	collider.dt = dt;
 }
-void GameObject::UpdateSwordCollider()
+void GameObject::UpdateSwordCollider(int direction)
 {
-	collider.x = x;
+	collider.x = x + direction * width;
 	collider.y = y;
 	collider.dt = dt;
 	collider.width = width;

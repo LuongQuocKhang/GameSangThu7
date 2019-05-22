@@ -81,7 +81,7 @@ public:
 	void SetCollider(Collider col) { this->collider = col; }
 
 	void UpdateObjectCollider();
-	void UpdateSwordCollider();
+	void UpdateSwordCollider(int direction);
 	void UpdateNinjaAttackingtCollider();
 	void UpdateTileCollider();
 

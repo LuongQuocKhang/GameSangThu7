@@ -54,9 +54,6 @@
     <ClCompile Include="GameComponents\Sprite.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Ninja\Knife.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
     <ClCompile Include="Ninja\Subweapon.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
@@ -158,9 +155,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ninja\Knife.h">
-      <Filter>Header Files\Ninja</Filter>
-    </ClInclude>
     <ClInclude Include="Ninja\ThrowingState.h">
       <Filter>Header Files\Ninja</Filter>
     </ClInclude>

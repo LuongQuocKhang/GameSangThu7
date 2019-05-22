@@ -131,10 +131,6 @@ enum EnemyType {
 #define GREEN_CANON_SOLDIER_SPRITE_WIDTH 30
 #define GREEN_CANON_SOLDIER_SPRITE_HEIGHT 40
 //
-
-//Giá trị tốc độ đi, tốc độ nhảy, trọng lực
-#define GREEN_RUNNING_SOLDIER_WALKING_SPEED		0.025f
-#define GREEN_RUNNING_SOLDIER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY GREEN RUNNING SOLDIER
 #define GREEN_RUNNING_SOLDIER_ANI_IDLE					0
 #define GREEN_RUNNING_SOLDIER_ANI_WALKING 				1
@@ -146,10 +142,6 @@ enum EnemyType {
 #define GREEN_RUNNING_SOLDIER_SPRITE_WIDTH 20
 #define GREEN_RUNNING_SOLDIER_SPRITE_HEIGHT 40
 //
-
-//Giá trị tốc độ đi, tốc độ nhảy, trọng lực
-#define BROWN_BIRD_WALKING_SPEED		0.025f
-#define BROWN_BIRD_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY BROWN BIRD
 #define BROWN_BIRD_ANI_IDLE					0
 #define BROWN_BIRD_ANI_WALKING 				1
@@ -161,10 +153,6 @@ enum EnemyType {
 #define BROWN_BIRD_SPRITE_WIDTH 30
 #define BROWN_BIRD_SPRITE_HEIGHT 40
 //
-
-//Giá trị tốc độ đi, tốc độ nhảy, trọng lực
-#define BLOODY_BIRD_WALKING_SPEED		0.025f
-#define BLOODY_BIRD_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY BLOODY BIRD
 #define BLOODY_BIRD_ANI_IDLE					0
 #define BLOODY_BIRD_ANI_WALKING 				1
@@ -191,10 +179,6 @@ enum EnemyType {
 #define BOSS_SPRITE_WIDTH 50
 #define BOSS_SPRITE_HEIGHT 70
 //
-
-//Giá trị tốc độ đi, tốc độ nhảy, trọng lực
-#define RED_BIRD_WALKING_SPEED		0.025f
-#define RED_BIRD_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY RED BIRD
 #define RED_BIRD_ANI_IDLE					0
 #define RED_BIRD_ANI_WALKING 				1
@@ -250,35 +234,6 @@ enum EnemyType {
 #define	PINK_WITCH_TEXTURE_ROWS 1
 #define	PINK_WITCH_SPRITE_WIDTH 30
 #define	PINK_WITCH_SPRITE_HEIGHT 45
-//
-
-//Whip
-//
-#define WHIP_NORMAL			0
-#define WHIP_SHORT_CHAIN	1
-#define WHIP_LONG_CHAIN		2
-
-#define WHIP_TEXTURE_LOCATION L"Resources\\Weapons\\Whips\\Whips.png"
-#define WHIP_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(255, 0, 255)
-#define WHIP_TEXTURE_COLUMNS 3
-#define WHIP_TEXTURE_ROWS 6
-#define WHIP_SPRITE_WIDTH 240
-#define WHIP_SPRITE_HEIGHT 66
-
-//
-//Subweapon
-//
-#define SUBWEAPON_SPEED_X		0.3f
-#define SUBWEAPON_SPEED_Y		0.5f
-#define SUBWEAPON_GRAVITY		0.025f
-////Knife
-#define SUBWEAPON_KNIFE		0
-#define SUBWEAPON_KNIFE_TEXTURE_LOCATION		L"Resources\\Weapons\\Subweapons\\Knife.png"
-#define SUBWEAPON_KNIFE_TEXTURE_TRANS_COLOR		D3DCOLOR_XRGB(255, 0, 255)
-#define SUBWEAPON_KNIFE_TEXTURE_COLUMNS 1
-#define SUBWEAPON_KNIFE_TEXTURE_ROWS 1
-#define SUBWEAPON_KNIFE_SPRITE_WIDTH 32
-#define SUBWEAPON_KNIFE_SPRITE_HEIGHT 18
 
 #define GRID_SIZE 64
 #define GRID_MAX_X 48

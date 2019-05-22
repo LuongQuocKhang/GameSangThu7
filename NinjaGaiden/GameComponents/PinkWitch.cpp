@@ -21,7 +21,7 @@ PinkWitch::PinkWitch()
 	collider.vx = vx;
 	collider.vy = vy;
 	collider.width = PINK_WITCH_SPRITE_WIDTH;
-	collider.height = PINK_WITCH_SPRITE_HEIGHT;
+	collider.height = PINK_WITCH_SPRITE_HEIGHT - 10;
 
 	Type = EnemyType::PINKWITCH;
 }
@@ -48,7 +48,7 @@ PinkWitch::PinkWitch(int posx , int posy)
 	collider.vx = vx;
 	collider.vy = vy;
 	collider.width = PINK_WITCH_SPRITE_WIDTH;
-	collider.height = PINK_WITCH_SPRITE_HEIGHT;
+	collider.height = PINK_WITCH_SPRITE_HEIGHT - 5;
 
 	Type = EnemyType::PINKWITCH;
 }

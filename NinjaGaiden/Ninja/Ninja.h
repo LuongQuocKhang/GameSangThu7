@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "GameObject.h"
-#include "Knife.h"
 #include "State.h"
 #include "Constants.h"
 #include "Game.h"
@@ -33,7 +32,6 @@ class Ninja : public GameObject
 	static vector<Animation *> animations;
 	DWORD lastFrameTime;
 
-	static vector<Subweapon *> subweapons;
 
 	int stamina;
 public:
@@ -48,7 +46,6 @@ public:
 	static Ninja * GetInstance();
 
 	DWORD GetLastFrameTime() { return this->lastFrameTime; }
-	vector<Subweapon *> GetSubweapon() { return this->subweapons; }
 
 	State * GetIdleState();
 	State * GetWalkingState();
