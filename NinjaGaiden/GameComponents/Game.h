@@ -12,6 +12,7 @@
 #include "GreenRunningSoldier.h"
 #include "BloodyBird.h"
 #include "RedBird.h"
+#include "Hud.h"
 #include "YellowPanther.h"
 #include "GreenSolider.h"
 #include "PinkWitch.h"
@@ -35,6 +36,7 @@ class Game
 	Graphics * graphics;
 
 	Ninja * ninja;
+	Hud *hud;
 
 	TiledMap * tiledMap;
 	Viewport * viewport;

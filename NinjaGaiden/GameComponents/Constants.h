@@ -5,7 +5,7 @@
 #define WINDOW_CLASS_NAME L"Ninja Gaiden"
 #define MAIN_WINDOW_TITLE L"Ninja Gaiden"
 //Màu background, kích cỡ màn hình
-#define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
+#define BACKGROUND_COLOR D3DCOLOR_XRGB(0, 0, 0)
 #define SCREEN_WIDTH 450
 #define SCREEN_HEIGHT 250
 #define MAP_HEIGHT 176
@@ -240,6 +240,14 @@ enum CollisionWithEnemy
 #define	PINK_WITCH_TEXTURE_ROWS 1
 #define	PINK_WITCH_SPRITE_WIDTH 30
 #define	PINK_WITCH_SPRITE_HEIGHT 45
+
+//HUD
+#define HUD_TEXTURE_LOCATION L"Resources\\Font\\FONT.jpg"
+#define HUD_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(0, 0, 0)
+#define HUD_TEXTURE_COLUMNS 17
+#define HUD_TEXTURE_ROWS 6
+#define HUD_SPRITE_WIDTH 10
+#define HUD_SPRITE_HEIGHT 11
 
 #define GRID_SIZE 64
 #define GRID_MAX_X 48

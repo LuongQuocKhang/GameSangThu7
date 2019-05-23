@@ -86,6 +86,8 @@ void Game::LoadResources()
 		viewport = Viewport::GetInstance();
 	if (grid == NULL)
 		grid = Grid::GetInstance();
+	if (hud == NULL)
+		hud = new Hud(30, 250);
 }
 //Xử lí
 
@@ -265,6 +267,7 @@ void Game::Render()
 
 		grid->Render();
 
+		hud->Render();
 		spriteHandler->End();
 
 		LPD3DXLINE line;

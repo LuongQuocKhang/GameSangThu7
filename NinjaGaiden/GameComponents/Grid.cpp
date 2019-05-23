@@ -97,6 +97,9 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 void Grid::LoadEnemy(int type , int posx , int posy)
 {
 	Enemy * enemy = NULL;
+	//Hud *hud = NULL;
+	/*enemy = new Hud(200, 300);
+	enemies.push_back(hud);*/
 	switch (type)
 	{
 	case YELLOWSOLDIER:
