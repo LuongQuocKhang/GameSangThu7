@@ -29,6 +29,8 @@ Ninja::Ninja()
 	collider.vy = 0;
 	collider.width = NINJA_SPRITE_WIDTH;
 	collider.height = NINJA_SPRITE_HEIGHT;
+
+	stamina = 100;
 }
 Ninja * Ninja::GetInstance()
 {

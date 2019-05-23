@@ -17,6 +17,7 @@ protected:
 	bool active = true;
 
 	int damage = 5;
+	int stamina = 10;
 
 	EnemyType Type;
 
@@ -57,6 +58,10 @@ public:
 	{
 		return this->death;
 	}
+
+	void TakeDamage(int damage);
+
+	int GetEnemyStamina() { return this->stamina; }
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render

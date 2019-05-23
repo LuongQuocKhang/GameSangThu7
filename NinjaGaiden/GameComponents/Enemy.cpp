@@ -41,6 +41,10 @@ void Enemy::TurnRight()
 {
 	isLeft = false;
 }
+void Enemy::TakeDamage(int damage)
+{
+	this->stamina -= damage;
+}
 //Hàm cập nhật
 void Enemy::Update(DWORD dt)
 {

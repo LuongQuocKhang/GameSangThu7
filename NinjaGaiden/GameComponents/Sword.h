@@ -8,6 +8,7 @@ private :
 	Sword();
 	static Sword * __instance;
 
+	int damage = 5;
 public:
 	static Sword * GetInstance();
 	void SetPosition(int posx, int posy , float dt)
@@ -18,7 +19,7 @@ public:
 		collider.y = posy;
 		this->dt = dt;
 	}
-
+	int GetDamage() { return this->damage; }
 	~Sword();
 };
 

@@ -1,5 +1,7 @@
 ﻿#include "GameObject.h"
 #include "Game.h"
+#include "Sword.h"
+
 GameObject::GameObject()
 {
 	x = y = 0;
@@ -180,7 +182,11 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 			{
 				if (this->IsCollide(CollisionEnemy))
 				{
-					Grid::GetInstance()->DeleteEnemy(i);
+					enemy->TakeDamage(Sword::GetInstance()->GetDamage());
+					if (enemy->GetEnemyStamina() <= 0)
+					{
+						Grid::GetInstance()->DeleteEnemy(i);
+					}
 				}
 			}
 			else
@@ -216,7 +222,7 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 		if (TargetObject.x > rec.left && TargetObject.x < rec.right )
 		{
 			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
-				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
+				|| (rec.top > TargetObject.y && rec.bottom < TargetObject.y))
 			{
 				return true;
 			}
@@ -231,7 +237,7 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 		if (TargetObject.x + TargetObject.width > rec.left && TargetObject.x + TargetObject.width < rec.right)
 		{
 			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
-				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
+				|| (rec.top > TargetObject.y && rec.bottom < TargetObject.y))
 			{
 				return true;
 			}
