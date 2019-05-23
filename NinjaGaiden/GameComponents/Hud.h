@@ -9,7 +9,7 @@ class Hud :public GameObject
 {
 
 	GameObject * __instance;
-	static vector<Animation *> animations;
+	vector<Animation *> animations;
 public:
 	Hud(int posx, int posy);
 	void LoadResources();

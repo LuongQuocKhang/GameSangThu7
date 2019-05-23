@@ -1,6 +1,5 @@
 #include "Hud.h"
-
-vector<Animation *> Hud::animations = vector<Animation *>();
+#include "Ninja.h"
 
 Hud::Hud(int posx, int posy)
 {
@@ -215,13 +214,13 @@ void Hud::LoadResources()
 //Hàm c?p nh?t
 void Hud::Update(DWORD dt)
 {
-	/*Ninja * ninja = Ninja::GetInstance();
+	Ninja * ninja = Ninja::GetInstance();
 	int right = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - SCREEN_WIDTH / 2);
 	int left = (int)SCREEN_WIDTH / 2;
 	if (ninja->GetPositionX() > left && ninja->GetPositionX() < right)
 	{
 		this->x = ninja->GetPositionX() - left;
-	}*/
+	}
 }
 //Hàm render
 void Hud::Render()

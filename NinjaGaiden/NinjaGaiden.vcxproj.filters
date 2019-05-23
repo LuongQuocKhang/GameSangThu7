@@ -153,7 +153,7 @@
     <ClCompile Include="GameComponents\BossState.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Hud.cpp">
+    <ClCompile Include="GameComponents\Hud.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,7 +281,7 @@
     <ClInclude Include="GameComponents\BossState.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Hud.h">
+    <ClInclude Include="GameComponents\Hud.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

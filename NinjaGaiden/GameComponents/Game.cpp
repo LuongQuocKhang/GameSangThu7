@@ -251,6 +251,7 @@ void Game::Update(DWORD dt)
 {
 	keyboard->Update();
 	grid->Update(dt);
+	hud->Update(dt);
 	viewport->Update(dt);
 }
 void Game::Render()
@@ -268,6 +269,7 @@ void Game::Render()
 		grid->Render();
 
 		hud->Render();
+
 		spriteHandler->End();
 
 		LPD3DXLINE line;

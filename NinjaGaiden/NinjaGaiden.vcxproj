@@ -40,6 +40,7 @@
     <ClCompile Include="GameComponents\GreenSoliderState.cpp" />
     <ClCompile Include="GameComponents\Grid.cpp" />
     <ClCompile Include="GameComponents\GridCell.cpp" />
+    <ClCompile Include="GameComponents\Hud.cpp" />
     <ClCompile Include="GameComponents\Keyboard.cpp" />
     <ClCompile Include="GameComponents\PinkWitch.cpp" />
     <ClCompile Include="GameComponents\PinkWitchState.cpp" />
@@ -52,7 +53,6 @@
     <ClCompile Include="GameComponents\YellowPantherState.cpp" />
     <ClCompile Include="GameComponents\YellowSolider.cpp" />
     <ClCompile Include="GameComponents\YellowSoliderState.cpp" />
-    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
     <ClCompile Include="Ninja\NinjaSate.cpp" />
@@ -84,6 +84,7 @@
     <ClInclude Include="GameComponents\GreenSoliderState.h" />
     <ClInclude Include="GameComponents\Grid.h" />
     <ClInclude Include="GameComponents\GridCell.h" />
+    <ClInclude Include="GameComponents\Hud.h" />
     <ClInclude Include="GameComponents\Keyboard.h" />
     <ClInclude Include="GameComponents\PinkWitch.h" />
     <ClInclude Include="GameComponents\PinkWitchState.h" />
@@ -96,7 +97,6 @@
     <ClInclude Include="GameComponents\YellowPantherState.h" />
     <ClInclude Include="GameComponents\YellowSolider.h" />
     <ClInclude Include="GameComponents\YellowSoliderState.h" />
-    <ClInclude Include="Hud.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\NinjaSate.h" />
     <ClInclude Include="Ninja\State.h" />

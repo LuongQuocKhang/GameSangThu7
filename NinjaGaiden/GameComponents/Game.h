@@ -36,7 +36,7 @@ class Game
 	Graphics * graphics;
 
 	Ninja * ninja;
-	Hud *hud;
+	Hud * hud;
 
 	TiledMap * tiledMap;
 	Viewport * viewport;
