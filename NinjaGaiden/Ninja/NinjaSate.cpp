@@ -315,6 +315,7 @@ void NinjaSate::Update(DWORD dt)
 		ninja->SetPositionX(100);
 		ninja->SetPositionY(100);
 		Viewport::GetInstance()->Reset();
+		Game::GetInstance()->GetHud()->Reset();
 	}
 	#pragma endregion
 }

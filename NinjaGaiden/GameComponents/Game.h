@@ -66,6 +66,7 @@ public:
 	{
 		this->grid = grid;
 	}
+	Hud * GetHud() { return this->hud; }
 	static float SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly);
 	static Game * GetInstance();
 	~Game();

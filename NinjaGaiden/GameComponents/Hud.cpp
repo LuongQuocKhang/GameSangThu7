@@ -222,6 +222,11 @@ void Hud::Update(DWORD dt)
 		this->x = ninja->GetPositionX() - left;
 	}
 }
+void Hud::Reset()
+{
+	x = 0;
+	y = 250;
+}
 //Hàm render
 void Hud::Render()
 {

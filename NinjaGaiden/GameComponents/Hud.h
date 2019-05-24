@@ -16,6 +16,7 @@ public:
 
 	//Hàm c?p nh?t
 	void Update(DWORD dt) override;
+	void Reset();
 	//Hàm render
 	void Render() override;
 };
