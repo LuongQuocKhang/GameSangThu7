@@ -18,7 +18,7 @@ class GreenCanonSoldier :public Enemy
 	static vector<Animation *> animations;
 public:
 	GreenCanonSoldier();
-	GreenCanonSoldier(int posx, int posy);
+	GreenCanonSoldier(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

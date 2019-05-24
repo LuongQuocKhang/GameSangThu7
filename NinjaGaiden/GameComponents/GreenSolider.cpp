@@ -18,7 +18,7 @@ GreenSolider::GreenSolider()
 
 	Type = EnemyType::GREENSOLDIER;
 }
-GreenSolider::GreenSolider(int posx , int posy)
+GreenSolider::GreenSolider(float posx , float posy)
 {
 	__instance = NULL;
 	LoadResources();

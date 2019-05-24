@@ -18,7 +18,7 @@ class RedBird :public Enemy
 	static vector<Animation *> animations;
 public:
 	RedBird();
-	RedBird(int posx, int posy);
+	RedBird(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

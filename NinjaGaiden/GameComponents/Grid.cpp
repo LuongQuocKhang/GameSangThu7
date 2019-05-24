@@ -58,6 +58,8 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 
 	string line;
 	int token;
+
+	int Id = 0;
 	if (tilesInfo.is_open())
 	{
 		while (getline(tilesInfo, line))
@@ -88,18 +90,17 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 				line.erase(0, pos + 1);
 				rowNum++;
 			}
-			LoadEnemy(type, posx, posy);
 
+			CreateEnemy(Id,type, posx, posy);
+			Id++;
 		}
 		tilesInfo.close();
 	}
 }
-void Grid::LoadEnemy(int type , int posx , int posy)
+void Grid::CreateEnemy(int Id , int type , int posx , int posy)
 {
 	Enemy * enemy = NULL;
-	//Hud *hud = NULL;
-	/*enemy = new Hud(200, 300);
-	enemies.push_back(hud);*/
+
 	switch (type)
 	{
 	case YELLOWSOLDIER:
@@ -135,6 +136,7 @@ void Grid::LoadEnemy(int type , int posx , int posy)
 	default:
 		break;
 	}
+	enemy->SetId(Id);
 	if (enemy != NULL)
 	{
 		if (type != YELLOWPANTHER)
@@ -283,6 +285,14 @@ void Grid::Render()
 		{
 			enemies[i]->Render();
 		}
+	}
+}
+
+int Grid::GetEnemyIndexById(int Id)
+{
+	for (size_t i = 0; i < enemies.size(); i++)
+	{
+		if (enemies[i]->GetId() == Id) return i;
 	}
 }
 

@@ -95,18 +95,15 @@ void GameObject::CalcPotentialMapCollisions(
 
 void GameObject::CalcPotentialCollisions(
 	vector<Tile *> &tiles,
-	vector<LPGAMEOBJECT> &coObjects,
 	vector<LPCOLLISIONEVENT> &coEvents)
 {
 	this->UpdateObjectCollider();
 	CalcPotentialMapCollisions(tiles, coEvents);
-	CalcPotentialGameObjectCollisions(coObjects, coEvents);
 
 	sort(coEvents.begin(), coEvents.end(), CollisionEvent::compare);
 }
 void GameObject::CalcPotentialCollisionsWithEnemy(
 	vector<Enemy *> &enemies,
-	vector<LPGAMEOBJECT> &coObjects,
 	vector<LPCOLLISIONEVENT> &coEvents)
 {
 	UpdateObjectCollider();
@@ -152,7 +149,7 @@ void GameObject::FilterCollision(
 	if (min_iy >= 0) coEventsResult.push_back(coEvents[min_iy]);
 }
 
-void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, vector<LPGAMEOBJECT>& coObjects, vector<LPCOLLISIONEVENT>& coEvents)
+void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents)
 {
 	int direction = (Ninja::GetInstance()->IsLeft() == true) ? -1 : 1;
 	this->UpdateSwordCollider(direction);
@@ -185,7 +182,8 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 					enemy->TakeDamage(Sword::GetInstance()->GetDamage());
 					if (enemy->GetEnemyStamina() <= 0)
 					{
-						Grid::GetInstance()->DeleteEnemy(i);
+						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
+						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
 					}
 				}
 			}
@@ -213,7 +211,7 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 	RECT rec;
 	rec.top = MainObject.y;
 	rec.left = MainObject.x;
-	rec.right = MainObject.x + MainObject.width * MainObject.direction;
+	rec.right = MainObject.x + MainObject.width;
 	rec.bottom = MainObject.y - MainObject.height;
 
 	Collider TargetObject = CollisionObject->collider;

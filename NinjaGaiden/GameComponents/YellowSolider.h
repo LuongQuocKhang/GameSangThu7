@@ -18,7 +18,7 @@ class YellowSolider :public Enemy
 	static vector<Animation *> animations;
 public:
 	YellowSolider();
-	YellowSolider(int posx, int posy);
+	YellowSolider(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

@@ -11,7 +11,7 @@ private :
 	int damage = 5;
 public:
 	static Sword * GetInstance();
-	void SetPosition(int posx, int posy , float dt)
+	void SetPosition(float posx, float posy , float dt)
 	{
 		this->x = posx;
 		this->y = posy;

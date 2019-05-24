@@ -76,7 +76,7 @@ public:
 	void Climb();
 	void JumpAttack();
 
-	void SetColliderDemension(int width, int height)
+	void SetColliderDemension(float width, float height)
 	{
 		this->collider.width = width;
 		this->collider.height = height;

@@ -52,7 +52,6 @@ void YellowSoliderState::Update(DWORD dt)
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
 	{
 		enemy->SetActive(true);
-		vector<LPGAMEOBJECT> coObjects;
 		vector<LPCOLLISIONEVENT> coEvents;
 		vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -62,7 +61,7 @@ void YellowSoliderState::Update(DWORD dt)
 
 		coEvents.clear();
 		enemy->SetDt(dt);
-		enemy->CalcPotentialCollisions(tiles, coObjects, coEvents);
+		enemy->CalcPotentialCollisions(tiles, coEvents);
 
 		if (coEvents.size() == 0)
 		{
@@ -78,11 +77,11 @@ void YellowSoliderState::Update(DWORD dt)
 
 			enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
-			int moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
-			int moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
+			float moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
+			float moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
 
-			enemy->SetPositionX((int)(enemy->GetPositionX() + moveX));
-			enemy->SetPositionY((int)(enemy->GetPositionY() + moveY));
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
 
 
 			if (nx != 0) enemy->SetSpeedX(0);

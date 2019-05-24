@@ -178,7 +178,8 @@ void Keyboard::OnKeyUp(int KeyCode)
 		case DIK_DOWN:
 			ninja->SetIsCrouching(false);
 		case DIK_S:
-			ninja->SetState(ninja->GetIdleState());
+			//ninja->SetState(ninja->GetIdleState());
+			break;
 		case DIK_LEFT:
 		case DIK_RIGHT:
 			if (false == ninja->IsCrouching())

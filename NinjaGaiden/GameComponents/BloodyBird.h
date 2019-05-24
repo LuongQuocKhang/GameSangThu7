@@ -18,7 +18,7 @@ class BloodyBird :public Enemy
 	static vector<Animation *> animations;
 public:
 	BloodyBird();
-	BloodyBird(int posx, int posy);
+	BloodyBird(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

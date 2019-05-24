@@ -28,7 +28,7 @@ GreenRunningSoldier::GreenRunningSoldier()
 
 	Type = EnemyType::GREENRUNNINGSOLDIER;
 }
-GreenRunningSoldier::GreenRunningSoldier(int posx, int posy)
+GreenRunningSoldier::GreenRunningSoldier(float posx, float posy)
 {
 	__instance = NULL;
 	LoadResources();

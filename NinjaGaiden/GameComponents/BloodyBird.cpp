@@ -25,7 +25,7 @@ BloodyBird::BloodyBird()
 
 	Type = EnemyType::BLOODYBIRD;
 }
-BloodyBird::BloodyBird(int posx, int posy)
+BloodyBird::BloodyBird(float posx, float posy)
 {
 	__instance = NULL;
 	LoadResources();

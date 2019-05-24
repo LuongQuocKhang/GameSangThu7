@@ -1,7 +1,7 @@
 #include "Hud.h"
 #include "Ninja.h"
 
-Hud::Hud(int posx, int posy)
+Hud::Hud(float posx, float posy)
 {
 	__instance = NULL;
 	LoadResources();

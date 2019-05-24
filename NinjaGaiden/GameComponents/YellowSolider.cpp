@@ -28,7 +28,7 @@ YellowSolider::YellowSolider()
 	Type = EnemyType::YELLOWSOLDIER;
 }
 
-YellowSolider::YellowSolider(int posx , int posy )
+YellowSolider::YellowSolider(float posx , float posy )
 {
 	__instance = NULL;
 	LoadResources();

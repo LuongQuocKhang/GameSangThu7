@@ -8,6 +8,7 @@ class State;
 class Enemy:public GameObject
 {
 protected:
+	int Id;
 	State * idleState;
 	State * walkingState;
 	State * state;
@@ -17,7 +18,7 @@ protected:
 	bool active = true;
 
 	int damage = 5;
-	int stamina = 10;
+	int stamina = 5;
 
 	EnemyType Type;
 
@@ -41,11 +42,13 @@ public:
 
 	void TurnLeft();
 	void TurnRight();
-
-	void SetActive(bool value)
+	void SetId(int Id)
 	{
-		this->active = value;
+		this->Id = Id;
 	}
+	int GetId() { return this->Id; }
+	void SetActive(bool value) { this->active = value; }
+
 	bool IsActive()
 	{
 		return this->active;

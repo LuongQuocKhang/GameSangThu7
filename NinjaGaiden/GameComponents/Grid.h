@@ -37,7 +37,7 @@ private:
 
 	void LoadEnemy(LPCWSTR filePath, Stage gamestage);
 
-	void LoadEnemy(int type, int posx, int posy);
+	void CreateEnemy(int Id , int type, int posx, int posy);
 	Grid();
 
 public:
@@ -66,6 +66,7 @@ public:
 	{
 		this->enemies.erase(enemies.begin() + pos);
 	}
+	int GetEnemyIndexById(int Id);
 	static void SetNewGrid()
 	{
 		__instance = NULL;

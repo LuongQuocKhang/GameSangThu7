@@ -18,7 +18,7 @@ class GreenRunningSoldier :public Enemy
 	static vector<Animation *> animations;
 public:
 	GreenRunningSoldier();
-	GreenRunningSoldier(int posx, int posy);
+	GreenRunningSoldier(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

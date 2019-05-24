@@ -18,7 +18,7 @@ class BrownBird :public Enemy
 	static vector<Animation *> animations;
 public:
 	BrownBird();
-	BrownBird(int posx , int posy);
+	BrownBird(float posx , float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

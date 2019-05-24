@@ -25,7 +25,7 @@ RedBird::RedBird()
 
 	Type = EnemyType::REDBIRD;
 }
-RedBird::RedBird(int posx , int posy)
+RedBird::RedBird(float posx , float posy)
 {
 	__instance = NULL;
 	LoadResources();

@@ -50,8 +50,8 @@ protected:
 	float vx;
 	float vy;
 
-	int width;
-	int height;
+	float width;
+	float height;
 
 	float dt;
 
@@ -101,7 +101,6 @@ public:
 
 	void CalcPotentialCollisions(
 		vector<Tile *> &tiles,
-		vector<LPGAMEOBJECT> &coObjects,
 		vector<LPCOLLISIONEVENT> &coEvents);
 
 	void FilterCollision(
@@ -114,7 +113,6 @@ public:
 
 	void CalcPotentialCollisionsAttackingEnemy(
 		vector<Enemy *> &enemies,
-		vector<LPGAMEOBJECT> &coObjects,
 		vector<LPCOLLISIONEVENT> &coEvents);
 
 	void CalcPotentialNinjaCollideWithEnemy(
@@ -124,7 +122,6 @@ public:
 
 	void CalcPotentialCollisionsWithEnemy(
 		vector<Enemy *> &enemies,
-		vector<LPGAMEOBJECT> &coObjects,
 		vector<LPCOLLISIONEVENT> &coEvents);
 
 	bool IsCollide(GameObject * CollisionObject);

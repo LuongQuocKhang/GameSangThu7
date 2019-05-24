@@ -25,7 +25,7 @@ Boss::Boss()
 
 	Type = EnemyType::BOSS;
 }
-Boss::Boss(int posx, int posy)
+Boss::Boss(float posx, float posy)
 {
 	__instance = NULL;
 	LoadResources();

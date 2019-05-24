@@ -17,7 +17,7 @@ void Game::Init()
 	keyboard = Keyboard::GetInstance();
 	keyboard->InitKeyboard(hWnd);
 
-	this->stage = STAGE_32;
+	this->stage = STAGE_31;
 
 	LoadResources();
 	OutputDebugString(L"[INFO] InitGame done;\n");
@@ -81,7 +81,7 @@ void Game::LoadResources()
 	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
 	if (NULL == tiledMap)
-		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_32);
+		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_31);
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
 	if (grid == NULL)
@@ -276,8 +276,8 @@ void Game::Render()
 		D3DXCreateLine(d3ddv, &line);
 
 		Collider swordcollider = Sword::GetInstance()->GetCollider();
-		int posx = swordcollider.x;
-		int posy = SCREEN_HEIGHT - swordcollider.y + swordcollider.height;
+		float posx = swordcollider.x;
+		float posy = SCREEN_HEIGHT - swordcollider.y + swordcollider.height;
 		D3DXVECTOR2 lines[] = { D3DXVECTOR2(posx, posy), 
 								D3DXVECTOR2(posx + ninja->GetWidth(), posy),
 								D3DXVECTOR2(posx + ninja->GetWidth(), posy - ninja->GetHeight()),

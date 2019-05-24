@@ -215,7 +215,6 @@ void NinjaSate::Update(DWORD dt)
 	default:
 		break;
 	}
-	vector<LPGAMEOBJECT> coObjects; //Placeholder
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -229,24 +228,22 @@ void NinjaSate::Update(DWORD dt)
 		sword->SetPosition(ninja->GetPositionX(), ninja->GetPositionY() - ninja->GetHeight() / 2,dt);
 		sword->SetSpeedX(ninja->GetSpeedX());
 
-		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coObjects, coEvents);
+		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
 	}
 	#pragma endregion
 
 	#pragma region xử lý va chạm với gạch
-	coObjects.clear();
-
 	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
 	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
 
 	coEvents.clear();
 	ninja->SetDt(dt);
-	ninja->CalcPotentialCollisions(tiles, coObjects, coEvents);
+	ninja->CalcPotentialCollisions(tiles, coEvents);
 
 	if (coEvents.size() == 0)
 	{
-		int moveX = trunc(ninja->GetSpeedX()* dt);
-		int moveY = trunc(ninja->GetSpeedY()* dt);
+		float moveX = trunc(ninja->GetSpeedX()* dt);
+		float moveY = trunc(ninja->GetSpeedY()* dt);
 		ninja->SetPositionX(ninja->GetPositionX() + moveX);
 		ninja->SetPositionY(ninja->GetPositionY() + moveY);
 	}
@@ -256,11 +253,11 @@ void NinjaSate::Update(DWORD dt)
 
 		ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
-		int moveX = min_tx * ninja->GetSpeedX() * dt + nx * 0.4;
-		int moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
+		float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 0.4;
+		float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
-		ninja->SetPositionX((int)(ninja->GetPositionX() + moveX));
-		ninja->SetPositionY((int)(ninja->GetPositionY() + moveY));
+		ninja->SetPositionX(ninja->GetPositionX() + moveX);
+		ninja->SetPositionY(ninja->GetPositionY() + moveY);
 
 
 		if (nx != 0) ninja->SetSpeedX(0);
@@ -279,11 +276,10 @@ void NinjaSate::Update(DWORD dt)
 	#pragma endregion
 
 	#pragma region Xử lý va chạm với quái
-	coObjects.clear();
 
 	coEvents.clear();
 	ninja->SetDt(dt);
-	ninja->CalcPotentialCollisionsWithEnemy(enemies, coObjects, coEvents);
+	ninja->CalcPotentialCollisionsWithEnemy(enemies, coEvents);
 
 	if (coEvents.size() > 0)
 	{
@@ -291,11 +287,11 @@ void NinjaSate::Update(DWORD dt)
 
 		ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
-		int moveX = min_tx * ninja->GetSpeedX() * dt + nx * 0.8;
-		int moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
+		float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 0.8;
+		float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
-		ninja->SetPositionX((int)(ninja->GetPositionX() + moveX));
-		ninja->SetPositionY((int)(ninja->GetPositionY() + moveY));
+		ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
+		ninja->SetPositionY(ninja->GetPositionY() + moveY);
 
 
 		if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);

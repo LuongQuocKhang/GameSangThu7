@@ -25,7 +25,7 @@ BrownBird::BrownBird()
 
 	Type = EnemyType::BROWNBIRD;
 }
-BrownBird::BrownBird(int posx, int posy)
+BrownBird::BrownBird(float posx, float posy)
 {
 	__instance = NULL;
 	LoadResources();

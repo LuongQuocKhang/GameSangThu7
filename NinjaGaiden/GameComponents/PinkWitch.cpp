@@ -26,7 +26,7 @@ PinkWitch::PinkWitch()
 	Type = EnemyType::PINKWITCH;
 }
 
-PinkWitch::PinkWitch(int posx , int posy)
+PinkWitch::PinkWitch(float posx , float posy)
 {
 	__instance = NULL;
 	LoadResources();

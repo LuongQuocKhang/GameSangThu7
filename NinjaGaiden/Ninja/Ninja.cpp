@@ -70,7 +70,7 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// NINJA_ANI_STANDING_ATTACKING 
+	// NINJA_ANI_STANDING_ATTACK
 	anim = new Animation(100);
 	for (int i = 10; i < 15; i++)
 	{
@@ -301,12 +301,15 @@ void Ninja::CreateThrownWeapon()
 bool PantherAppear = false;
 void Ninja::Update(DWORD dt)
 {
-	if (this->GetPositionX() >= 400 && this->GetPositionX() <= 450 && PantherAppear == false)
+	if (Game::GetInstance()->GetStage() == Stage::STAGE_31)
 	{
-		YellowPanther * enemy = new YellowPanther(220, 100);
-		enemy->SetActive(true);
-		Grid::GetInstance()->AddEnemy(enemy);
-		PantherAppear = true;
+		if (this->GetPositionX() >= 400 && this->GetPositionX() <= 450 && PantherAppear == false)
+		{
+			YellowPanther * enemy = new YellowPanther(220, 100);
+			enemy->SetActive(true);
+			Grid::GetInstance()->AddEnemy(enemy);
+			PantherAppear = true;
+		}
 	}
 	if (this->GetSpeedX() > 0 && this->GetPositionX() > Game::GetInstance()->GetTiledMap()->GetWidth() - NINJA_SPRITE_WIDTH)
 	{

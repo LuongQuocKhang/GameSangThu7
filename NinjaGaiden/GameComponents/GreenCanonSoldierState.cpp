@@ -44,7 +44,6 @@ void GreenCanonSoldierState::Update(DWORD dt)
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
 	{
 		enemy->SetActive(true);
-		vector<LPGAMEOBJECT> coObjects;
 		vector<LPCOLLISIONEVENT> coEvents;
 		vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -54,7 +53,7 @@ void GreenCanonSoldierState::Update(DWORD dt)
 
 		coEvents.clear();
 		enemy->SetDt(dt);
-		enemy->CalcPotentialCollisions(tiles, coObjects, coEvents);
+		enemy->CalcPotentialCollisions(tiles, coEvents);
 
 		if (coEvents.size() == 0)
 		{
@@ -67,8 +66,8 @@ void GreenCanonSoldierState::Update(DWORD dt)
 
 			enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
-			int moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
-			enemy->SetPositionY((int)(enemy->GetPositionY() + moveY));
+			float moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
 
 			if (nx != 0) enemy->SetSpeedX(0);
 			if (ny != 0) enemy->SetSpeedY(0);

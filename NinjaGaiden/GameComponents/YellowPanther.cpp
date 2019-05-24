@@ -25,7 +25,7 @@ YellowPanther::YellowPanther()
 
 	Type = EnemyType::YELLOWPANTHER;
 }
-YellowPanther::YellowPanther(int posx , int posy)
+YellowPanther::YellowPanther(float posx , float posy)
 {
 	__instance = NULL;
 	LoadResources();

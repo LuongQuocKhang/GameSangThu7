@@ -18,7 +18,7 @@ class Boss :public Enemy
 	static vector<Animation *> animations;
 public:
 	Boss();
-	Boss(int posx, int posy);
+	Boss(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();

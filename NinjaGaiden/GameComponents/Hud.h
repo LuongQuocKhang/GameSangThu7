@@ -11,7 +11,7 @@ class Hud :public GameObject
 	GameObject * __instance;
 	vector<Animation *> animations;
 public:
-	Hud(int posx, int posy);
+	Hud(float posx, float posy);
 	void LoadResources();
 
 	//Hàm c?p nh?t

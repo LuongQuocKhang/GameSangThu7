@@ -25,7 +25,7 @@ GreenCanonSoldier::GreenCanonSoldier()
 
 	Type = EnemyType::GREENCANONSOLDIER;
 }
-GreenCanonSoldier::GreenCanonSoldier(int posx, int posy)
+GreenCanonSoldier::GreenCanonSoldier(float posx, float posy)
 {
 	__instance = NULL;
 	LoadResources();
