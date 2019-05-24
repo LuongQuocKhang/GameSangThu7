@@ -8,7 +8,7 @@ HINSTANCE Game::hInstance = NULL;
 void Game::Init()
 {
 	hInstance = GetModuleHandle(NULL);
-	
+
 	this->hWnd = CreateGameWindow(hInstance, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	graphics = Graphics::GetInstance();
@@ -17,8 +17,7 @@ void Game::Init()
 	keyboard = Keyboard::GetInstance();
 	keyboard->InitKeyboard(hWnd);
 
-	this->stage = STAGE_31;
-
+	this->stage = STAGE_32;
 	LoadResources();
 	OutputDebugString(L"[INFO] InitGame done;\n");
 }
@@ -81,13 +80,13 @@ void Game::LoadResources()
 	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
 	if (NULL == tiledMap)
-		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_31);
+		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_32);
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
 	if (grid == NULL)
 		grid = Grid::GetInstance();
 	if (hud == NULL)
-		hud = new Hud(30, 250);
+		hud = new Hud(50, 250);
 }
 //Xử lí
 
@@ -261,9 +260,9 @@ void Game::Render()
 	LPD3DXSPRITE spriteHandler = graphics->GetSpriteHandler();
 	if (SUCCEEDED(d3ddv->BeginScene()))
 	{
-		
+
 		d3ddv->ColorFill(bb, NULL, BACKGROUND_COLOR);
-		
+
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
 		grid->Render();
@@ -276,13 +275,13 @@ void Game::Render()
 		D3DXCreateLine(d3ddv, &line);
 
 		Collider swordcollider = Sword::GetInstance()->GetCollider();
-		float posx = swordcollider.x;
-		float posy = SCREEN_HEIGHT - swordcollider.y + swordcollider.height;
-		D3DXVECTOR2 lines[] = { D3DXVECTOR2(posx, posy), 
+		int posx = swordcollider.x;
+		int posy = SCREEN_HEIGHT - swordcollider.y + swordcollider.height;
+		D3DXVECTOR2 lines[] = { D3DXVECTOR2(posx, posy),
 								D3DXVECTOR2(posx + ninja->GetWidth(), posy),
 								D3DXVECTOR2(posx + ninja->GetWidth(), posy - ninja->GetHeight()),
 								D3DXVECTOR2(posx, posy - ninja->GetHeight()),
-								};
+		};
 		line->Begin();
 		line->Draw(lines, 4, D3DCOLOR_ARGB(255, 255, 255, 255));
 		line->End();
@@ -368,3 +367,6 @@ LRESULT CALLBACK Game::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 
 	return 0;
 }
+
+
+
