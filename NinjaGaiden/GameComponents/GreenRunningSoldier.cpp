@@ -38,7 +38,7 @@ GreenRunningSoldier::GreenRunningSoldier(float posx, float posy)
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = 0.0f;
+	this->vx = -0.075f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 

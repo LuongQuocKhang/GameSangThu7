@@ -1,5 +1,6 @@
 ﻿#include "Enemy.h"
 #include "Constants.h"
+#include "Grid.h"
 
 Enemy::Enemy()
 {
@@ -49,6 +50,11 @@ void Enemy::TakeDamage(int damage)
 void Enemy::Update(DWORD dt)
 {
 	state->Update(dt);
+	if (this->GetPositionX() <= 0)
+	{
+		int EnemyPosInGrid = Grid::GetInstance()->GetEnemyIndexById(this->Id);
+		Grid::GetInstance()->DeleteEnemy(EnemyPosInGrid);
+	}
 }
 //Hàm render
 void Enemy::Render()

@@ -271,22 +271,6 @@ void Game::Render()
 
 		spriteHandler->End();
 
-		LPD3DXLINE line;
-		D3DXCreateLine(d3ddv, &line);
-
-		Collider swordcollider = Sword::GetInstance()->GetCollider();
-		int posx = swordcollider.x;
-		int posy = SCREEN_HEIGHT - swordcollider.y + swordcollider.height;
-		D3DXVECTOR2 lines[] = { D3DXVECTOR2(posx, posy),
-								D3DXVECTOR2(posx + ninja->GetWidth(), posy),
-								D3DXVECTOR2(posx + ninja->GetWidth(), posy - ninja->GetHeight()),
-								D3DXVECTOR2(posx, posy - ninja->GetHeight()),
-		};
-		line->Begin();
-		line->Draw(lines, 4, D3DCOLOR_ARGB(255, 255, 255, 255));
-		line->End();
-		line->Release();
-
 		d3ddv->EndScene();
 	}
 

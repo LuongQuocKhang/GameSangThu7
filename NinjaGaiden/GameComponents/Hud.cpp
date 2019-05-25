@@ -1,5 +1,6 @@
 #include "Hud.h"
 #include "Ninja.h"
+#include "Constants.h"
 
 Hud::Hud(float posx, float posy)
 {

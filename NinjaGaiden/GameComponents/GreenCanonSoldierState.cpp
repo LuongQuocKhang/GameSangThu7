@@ -57,7 +57,10 @@ void GreenCanonSoldierState::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
+			float moveX = trunc(enemy->GetSpeedX()* dt);
 			float moveY = trunc(enemy->GetSpeedY()* dt);
+
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
 			enemy->SetPositionY(enemy->GetPositionY() + moveY);
 		}
 		else
@@ -66,8 +69,12 @@ void GreenCanonSoldierState::Update(DWORD dt)
 
 			enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
+			float moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
+
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
 			enemy->SetPositionY(enemy->GetPositionY() + moveY);
+
 
 			if (nx != 0) enemy->SetSpeedX(0);
 			if (ny != 0) enemy->SetSpeedY(0);

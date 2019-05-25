@@ -32,6 +32,7 @@ class Ninja : public GameObject
 	static vector<Animation *> animations;
 	DWORD lastFrameTime;
 
+	int score = 0;
 
 	int stamina;
 public:
@@ -81,6 +82,8 @@ public:
 		this->collider.width = width;
 		this->collider.height = height;
 	}
+	void SetScore(int value) { this->score += value; }
+	int GetScore() { return this->score; }
 	void CreateThrownWeapon();
 	void TurnLeft();
 	void TurnRight();

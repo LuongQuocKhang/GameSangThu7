@@ -23,6 +23,7 @@ protected:
 	EnemyType Type;
 
 	bool death = false;
+	int point = 5;
 public:
 	Enemy();
 	void LoadResources();
@@ -48,6 +49,7 @@ public:
 	}
 	int GetId() { return this->Id; }
 	void SetActive(bool value) { this->active = value; }
+	int GetPoint() { return this->point; }
 
 	bool IsActive()
 	{

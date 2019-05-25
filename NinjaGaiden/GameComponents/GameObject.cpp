@@ -184,6 +184,8 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 					{
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
 						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
+						int score = Ninja::GetInstance()->GetScore() + enemy->GetPoint();
+						Ninja::GetInstance()->SetScore(score);
 					}
 				}
 			}
@@ -235,7 +237,7 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 		if (TargetObject.x + TargetObject.width > rec.left && TargetObject.x + TargetObject.width < rec.right)
 		{
 			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
-				|| (rec.top > TargetObject.y && rec.bottom < TargetObject.y))
+				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
 			{
 				return true;
 			}
@@ -249,6 +251,7 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 			return false;
 		}
 	}
+	return false;
 }
 void GameObject::UpdateObjectCollider()
 {

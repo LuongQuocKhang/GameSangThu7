@@ -139,7 +139,7 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy)
 	enemy->SetId(Id);
 	if (enemy != NULL)
 	{
-		if (type != YELLOWPANTHER)
+		if (type != YELLOWPANTHER && type != BLOODYBIRD)
 		{
 			enemy->TurnLeft();
 		}
