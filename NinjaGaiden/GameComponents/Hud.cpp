@@ -2,6 +2,7 @@
 #include "Ninja.h"
 #include "Constants.h"
 
+Hud * Hud::__instance = NULL;
 Hud::Hud(float posx, float posy)
 {
 	__instance = NULL;
@@ -15,6 +16,14 @@ void Hud::Reset()
 {
 	x = 50;
 	y = 250;
+}
+Hud * Hud::GetInstance()
+{
+	if (__instance == NULL)
+	{
+		__instance = new Hud(50, 250);
+	}
+	return __instance;
 }
 void Hud::LoadResources()
 {

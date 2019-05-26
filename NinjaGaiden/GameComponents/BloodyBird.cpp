@@ -34,7 +34,6 @@ BloodyBird::BloodyBird(float posx, float posy)
 	walkingState = new BloodyBirdState(this, BLOODY_BIRD_ANI_WALKING);
 	state = walkingState;
 
-	this->isLeft = false;
 	this->vx = 0.0f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);

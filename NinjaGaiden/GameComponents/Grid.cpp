@@ -66,6 +66,7 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 		{
 			size_t pos = 0;
 			int rowNum = 0 , posx = 0, posy = 0 , type = 0;
+			bool isleft = false;
 
 			while ((pos = line.find(" ")) != string::npos)
 			{
@@ -75,6 +76,14 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 					type = token;
 				}
 				else if (rowNum == Column::PosX) posx = token;
+				else if (rowNum == Column::Direction)
+				{
+					if (token == 0)
+					{
+						isleft = true;
+					}
+					else if (token == 1) isleft = false;
+				}
 				else if (rowNum == Column::PosY)
 				{
 					if (type == YELLOWSOLDIER)
@@ -91,13 +100,13 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 				rowNum++;
 			}
 
-			CreateEnemy(Id,type, posx, posy);
+			CreateEnemy(Id,type, posx, posy,isleft);
 			Id++;
 		}
 		tilesInfo.close();
 	}
 }
-void Grid::CreateEnemy(int Id , int type , int posx , int posy)
+void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft)
 {
 	Enemy * enemy = NULL;
 
@@ -139,10 +148,8 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy)
 	enemy->SetId(Id);
 	if (enemy != NULL)
 	{
-		if (type != YELLOWPANTHER && type != BLOODYBIRD)
-		{
-			enemy->TurnLeft();
-		}
+		enemy->Setleft(isLeft);
+
 		int cellX = POSXTOCELL(posx);
 		int cellY = POSYTOCELL(posy);
 

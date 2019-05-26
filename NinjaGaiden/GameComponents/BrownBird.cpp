@@ -34,8 +34,6 @@ BrownBird::BrownBird(float posx, float posy)
 	walkingState = new BrownBirdState(this, BROWN_BIRD_ANI_WALKING);
 	state = walkingState;
 
-	this->isLeft = true;
-	this->vx = 0.0f;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 

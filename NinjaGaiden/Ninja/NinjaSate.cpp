@@ -225,7 +225,7 @@ void NinjaSate::Update(DWORD dt)
 	{
 		int direction = (ninja->IsLeft() == true) ? -1 : 1;
 		Sword * sword = Sword::GetInstance();
-		sword->SetPosition(ninja->GetPositionX(), ninja->GetPositionY() - ninja->GetHeight() / 2,dt);
+		sword->SetPosition(ninja->GetPositionX(), ninja->GetPositionY() - ninja->GetHeight() / 4,dt);
 		sword->SetSpeedX(ninja->GetSpeedX());
 
 		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);

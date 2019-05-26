@@ -4,7 +4,7 @@ Sword * Sword::__instance = NULL;
 Sword::Sword()
 {
 	width = NINJA_SPRITE_WIDTH + 10;
-	height = NINJA_SPRITE_HEIGHT;
+	height = NINJA_SPRITE_HEIGHT - 20;
 
 	vy = 0;
 }

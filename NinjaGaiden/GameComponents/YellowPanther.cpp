@@ -41,12 +41,12 @@ YellowPanther::YellowPanther(float posx , float posy)
 
 	collider.x = x;
 	collider.y = y;
-	collider.vx = 0;
-	collider.vy = 0;
+	collider.vx = vx;
+	collider.vy = vy;
 	collider.width = YELLOW_PANTHER_SPRITE_WIDTH;
 	collider.height = YELLOW_PANTHER_SPRITE_HEIGHT;
 
-	SetActive(false);
+	//SetActive(false);
 
 	Type = EnemyType::YELLOWPANTHER;
 }

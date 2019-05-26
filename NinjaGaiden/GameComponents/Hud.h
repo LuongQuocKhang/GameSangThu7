@@ -8,10 +8,12 @@ class State;
 class Hud :public GameObject
 {
 
-	GameObject * __instance;
+	static Hud * __instance;
 	vector<Animation *> animations;
 public:
 	Hud(float posx, float posy);
+
+	static Hud * GetInstance();
 	void LoadResources();
 
 	//Hàm c?p nh?t

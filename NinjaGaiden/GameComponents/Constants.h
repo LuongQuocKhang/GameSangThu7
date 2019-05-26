@@ -34,7 +34,7 @@ enum Column
 {
 	No,
 	Type,
-	NoInfo_2,
+	Direction,
 	PosX,
 	PosY,
 	Width,

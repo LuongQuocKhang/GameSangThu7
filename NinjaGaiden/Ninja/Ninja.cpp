@@ -324,6 +324,7 @@ void Ninja::Update(DWORD dt)
 				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
 				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_32));
 				Grid::SetNewGrid();
+				Hud::GetInstance()->Reset();
 				Game::GetInstance()->SetGrid(Grid::GetInstance());
 				this->SetSpeedY(0.0f);
 			}
@@ -333,6 +334,7 @@ void Ninja::Update(DWORD dt)
 				Game::GetInstance()->GetTiledMap()->ResetTiledMap();
 				Game::GetInstance()->SetTileMap(TiledMap::GetInstance(TILES_MATRIX_STAGE_BOSS));
 				Grid::SetNewGrid();
+				Hud::GetInstance()->Reset();
 				Game::GetInstance()->SetGrid(Grid::GetInstance());
 				this->SetPositionX(100);
 				this->SetSpeedY(0.0f);

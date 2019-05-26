@@ -51,6 +51,14 @@ public:
 	void SetActive(bool value) { this->active = value; }
 	int GetPoint() { return this->point; }
 
+	void Setleft(bool value)
+	{
+		isLeft = value;
+		if (isLeft == false)
+		{
+			vx = vx * (-1);
+		}
+	}
 	void ResetCollider();
 
 	bool IsActive()
