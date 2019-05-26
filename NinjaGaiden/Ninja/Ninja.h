@@ -28,7 +28,6 @@ class Ninja : public GameObject
 	bool isCrouching = false;
 	bool isClimbing = false;
 
-	//Vector chứa các animations
 	static vector<Animation *> animations;
 	DWORD lastFrameTime;
 
@@ -37,13 +36,13 @@ class Ninja : public GameObject
 	int stamina;
 public:
 	void LoadResources();
-	//Hàm set
+
 	void SetIsGrounded(bool isGrounded) { this->isGrounded = isGrounded; }
 	void SetIsCrouching(bool isCrouching) { this->isCrouching = isCrouching; }
 	void SetIsClimbing(bool isClimbing) { this->isClimbing = isClimbing; }
 	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
 	void SetState(State * state);
-	//Hàm get
+
 	static Ninja * GetInstance();
 
 	DWORD GetLastFrameTime() { return this->lastFrameTime; }
@@ -67,11 +66,10 @@ public:
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
 
 	vector<Animation *> GetAnimationsList() { return animations; }
-	//Các hàm hành động nhân vật
+
 	void Idle();
 	void Attack();
 	void Walk();
-	//void Throw();
 	void Jump();
 	void Crouch();
 	void Climb();
@@ -87,9 +85,9 @@ public:
 	void CreateThrownWeapon();
 	void TurnLeft();
 	void TurnRight();
-	//Hàm cập nhật
+
 	void Update(DWORD dt) override;
-	//Hàm render
+
 	void Render() override;
 };
 

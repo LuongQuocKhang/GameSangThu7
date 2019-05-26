@@ -51,6 +51,8 @@ public:
 	void SetActive(bool value) { this->active = value; }
 	int GetPoint() { return this->point; }
 
+	void ResetCollider();
+
 	bool IsActive()
 	{
 		return this->active;

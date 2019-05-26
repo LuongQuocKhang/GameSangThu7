@@ -39,6 +39,9 @@ BrownBird::BrownBird(float posx, float posy)
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	width = BROWN_BIRD_SPRITE_WIDTH;
+	height = BROWN_BIRD_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;

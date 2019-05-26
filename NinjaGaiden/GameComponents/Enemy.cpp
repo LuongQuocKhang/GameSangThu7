@@ -4,7 +4,6 @@
 
 Enemy::Enemy()
 {
-	//__instance = NULL;
 	SetActive(false);
 	LoadResources();
 }
@@ -24,8 +23,6 @@ State * Enemy::GetWalkingState()
 {
 	return walkingState;
 }
-//Các hàm hành động nhân vật
-
 void Enemy::Idle()
 {
 }
@@ -42,11 +39,19 @@ void Enemy::TurnRight()
 {
 	isLeft = false;
 }
+void Enemy::ResetCollider()
+{
+	this->collider.width = 0;
+	this->collider.height = 0;
+	this->collider.x = 0;
+	this->collider.y = 0;
+	this->collider.vx = 0;
+	this->collider.vy = 0;
+}
 void Enemy::TakeDamage(int damage)
 {
 	this->stamina -= damage;
 }
-//Hàm cập nhật
 void Enemy::Update(DWORD dt)
 {
 	state->Update(dt);
@@ -56,7 +61,6 @@ void Enemy::Update(DWORD dt)
 		Grid::GetInstance()->DeleteEnemy(EnemyPosInGrid);
 	}
 }
-//Hàm render
 void Enemy::Render()
 {
 }

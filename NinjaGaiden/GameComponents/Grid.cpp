@@ -254,10 +254,20 @@ void Grid::Update(DWORD dt)
 	this->GetNinjaPosOnGrid(ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell);
 	for (int i = ninjaBCell; i <= ninjaTCell; i++)
 	{
-		for (int j = ninjaLCell; j <= ninjaRCell; j++)
+		if (ninjaLCell - 2 >= 0)
 		{
-			cells[i][j]->InsertTiles(curTiles);		
-			cells[i][j]->InsertEnemies(curEnemies);		
+			for (int j = ninjaLCell - 2; j <= ninjaRCell; j++)
+			{
+				cells[i][j]->InsertTiles(curTiles);
+				cells[i][j]->InsertEnemies(curEnemies);
+			}
+		}
+		else {
+			for (int j = ninjaLCell; j <= ninjaRCell; j++)
+			{
+				cells[i][j]->InsertTiles(curTiles);
+				cells[i][j]->InsertEnemies(curEnemies);
+			}
 		}
 	}
 	ninja->Update(dt);

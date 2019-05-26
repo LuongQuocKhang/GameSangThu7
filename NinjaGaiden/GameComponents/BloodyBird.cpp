@@ -39,6 +39,9 @@ BloodyBird::BloodyBird(float posx, float posy)
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	width = BLOODY_BIRD_SPRITE_WIDTH;
+	height = BLOODY_BIRD_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;
