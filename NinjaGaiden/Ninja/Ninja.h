@@ -85,7 +85,7 @@ public:
 		this->collider.width = width;
 		this->collider.height = height;
 	}
-	void SetScore(int value) { this->score += value; }
+	void SetScore(int value) { this->score = value; }
 	int GetScore() { return this->score; }
 
 	bool IsUntouchable() { return this->isUntouchable; }

@@ -255,10 +255,6 @@ void NinjaSate::Update(DWORD dt)
 	if (state == NINJA_ANI_THROWING)
 	{
 		ninja->SetThrowing(true);
-		//for (size_t i = 0; i < ninja->GetNumberOfShuriken(); i++)
-		//{
-		//	
-		//}
 		vector<LPCOLLISIONEVENT> coEvents;
 		int direction = (ninja->IsLeft() == true) ? -1 : 1;
 		if (shurikens.size() > 0)
@@ -268,6 +264,17 @@ void NinjaSate::Update(DWORD dt)
 				shurikens[0]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt, ninja->IsLeft());
 			} 
 		}
+		///// Ném nhiều phi tiêu
+		//if (shurikens.size() > 0)
+		//{
+		//	if (shurikens[0]->IsActive() == false)
+		//	{
+		//		shurikens[0]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt, ninja->IsLeft());
+		//		shurikens[1]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt, ninja->IsLeft());
+		//		shurikens[2]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt, ninja->IsLeft());
+		//		//.....
+		//	}
+		//}
 	}
 	#pragma endregion
 
@@ -316,7 +323,7 @@ void NinjaSate::Update(DWORD dt)
 
 	#pragma region Xử lý va chạm với quái
 
-	/*if (ninja->IsUntouchable() == false)
+	if (ninja->IsUntouchable() == false)
 	{
 		coEvents.clear();
 		ninja->SetDt(dt);
@@ -359,7 +366,7 @@ void NinjaSate::Update(DWORD dt)
 			ninja->SetUntouchableTime(400);
 			ninja->SetUntouchable(false);
 		}
-	}*/
+	}
 	#pragma endregion
 
 	#pragma	region va chạm với item
@@ -405,6 +412,36 @@ void NinjaSate::Update(DWORD dt)
 				shurikens[0]->Update(dt);
 			}
 		}
+
+		//////// Ném nhiều phi tiêu
+		/*if (ninja->IsLeft() == true && shurikens[0]->IsActive() == true)
+		{
+			for (size_t i = 0; i < shurikens.size(); i++)
+			{
+				if (abs(shurikens[i]->GetDistance()) >= 150)
+				{
+					ninja->DescreaseShuriken();
+				}
+				else
+				{
+					shurikens[i]->Update(dt);
+				}
+			}
+		}
+		else if (ninja->IsLeft() == false && shurikens[0]->IsActive() == true)
+		{
+			for (size_t i = 0; i < shurikens.size(); i++)
+			{
+				if (shurikens[i]->GetDistance() >= 150)
+				{
+					ninja->DescreaseShuriken();
+				}
+				else
+				{
+					shurikens[i]->Update(dt);
+				}
+			}
+		}*/
 	}
 }
 void NinjaSate::NinjaDeath()
@@ -513,6 +550,13 @@ void NinjaSate::Render()
 		{
 		}*/
 	}
+
+	//// ném nhiều phi tiêu 
+	/*for (size_t i = 0; i < shurikens.size(); i++)
+	{
+		shurikens[i]->Render();
+	}*/
+
 	if (shurikens.size() > 0)
 	{
 		shurikens[0]->Render();

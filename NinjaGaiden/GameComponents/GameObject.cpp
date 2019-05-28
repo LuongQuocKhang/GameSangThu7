@@ -183,9 +183,10 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 					if (enemy->GetEnemyStamina() <= 0)
 					{
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
-						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
 						int score = Ninja::GetInstance()->GetScore() + enemy->GetPoint();
 						Ninja::GetInstance()->SetScore(score);
+						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
+						
 					}
 				}
 			}
