@@ -39,6 +39,9 @@ Boss::Boss(float posx, float posy)
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 
+	width = BOSS_SPRITE_WIDTH;
+	height = BOSS_SPRITE_HEIGHT;
+
 	collider.x = x;
 	collider.y = y;
 	collider.vx = vx;
@@ -92,7 +95,7 @@ void Boss::Walk()
 void Boss::Update(DWORD dt)
 {
 	state->Update(dt);
-	if (checkloc)
+	/*if (checkloc)
 	{
 		this->isLeft = true;
 		this->SetPositionX((int)(this->GetPositionX() + -0.1*dt));
@@ -115,7 +118,7 @@ void Boss::Update(DWORD dt)
 		{
 			checkloc = true;
 		}
-	}
+	}*/
 
 
 }

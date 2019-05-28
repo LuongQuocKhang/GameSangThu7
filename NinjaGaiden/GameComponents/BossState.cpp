@@ -1,4 +1,5 @@
 #include "BossState.h"
+#include "Grid.h"
 
 BossState::BossState(Boss * enemy, int enemystate)
 {
@@ -43,10 +44,48 @@ void BossState::Update(DWORD dt)
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
 	{
 		enemy->SetActive(true);
+		vector<LPCOLLISIONEVENT> coEvents;
+		vector<LPCOLLISIONEVENT> coEventsResult;
+
+		vector<Tile *> tiles = Grid::GetInstance()->GetCollisionTiles();
+
+		enemy->SetSpeedY(enemy->GetSpeedY() - NINJA_GRAVITY);
+
+		coEvents.clear();
+		enemy->SetDt(dt);
+		enemy->CalcPotentialCollisions(tiles, coEvents);
+
+		if (coEvents.size() == 0)
+		{
+			float moveX = trunc(enemy->GetSpeedX()* dt);
+			float moveY = trunc(enemy->GetSpeedY()* dt);
+
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
+		}
+		else
+		{
+			float min_tx, min_ty, nx = 0, ny;
+
+			enemy->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+
+			float moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
+			float moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
+
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
+
+
+			if (nx != 0) enemy->SetSpeedX(0);
+			if (ny != 0) enemy->SetSpeedY(0);
+		}
+		for (UINT i = 0; i < coEvents.size(); i++)
+			delete coEvents[i];
 	}
 	else
 	{
 		enemy->SetActive(false);
+		enemy->SetSpeedX(0);
 	}
 }
 
