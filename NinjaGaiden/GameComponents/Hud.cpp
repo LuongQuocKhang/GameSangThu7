@@ -308,6 +308,118 @@ void Hud::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	this->animations.push_back(anim);
+	//2 : 20
+	anim = new Animation(200);
+	for (int i = 36; i < 37; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH;
+		rect.right = rect.left + HUD_SPRITE_WIDTH - 5;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//4 : 21
+	anim = new Animation(200);
+	for (int i = 38; i < 39; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH - 5;
+		rect.right = rect.left + HUD_SPRITE_WIDTH - 3;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//5 : 22
+	anim = new Animation(200);
+	for (int i = 38; i < 39; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH + 2;
+		rect.right = rect.left + HUD_SPRITE_WIDTH - 1;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//6 : 23
+	anim = new Animation(200);
+	for (int i = 39; i < 40; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH;
+		rect.right = rect.left + HUD_SPRITE_WIDTH;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//7 : 24
+	anim = new Animation(200);
+	for (int i = 40; i < 41; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH-2;
+		rect.right = rect.left + HUD_SPRITE_WIDTH-1;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//8 : 25
+	anim = new Animation(200);
+	for (int i = 41; i < 42; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH-5;
+		rect.right = rect.left + HUD_SPRITE_WIDTH;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//9 : 26
+	anim = new Animation(200);
+	for (int i = 41; i < 42; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH+4;
+		rect.right = rect.left + HUD_SPRITE_WIDTH+4;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
+	//0 : 27
+	anim = new Animation(200);
+	for (int i = 34; i < 35; i++)
+	{
+		RECT rect;
+		rect.left = (i % HUD_TEXTURE_COLUMNS) * HUD_SPRITE_WIDTH ;
+		rect.right = rect.left + HUD_SPRITE_WIDTH ;
+		rect.top = (i / HUD_TEXTURE_COLUMNS) * HUD_SPRITE_HEIGHT + 7;
+		rect.bottom = rect.top + HUD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(HUD_TEXTURE_LOCATION, rect, HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim); 
 }
 
 //Hàm c?p nh?t
@@ -346,12 +458,76 @@ void Hud::Render()
 		locx = spriteEnemyData.x + 15;
 	}
 	//111111
-	for (int i = 0; i < 6; i++)
+	switch (Ninja::GetInstance()->GetScore())
+	{
+		case 0:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[27]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;		
+		case 1:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[9]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 2:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[20]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 3:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[10]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 4:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[21]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 5:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[22]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 6:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[23]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 7:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[24]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 8:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[25]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		case 9:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[26]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 13;
+		}break;
+		
+	}
+	/*for (int i = 0; i < 6; i++)
 	{
 		spriteEnemyData.x = locx;
 		this->animations[9]->Render(spriteEnemyData);
 		locx = spriteEnemyData.x + 13;
-	}
+	}*/
 	spriteEnemyData.x = locx + 5;
 	//S
 	this->animations[0]->Render(spriteEnemyData);

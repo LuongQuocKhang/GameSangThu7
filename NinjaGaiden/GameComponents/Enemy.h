@@ -23,7 +23,7 @@ protected:
 	EnemyType Type;
 
 	bool death = false;
-	int point = 5;
+	int point = 1;
 public:
 	Enemy();
 	void LoadResources();
