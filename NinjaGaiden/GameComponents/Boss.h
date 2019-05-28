@@ -23,6 +23,8 @@ public:
 	void Idle();
 	void Walk();
 
+	bool checkloc = true;
+
 	vector<Animation *> GetAnimationsList() { return this->animations; }
 	//Hàm cập nhật
 	void Update(DWORD dt) override;

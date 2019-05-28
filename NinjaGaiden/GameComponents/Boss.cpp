@@ -32,7 +32,7 @@ Boss::Boss(float posx, float posy)
 
 	idleState = new BossState(this, BOSS_ANI_IDLE);
 	walkingState = new BossState(this, BOSS_ANI_WALKING);
-	state = walkingState;
+	state = idleState;
 
 	this->isLeft = true;
 	this->vx = 0.0f;
@@ -92,6 +92,32 @@ void Boss::Walk()
 void Boss::Update(DWORD dt)
 {
 	state->Update(dt);
+	if (checkloc)
+	{
+		this->isLeft = true;
+		this->SetPositionX((int)(this->GetPositionX() + -0.1*dt));
+		float locx = this->GetPositionX();
+		float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
+		this->SetPositionY(y);
+		if (locx < 2)
+		{
+			checkloc = false;
+		}
+	}
+	else
+	{
+		this->isLeft = false;
+		this->SetPositionX((int)(this->GetPositionX() + 0.15*dt));
+		float locx = this->GetPositionX();
+		float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
+		this->SetPositionY(y);
+		if (locx > 330)
+		{
+			checkloc = true;
+		}
+	}
+
+
 }
 //Hàm render
 void Boss::Render()
