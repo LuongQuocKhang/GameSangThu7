@@ -46,6 +46,10 @@ void Shuriken::Update(DWORD dt)
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
+	if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
+	{
+		enemies = Grid::GetInstance()->GetBoss();
+	}
 	this->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
 }
 

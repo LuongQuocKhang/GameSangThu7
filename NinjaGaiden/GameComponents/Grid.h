@@ -51,6 +51,7 @@ public:
 	vector<Tile *> GetCurTiles() { return this->curTiles; }
 	vector<Tile *> GetCollisionTiles() { return this->CollisionTiles; }
 	vector<Enemy*> GetEnemies() { return curEnemies; }
+	vector<Enemy*> GetBoss() { return enemies; }
  
 	void ReadEnemiesFromFIle(Stage GameStage);
 	void Update(DWORD dt);

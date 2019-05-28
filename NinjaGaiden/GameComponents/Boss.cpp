@@ -95,7 +95,7 @@ void Boss::Walk()
 void Boss::Update(DWORD dt)
 {
 	state->Update(dt);
-	/*if (checkloc)
+	if (checkloc)
 	{
 		this->isLeft = true;
 		this->SetPositionX((int)(this->GetPositionX() + -0.1*dt));
@@ -118,9 +118,7 @@ void Boss::Update(DWORD dt)
 		{
 			checkloc = true;
 		}
-	}*/
-
-
+	}
 }
 //Hàm render
 void Boss::Render()

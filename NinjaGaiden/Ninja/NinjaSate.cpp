@@ -235,7 +235,10 @@ void NinjaSate::Update(DWORD dt)
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
 	vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
-
+	if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
+	{
+		enemies = Grid::GetInstance()->GetBoss();
+	}
 	#pragma region xử lý khi chém vào quái
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
@@ -311,9 +314,9 @@ void NinjaSate::Update(DWORD dt)
 		delete coEvents[i];
 	#pragma endregion
 
-	/*#pragma region Xử lý va chạm với quái
+	#pragma region Xử lý va chạm với quái
 
-	if (ninja->IsUntouchable() == false)
+	/*if (ninja->IsUntouchable() == false)
 	{
 		coEvents.clear();
 		ninja->SetDt(dt);
@@ -356,8 +359,8 @@ void NinjaSate::Update(DWORD dt)
 			ninja->SetUntouchableTime(400);
 			ninja->SetUntouchable(false);
 		}
-	}
-	#pragma endregion*/
+	}*/
+	#pragma endregion
 
 	#pragma	region va chạm với item
 
