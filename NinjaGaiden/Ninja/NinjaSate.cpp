@@ -1,5 +1,6 @@
 ﻿#include "NinjaSate.h"
 #include "Sword.h"
+#include <math.h>
 
 NinjaSate::NinjaSate(Ninja * ninja, int states)
 {
@@ -251,12 +252,18 @@ void NinjaSate::Update(DWORD dt)
 	if (state == NINJA_ANI_THROWING)
 	{
 		ninja->SetThrowing(true);
-		for (size_t i = 0; i < ninja->GetNumberOfShuriken(); i++)
+		//for (size_t i = 0; i < ninja->GetNumberOfShuriken(); i++)
+		//{
+		//	
+		//}
+		vector<LPCOLLISIONEVENT> coEvents;
+		int direction = (ninja->IsLeft() == true) ? -1 : 1;
+		if (shurikens.size() > 0)
 		{
-			vector<LPCOLLISIONEVENT> coEvents;
-			Ninja* ninja = Ninja::GetInstance();
-			int direction = (ninja->IsLeft() == true) ? -1 : 1;
-			shurikens[i]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt,ninja->IsLeft());
+			if (shurikens[0]->IsActive() == false)
+			{
+				shurikens[0]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt, ninja->IsLeft());
+			} 
 		}
 	}
 	#pragma endregion
@@ -364,13 +371,37 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	for (size_t i = 0; i < shurikens.size(); i++)
-	{
-		/*if (shurikens[i]->IsActive() == true)
-		{
-		}*/
-		shurikens[i]->Update(dt);
+	//for (size_t i = 0; i < shurikens.size(); i++)
+	//{
+	//	/*if (shurikens[i]->IsActive() == true)
+	//	{
+	//	}*/
 
+	//}
+	if (ninja->GetShuriken().size() > 0)
+	{
+		if (ninja->IsLeft() == true && shurikens[0]->IsActive() == true)
+		{
+			if (abs(shurikens[0]->GetDistance()) >= 150)
+			{
+				ninja->DescreaseShuriken();
+			}
+			else
+			{
+				shurikens[0]->Update(dt);
+			}
+		}
+		else if (ninja->IsLeft() == false && shurikens[0]->IsActive() == true)
+		{
+			if (shurikens[0]->GetDistance() >= 150)
+			{
+				ninja->DescreaseShuriken();
+			}
+			else
+			{
+				shurikens[0]->Update(dt);
+			}
+		}
 	}
 }
 void NinjaSate::NinjaDeath()
@@ -478,7 +509,9 @@ void NinjaSate::Render()
 		/*if (shurikens[i]->IsActive() == true)
 		{
 		}*/
-		shurikens[i]->Render();
-
+	}
+	if (shurikens.size() > 0)
+	{
+		shurikens[0]->Render();
 	}
 }

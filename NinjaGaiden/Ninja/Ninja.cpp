@@ -37,10 +37,12 @@ Ninja::Ninja()
 	UntouchableTime = 200;
 
 	// test ( sẽ bỏ sau khi load và va chạm dc item )
-	for (size_t i = 0; i < ShurikenNum; i++)
+	/*for (size_t i = 0; i < ShurikenNum; i++)
 	{
-		Shurikens.push_back(new Shuriken());
-	}
+	}*/
+	Shurikens.push_back(new Shuriken());
+	Shurikens.push_back(new Shuriken());
+	Shurikens.push_back(new Shuriken());
 }
 Ninja * Ninja::GetInstance()
 {
@@ -331,6 +333,10 @@ void Ninja::TurnRight()
 void Ninja::SetUntouchableTime(int value)
 {
 	UntouchableTime = value;
+}
+void Ninja::DescreaseShuriken()
+{
+	this->Shurikens.erase(Shurikens.begin());
 }
 void Ninja::Reset()
 {

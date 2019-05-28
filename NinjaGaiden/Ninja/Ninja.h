@@ -39,7 +39,6 @@ class Ninja : public GameObject
 	int UntouchableTime;
 
 	vector<Shuriken *> Shurikens;
-	int ShurikenNum = SHURIKEN_NUM;
 
 	bool isThrowing;
 public:
@@ -94,7 +93,7 @@ public:
 	void SetUntouchableTime(int dt);
 	int GetUntouchableTime() { return this->UntouchableTime; }
 
-	int GetNumberOfShuriken() { return this->ShurikenNum; }
+	void DescreaseShuriken();
 	int GetStamina() { return this->stamina; }
 	void TakeDamage(int value) { this->stamina -= value; }
 	void SetThrowing(bool value) { this->isThrowing = value; }

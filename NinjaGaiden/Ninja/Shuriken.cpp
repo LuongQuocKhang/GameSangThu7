@@ -42,6 +42,8 @@ void Shuriken::Update(DWORD dt)
 {
 	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
 
+	distance += this->GetSpeedX() * dt;
+
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
 	this->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
@@ -74,6 +76,7 @@ Shuriken::~Shuriken()
 
 void Shuriken::CreateShuriken(float posx, float posy, float dt,bool isLeft)
 {
+	this->Active = true;
 	this->x = posx;
 	this->y = posy;
 

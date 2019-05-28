@@ -7,19 +7,22 @@ class Shuriken : public GameObject
 
 	vector<Animation *> animations;
 
-	bool IsActive;
+	bool Active;
+
+	float distance;
 public:
 	Shuriken();
 	void CreateShuriken(float posx, float posy, float dt, bool isLeft);
 	int GetDamage() { return this->damage; }
-	//bool IsActive() { return this->IsActive; }
-	//bool SetActive(bool value) { this->IsActive = value; }
+	bool IsActive() { return this->Active; }
+	bool SetActive(bool value) { this->Active = value; }
 
 	void LoadResources();
 
 	void Update(DWORD dt) override;
 	void Render() override;
 	
+	float GetDistance() { return this->distance; }
 
 	~Shuriken();
 };
