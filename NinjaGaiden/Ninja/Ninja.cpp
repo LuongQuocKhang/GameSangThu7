@@ -15,6 +15,7 @@ Ninja::Ninja()
 	climbState = new NinjaSate(this, NINJA_ANI_CLIMBING);
 	jumpattackingState = new NinjaSate(this, NINJA_ANI_JUMPING_ATTACKING);
 	jumpattackedState = new NinjaSate(this, NINJA_ANI_JUMPING_ATTACKED);
+	throwingState = new NinjaSate(this, NINJA_ANI_THROWING);
 
 	state = idleState;
 
@@ -31,6 +32,15 @@ Ninja::Ninja()
 	collider.height = NINJA_SPRITE_HEIGHT;
 
 	stamina = 100;
+
+	isUntouchable = false;
+	UntouchableTime = 200;
+
+	// test ( sẽ bỏ sau khi load và va chạm dc item )
+	for (size_t i = 0; i < ShurikenNum; i++)
+	{
+		Shurikens.push_back(new Shuriken());
+	}
 }
 Ninja * Ninja::GetInstance()
 {
@@ -185,14 +195,14 @@ void Ninja::LoadResources()
 
 	for (int i = 16; i < 20; i++)
 	{
-			RECT rect;
-			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
-			rect.right = rect.left + NINJA_SPRITE_WIDTH;
-			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
-			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
-			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		RECT rect;
+		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+		rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 
-			anim->AddFrame(sprite);
+		anim->AddFrame(sprite);
 	}
 
 	rect.left = (9 % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -219,6 +229,26 @@ void Ninja::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	animations.push_back(anim);
+
+	anim = new Animation(100);
+	for (int i = 20; i < 23; i++)
+	{
+		RECT rect;
+		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+
+		if (22 == i)
+		{
+			rect.right = rect.left + NINJA_SPRITE_WIDTH + 5;
+		}
+
+		rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
 }
 void Ninja::SetState(State * state)
 {
@@ -231,6 +261,10 @@ State * Ninja::GetIdleState()
 State * Ninja::GetAttackedState()
 {
 	return jumpattackedState;
+}
+State * Ninja::GetThrowingState()
+{
+	return this->throwingState;;
 }
 State * Ninja::GetWalkingState()
 {
@@ -294,9 +328,21 @@ void Ninja::TurnRight()
 {
 	isLeft = false;
 }
+void Ninja::SetUntouchableTime(int value)
+{
+	UntouchableTime = value;
+}
+void Ninja::Reset()
+{
+	this->stamina = 100;
+	this->SetPositionX(100);
+	this->SetPositionY(100);
+	Viewport::GetInstance()->Reset();
+	Hud::GetInstance()->Reset();
+}
 void Ninja::CreateThrownWeapon()
 {
-	
+	this->SetState(GetThrowingState());
 }
 bool PantherAppear = false;
 void Ninja::Update(DWORD dt)
@@ -306,6 +352,7 @@ void Ninja::Update(DWORD dt)
 		if (this->GetPositionX() >= 400 && this->GetPositionX() <= 450 && PantherAppear == false)
 		{
 			YellowPanther * enemy = new YellowPanther(220, 100);
+			enemy->Setleft(false);
 			enemy->SetActive(true);
 			Grid::GetInstance()->AddEnemy(enemy);
 			PantherAppear = true;

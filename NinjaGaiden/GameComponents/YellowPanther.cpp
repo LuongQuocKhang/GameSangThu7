@@ -34,10 +34,13 @@ YellowPanther::YellowPanther(float posx , float posy)
 	walkingState = new YellowPantherState(this, YELLOW_PANTHER_ANI_WALKING);
 	state = walkingState;
 
-	this->isLeft = false;
 	this->vx = YELLOW_PANTHER_WALKING_SPEED;
+
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+
+	width = YELLOW_PANTHER_SPRITE_WIDTH;
+	height = YELLOW_PANTHER_SPRITE_HEIGHT;
 
 	collider.x = x;
 	collider.y = y;
@@ -45,8 +48,6 @@ YellowPanther::YellowPanther(float posx , float posy)
 	collider.vy = vy;
 	collider.width = YELLOW_PANTHER_SPRITE_WIDTH;
 	collider.height = YELLOW_PANTHER_SPRITE_HEIGHT;
-
-	//SetActive(false);
 
 	Type = EnemyType::YELLOWPANTHER;
 }

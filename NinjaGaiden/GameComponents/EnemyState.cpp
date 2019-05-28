@@ -39,7 +39,12 @@ void EnemyState::Walk()
 }
 void EnemyState::Update(DWORD dt)
 {
-	
+	if (enemy->GetPositionY() < 35)
+	{
+		enemy->SetActive(false);
+		enemy->SetStatus(true);
+		return;
+	}
 }
 
 void EnemyState::Render()

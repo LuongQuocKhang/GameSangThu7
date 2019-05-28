@@ -2,24 +2,6 @@
 #include "Game.h"
 
 Grid * Grid::__instance = NULL;
-bool CellGameObjectAABB(GridCell * cell, GameObject * obj)
-{
-	return (
-		cell->GetPositionX() < obj->GetPositionX() + obj->GetWidth() &&
-		cell->GetPositionX() + GRID_SIZE > obj->GetPositionX() &&
-		cell->GetPositionY() > obj->GetPositionY() - obj->GetHeight() &&
-		cell->GetPositionY() - GRID_SIZE < obj->GetPositionY()
-		);
-}
-bool CellTileAABB(GridCell * cell, Tile & tile)
-{
-	return (
-		cell->GetPositionX() < tile.x + tile.width &&
-		cell->GetPositionX() + GRID_SIZE > tile.x &&
-		cell->GetPositionY() > tile.y - tile.height &&
-		cell->GetPositionY() - GRID_SIZE < tile.y
-		);
-}
 
 Grid::Grid()
 {
@@ -263,17 +245,31 @@ void Grid::Update(DWORD dt)
 	{
 		if (ninjaLCell - 2 >= 0)
 		{
-			for (int j = ninjaLCell - 2; j <= ninjaRCell; j++)
+			if (ninjaRCell + 5 < 34)
 			{
-				cells[i][j]->InsertTiles(curTiles);
-				cells[i][j]->InsertEnemies(curEnemies);
+				for (int j = ninjaLCell; j <= ninjaRCell + 5; j++)
+				{
+					cells[i][j]->InsertTiles(curTiles);
+					cells[i][j]->InsertEnemies(curEnemies);
+				}
+			}
+			else
+			{
+				for (int j = ninjaLCell - 2; j <= ninjaRCell; j++)
+				{
+					cells[i][j]->InsertTiles(curTiles);
+					cells[i][j]->InsertEnemies(curEnemies);
+				}
 			}
 		}
 		else {
-			for (int j = ninjaLCell; j <= ninjaRCell; j++)
+			if (ninjaRCell + 5 < 34)
 			{
-				cells[i][j]->InsertTiles(curTiles);
-				cells[i][j]->InsertEnemies(curEnemies);
+				for (int j = ninjaLCell; j <= ninjaRCell + 5; j++)
+				{
+					cells[i][j]->InsertTiles(curTiles);
+					cells[i][j]->InsertEnemies(curEnemies);
+				}
 			}
 		}
 	}

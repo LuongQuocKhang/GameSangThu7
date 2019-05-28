@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Game.h"
 #include "NinjaSate.h"
+#include "Shuriken.h"
 
 class State;
 class Ninja : public GameObject
@@ -32,8 +33,15 @@ class Ninja : public GameObject
 	DWORD lastFrameTime;
 
 	int score = 0;
-
 	int stamina;
+
+	bool isUntouchable;
+	int UntouchableTime;
+
+	vector<Shuriken *> Shurikens;
+	int ShurikenNum = SHURIKEN_NUM;
+
+	bool isThrowing;
 public:
 	void LoadResources();
 
@@ -51,21 +59,19 @@ public:
 	State * GetWalkingState();
 	State * GetAttackingState();
 	State * GetAttackedState();
-	//State * GetThrowingState();
+	State * GetThrowingState();
 	State * GetCrouchingState();
 	State * GetJumpingState();
 	State * GetClimbState();
 	State * GetJumpAttackState();
 
-	//Hàm trạng thái
 	bool IsAttacking() { return state == attackingState || state == throwingState; }
 	bool IsGrounded() { return isGrounded; }
 	bool IsCrouching() { return isCrouching; }
 	bool IsClimbing() { return isClimbing; }
 	bool IsLeft() { return isLeft; }
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
-
-	vector<Animation *> GetAnimationsList() { return animations; }
+	bool IsThrowing() { return this->isThrowing; }
 
 	void Idle();
 	void Attack();
@@ -82,9 +88,23 @@ public:
 	}
 	void SetScore(int value) { this->score += value; }
 	int GetScore() { return this->score; }
+
+	bool IsUntouchable() { return this->isUntouchable; }
+	void SetUntouchable(bool value) { this->isUntouchable = value; }
+	void SetUntouchableTime(int dt);
+	int GetUntouchableTime() { return this->UntouchableTime; }
+
+	int GetNumberOfShuriken() { return this->ShurikenNum; }
+	int GetStamina() { return this->stamina; }
+	void TakeDamage(int value) { this->stamina -= value; }
+	void SetThrowing(bool value) { this->isThrowing = value; }
+	void Reset();
 	void CreateThrownWeapon();
 	void TurnLeft();
 	void TurnRight();
+
+	vector<Animation *> GetAnimationsList() { return animations; }
+	vector<Shuriken *> GetShuriken() { return this->Shurikens; }
 
 	void Update(DWORD dt) override;
 

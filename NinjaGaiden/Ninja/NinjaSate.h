@@ -20,6 +20,9 @@ public:
 	void Idle() override;
 	void Attack() override;
 	void Walk() override;
+	void Throw();
+
+	void NinjaDeath();
 
 	void Update(DWORD dt) override;
 	void Render() override;

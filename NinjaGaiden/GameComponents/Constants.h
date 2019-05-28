@@ -59,6 +59,10 @@ enum CollisionWithEnemy
 	ATACKING,
 	COLLIDING
 };
+
+enum Item {
+	SHURIKEN
+};
 //TiledMap
 //
 // MAP
@@ -97,6 +101,7 @@ enum CollisionWithEnemy
 #define NINJA_ANI_CLIMBING				6
 #define NINJA_ANI_JUMPING_ATTACKING 	7
 #define NINJA_ANI_JUMPING_ATTACKED		8
+#define NINJA_ANI_THROWING		9
 
 #define NINJA_TEXTURE_LOCATION L"Resources\\Ninja\\Ninja.png"
 #define NINJA_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(255, 0, 255)
@@ -105,6 +110,13 @@ enum CollisionWithEnemy
 #define NINJA_SPRITE_WIDTH 26
 #define NINJA_SPRITE_HEIGHT 36
 
+#define SHURIKEN_TEXTTURE_LOCATION L"Resources\\Weapons\\Subweapons\\Shuriken.png"
+#define SHURIKEN_WIDTH 22
+#define SHURIKEN_HEIGHT 26
+
+#define SHURIKEN_NUM 1
+#define SHURIKEN_SPEED 0.125f
+#define SHURIKEN_TEXTURE_COLUMNS 1
 //
 //Enemy
 //
@@ -198,7 +210,7 @@ enum CollisionWithEnemy
 //
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
-#define YELLOW_PANTHER_WALKING_SPEED		0.1f
+#define YELLOW_PANTHER_WALKING_SPEED		-0.075f
 #define YELLOW_PANTHER_GRAVITY			0.025f
 //Các số để chạy animation của ENEMY YELLOW PANTHER
 #define YELLOW_PANTHER_ANI_IDLE					0

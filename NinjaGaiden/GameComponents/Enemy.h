@@ -61,6 +61,7 @@ public:
 	}
 	void ResetCollider();
 
+	int GetDamage() { return this->damage; }
 	bool IsActive()
 	{
 		return this->active;

@@ -196,6 +196,11 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 
 				if (e->t >= 0 && e->t < 1.0f)
 				{
+					Ninja::GetInstance()->TakeDamage(enemy->GetDamage());
+					if (Ninja::GetInstance()->GetStamina() <= 0)
+					{
+						Ninja::GetInstance()->Reset();
+					}
 					coEvents.push_back(e);
 				}
 				else

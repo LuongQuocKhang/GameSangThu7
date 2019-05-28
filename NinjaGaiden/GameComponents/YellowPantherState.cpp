@@ -50,14 +50,11 @@ void YellowPantherState::Walk()
 
 void YellowPantherState::Update(DWORD dt)
 {
-	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true && enemy->IsActive() == true)
+	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
 	{
-		if (enemy->GetPositionY() < 35)
-		{
-			enemy->SetActive(false);
-			enemy->SetStatus(true);
-			return;
-		}
+		enemy->SetActive(true);
+		enemy->SetSpeedX(YELLOW_PANTHER_WALKING_SPEED * (enemy->IsLeft() ? 1 : -1));
+
 		vector<LPCOLLISIONEVENT> coEvents;
 		vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -95,6 +92,11 @@ void YellowPantherState::Update(DWORD dt)
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
 			delete coEvents[i];
+	}
+	else
+	{
+		enemy->SetActive(false);
+		enemy->SetSpeedX(0);
 	}
 }
 

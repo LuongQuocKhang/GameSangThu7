@@ -165,6 +165,9 @@ void Keyboard::OnKeyDown(int KeyCode)
 		case DIK_W:
 			ninja->Climb();
 			break;
+		case DIK_D:
+			ninja->CreateThrownWeapon();
+			break;
 	}
 }
 void Keyboard::OnKeyUp(int KeyCode)
@@ -187,6 +190,9 @@ void Keyboard::OnKeyUp(int KeyCode)
 				ninja->SetSpeedX(0);
 				ninja->SetState(ninja->GetIdleState());
 			}
+			break;
+		case DIK_D:
+			ninja->SetState(ninja->GetIdleState());
 			break;
 	}
 }

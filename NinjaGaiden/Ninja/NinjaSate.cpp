@@ -187,6 +187,21 @@ void NinjaSate::Walk()
 	}
 }
 
+void NinjaSate::Throw()
+{
+	int state = this->states;
+	switch (state)
+	{
+		case NINJA_ANI_CROUCHING:
+		case NINJA_ANI_JUMPING:
+		case NINJA_ANI_IDLE:
+		{
+			ninja->SetState(ninja->GetThrowingState());
+		}
+		break;
+	}
+}
+
 void NinjaSate::Update(DWORD dt)
 {
 	int state = this->states;
@@ -229,6 +244,20 @@ void NinjaSate::Update(DWORD dt)
 		sword->SetSpeedX(ninja->GetSpeedX());
 
 		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
+	}
+
+	vector <Shuriken* > shurikens = ninja->GetShuriken();
+
+	if (state == NINJA_ANI_THROWING)
+	{
+		ninja->SetThrowing(true);
+		for (size_t i = 0; i < ninja->GetNumberOfShuriken(); i++)
+		{
+			vector<LPCOLLISIONEVENT> coEvents;
+			Ninja* ninja = Ninja::GetInstance();
+			int direction = (ninja->IsLeft() == true) ? -1 : 1;
+			shurikens[i]->CreateShuriken(ninja->GetPositionX() + ninja->GetWidth()*direction, ninja->GetPositionY(), dt,ninja->IsLeft());
+		}
 	}
 	#pragma endregion
 
@@ -275,51 +304,82 @@ void NinjaSate::Update(DWORD dt)
 		delete coEvents[i];
 	#pragma endregion
 
-	#pragma region Xử lý va chạm với quái
+	/*#pragma region Xử lý va chạm với quái
 
-	coEvents.clear();
-	ninja->SetDt(dt);
-	ninja->CalcPotentialCollisionsWithEnemy(enemies, coEvents);
-
-	if (coEvents.size() > 0)
+	if (ninja->IsUntouchable() == false)
 	{
-		float min_tx, min_ty, nx = 0, ny;
+		coEvents.clear();
+		ninja->SetDt(dt);
+		ninja->CalcPotentialCollisionsWithEnemy(enemies, coEvents);
 
-		ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
-
-		float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 0.8;
-		float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
-
-		ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-		ninja->SetPositionY(ninja->GetPositionY() + moveY);
-
-
-		if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-		if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
-
-		if (coEventsResult[0]->collisionID == 1)
+		if (coEvents.size() > 0)
 		{
-			if (ny == 1)
+			float min_tx, min_ty, nx = 0, ny;
+
+			ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+
+			float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 3;
+			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
+
+			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
+			ninja->SetPositionY(ninja->GetPositionY() + moveY);
+
+
+			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
+			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+
+			if (coEventsResult[0]->collisionID == 1)
 			{
-				ninja->SetIsGrounded(true);
+				if (ny == 1)
+				{
+					ninja->SetIsGrounded(true);
+				}
 			}
+			ninja->SetUntouchable(true);
+
+		}
+		for (UINT i = 0; i < coEvents.size(); i++)
+			delete coEvents[i];
+	}
+	else
+	{
+		ninja->SetUntouchableTime(ninja->GetUntouchableTime() - dt);
+		if (ninja->GetUntouchableTime() <= 0)
+		{
+			ninja->SetUntouchableTime(400);
+			ninja->SetUntouchable(false);
 		}
 	}
-	for (UINT i = 0; i < coEvents.size(); i++)
-		delete coEvents[i];
+	#pragma endregion*/
+
+	#pragma	region va chạm với item
+
 	#pragma endregion
 
 	#pragma region Ninja chết
+
 	if (ninja->GetPositionY() < 0)
 	{
-		ninja->SetPositionX(100);
-		ninja->SetPositionY(100);
-		Viewport::GetInstance()->Reset();
-		Game::GetInstance()->GetHud()->Reset();
+		NinjaDeath();
 	}
 	#pragma endregion
-}
 
+	for (size_t i = 0; i < shurikens.size(); i++)
+	{
+		/*if (shurikens[i]->IsActive() == true)
+		{
+		}*/
+		shurikens[i]->Update(dt);
+
+	}
+}
+void NinjaSate::NinjaDeath()
+{
+	ninja->SetPositionX(100);
+	ninja->SetPositionY(100);
+	Viewport::GetInstance()->Reset();
+	Game::GetInstance()->GetHud()->Reset();
+}
 void NinjaSate::Render()
 {
 	int state = this->states;
@@ -391,7 +451,6 @@ void NinjaSate::Render()
 	break;
 	case NINJA_ANI_WALKING:
 	{
-
 		ninja->GetAnimationsList()[NINJA_ANI_WALKING]->Render(spriteData);
 	}
 	break;
@@ -406,5 +465,20 @@ void NinjaSate::Render()
 		}
 	}
 	break;
+	case NINJA_ANI_THROWING:
+	{
+		ninja->GetAnimationsList()[NINJA_ANI_THROWING]->Render(spriteData);
+	}
+	break;
+	}
+
+	vector <Shuriken* > shurikens = ninja->GetShuriken();
+	for (size_t i = 0; i < shurikens.size(); i++)
+	{
+		/*if (shurikens[i]->IsActive() == true)
+		{
+		}*/
+		shurikens[i]->Render();
+
 	}
 }
