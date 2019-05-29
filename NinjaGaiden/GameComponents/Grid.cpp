@@ -228,6 +228,14 @@ void Grid::Update(DWORD dt)
 		}
 	}
 
+	for (size_t i = 0; i < deathanimations.size(); i++)
+	{
+		if (dt > 20)
+		{
+			deathanimations.erase(deathanimations.begin() + i);
+		}
+	}
+
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		int cellX = POSXTOCELL((int)enemies[i]->GetPositionX());

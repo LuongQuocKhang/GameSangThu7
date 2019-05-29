@@ -13,11 +13,11 @@ DeathAnimation::DeathAnimation()
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i % SHURIKEN_TEXTURE_COLUMNS) * SHURIKEN_WIDTH;
-		rect.right = rect.left + SHURIKEN_WIDTH;
-		rect.top = (i / SHURIKEN_TEXTURE_COLUMNS) * SHURIKEN_HEIGHT;
-		rect.bottom = rect.top + SHURIKEN_HEIGHT;
-		Sprite * sprite = new Sprite(SHURIKEN_TEXTTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		rect.left = (i % DEATH_EFFECT_TEXTURE_COLUMNS) * DEATH_EFFECT_WIDTH;
+		rect.right = rect.left + DEATH_EFFECT_WIDTH;
+		rect.top = (i / DEATH_EFFECT_TEXTURE_COLUMNS) * DEATH_EFFECT_HEIGHT;
+		rect.bottom = rect.top + DEATH_EFFECT_HEIGHT;
+		Sprite * sprite = new Sprite(DEATH_EFFECT_TEXTTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -35,22 +35,27 @@ DeathAnimation * DeathAnimation::CreateDeateAnimation(GameObject * gameobject)
 	Animation->x = gameobject->GetPositionX();
 	Animation->y = gameobject->GetPositionY();
 
-	Animation->width = SHURIKEN_WIDTH;
-	Animation->height = SHURIKEN_HEIGHT;
+	Animation->width = DEATH_EFFECT_WIDTH;
+	Animation->height = DEATH_EFFECT_HEIGHT;
 
 	return Animation;
 }
 
 void DeathAnimation::Update(DWORD dt)
 {
+	//if (dt > 0)
+	//{
+	//	SpriteData spriteEnemyData;
+	//	this->animations[0]
+	//}
 }
 
 void DeathAnimation::Render()
 {
 	SpriteData spriteEnemyData;
 
-	spriteEnemyData.width = SHURIKEN_WIDTH + 20;
-	spriteEnemyData.height = SHURIKEN_HEIGHT + 20;
+	spriteEnemyData.width = DEATH_EFFECT_WIDTH + 20;
+	spriteEnemyData.height = DEATH_EFFECT_HEIGHT + 20;
 	spriteEnemyData.x = this->GetPositionX();
 	spriteEnemyData.y = this->GetPositionY();
 
