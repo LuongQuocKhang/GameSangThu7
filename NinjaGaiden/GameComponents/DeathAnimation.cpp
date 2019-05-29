@@ -9,6 +9,9 @@ void DeathAnimation::LoadResources()
 
 DeathAnimation::DeathAnimation()
 {
+	Active = true;
+	time = 200;
+
 	Animation * anim = new Animation(100);
 	for (int i = 0; i < 1; i++)
 	{
@@ -43,11 +46,11 @@ DeathAnimation * DeathAnimation::CreateDeateAnimation(GameObject * gameobject)
 
 void DeathAnimation::Update(DWORD dt)
 {
-	//if (dt > 0)
-	//{
-	//	SpriteData spriteEnemyData;
-	//	this->animations[0]
-	//}
+	time -= dt;
+	if (time <= 0)
+	{
+		this->Active = false;
+	}
 }
 
 void DeathAnimation::Render()

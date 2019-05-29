@@ -228,14 +228,6 @@ void Grid::Update(DWORD dt)
 		}
 	}
 
-	for (size_t i = 0; i < deathanimations.size(); i++)
-	{
-		if (dt > 20)
-		{
-			deathanimations.erase(deathanimations.begin() + i);
-		}
-	}
-
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		int cellX = POSXTOCELL((int)enemies[i]->GetPositionX());
@@ -290,6 +282,17 @@ void Grid::Update(DWORD dt)
 		}
 	}
 	ninja->Update(dt);
+	for (size_t i = 0; i < deathanimations.size(); i++)
+	{
+		if (deathanimations[i]->IsActive() == true)
+		{
+			deathanimations[i]->Update(dt);
+		}
+		else
+		{
+			deathanimations.erase(deathanimations.begin() + i);
+		}
+	}
 }
 void Grid::Render()
 {
@@ -309,7 +312,6 @@ void Grid::Render()
 	ninja->Render();
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
-		//if (Viewport::GetInstance()->IsEnemyInCamera(enemies[i]))
 		if (enemies[i]->IsActive() == true)
 		{
 			enemies[i]->Render();
@@ -318,8 +320,12 @@ void Grid::Render()
 
 	for (size_t i = 0; i < deathanimations.size(); i++)
 	{
-		deathanimations[i]->Render();
+		if (deathanimations[i]->IsActive() == true)
+		{
+			deathanimations[i]->Render();
+		}
 	}
+	
 }
 
 int Grid::GetEnemyIndexById(int Id)
