@@ -4,6 +4,7 @@
 #include "GridCell.h"
 #include "Ninja.h"
 #include "Viewport.h"
+#include "DeathAnimation.h"
 
 #include <vector>
 
@@ -32,6 +33,10 @@ private:
 
 	vector<Tile *> CollisionTiles;
 	vector<Enemy* > enemies;
+
+	vector<DeathAnimation* > deathanimations;
+
+
 	Viewport *viewport;
 	Ninja * ninja;
 
@@ -67,6 +72,8 @@ public:
 	{
 		this->enemies.erase(enemies.begin() + pos);
 	}
+	void AddDeathAnimation(DeathAnimation* animation) { this->deathanimations.push_back(animation); }
+
 	int GetEnemyIndexById(int Id);
 	static void SetNewGrid()
 	{

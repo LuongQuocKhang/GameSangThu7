@@ -307,6 +307,11 @@ void Grid::Render()
 			enemies[i]->Render();
 		}
 	}
+
+	for (size_t i = 0; i < deathanimations.size(); i++)
+	{
+		deathanimations[i]->Render();
+	}
 }
 
 int Grid::GetEnemyIndexById(int Id)

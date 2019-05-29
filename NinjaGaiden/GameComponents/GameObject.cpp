@@ -182,11 +182,15 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 					enemy->TakeDamage(Sword::GetInstance()->GetDamage());
 					if (enemy->GetEnemyStamina() <= 0)
 					{
+						// add death animation when kill enemy
+						DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
+						Grid::GetInstance()->AddDeathAnimation(animation);
+
+						// delete enemy
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
 						int score = Ninja::GetInstance()->GetScore() + enemy->GetPoint();
 						Ninja::GetInstance()->SetScore(score);
 						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
-						
 					}
 				}
 			}
