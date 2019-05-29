@@ -1,31 +1,17 @@
 ﻿#pragma once
 #include "GameObject.h"
-#include "State.h"
 #include "Constants.h"
-#include "EnemyState.h"
+#include "Enemy.h"
 
 class State;
 class YellowPanther :public Enemy
 {
-
-	Enemy * __instance;
-
-	State * idleState;
-	State * walkingState;
-	State * state;
-
-	//Vector chứa các animations
-	static vector<Animation *> animations;
 public:
 	YellowPanther();
 	YellowPanther(float posx, float posy);
 	void LoadResources();
 	void Idle();
 	void Walk();
-
-	/*void TurnLeft();
-	void TurnRight();*/
-	vector<Animation *> GetAnimationsList() { return this->animations; }
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render

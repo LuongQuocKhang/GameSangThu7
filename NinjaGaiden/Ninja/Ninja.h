@@ -7,7 +7,6 @@
 #include "NinjaSate.h"
 #include "Shuriken.h"
 
-class State;
 class Ninja : public GameObject
 {
 	Ninja();

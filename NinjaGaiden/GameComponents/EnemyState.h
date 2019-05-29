@@ -23,7 +23,7 @@ public:
 	void Attack() override;
 	void Walk() override;
 
-	void Update(DWORD dt) override;
-	void Render() override;
+	virtual void Update(DWORD dt);
+	virtual void Render();
 };
 

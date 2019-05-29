@@ -1,10 +1,8 @@
 #include "BrownBird.h"
 #include "BrownBirdState.h"
 
-vector<Animation *> BrownBird::animations = vector<Animation *>();
 BrownBird::BrownBird()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new BrownBirdState(this, BROWN_BIRD_ANI_IDLE);
@@ -27,7 +25,6 @@ BrownBird::BrownBird()
 }
 BrownBird::BrownBird(float posx, float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new BrownBirdState(this, BROWN_BIRD_ANI_IDLE);

@@ -1,10 +1,8 @@
 #include "Boss.h"
 #include "BossState.h"
 
-vector<Animation *> Boss::animations = vector<Animation *>();
 Boss::Boss()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new BossState(this, BOSS_ANI_IDLE);
@@ -27,7 +25,6 @@ Boss::Boss()
 }
 Boss::Boss(float posx, float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new BossState(this, BOSS_ANI_IDLE);

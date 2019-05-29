@@ -1,10 +1,8 @@
 #include "RedBird.h"
 #include "RedBirdState.h"
 
-vector<Animation *> RedBird::animations = vector<Animation *>();
 RedBird::RedBird()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new RedBirdState(this, RED_BIRD_ANI_IDLE);
@@ -27,7 +25,6 @@ RedBird::RedBird()
 }
 RedBird::RedBird(float posx , float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new RedBirdState(this, RED_BIRD_ANI_IDLE);

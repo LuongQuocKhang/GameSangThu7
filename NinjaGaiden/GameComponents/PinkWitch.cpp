@@ -1,10 +1,8 @@
 #include "PinkWitch.h"
 #include "PinkWitchState.h"
 
-vector<Animation *> PinkWitch::animations = vector<Animation *>();
 PinkWitch::PinkWitch()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new PinkWitchState(this, PINK_WITCH_ANI_IDLE);
@@ -28,7 +26,6 @@ PinkWitch::PinkWitch()
 
 PinkWitch::PinkWitch(float posx , float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new PinkWitchState(this, PINK_WITCH_ANI_IDLE);

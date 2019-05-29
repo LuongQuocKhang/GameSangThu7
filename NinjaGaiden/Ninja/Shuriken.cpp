@@ -45,10 +45,10 @@ void Shuriken::Update(DWORD dt)
 	distance += this->GetSpeedX() * dt;
 
 	vector<LPCOLLISIONEVENT> coEvents;
-	vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
+	vector<Enemy* > enemies = Grid::GetInstance()->GetAllEnemies();
 	if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
 	{
-		enemies = Grid::GetInstance()->GetBoss();
+		enemies = Grid::GetInstance()->GetAllEnemies();
 	}
 	this->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
 }

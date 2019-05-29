@@ -11,15 +11,15 @@ void Enemy::LoadResources()
 {
 }
 
-void Enemy::SetState(State * state)
+void Enemy::SetState(EnemyState * state)
 {
 	this->state = state;
 }
-State * Enemy::GetIdleState()
+EnemyState * Enemy::GetIdleState()
 {
 	return idleState;
 }
-State * Enemy::GetWalkingState()
+EnemyState * Enemy::GetWalkingState()
 {
 	return walkingState;
 }

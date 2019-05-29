@@ -1,21 +1,11 @@
 ﻿#pragma once
 #include "GameObject.h"
-#include "State.h"
 #include "Constants.h"
-#include "EnemyState.h"
+#include "Enemy.h"
 
-class State;
 class YellowSolider :public Enemy
 {
-
-	Enemy * __instance;
-
-	State * idleState;
-	State * walkingState;
-	State * state;
-
-	//Vector chứa các animations
-	static vector<Animation *> animations;
+private:
 public:
 	YellowSolider();
 	YellowSolider(float posx, float posy);
@@ -23,7 +13,6 @@ public:
 	void Idle();
 	void Walk();
 
-	vector<Animation *> GetAnimationsList() { return this->animations; }
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render

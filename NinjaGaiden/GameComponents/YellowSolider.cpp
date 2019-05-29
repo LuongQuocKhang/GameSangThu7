@@ -2,10 +2,8 @@
 #include "YellowSoliderState.h"
 #include "Grid.h"
 
-vector<Animation *> YellowSolider::animations = vector<Animation *>();
 YellowSolider::YellowSolider()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new YellowSoliderState(this, YELLOW_SOLDIER_ANI_IDLE);
@@ -30,7 +28,6 @@ YellowSolider::YellowSolider()
 
 YellowSolider::YellowSolider(float posx , float posy )
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new YellowSoliderState(this, YELLOW_SOLDIER_ANI_IDLE);

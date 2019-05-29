@@ -1,10 +1,8 @@
 #include "YellowPanther.h"
 #include "YellowPantherState.h"
 
-vector<Animation *> YellowPanther::animations = vector<Animation *>();
 YellowPanther::YellowPanther()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new YellowPantherState(this,  YELLOW_PANTHER_ANI_IDLE);
@@ -27,7 +25,6 @@ YellowPanther::YellowPanther()
 }
 YellowPanther::YellowPanther(float posx , float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new YellowPantherState(this, YELLOW_PANTHER_ANI_IDLE);

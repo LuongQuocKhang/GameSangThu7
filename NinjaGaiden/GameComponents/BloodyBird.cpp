@@ -1,10 +1,8 @@
 #include "BloodyBird.h"
 #include "BloodyBirdState.h"
 
-vector<Animation *> BloodyBird::animations = vector<Animation *>();
 BloodyBird::BloodyBird()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new BloodyBirdState(this, BLOODY_BIRD_ANI_IDLE);
@@ -27,7 +25,6 @@ BloodyBird::BloodyBird()
 }
 BloodyBird::BloodyBird(float posx, float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new BloodyBirdState(this, BLOODY_BIRD_ANI_IDLE);
@@ -84,7 +81,7 @@ void BloodyBird::LoadResources()
 
 void BloodyBird::Idle()
 {
-	state->Idle();
+	this->state->Idle();
 }
 void BloodyBird::Walk()
 {

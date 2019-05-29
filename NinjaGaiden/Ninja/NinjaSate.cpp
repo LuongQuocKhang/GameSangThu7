@@ -231,15 +231,18 @@ void NinjaSate::Update(DWORD dt)
 	default:
 		break;
 	}
+
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
 	vector<Enemy* > enemies = Grid::GetInstance()->GetEnemies();
+
 	if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
 	{
-		enemies = Grid::GetInstance()->GetBoss();
+		enemies = Grid::GetInstance()->GetAllEnemies();
 	}
-	#pragma region xử lý khi chém vào quái
+
+	#pragma region xử lý khi chém vào quái và ném phi tiêu
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
 		int direction = (ninja->IsLeft() == true) ? -1 : 1;
@@ -343,7 +346,7 @@ void NinjaSate::Update(DWORD dt)
 
 
 			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+			//if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
 			if (coEventsResult[0]->collisionID == 1)
 			{
@@ -381,13 +384,7 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	//for (size_t i = 0; i < shurikens.size(); i++)
-	//{
-	//	/*if (shurikens[i]->IsActive() == true)
-	//	{
-	//	}*/
-
-	//}
+	#pragma region Update phi tiêu sau khi ném
 	if (ninja->GetShuriken().size() > 0)
 	{
 		if (ninja->IsLeft() == true && shurikens[0]->IsActive() == true)
@@ -443,6 +440,7 @@ void NinjaSate::Update(DWORD dt)
 			}
 		}*/
 	}
+	#pragma endregion
 }
 void NinjaSate::NinjaDeath()
 {
@@ -451,6 +449,7 @@ void NinjaSate::NinjaDeath()
 	Viewport::GetInstance()->Reset();
 	Game::GetInstance()->GetHud()->Reset();
 }
+
 void NinjaSate::Render()
 {
 	int state = this->states;
@@ -544,13 +543,6 @@ void NinjaSate::Render()
 	}
 
 	vector <Shuriken* > shurikens = ninja->GetShuriken();
-	for (size_t i = 0; i < shurikens.size(); i++)
-	{
-		/*if (shurikens[i]->IsActive() == true)
-		{
-		}*/
-	}
-
 	//// ném nhiều phi tiêu 
 	/*for (size_t i = 0; i < shurikens.size(); i++)
 	{

@@ -1,17 +1,20 @@
 ﻿#pragma once
 #include "GameObject.h"
-#include "State.h"
 #include "Constants.h"
 #include "EnemyState.h"
 
-class State;
+class EnemyState;
 class Enemy:public GameObject
 {
 protected:
 	int Id;
-	State * idleState;
-	State * walkingState;
-	State * state;
+	EnemyState * idleState;
+	EnemyState * walkingState;
+	EnemyState * Death;
+
+	EnemyState * state;
+
+	vector<Animation *> animations;
 
 	DWORD lastFrameTime;
 
@@ -28,12 +31,14 @@ public:
 	Enemy();
 	void LoadResources();
 	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
-	void SetState(State * state);
+	void SetState(EnemyState * state);
 	//Hàm get
 
 	DWORD GetLastFrameTime() { return this->lastFrameTime; }
-	State * GetIdleState();
-	State * GetWalkingState();
+	EnemyState * GetIdleState();
+	EnemyState * GetWalkingState();
+
+	vector<Animation *> GetAnimationsList() { return this->animations; }
 
 	bool IsLeft() { return isLeft; }
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
@@ -79,8 +84,8 @@ public:
 
 	int GetEnemyStamina() { return this->stamina; }
 	//Hàm cập nhật
-	void Update(DWORD dt) override;
+	virtual void Update(DWORD dt);
 	//Hàm render
-	void Render() override;
+	virtual void Render();
 };
 

@@ -1,10 +1,8 @@
 #include "GreenCanonSoldier.h"
 #include "GreenCanonSoldierState.h"
 
-vector<Animation *> GreenCanonSoldier::animations = vector<Animation *>();
 GreenCanonSoldier::GreenCanonSoldier()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new GreenCanonSoldierState(this, GREEN_CANON_SOLDIER_ANI_IDLE);
@@ -27,7 +25,6 @@ GreenCanonSoldier::GreenCanonSoldier()
 }
 GreenCanonSoldier::GreenCanonSoldier(float posx, float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new GreenCanonSoldierState(this, GREEN_CANON_SOLDIER_ANI_IDLE);

@@ -1,10 +1,8 @@
 #include "GreenSolider.h"
 #include "GreenSoliderState.h"
 
-vector<Animation *> GreenSolider::animations = vector<Animation *>();
 GreenSolider::GreenSolider()
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new GreenSoliderState(this, GREEN_SOLDIER_ANI_IDLE);
@@ -20,7 +18,6 @@ GreenSolider::GreenSolider()
 }
 GreenSolider::GreenSolider(float posx , float posy)
 {
-	__instance = NULL;
 	LoadResources();
 
 	idleState = new GreenSoliderState(this, GREEN_SOLDIER_ANI_IDLE);
