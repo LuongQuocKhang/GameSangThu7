@@ -1,0 +1,80 @@
+#include "Flames.h"
+#include "Grid.h"
+
+Flames::Flames()
+{
+	LoadResources();
+
+	Active = true;
+
+	width = FLAMES_SPRITE_WIDTH;
+	height = FLAMES_SPRITE_HEIGHT;
+
+	collider.x = x;
+	collider.y = y;
+	collider.vx = 0;
+	collider.vy = 0;
+	collider.width = FLAMES_SPRITE_WIDTH;
+	collider.height = FLAMES_SPRITE_HEIGHT;
+}
+
+void Flames::LoadResources()
+{
+	Animation * anim = new Animation(100);
+	for (int i = 0; i < 1; i++)
+	{
+		RECT rect;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
+		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
+		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
+}
+
+void Flames::Update(DWORD dt)
+{
+	
+}
+
+void Flames::Render()
+{
+
+	SpriteData spriteEnemyData;
+
+	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
+	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
+	spriteEnemyData.x = this->GetPositionX();
+	spriteEnemyData.y = this->GetPositionY();
+
+	spriteEnemyData.scale = 1;
+	spriteEnemyData.angle = 0;
+
+	this->animations[0]->Render(spriteEnemyData);
+}
+
+
+
+Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+{
+	Flames * flames = new Flames();
+	flames->Active = true;
+	flames->x = posx;
+	flames->y = posy;
+
+	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
+	//this->vx = vx;
+	//this->collider.vx = vx;
+
+	flames->collider.x = posx;
+	flames->collider.y = posy;
+	flames->dt = dt;
+
+	return flames;
+} 
+Flames::~Flames()
+{
+}

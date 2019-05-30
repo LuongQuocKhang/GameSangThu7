@@ -88,6 +88,8 @@ public:
 	void SetDt(float dt) { this->dt = dt; }
 	float GetDt() { return dt; }
 
+	void AddGameItem(Enemy* enemy);
+
 	Collider GetCollider() { return this->collider; }
 	LPCOLLISIONEVENT SweptAABBEx(LPGAMEOBJECT coO);
 

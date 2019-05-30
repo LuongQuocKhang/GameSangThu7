@@ -21,7 +21,6 @@
 #define HEATH_LEFT 28
 #define HEATH_LOST 29
 //
-
 enum Stage {
 	STAGE_31,
 	STAGE_32,
@@ -43,7 +42,7 @@ enum Column
 	PosY,
 	Width,
 	Height,
-	NoInfo_7,
+	ItemType,
 };
 enum EnemyType {
 	YELLOWSOLDIER,
@@ -65,7 +64,9 @@ enum CollisionWithEnemy
 };
 
 enum Item {
-	SHURIKEN
+	NONE,
+	FLAMES,
+	SHURIKEN,
 };
 //TiledMap
 //
@@ -290,3 +291,13 @@ enum Item {
 #define GRID_SIZE 64
 #define GRID_MAX_X 48
 #define GRID_MAX_Y 5
+
+// ITEM
+
+
+#define FLAMES_TEXTURE_LOCATION L"Resources\\Font\\ItemList.png"
+#define FLAMES_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(255, 0, 255)
+#define FLAMES_TEXTURE_COLUMNS 13
+#define FLAMES_TEXTURE_ROWS 1
+#define FLAMES_SPRITE_WIDTH 20
+#define FLAMES_SPRITE_HEIGHT 20

@@ -162,6 +162,12 @@
     <ClCompile Include="GameComponents\DeathAnimation.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\Flames.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameItem.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\ThrowingState.h">
@@ -294,6 +300,12 @@
       <Filter>Header Files\Ninja</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\DeathAnimation.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Flames.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameItem.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

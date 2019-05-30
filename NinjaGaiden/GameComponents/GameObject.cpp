@@ -1,6 +1,7 @@
 ﻿#include "GameObject.h"
 #include "Game.h"
 #include "Sword.h"
+#include "Flames.h"
 
 GameObject::GameObject()
 {
@@ -43,6 +44,22 @@ void GameObject::Update(DWORD dt)
 void GameObject::Render()
 {
 
+}
+
+void GameObject::AddGameItem(Enemy * enemy)
+{
+	GameItem * gameitem;
+	if (enemy->GetEnemyType() == EnemyType::REDBIRD)
+	{
+		switch (enemy->GetItemType())
+		{
+		case Item::FLAMES:
+			gameitem = Flames::CreateFlames(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		default:
+			break;
+		}
+	}
 }
 
 LPCOLLISIONEVENT GameObject::SweptAABBEx(LPGAMEOBJECT coO)
@@ -185,6 +202,8 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 						// add death animation when kill enemy
 						DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
 						Grid::GetInstance()->AddDeathAnimation(animation);
+
+						AddGameItem(enemy);
 
 						// delete enemy
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());

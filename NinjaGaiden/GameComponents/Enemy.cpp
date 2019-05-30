@@ -23,6 +23,16 @@ EnemyState * Enemy::GetWalkingState()
 {
 	return walkingState;
 }
+void Enemy::SetItemType(int itemtype)
+{
+	switch (itemtype)
+	{
+	case 1:
+		this->itemtype = Item::FLAMES;
+	default:
+		break;
+	}
+}
 void Enemy::Idle()
 {
 }

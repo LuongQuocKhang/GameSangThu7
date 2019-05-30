@@ -27,6 +27,8 @@ protected:
 
 	bool death = false;
 	int point = 1;
+
+	Item itemtype;
 public:
 	Enemy();
 	void LoadResources();
@@ -39,6 +41,9 @@ public:
 	EnemyState * GetWalkingState();
 	EnemyType GetEnemyType() { return this->Type; }
 	vector<Animation *> GetAnimationsList() { return this->animations; }
+
+	Item GetItemType() { return this->itemtype; }
+	void SetItemType(int itemtype);
 
 	bool IsLeft() { return isLeft; }
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
