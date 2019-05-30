@@ -1,6 +1,5 @@
 #include "DeathAnimation.h"
-
-
+#include "Flames.h"
 
 void DeathAnimation::LoadResources()
 {
@@ -9,6 +8,7 @@ void DeathAnimation::LoadResources()
 
 DeathAnimation::DeathAnimation(EnemyType enemytype)
 {
+	this->enemytype = enemytype;
 	Active = true;
 	time = 200;
 	LPCWSTR effectPath = L"";
@@ -16,7 +16,23 @@ DeathAnimation::DeathAnimation(EnemyType enemytype)
 	{
 		effectPath = L"";
 	}
-	else
+	else if (enemytype == EnemyType::REDBIRD)
+	{
+		Animation * anim = new Animation(100);
+		for (int i = 0; i < 1; i++)
+		{
+			RECT rect;
+			rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
+			rect.right = rect.left + FLAMES_SPRITE_WIDTH;
+			rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
+			rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}
+		animations.push_back(anim);
+	}
+	else 
 	{
 		effectPath = DEATH_EFFECT_TEXTTURE_LOCATION;
 	}
@@ -55,9 +71,12 @@ DeathAnimation * DeathAnimation::CreateDeateAnimation(Enemy * enemy)
 void DeathAnimation::Update(DWORD dt)
 {
 	time -= dt;
-	if (time <= 0)
+	if (this->enemytype != EnemyType::REDBIRD)
 	{
-		this->Active = false;
+		if (time <= 0)
+		{
+			this->Active = false;
+		}
 	}
 }
 
