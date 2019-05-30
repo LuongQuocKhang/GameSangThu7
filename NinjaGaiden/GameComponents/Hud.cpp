@@ -14,14 +14,14 @@ Hud::Hud(float posx, float posy)
 }
 void Hud::Reset()
 {
-	x = 50;
+	x = 0;
 	y = 250;
 }
 Hud * Hud::GetInstance()
 {
 	if (__instance == NULL)
 	{
-		__instance = new Hud(50, 250);
+		__instance = new Hud(0, 250);
 	}
 	return __instance;
 }
@@ -435,6 +435,21 @@ void Hud::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	this->animations.push_back(anim);
+
+	// HP lost
+	anim = new Animation(200);
+	for (int i = 1; i < 2; i++)
+	{
+		RECT rect;
+		rect.left = (i % ITEM_HUD_BLOOD_TEXTURE_COLUMNS) * ITEM_HUD_BLOOD_SPRITE_WIDTH;
+		rect.right = rect.left + ITEM_HUD_BLOOD_SPRITE_WIDTH;
+		rect.top = (i / ITEM_HUD_BLOOD_TEXTURE_COLUMNS) * ITEM_HUD_BLOOD_SPRITE_HEIGHT;
+		rect.bottom = rect.top + ITEM_HUD_BLOOD_SPRITE_HEIGHT;
+		Sprite * sprite = new Sprite(ITEM_HUD_BLOOD_TEXTURE_LOCATION, rect, ITEM_HUD_TEXTURE_TRANS_COLOR);
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
 }
 
 //Hàm c?p nh?t
@@ -443,9 +458,10 @@ void Hud::Update(DWORD dt)
 	Ninja * ninja = Ninja::GetInstance();
 	int right = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - SCREEN_WIDTH / 2);
 	int left = (int)SCREEN_WIDTH / 2;
+
 	if (ninja->GetPositionX() > left && ninja->GetPositionX() < right)
 	{
-		this->x = ninja->GetPositionX() - left + 50;
+		this->x = ninja->GetPositionX() - left;
 	}
 }
 //Hàm render
@@ -461,6 +477,8 @@ void Hud::Render()
 
 	spriteEnemyData.scale = 1.8;
 	spriteEnemyData.angle = 0;
+	
+	#pragma region Row 1
 	//S
 	this->animations[0]->Render(spriteEnemyData);
 	spriteEnemyData.x = this->GetPositionX() + 20;
@@ -479,130 +497,130 @@ void Hud::Render()
 	{
 		switch (scores / 10)
 		{
-			case 0:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[27]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 1:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[9]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 2:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[20]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 3:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[10]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 4:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[21]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 5:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[22]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 6:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[23]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 7:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[24]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 8:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[25]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 9:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[26]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
+		case 0:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[27]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 1:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[9]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 2:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[20]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 3:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[10]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 4:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[21]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 5:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[22]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 6:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[23]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 7:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[24]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 8:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[25]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 9:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[26]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
 		}
 
 		switch (scores % 10)
 		{
-			case 0:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[27]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 1:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[9]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 2:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[20]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 3:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[10]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 4:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[21]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 5:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[22]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 6:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[23]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 7:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[24]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 8:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[25]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 9:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[26]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
+		case 0:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[27]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 1:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[9]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 2:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[20]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 3:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[10]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 4:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[21]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 5:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[22]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 6:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[23]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 7:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[24]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 8:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[25]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 9:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[26]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
 		}
 		spriteEnemyData.x = locx + 50;
 	}
@@ -610,66 +628,66 @@ void Hud::Render()
 	{
 		switch (scores)
 		{
-			case 0:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[27]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 1:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[9]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 2:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[20]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 3:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[10]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 4:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[21]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 5:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[22]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 6:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[23]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 7:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[24]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 8:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[25]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
-			case 9:
-			{
-				spriteEnemyData.x = locx;
-				this->animations[26]->Render(spriteEnemyData);
-				locx = spriteEnemyData.x + 15;
-			}break;
+		case 0:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[27]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 1:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[9]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 2:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[20]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 3:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[10]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 4:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[21]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 5:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[22]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 6:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[23]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 7:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[24]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 8:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[25]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
+		case 9:
+		{
+			spriteEnemyData.x = locx;
+			this->animations[26]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}break;
 		}
 		spriteEnemyData.x = locx + 65;
 	}
@@ -718,9 +736,9 @@ void Hud::Render()
 		this->animations[10]->Render(spriteEnemyData);
 		locx = spriteEnemyData.x + 15;
 	}
+	#pragma endregion
 
-
-	//Row 2
+	#pragma region  Row 2
 	spriteEnemyData.x = this->GetPositionX() + 5;
 	spriteEnemyData.y = this->GetPositionY() - 20;
 	//T
@@ -780,15 +798,27 @@ void Hud::Render()
 	locx = spriteEnemyData.x + 13;
 	//Health
 
-	for (int i = 0; i < 16; i++)
+	spriteEnemyData.scale = 1;
+
+	float ninjaheath = Ninja::GetInstance()->GetStamina() / STAMINA;
+	for (int i = 0; i < (int)round(ninjaheath); i++)
 	{
 		spriteEnemyData.x = locx;
-		this->animations[28]->Render(spriteEnemyData);
-		locx = spriteEnemyData.x + 7;
+		this->animations[HEATH_LEFT]->Render(spriteEnemyData);
+		locx = spriteEnemyData.x + 10;
 	}
 
+	for (int i = 0; i < 16 - (int)round(ninjaheath); i++)
+	{
+		spriteEnemyData.x = locx;
+		this->animations[HEATH_LOST]->Render(spriteEnemyData);
+		locx = spriteEnemyData.x + 10;
+	}
+	#pragma endregion
+	spriteEnemyData.scale = 1.8;
 
-	//Row 3
+	#pragma region Row 3
+
 	spriteEnemyData.x = this->GetPositionX() + 10;
 	spriteEnemyData.y = this->GetPositionY() - 40;
 	//P
@@ -853,12 +883,16 @@ void Hud::Render()
 	spriteEnemyData.x = locx;
 	this->animations[5]->Render(spriteEnemyData);
 	locx = spriteEnemyData.x + 13;
-	//Health
 
+	//Health
+	spriteEnemyData.scale = 1;
 	for (int i = 0; i < 16; i++)
 	{
 		spriteEnemyData.x = locx;
 		this->animations[28]->Render(spriteEnemyData);
-		locx = spriteEnemyData.x + 7;
+		locx = spriteEnemyData.x + 10;
 	}
+	spriteEnemyData.scale = 1.8;
+	#pragma endregion
+
 }

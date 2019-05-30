@@ -205,6 +205,7 @@ void NinjaSate::Throw()
 
 void NinjaSate::Update(DWORD dt)
 {
+	#pragma region Get enemies and create event
 	int state = this->states;
 	switch (state)
 	{
@@ -241,8 +242,9 @@ void NinjaSate::Update(DWORD dt)
 	{
 		enemies = Grid::GetInstance()->GetAllEnemies();
 	}
+	#pragma endregion
 
-	#pragma region xử lý khi chém vào quái và ném phi tiêu
+	#pragma region sword and shuriken collide with enemy
 	if (state == NINJA_ANI_STANDING_ATTACKING || state == NINJA_ANI_JUMPING_ATTACKING || state == NINJA_ANI_CROUCHING_ATTACKING)
 	{
 		int direction = (ninja->IsLeft() == true) ? -1 : 1;
@@ -281,7 +283,7 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	#pragma region xử lý va chạm với gạch
+	#pragma region	Collide with brick
 	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
 	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
 
@@ -324,7 +326,7 @@ void NinjaSate::Update(DWORD dt)
 		delete coEvents[i];
 	#pragma endregion
 
-	#pragma region Xử lý va chạm với quái
+	#pragma region Collide with enemy
 
 	if (ninja->IsUntouchable() == false)
 	{
@@ -346,7 +348,7 @@ void NinjaSate::Update(DWORD dt)
 
 
 			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-			//if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
 			if (coEventsResult[0]->collisionID == 1)
 			{
@@ -372,11 +374,11 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	#pragma	region va chạm với item
+	#pragma	region Collide with item
 
 	#pragma endregion
 
-	#pragma region Ninja chết
+	#pragma region Ninja death
 
 	if (ninja->GetPositionY() < 0)
 	{
@@ -384,7 +386,7 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	#pragma region Update phi tiêu sau khi ném
+	#pragma region	 Update shuriken after throwing
 	if (ninja->GetShuriken().size() > 0)
 	{
 		if (ninja->IsLeft() == true && shurikens[0]->IsActive() == true)

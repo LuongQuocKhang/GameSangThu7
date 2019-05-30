@@ -37,7 +37,7 @@ public:
 	DWORD GetLastFrameTime() { return this->lastFrameTime; }
 	EnemyState * GetIdleState();
 	EnemyState * GetWalkingState();
-
+	EnemyType GetEnemyType() { return this->Type; }
 	vector<Animation *> GetAnimationsList() { return this->animations; }
 
 	bool IsLeft() { return isLeft; }

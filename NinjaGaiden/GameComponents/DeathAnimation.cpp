@@ -7,11 +7,19 @@ void DeathAnimation::LoadResources()
 	
 }
 
-DeathAnimation::DeathAnimation()
+DeathAnimation::DeathAnimation(EnemyType enemytype)
 {
 	Active = true;
 	time = 200;
-
+	LPCWSTR effectPath = L"";
+	if (enemytype == EnemyType::BOSS)
+	{
+		effectPath = L"";
+	}
+	else
+	{
+		effectPath = DEATH_EFFECT_TEXTTURE_LOCATION;
+	}
 	Animation * anim = new Animation(100);
 	for (int i = 0; i < 1; i++)
 	{
@@ -20,7 +28,7 @@ DeathAnimation::DeathAnimation()
 		rect.right = rect.left + DEATH_EFFECT_WIDTH;
 		rect.top = (i / DEATH_EFFECT_TEXTURE_COLUMNS) * DEATH_EFFECT_HEIGHT;
 		rect.bottom = rect.top + DEATH_EFFECT_HEIGHT;
-		Sprite * sprite = new Sprite(DEATH_EFFECT_TEXTTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		Sprite * sprite = new Sprite(effectPath, rect, NINJA_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
 	}
@@ -32,11 +40,11 @@ DeathAnimation::~DeathAnimation()
 {
 }
 
-DeathAnimation * DeathAnimation::CreateDeateAnimation(GameObject * gameobject)
+DeathAnimation * DeathAnimation::CreateDeateAnimation(Enemy * enemy)
 {
-	DeathAnimation* Animation = new DeathAnimation();
-	Animation->x = gameobject->GetPositionX();
-	Animation->y = gameobject->GetPositionY();
+	DeathAnimation* Animation = new DeathAnimation(enemy->GetEnemyType());
+	Animation->x = enemy->GetPositionX();
+	Animation->y = enemy->GetPositionY();
 
 	Animation->width = DEATH_EFFECT_WIDTH;
 	Animation->height = DEATH_EFFECT_HEIGHT;

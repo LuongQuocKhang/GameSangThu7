@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "Enemy.h"
 
+class Enemy;
 class DeathAnimation :
 	public GameObject
 {
@@ -13,10 +15,10 @@ private :
 
 	int time;
 public:
-	DeathAnimation();
+	DeathAnimation(EnemyType enemytype);
 	~DeathAnimation();
 
-	static DeathAnimation* CreateDeateAnimation(GameObject* gameobject);
+	static DeathAnimation* CreateDeateAnimation(Enemy* gameobject);
 	void Update(DWORD dt) override;
 	void Render() override;
 
