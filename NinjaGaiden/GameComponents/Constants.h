@@ -21,7 +21,11 @@
 #define HEATH_LEFT 28
 #define HEATH_LOST 29
 //
-
+enum ItemType
+{
+	None,
+	FLAMES
+};
 enum Stage {
 	STAGE_31,
 	STAGE_32,
@@ -43,7 +47,7 @@ enum Column
 	PosY,
 	Width,
 	Height,
-	NoInfo_7,
+	eGameItem,
 };
 enum EnemyType {
 	YELLOWSOLDIER,

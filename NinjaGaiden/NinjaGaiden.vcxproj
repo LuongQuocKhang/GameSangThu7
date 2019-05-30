@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Flames.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\BloodyBird.cpp" />
     <ClCompile Include="GameComponents\BloodyBirdState.cpp" />
@@ -31,7 +30,9 @@
     <ClCompile Include="GameComponents\Debug.cpp" />
     <ClCompile Include="GameComponents\Enemy.cpp" />
     <ClCompile Include="GameComponents\EnemyState.cpp" />
+    <ClCompile Include="GameComponents\Flames.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
+    <ClCompile Include="GameComponents\GameItem.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
     <ClCompile Include="GameComponents\GreenCanonSoldier.cpp" />
@@ -65,7 +66,6 @@
     <ClCompile Include="GameComponents\TiledMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Flames.h" />
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\BloodyBird.h" />
     <ClInclude Include="GameComponents\BloodyBirdState.h" />
@@ -78,7 +78,9 @@
     <ClInclude Include="GameComponents\Debug.h" />
     <ClInclude Include="GameComponents\Enemy.h" />
     <ClInclude Include="GameComponents\EnemyState.h" />
+    <ClInclude Include="GameComponents\Flames.h" />
     <ClInclude Include="GameComponents\Game.h" />
+    <ClInclude Include="GameComponents\GameItem.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />
     <ClInclude Include="GameComponents\GreenCanonSoldier.h" />

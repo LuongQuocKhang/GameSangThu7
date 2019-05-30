@@ -49,7 +49,7 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 			size_t pos = 0;
 			int rowNum = 0 , posx = 0, posy = 0 , type = 0;
 			bool isleft = false;
-
+			int GameItem = -1;
 			while ((pos = line.find(" ")) != string::npos)
 			{
 				token = stoi(line.substr(0, pos));
@@ -77,18 +77,22 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 						posy = mapheight - token;
 					}
 				}
+				else if (rowNum == Column::eGameItem)
+				{
+					GameItem = token;
+				}
 
 				line.erase(0, pos + 1);
 				rowNum++;
 			}
 
-			CreateEnemy(Id,type, posx, posy,isleft);
+			CreateEnemy(Id,type, posx, posy,isleft, GameItem);
 			Id++;
 		}
 		tilesInfo.close();
 	}
 }
-void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft)
+void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft,int GameItem)
 {
 	Enemy * enemy = NULL;
 
@@ -99,6 +103,7 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft)
 		break;
 	case REDBIRD:
 		enemy = new RedBird(posx, posy);
+		enemy->SetGameItem(GameItem);
 		break;
 	case BROWNBIRD:
 		enemy = new BrownBird(posx, posy);
@@ -139,7 +144,6 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft)
 		enemies.push_back(enemy);
 	}
 }
-
 
 void Grid::LoadCells()
 {
@@ -245,7 +249,7 @@ void Grid::Update(DWORD dt)
 	{
 		if (ninjaLCell - 2 >= 0)
 		{
-			if (ninjaRCell + 5 < 34 && Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
+			if (ninjaRCell + 5 < 34)
 			{
 				for (int j = ninjaLCell; j <= ninjaRCell + 5; j++)
 				{
@@ -253,22 +257,14 @@ void Grid::Update(DWORD dt)
 					cells[i][j]->InsertEnemies(curEnemies);
 				}
 			}
-			else if(ninjaRCell + 5 >= 34 && Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
+			else if(ninjaRCell + 5 >= 34)
 			{
 				for (int j = ninjaLCell - 2; j <= ninjaRCell; j++)
 				{
 					cells[i][j]->InsertTiles(curTiles);
 					cells[i][j]->InsertEnemies(curEnemies);
 				}
-			}
-			else if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
-			{
-				for (int j = ninjaLCell; j <= ninjaRCell; j++)
-				{
-					cells[i][j]->InsertTiles(curTiles);
-					cells[i][j]->InsertEnemies(curEnemies);
-				}
-			}
+			}		
 		}
 		else {
 			if (ninjaRCell + 5 < 34)
@@ -292,6 +288,11 @@ void Grid::Update(DWORD dt)
 		{
 			deathanimations.erase(deathanimations.begin() + i);
 		}
+	}
+
+	for (size_t i = 0; i < gameitems.size(); i++)
+	{
+		gameitems[i]->Update(dt);
 	}
 }
 void Grid::Render()
@@ -324,6 +325,11 @@ void Grid::Render()
 		{
 			deathanimations[i]->Render();
 		}
+	}
+
+	for (size_t i = 0; i < gameitems.size(); i++)
+	{
+		gameitems[i]->Render();
 	}
 	
 }

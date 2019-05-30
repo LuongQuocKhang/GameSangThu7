@@ -1,5 +1,4 @@
 #include "DeathAnimation.h"
-#include "Flames.h"
 
 void DeathAnimation::LoadResources()
 {
@@ -15,22 +14,6 @@ DeathAnimation::DeathAnimation(EnemyType enemytype)
 	if (enemytype == EnemyType::BOSS)
 	{
 		effectPath = L"";
-	}
-	else if (enemytype == EnemyType::REDBIRD)
-	{
-		Animation * anim = new Animation(100);
-		for (int i = 0; i < 1; i++)
-		{
-			RECT rect;
-			rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-			rect.right = rect.left + FLAMES_SPRITE_WIDTH;
-			rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
-			rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT;
-			Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
-
-			anim->AddFrame(sprite);
-		}
-		animations.push_back(anim);
 	}
 	else 
 	{

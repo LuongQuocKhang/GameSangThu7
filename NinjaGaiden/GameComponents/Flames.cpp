@@ -1,31 +1,35 @@
 #include "Flames.h"
 #include "Grid.h"
-vector<Animation *> Flames::animations = vector<Animation *>();
-Flames * Flames::__instance = NULL;
 
 Flames::Flames()
 {
 	LoadResources();
 
-	//IsActive = false;
+	//this->Active = true;
 
 	width = FLAMES_SPRITE_WIDTH;
 	height = FLAMES_SPRITE_HEIGHT;
 
-	//vx = SHURIKEN_SPEED;
+	vy = -NINJA_GRAVITY;
 
 	collider.x = x;
 	collider.y = y;
 	collider.vx = 0;
-	collider.vy = 0;
+	collider.vy = vy;
 	collider.width = FLAMES_SPRITE_WIDTH;
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
-Flames * Flames::GetInstance()
+Flames* Flames::CreateFlames(float posx, float posy, float dt)
 {
-	if (__instance == NULL)
-		__instance = new Flames();
-	return __instance;
+	Flames* flame = new Flames();
+	flame->SetPositionX(posx);
+	flame->SetPositionY(posy);
+	flame->SetDt(dt);
+
+	flame->collider.x = posx;
+	flame->collider.y = posy;
+
+	return flame;
 }
 void Flames::LoadResources()
 {
@@ -46,17 +50,51 @@ void Flames::LoadResources()
 
 void Flames::Update(DWORD dt)
 {
-	/*this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
-
-	distance += this->GetSpeedX() * dt;
-
-	vector<LPCOLLISIONEVENT> coEvents;
-	vector<Enemy* > enemies = Grid::GetInstance()->GetAllEnemies();
-	if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
+	if (Viewport::GetInstance()->IsGameObjectInCamera(this) == true)
 	{
-		enemies = Grid::GetInstance()->GetAllEnemies();
+		this->Active = true;
+		vector<LPCOLLISIONEVENT> coEvents;
+		vector<LPCOLLISIONEVENT> coEventsResult;
+
+		vector<Tile *> tiles = Grid::GetInstance()->GetCollisionTiles();
+
+		this->SetSpeedY(this->GetSpeedY() - NINJA_GRAVITY);
+
+		coEvents.clear();
+		this->SetDt(dt);
+		this->CalcPotentialCollisions(tiles, coEvents);
+
+		if (coEvents.size() == 0)
+		{
+			float moveX = trunc(this->GetSpeedX()* dt);
+			float moveY = trunc(this->GetSpeedY()* dt);
+
+			this->SetPositionX(this->GetPositionX() + moveX);
+			this->SetPositionY(this->GetPositionY() + moveY);
+		}
+		else
+		{
+			float min_tx, min_ty, nx = 0, ny;
+
+			this->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+
+			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
+			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
+
+			this->SetPositionX(this->GetPositionX() + moveX);
+			this->SetPositionY(this->GetPositionY() + moveY);
+
+			if (nx != 0) this->SetSpeedX(0);
+			if (ny != 0) this->SetSpeedY(0);
+		}
+		for (UINT i = 0; i < coEvents.size(); i++)
+			delete coEvents[i];
 	}
-	this->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);*/
+	else
+	{
+		this->Active = false;
+		vy = 0;
+	}
 }
 
 void Flames::Render()
@@ -64,19 +102,19 @@ void Flames::Render()
 	//Ninja * ninja = Ninja::GetInstance();
 	//if (ninja->IsThrowing() == true)
 	//{
-	SpriteData spriteEnemyData;
+		SpriteData spriteEnemyData;
 
-	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
-	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
-	spriteEnemyData.x = this->GetPositionX();
-	spriteEnemyData.y = this->GetPositionY();
+		spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
+		spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
+		spriteEnemyData.x = this->GetPositionX();
+		spriteEnemyData.y = this->GetPositionY();
 
-	spriteEnemyData.scale = 1;
-	spriteEnemyData.angle = 0;
+		spriteEnemyData.scale = 1;
+		spriteEnemyData.angle = 0;
 	/*	spriteEnemyData.isLeft = ninja->IsLeft();
 		spriteEnemyData.isFlipped = ninja->IsFlipped();*/
 
-	this->animations[0]->Render(spriteEnemyData);
+		this->animations[0]->Render(spriteEnemyData);
 	//}
 }
 

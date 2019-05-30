@@ -5,6 +5,7 @@
 #include "Ninja.h"
 #include "Viewport.h"
 #include "DeathAnimation.h"
+#include "GameItem.h"
 
 #include <vector>
 
@@ -34,6 +35,8 @@ private:
 	vector<Tile *> CollisionTiles;
 	vector<Enemy* > enemies;
 
+	vector<GameItem *> gameitems;
+
 	vector<DeathAnimation* > deathanimations;
 
 
@@ -42,7 +45,7 @@ private:
 
 	void LoadEnemy(LPCWSTR filePath, Stage gamestage);
 
-	void CreateEnemy(int Id , int type, int posx, int posy, bool isLeft);
+	void CreateEnemy(int Id , int type, int posx, int posy, bool isLeft,int GameItem);
 	Grid();
 
 public:
@@ -57,6 +60,7 @@ public:
 	vector<Tile *> GetCollisionTiles() { return this->CollisionTiles; }
 	vector<Enemy*> GetEnemies() { return curEnemies; }
 	vector<Enemy*> GetAllEnemies() { return enemies; }
+	vector<GameItem*> GetAllExistItem() { return this->gameitems; }
  
 	void ReadEnemiesFromFIle(Stage GameStage);
 	void Update(DWORD dt);
@@ -72,9 +76,12 @@ public:
 	{
 		this->enemies.erase(enemies.begin() + pos);
 	}
+
 	void AddDeathAnimation(DeathAnimation* animation) { this->deathanimations.push_back(animation); }
+	void AddGameItem(GameItem* gameitem) { this->gameitems.push_back(gameitem); }
 
 	int GetEnemyIndexById(int Id);
+
 	static void SetNewGrid()
 	{
 		__instance = NULL;
