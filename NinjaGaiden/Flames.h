@@ -3,6 +3,7 @@
 
 class Flames : public GameObject
 {
+	Flames();
 	int damage = 10;
 
 	static vector<Animation *> animations;
@@ -11,7 +12,7 @@ class Flames : public GameObject
 
 	float distance;
 public:
-	Flames();
+	Animation * ReturnLoadResources();
 	//void CreateFlames(float posx, float posy, float dt, bool isLeft);
 	int GetDamage() { return this->damage; }
 	bool IsActive() { return this->Active; }

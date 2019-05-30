@@ -31,17 +31,6 @@ void Enemy::Walk()
 {
 }
 
-void Enemy::SetGameItem(int itemtype)
-{
-	switch (itemtype)
-	{
-	case 1:
-		this->itemtype = ItemType::FLAMES;
-	default:
-		break;
-	}
-}
-
 void Enemy::TurnLeft()
 {
 	isLeft = true;

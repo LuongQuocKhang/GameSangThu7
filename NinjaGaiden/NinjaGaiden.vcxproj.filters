@@ -162,10 +162,7 @@
     <ClCompile Include="GameComponents\DeathAnimation.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GameComponents\Flames.cpp">
-      <Filter>Source Files\GameComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="GameComponents\GameItem.cpp">
+    <ClCompile Include="Flames.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,10 +299,7 @@
     <ClInclude Include="GameComponents\DeathAnimation.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="GameComponents\GameItem.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponents\Flames.h">
+    <ClInclude Include="Flames.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

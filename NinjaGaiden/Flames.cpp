@@ -64,19 +64,19 @@ void Flames::Render()
 	//Ninja * ninja = Ninja::GetInstance();
 	//if (ninja->IsThrowing() == true)
 	//{
-	SpriteData spriteEnemyData;
+		SpriteData spriteEnemyData;
 
-	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
-	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
-	spriteEnemyData.x = this->GetPositionX();
-	spriteEnemyData.y = this->GetPositionY();
+		spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
+		spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
+		spriteEnemyData.x = this->GetPositionX();
+		spriteEnemyData.y = this->GetPositionY();
 
-	spriteEnemyData.scale = 1;
-	spriteEnemyData.angle = 0;
+		spriteEnemyData.scale = 1;
+		spriteEnemyData.angle = 0;
 	/*	spriteEnemyData.isLeft = ninja->IsLeft();
 		spriteEnemyData.isFlipped = ninja->IsFlipped();*/
 
-	this->animations[0]->Render(spriteEnemyData);
+		this->animations[0]->Render(spriteEnemyData);
 	//}
 }
 

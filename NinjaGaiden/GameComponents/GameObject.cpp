@@ -185,7 +185,6 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 						// add death animation when kill enemy
 						DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
 						Grid::GetInstance()->AddDeathAnimation(animation);
-						//AddGameitem(enemies[i]);
 
 						// delete enemy
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
@@ -216,23 +215,7 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 			}
 		}
 	}
-}/*
-void GameObject::AddGameitem(Enemy* enemy)
-{
-	GameItem * gameitem;
-	if (enemy->GetEnemyType() == EnemyType::REDBIRD)
-	{
-		switch (enemy->GetItemType())
-		{
-		case ItemType::FLAMES :
-			gameitem = Flames::CreateFlames(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-			Grid::GetInstance()->AddGameItem(gameitem);
-			break;
-		default:
-			break;
-		}
-	}
-}*/
+}
 // hàm sai
 bool GameObject::IsCollide(GameObject * CollisionObject)
 {

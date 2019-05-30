@@ -27,8 +27,6 @@ protected:
 
 	bool death = false;
 	int point = 1;
-
-	ItemType itemtype;
 public:
 	Enemy();
 	void LoadResources();
@@ -47,9 +45,6 @@ public:
 	//Các hàm hành động nhân vật
 	void Idle();
 	void Walk();
-
-	ItemType GetItemType() { return this->itemtype; }
-	void SetGameItem(int itemtype);
 
 	void TurnLeft();
 	void TurnRight();
