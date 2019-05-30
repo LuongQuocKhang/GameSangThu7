@@ -13,8 +13,6 @@ private :
 
 	bool Active;
 
-	EnemyType enemytype;
-
 	int time;
 public:
 	DeathAnimation(EnemyType enemytype);
