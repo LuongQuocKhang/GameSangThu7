@@ -1,7 +1,7 @@
-#include "Flames.h"
+#include "BonusPointBlue.h"
 #include "Grid.h"
 
-Flames::Flames()
+BonusPointBlue::BonusPointBlue()
 {
 	LoadResources();
 
@@ -20,10 +20,10 @@ Flames::Flames()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void Flames::LoadResources()
+void BonusPointBlue::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 7; i < 8; i++)
+	for (int i = 16; i < 17; i++)
 	{
 		RECT rect;
 		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
@@ -39,7 +39,7 @@ void Flames::LoadResources()
 
 }
 
-void Flames::Update(DWORD dt)
+void BonusPointBlue::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,41 +89,41 @@ void Flames::Update(DWORD dt)
 	}
 }
 
-void Flames::Render()
+void BonusPointBlue::Render()
 {
+	Animation * anim = new Animation(100);
+	for (int i = 11; i < 12; i++)
+	{
+		RECT rect;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 6;
+		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
+		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
+		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
 
-	SpriteData spriteEnemyData;
+		anim->AddFrame(sprite);
+	}
 
-	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
-	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
-	spriteEnemyData.x = this->GetPositionX();
-	spriteEnemyData.y = this->GetPositionY();
-
-	spriteEnemyData.scale = 1;
-	spriteEnemyData.angle = 0;
-
-	this->animations[0]->Render(spriteEnemyData);
+	animations.push_back(anim);
 }
 
-
-
-Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+BonusPointBlue *  BonusPointBlue::CreateBonusPointBlue(float posx, float posy, float dt)
 {
-	Flames * flames = new Flames();
-	flames->Active = true;
-	flames->x = posx;
-	flames->y = posy;
+	BonusPointBlue * bonus = new BonusPointBlue();
+	bonus->Active = true;
+	bonus->x = posx;
+	bonus->y = posy;
 
 	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
 	//this->vx = vx;
 	//this->collider.vx = vx;
 
-	flames->collider.x = posx;
-	flames->collider.y = posy;
-	flames->dt = dt;
+	bonus->collider.x = posx;
+	bonus->collider.y = posy;
+	bonus->dt = dt;
 
-	return flames;
-} 
-Flames::~Flames()
+	return bonus;
+}
+BonusPointBlue::~BonusPointBlue()
 {
 }

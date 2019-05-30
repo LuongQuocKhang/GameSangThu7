@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BonusPointBlue.cpp" />
+    <ClCompile Include="BonusPointRed.cpp" />
+    <ClCompile Include="FireWheels.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\BloodyBird.cpp" />
     <ClCompile Include="GameComponents\BloodyBirdState.cpp" />
@@ -56,6 +59,8 @@
     <ClCompile Include="GameComponents\YellowPantherState.cpp" />
     <ClCompile Include="GameComponents\YellowSolider.cpp" />
     <ClCompile Include="GameComponents\YellowSoliderState.cpp" />
+    <ClCompile Include="HealthItem.cpp" />
+    <ClCompile Include="JumpAndFlash.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
     <ClCompile Include="Ninja\NinjaSate.cpp" />
@@ -64,11 +69,20 @@
     <ClCompile Include="Ninja\Subweapon.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
+    <ClCompile Include="SpiritPointBlue.cpp" />
+    <ClCompile Include="SpiritPointRed.cpp" />
+    <ClCompile Include="ThrowingStar.cpp" />
+    <ClCompile Include="TimeFreeze.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BonusPointBlue.h" />
+    <ClInclude Include="BonusPointRed.h" />
+    <ClInclude Include="FireWheels.h" />
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\BloodyBird.h" />
     <ClInclude Include="GameComponents\BloodyBirdState.h" />
+    <ClInclude Include="GameComponents\BonusPointBlue.h" />
+    <ClInclude Include="GameComponents\BonusPointRed.h" />
     <ClInclude Include="GameComponents\Boss.h" />
     <ClInclude Include="GameComponents\BossState.h" />
     <ClInclude Include="GameComponents\BrownBird.h" />
@@ -91,6 +105,7 @@
     <ClInclude Include="GameComponents\GreenSoliderState.h" />
     <ClInclude Include="GameComponents\Grid.h" />
     <ClInclude Include="GameComponents\GridCell.h" />
+    <ClInclude Include="GameComponents\HealthItem.h" />
     <ClInclude Include="GameComponents\Hud.h" />
     <ClInclude Include="GameComponents\Keyboard.h" />
     <ClInclude Include="GameComponents\PinkWitch.h" />
@@ -98,12 +113,16 @@
     <ClInclude Include="GameComponents\RedBird.h" />
     <ClInclude Include="GameComponents\RedBirdState.h" />
     <ClInclude Include="GameComponents\resource.h" />
+    <ClInclude Include="GameComponents\SpiritPointBlue.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameComponents\Sword.h" />
+    <ClInclude Include="GameComponents\ThrowingStar.h" />
     <ClInclude Include="GameComponents\YellowPanther.h" />
     <ClInclude Include="GameComponents\YellowPantherState.h" />
     <ClInclude Include="GameComponents\YellowSolider.h" />
     <ClInclude Include="GameComponents\YellowSoliderState.h" />
+    <ClInclude Include="HealthItem.h" />
+    <ClInclude Include="JumpAndFlash.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\NinjaSate.h" />
     <ClInclude Include="Ninja\Shuriken.h" />
@@ -112,6 +131,10 @@
     <ClInclude Include="Ninja\ThrowingState.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
+    <ClInclude Include="SpiritPointBlue.h" />
+    <ClInclude Include="SpiritPointRed.h" />
+    <ClInclude Include="ThrowingStar.h" />
+    <ClInclude Include="TimeFreeze.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

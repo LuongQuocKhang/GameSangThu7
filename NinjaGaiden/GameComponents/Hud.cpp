@@ -491,10 +491,18 @@ void Hud::Render()
 		locx = spriteEnemyData.x + 15;
 	}
 	//111111
+
 	int scores = Ninja::GetInstance()->GetScore();
 
 	if (scores > 9)
 	{
+		for (int i = 0; i < 4; i++)
+		{
+			spriteEnemyData.x = locx;
+			this->animations[27]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 15;
+		}
+		locx += 5;
 		switch (scores / 10)
 		{
 		case 0:
@@ -622,10 +630,17 @@ void Hud::Render()
 			locx = spriteEnemyData.x + 15;
 		}break;
 		}
-		spriteEnemyData.x = locx + 50;
+		spriteEnemyData.x = locx + 15;
 	}
 	else
 	{
+		for (int i = 0; i < 5; i++)
+		{
+		spriteEnemyData.x = locx;
+		this->animations[27]->Render(spriteEnemyData);
+		locx = spriteEnemyData.x + 15;
+		}
+		locx += 5;
 		switch (scores)
 		{
 		case 0:
@@ -689,7 +704,7 @@ void Hud::Render()
 			locx = spriteEnemyData.x + 15;
 		}break;
 		}
-		spriteEnemyData.x = locx + 65;
+		spriteEnemyData.x = locx + 10;
 	}
 
 	//S

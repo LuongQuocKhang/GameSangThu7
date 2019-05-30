@@ -1,7 +1,7 @@
-#include "Flames.h"
+#include "SpiritPointRed.h"
 #include "Grid.h"
 
-Flames::Flames()
+SpiritPointRed::SpiritPointRed()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ Flames::Flames()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void Flames::LoadResources()
+void SpiritPointRed::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 7; i < 8; i++)
+	for (int i = 2; i < 3; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH - 8;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -37,9 +37,10 @@ void Flames::LoadResources()
 
 	animations.push_back(anim);
 
+
 }
 
-void Flames::Update(DWORD dt)
+void SpiritPointRed::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,7 +90,7 @@ void Flames::Update(DWORD dt)
 	}
 }
 
-void Flames::Render()
+void SpiritPointRed::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -107,23 +108,23 @@ void Flames::Render()
 
 
 
-Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+SpiritPointRed *  SpiritPointRed::CreateSpiritPointRed(float posx, float posy, float dt)
 {
-	Flames * flames = new Flames();
-	flames->Active = true;
-	flames->x = posx;
-	flames->y = posy;
+	SpiritPointRed * spirit = new SpiritPointRed();
+	spirit->Active = true;
+	spirit->x = posx;
+	spirit->y = posy;
 
 	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
 	//this->vx = vx;
 	//this->collider.vx = vx;
 
-	flames->collider.x = posx;
-	flames->collider.y = posy;
-	flames->dt = dt;
+	spirit->collider.x = posx;
+	spirit->collider.y = posy;
+	spirit->dt = dt;
 
-	return flames;
-} 
-Flames::~Flames()
+	return spirit;
+}
+SpiritPointRed::~SpiritPointRed()
 {
 }

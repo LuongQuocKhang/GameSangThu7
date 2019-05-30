@@ -1,7 +1,7 @@
-#include "Flames.h"
+#include "TimeFreeze.h"
 #include "Grid.h"
 
-Flames::Flames()
+TimeFreeze::TimeFreeze()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ Flames::Flames()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void Flames::LoadResources()
+void TimeFreeze::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 7; i < 8; i++)
+	for (int i = 16; i < 17; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 3;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 3;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -39,7 +39,7 @@ void Flames::LoadResources()
 
 }
 
-void Flames::Update(DWORD dt)
+void TimeFreeze::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,7 +89,7 @@ void Flames::Update(DWORD dt)
 	}
 }
 
-void Flames::Render()
+void TimeFreeze::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -107,23 +107,23 @@ void Flames::Render()
 
 
 
-Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+TimeFreeze *  TimeFreeze::CreateTimeFreeze(float posx, float posy, float dt)
 {
-	Flames * flames = new Flames();
-	flames->Active = true;
-	flames->x = posx;
-	flames->y = posy;
+	TimeFreeze * time = new TimeFreeze();
+	time->Active = true;
+	time->x = posx;
+	time->y = posy;
 
 	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
 	//this->vx = vx;
 	//this->collider.vx = vx;
 
-	flames->collider.x = posx;
-	flames->collider.y = posy;
-	flames->dt = dt;
+	time->collider.x = posx;
+	time->collider.y = posy;
+	time->dt = dt;
 
-	return flames;
-} 
-Flames::~Flames()
+	return time;
+}
+TimeFreeze::~TimeFreeze()
 {
 }

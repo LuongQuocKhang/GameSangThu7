@@ -12,6 +12,7 @@ private :
 	void LoadResources();
 
 	bool Active;
+	EnemyType enemytype;
 
 	int time;
 public:

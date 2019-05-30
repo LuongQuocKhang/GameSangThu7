@@ -1,7 +1,7 @@
-#include "Flames.h"
+#include "JumpAndFlash.h"
 #include "Grid.h"
 
-Flames::Flames()
+JumpAndFlash::JumpAndFlash()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ Flames::Flames()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void Flames::LoadResources()
+void JumpAndFlash::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 7; i < 8; i++)
+	for (int i = 6; i < 7; i++)
 	{
 		RECT rect;
 		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -39,7 +39,7 @@ void Flames::LoadResources()
 
 }
 
-void Flames::Update(DWORD dt)
+void JumpAndFlash::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,7 +89,7 @@ void Flames::Update(DWORD dt)
 	}
 }
 
-void Flames::Render()
+void JumpAndFlash::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -107,23 +107,23 @@ void Flames::Render()
 
 
 
-Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+JumpAndFlash *  JumpAndFlash::CreateJumpAndFlash(float posx, float posy, float dt)
 {
-	Flames * flames = new Flames();
-	flames->Active = true;
-	flames->x = posx;
-	flames->y = posy;
+	JumpAndFlash * jumpFlash = new JumpAndFlash();
+	jumpFlash->Active = true;
+	jumpFlash->x = posx;
+	jumpFlash->y = posy;
 
 	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
 	//this->vx = vx;
 	//this->collider.vx = vx;
 
-	flames->collider.x = posx;
-	flames->collider.y = posy;
-	flames->dt = dt;
+	jumpFlash->collider.x = posx;
+	jumpFlash->collider.y = posy;
+	jumpFlash->dt = dt;
 
-	return flames;
-} 
-Flames::~Flames()
+	return jumpFlash;
+}
+JumpAndFlash::~JumpAndFlash()
 {
 }

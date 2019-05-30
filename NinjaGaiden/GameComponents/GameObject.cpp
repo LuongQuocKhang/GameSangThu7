@@ -2,6 +2,16 @@
 #include "Game.h"
 #include "Sword.h"
 #include "Flames.h"
+#include "JumpAndFlash.h"
+#include "FireWheels.h"
+#include "HealthItem.h"
+#include "BonusPointBlue.h"
+#include "BonusPointRed.h"
+#include "ThrowingStar.h"
+#include "FireWheels.h"
+#include "SpiritPointBlue.h"
+#include "SpiritPointRed.h"
+#include "TimeFreeze.h"
 
 GameObject::GameObject()
 {
@@ -53,12 +63,59 @@ void GameObject::AddGameItem(Enemy * enemy)
 	{
 		switch (enemy->GetItemType())
 		{
-		case Item::FLAMES:
-			gameitem = Flames::CreateFlames(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-			Grid::GetInstance()->AddGameItem(gameitem);
-		default:
-			break;
-		}
+			case Item::FLAMES:
+			{
+				gameitem = Flames::CreateFlames(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::JUMPANDFLASH:
+			{
+				gameitem = JumpAndFlash::CreateJumpAndFlash (enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::FIREWHEELS:
+			{
+				gameitem = FireWheels::CreateFireWheels(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::SPIRITPOINTBLUE:
+			{
+				gameitem = SpiritPointBlue::CreateSpiritPointBlue(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::SPIRITPOINTRED:
+			{
+				gameitem = SpiritPointRed ::CreateSpiritPointRed(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::TIMEFREEZE:
+			{
+				gameitem = TimeFreeze::CreateTimeFreeze(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::THROWINGSTAR:
+			{
+				gameitem = ThrowingStar::CreateThrowingStar(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::BONUSPOINTBLUE:
+			{
+				gameitem = BonusPointBlue::CreateBonusPointBlue(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::BONUSPOINTRED:
+			{
+				gameitem = BonusPointRed::CreateBonusPointRed(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			case Item::HEALTHITEM:
+			{
+				gameitem = HealthItem::CreateHealthItem(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				Grid::GetInstance()->AddGameItem(gameitem);
+			}break;
+			default:
+				break;
+			}
 	}
 }
 

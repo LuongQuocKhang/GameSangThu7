@@ -1,7 +1,7 @@
-#include "Flames.h"
+#include "FireWheels.h"
 #include "Grid.h"
 
-Flames::Flames()
+FireWheels::FireWheels()
 {
 	LoadResources();
 
@@ -20,7 +20,7 @@ Flames::Flames()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void Flames::LoadResources()
+void FireWheels::LoadResources()
 {
 	Animation * anim = new Animation(100);
 	for (int i = 7; i < 8; i++)
@@ -39,7 +39,7 @@ void Flames::LoadResources()
 
 }
 
-void Flames::Update(DWORD dt)
+void FireWheels::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,7 +89,7 @@ void Flames::Update(DWORD dt)
 	}
 }
 
-void Flames::Render()
+void FireWheels::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -107,23 +107,23 @@ void Flames::Render()
 
 
 
-Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+FireWheels *  FireWheels::CreateFireWheels(float posx, float posy, float dt)
 {
-	Flames * flames = new Flames();
-	flames->Active = true;
-	flames->x = posx;
-	flames->y = posy;
+	FireWheels * firewheel = new FireWheels();
+	firewheel->Active = true;
+	firewheel->x = posx;
+	firewheel->y = posy;
 
 	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
 	//this->vx = vx;
 	//this->collider.vx = vx;
 
-	flames->collider.x = posx;
-	flames->collider.y = posy;
-	flames->dt = dt;
+	firewheel->collider.x = posx;
+	firewheel->collider.y = posy;
+	firewheel->dt = dt;
 
-	return flames;
-} 
-Flames::~Flames()
+	return firewheel;
+}
+FireWheels::~FireWheels()
 {
 }
