@@ -299,7 +299,10 @@ void Grid::Update(DWORD dt)
 	}
 	for (size_t i = 0; i < gameitems.size(); i++)
 	{
-		gameitems[i]->Update(dt);
+		if (gameitems[i]->IsActive() == true)
+		{
+			gameitems[i]->Update(dt);
+		}
 	}
 }
 void Grid::Render()
@@ -335,7 +338,10 @@ void Grid::Render()
 	}
 	for (size_t i = 0; i < gameitems.size(); i++)
 	{
-		gameitems[i]->Render();
+		if (gameitems[i]->IsActive() == true)
+		{
+			gameitems[i]->Render();
+		}
 	}
 }
 

@@ -74,6 +74,7 @@ bool Viewport::IsObjectInCamera(GameObject * gameobject)
 		return true;
 	return false;
 }
+
 void Viewport::SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVECTOR2 &scaling)
 {
 	D3DXMATRIX mt;
