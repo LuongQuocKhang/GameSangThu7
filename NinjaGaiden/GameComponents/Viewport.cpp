@@ -64,6 +64,16 @@ bool Viewport::IsEnemyInCamera(Enemy * enemy)
 		return true;
 	return false;
 }
+bool Viewport::IsObjectInCamera(GameObject * gameobject)
+{
+	RECT rec = GetRect();
+
+	float GameObjectPosX = gameobject->GetPositionX();
+	float GameObjectPosY = gameobject->GetPositionY();
+	if (GameObjectPosX >= rec.left && GameObjectPosX <= rec.right && GameObjectPosY >= rec.bottom && GameObjectPosY <= rec.top)
+		return true;
+	return false;
+}
 void Viewport::SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVECTOR2 &scaling)
 {
 	D3DXMATRIX mt;

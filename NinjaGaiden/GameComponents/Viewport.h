@@ -3,6 +3,7 @@
 #include "d3dx9.h"
 #include "Constants.h"
 
+class GameObject;
 class Enemy;
 class Viewport
 {
@@ -21,5 +22,6 @@ public:
 	void Reset();
 	void Update(DWORD dt);
 	bool IsEnemyInCamera(Enemy* enemy);
+	bool IsObjectInCamera(GameObject* gameobject);
 	void SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVECTOR2 &scaling);
 };

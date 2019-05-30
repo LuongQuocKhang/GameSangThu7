@@ -12,7 +12,7 @@ public:
 	~GameItem();
 
 	bool IsActive() { return this->Active; }
-	bool SetActive(bool value) { this->Active = value; }
+	void SetActive(bool value) { this->Active = value; }
 
 	virtual void Update(DWORD dt);
 	virtual void Render();
