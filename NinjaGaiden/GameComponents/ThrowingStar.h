@@ -8,7 +8,7 @@ private:
 public:
 	ThrowingStar();
 	~ThrowingStar();
-	static ThrowingStar * CreateThrowingStar(float posx, float posy, float dt);
+	static ThrowingStar * CreateThrowingStar(int GameItemId ,float posx, float posy, float dt);
 
 	void Update(DWORD dt) override;
 	void Render() override;

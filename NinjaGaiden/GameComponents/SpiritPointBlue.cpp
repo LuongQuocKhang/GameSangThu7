@@ -1,7 +1,7 @@
-#include "FireWheels.h"
+#include "SpiritPointBlue.h"
 #include "Grid.h"
 
-FireWheels::FireWheels()
+SpiritPointBlue::SpiritPointBlue()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ FireWheels::FireWheels()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void FireWheels::LoadResources()
+void SpiritPointBlue::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 7; i < 8; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
 		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 2;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -37,9 +37,10 @@ void FireWheels::LoadResources()
 
 	animations.push_back(anim);
 
+
 }
 
-void FireWheels::Update(DWORD dt)
+void SpiritPointBlue::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -57,10 +58,8 @@ void FireWheels::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
-			//float moveX = trunc(this->GetSpeedX()* dt);
 			float moveY = trunc(this->GetSpeedY()* dt);
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 		}
 		else
@@ -72,11 +71,8 @@ void FireWheels::Update(DWORD dt)
 			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 
-
-			//if (nx != 0) this->SetSpeedX(0);
 			if (ny != 0) this->SetSpeedY(0);
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
@@ -89,7 +85,7 @@ void FireWheels::Update(DWORD dt)
 	}
 }
 
-void FireWheels::Render()
+void SpiritPointBlue::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -105,25 +101,21 @@ void FireWheels::Render()
 	this->animations[0]->Render(spriteEnemyData);
 }
 
-
-
-FireWheels *  FireWheels::CreateFireWheels(float posx, float posy, float dt)
+SpiritPointBlue *  SpiritPointBlue::CreateSpiritPointBlue(int GameItemId ,float posx, float posy, float dt)
 {
-	FireWheels * firewheel = new FireWheels();
-	firewheel->Active = true;
-	firewheel->x = posx;
-	firewheel->y = posy;
+	SpiritPointBlue * spirit = new SpiritPointBlue();
+	spirit->Id = GameItemId;
+	spirit->Active = true;
+	spirit->x = posx;
+	spirit->y = posy;
+	spirit->SetItemType(Item::SPIRITPOINTBLUE);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	spirit->collider.x = posx;
+	spirit->collider.y = posy;
+	spirit->dt = dt;
 
-	firewheel->collider.x = posx;
-	firewheel->collider.y = posy;
-	firewheel->dt = dt;
-
-	return firewheel;
+	return spirit;
 }
-FireWheels::~FireWheels()
+SpiritPointBlue::~SpiritPointBlue()
 {
 }

@@ -1,9 +1,9 @@
 #include "GameItem.h"
 
-
-
+int GameItem::GameItemId = 0;
 GameItem::GameItem()
 {
+	
 }
 
 

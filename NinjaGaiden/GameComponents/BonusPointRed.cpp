@@ -1,7 +1,7 @@
-#include "HealthItem.h"
+#include "BonusPointRed.h"
 #include "Grid.h"
 
-HealthItem::HealthItem()
+BonusPointRed::BonusPointRed()
 {
 	LoadResources();
 
@@ -20,10 +20,10 @@ HealthItem::HealthItem()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void HealthItem::LoadResources()
+void BonusPointRed::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 14; i < 15; i++)
+	for (int i = 16; i < 17; i++)
 	{
 		RECT rect;
 		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
@@ -39,7 +39,7 @@ void HealthItem::LoadResources()
 
 }
 
-void HealthItem::Update(DWORD dt)
+void BonusPointRed::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -57,10 +57,7 @@ void HealthItem::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
-			//float moveX = trunc(this->GetSpeedX()* dt);
 			float moveY = trunc(this->GetSpeedY()* dt);
-
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 		}
 		else
@@ -72,11 +69,7 @@ void HealthItem::Update(DWORD dt)
 			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
-
-
-			//if (nx != 0) this->SetSpeedX(0);
 			if (ny != 0) this->SetSpeedY(0);
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
@@ -89,7 +82,7 @@ void HealthItem::Update(DWORD dt)
 	}
 }
 
-void HealthItem::Render()
+void BonusPointRed::Render()
 {
 	Animation * anim = new Animation(100);
 	for (int i = 12; i < 13; i++)
@@ -105,26 +98,23 @@ void HealthItem::Render()
 	}
 
 	animations.push_back(anim);
-
 }
 
-HealthItem *  HealthItem::CreateHealthItem(float posx, float posy, float dt)
+BonusPointRed *  BonusPointRed::CreateBonusPointRed(int GameItemId ,float posx, float posy, float dt)
 {
-	HealthItem * heatlh = new HealthItem();
-	heatlh->Active = true;
-	heatlh->x = posx;
-	heatlh->y = posy;
+	BonusPointRed * bonus = new BonusPointRed();
+	bonus->Id = GameItemId;
+	bonus->Active = true;
+	bonus->x = posx;
+	bonus->y = posy;
+	bonus->SetItemType(Item::BONUSPOINTRED);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	bonus->collider.x = posx;
+	bonus->collider.y = posy;
+	bonus->dt = dt;
 
-	heatlh->collider.x = posx;
-	heatlh->collider.y = posy;
-	heatlh->dt = dt;
-
-	return heatlh;
+	return bonus;
 }
-HealthItem::~HealthItem()
+BonusPointRed::~BonusPointRed()
 {
 }

@@ -1,7 +1,7 @@
-#include "BonusPointRed.h"
+#include "TimeFreeze.h"
 #include "Grid.h"
 
-BonusPointRed::BonusPointRed()
+TimeFreeze::TimeFreeze()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ BonusPointRed::BonusPointRed()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void BonusPointRed::LoadResources()
+void TimeFreeze::LoadResources()
 {
 	Animation * anim = new Animation(100);
 	for (int i = 16; i < 17; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 3;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 3;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -39,7 +39,7 @@ void BonusPointRed::LoadResources()
 
 }
 
-void BonusPointRed::Update(DWORD dt)
+void TimeFreeze::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -57,10 +57,8 @@ void BonusPointRed::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
-			//float moveX = trunc(this->GetSpeedX()* dt);
 			float moveY = trunc(this->GetSpeedY()* dt);
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 		}
 		else
@@ -72,11 +70,8 @@ void BonusPointRed::Update(DWORD dt)
 			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 
-
-			//if (nx != 0) this->SetSpeedX(0);
 			if (ny != 0) this->SetSpeedY(0);
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
@@ -89,41 +84,38 @@ void BonusPointRed::Update(DWORD dt)
 	}
 }
 
-void BonusPointRed::Render()
+void TimeFreeze::Render()
 {
-	Animation * anim = new Animation(100);
-	for (int i = 12; i < 13; i++)
-	{
-		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 8;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 4;
-		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
-		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
-		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
+	SpriteData spriteEnemyData;
 
-		anim->AddFrame(sprite);
-	}
+	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
+	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
+	spriteEnemyData.x = this->GetPositionX();
+	spriteEnemyData.y = this->GetPositionY();
 
-	animations.push_back(anim);
+	spriteEnemyData.scale = 1;
+	spriteEnemyData.angle = 0;
+
+	this->animations[0]->Render(spriteEnemyData);
 }
 
-BonusPointRed *  BonusPointRed::CreateBonusPointRed(float posx, float posy, float dt)
+
+
+TimeFreeze *  TimeFreeze::CreateTimeFreeze(int GameItemId ,float posx, float posy, float dt)
 {
-	BonusPointRed * bonus = new BonusPointRed();
-	bonus->Active = true;
-	bonus->x = posx;
-	bonus->y = posy;
+	TimeFreeze * time = new TimeFreeze();
+	time->Id = GameItemId;
+	time->Active = true;
+	time->x = posx;
+	time->y = posy;
+	time->SetItemType(Item::TIMEFREEZE);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	time->collider.x = posx;
+	time->collider.y = posy;
+	time->dt = dt;
 
-	bonus->collider.x = posx;
-	bonus->collider.y = posy;
-	bonus->dt = dt;
-
-	return bonus;
+	return time;
 }
-BonusPointRed::~BonusPointRed()
+TimeFreeze::~TimeFreeze()
 {
 }

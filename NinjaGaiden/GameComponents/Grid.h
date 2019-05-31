@@ -80,6 +80,9 @@ public:
 	void AddGameItem(GameItem* gameitem) { this->gameitems.push_back(gameitem); }
 
 	int GetEnemyIndexById(int Id);
+	int GetGameItemIndexById(int Id);
+
+	void DeleteGameItem(int pos) { this->gameitems.erase(gameitems.begin() + pos); }
 	static void SetNewGrid()
 	{
 		__instance = NULL;

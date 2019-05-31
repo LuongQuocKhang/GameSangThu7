@@ -1,7 +1,7 @@
-#include "JumpAndFlash.h"
+#include "ThrowingStar.h"
 #include "Grid.h"
 
-JumpAndFlash::JumpAndFlash()
+ThrowingStar::ThrowingStar()
 {
 	LoadResources();
 
@@ -20,26 +20,25 @@ JumpAndFlash::JumpAndFlash()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void JumpAndFlash::LoadResources()
+void ThrowingStar::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 6; i < 7; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
-		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
-		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
-		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
+		rect.left = (i % 2) * SHURIKEN_WIDTH;
+		rect.right = rect.left + SHURIKEN_WIDTH;
+		rect.top = (i / 2) * ( FLAMES_SPRITE_HEIGHT );
+		rect.bottom = rect.top + (FLAMES_SPRITE_HEIGHT);
+		Sprite * sprite = new Sprite(GAMEITEM_2, rect, D3DCOLOR_XRGB(0, 0, 0));
 
 		anim->AddFrame(sprite);
 	}
 
 	animations.push_back(anim);
-
 }
 
-void JumpAndFlash::Update(DWORD dt)
+void ThrowingStar::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -57,10 +56,8 @@ void JumpAndFlash::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
-			//float moveX = trunc(this->GetSpeedX()* dt);
 			float moveY = trunc(this->GetSpeedY()* dt);
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 		}
 		else
@@ -72,11 +69,8 @@ void JumpAndFlash::Update(DWORD dt)
 			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 
-
-			//if (nx != 0) this->SetSpeedX(0);
 			if (ny != 0) this->SetSpeedY(0);
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
@@ -89,13 +83,12 @@ void JumpAndFlash::Update(DWORD dt)
 	}
 }
 
-void JumpAndFlash::Render()
+void ThrowingStar::Render()
 {
-
 	SpriteData spriteEnemyData;
 
-	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
-	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
+	spriteEnemyData.width = SHURIKEN_WIDTH;
+	spriteEnemyData.height = SHURIKEN_HEIGHT;
 	spriteEnemyData.x = this->GetPositionX();
 	spriteEnemyData.y = this->GetPositionY();
 
@@ -105,25 +98,21 @@ void JumpAndFlash::Render()
 	this->animations[0]->Render(spriteEnemyData);
 }
 
-
-
-JumpAndFlash *  JumpAndFlash::CreateJumpAndFlash(float posx, float posy, float dt)
+ThrowingStar *  ThrowingStar::CreateThrowingStar(int GameItemId ,float posx, float posy, float dt)
 {
-	JumpAndFlash * jumpFlash = new JumpAndFlash();
-	jumpFlash->Active = true;
-	jumpFlash->x = posx;
-	jumpFlash->y = posy;
+	ThrowingStar * star = new ThrowingStar();
+	star->Id = GameItemId;
+	star->Active = true;
+	star->x = posx;
+	star->y = posy;
+	star->SetItemType(Item::THROWINGSTAR);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	star->collider.x = posx;
+	star->collider.y = posy;
+	star->dt = dt;
 
-	jumpFlash->collider.x = posx;
-	jumpFlash->collider.y = posy;
-	jumpFlash->dt = dt;
-
-	return jumpFlash;
+	return star;
 }
-JumpAndFlash::~JumpAndFlash()
+ThrowingStar::~ThrowingStar()
 {
 }

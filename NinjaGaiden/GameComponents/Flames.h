@@ -8,7 +8,7 @@ private:
 public:
 	Flames();
 	~Flames();
-	static Flames * CreateFlames(float posx, float posy, float dt);
+	static Flames * CreateFlames(int GameItemId,float posx, float posy, float dt);
 
 	void Update(DWORD dt) override;
 	void Render() override;

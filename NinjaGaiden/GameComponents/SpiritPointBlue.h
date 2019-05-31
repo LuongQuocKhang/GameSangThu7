@@ -5,10 +5,14 @@ class SpiritPointBlue :
 {
 private:
 	void LoadResources();
+
+	int HeathPoint = 5;
+
 public:
 	SpiritPointBlue();
 	~SpiritPointBlue();
-	static SpiritPointBlue * CreateSpiritPointBlue(float posx, float posy, float dt);
+	static SpiritPointBlue * CreateSpiritPointBlue(int GameItemId,float posx, float posy, float dt);
+	int GetHeathPoint() { return this->HeathPoint; }
 
 	void Update(DWORD dt) override;
 	void Render() override;

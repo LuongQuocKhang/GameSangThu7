@@ -303,6 +303,10 @@ void Grid::Update(DWORD dt)
 		{
 			gameitems[i]->Update(dt);
 		}
+		else
+		{
+			gameitems.erase(gameitems.begin() + i);
+		}
 	}
 }
 void Grid::Render()
@@ -351,6 +355,19 @@ int Grid::GetEnemyIndexById(int Id)
 	{
 		if (enemies[i]->GetId() == Id) return i;
 	}
+	return -1;
+}
+
+int Grid::GetGameItemIndexById(int Id)
+{
+	for (size_t i = 0; i < gameitems.size(); i++)
+	{
+		if (gameitems[i]->GetId() == Id)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 Grid * Grid::GetInstance()

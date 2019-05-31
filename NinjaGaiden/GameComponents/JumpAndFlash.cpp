@@ -1,7 +1,7 @@
-#include "TimeFreeze.h"
+#include "JumpAndFlash.h"
 #include "Grid.h"
 
-TimeFreeze::TimeFreeze()
+JumpAndFlash::JumpAndFlash()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ TimeFreeze::TimeFreeze()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void TimeFreeze::LoadResources()
+void JumpAndFlash::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 16; i < 17; i++)
+	for (int i = 6; i < 7; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 3;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 3;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -39,7 +39,7 @@ void TimeFreeze::LoadResources()
 
 }
 
-void TimeFreeze::Update(DWORD dt)
+void JumpAndFlash::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,7 +89,7 @@ void TimeFreeze::Update(DWORD dt)
 	}
 }
 
-void TimeFreeze::Render()
+void JumpAndFlash::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -105,25 +105,21 @@ void TimeFreeze::Render()
 	this->animations[0]->Render(spriteEnemyData);
 }
 
-
-
-TimeFreeze *  TimeFreeze::CreateTimeFreeze(float posx, float posy, float dt)
+JumpAndFlash*  JumpAndFlash::CreateJumpAndFlash(int GameItemId, float posx, float posy, float dt)
 {
-	TimeFreeze * time = new TimeFreeze();
-	time->Active = true;
-	time->x = posx;
-	time->y = posy;
+	JumpAndFlash * jumpFlash = new JumpAndFlash();
+	jumpFlash->Id = GameItemId;
+	jumpFlash->Active = true;
+	jumpFlash->x = posx;
+	jumpFlash->y = posy;
+	jumpFlash->SetItemType(Item::JUMPANDFLASH);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	jumpFlash->collider.x = posx;
+	jumpFlash->collider.y = posy;
+	jumpFlash->dt = dt;
 
-	time->collider.x = posx;
-	time->collider.y = posy;
-	time->dt = dt;
-
-	return time;
+	return jumpFlash;
 }
-TimeFreeze::~TimeFreeze()
+JumpAndFlash::~JumpAndFlash()
 {
 }

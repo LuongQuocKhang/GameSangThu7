@@ -1,5 +1,4 @@
 ﻿#pragma once
-
 #include "GameObject.h"
 #include "State.h"
 #include "Constants.h"
@@ -103,6 +102,8 @@ public:
 
 	vector<Animation *> GetAnimationsList() { return animations; }
 	vector<Shuriken *> GetShuriken() { return this->Shurikens; }
+
+	void Additem(GameItem * gameitem);
 
 	void Update(DWORD dt) override;
 

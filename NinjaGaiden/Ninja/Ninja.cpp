@@ -1,4 +1,6 @@
 ﻿#include "Ninja.h"
+#include "HealthItem.h"
+#include "SpiritPointBlue.h"
 
 vector<Animation *> Ninja::animations = vector<Animation *>();
 Ninja * Ninja::__instance = NULL;
@@ -35,14 +37,6 @@ Ninja::Ninja()
 
 	isUntouchable = false;
 	UntouchableTime = 200;
-
-	// test ( sẽ bỏ sau khi load và va chạm dc item )
-	/*for (size_t i = 0; i < ShurikenNum; i++)
-	{
-	}*/
-	Shurikens.push_back(new Shuriken());
-	Shurikens.push_back(new Shuriken());
-	Shurikens.push_back(new Shuriken());
 }
 Ninja * Ninja::GetInstance()
 {
@@ -351,6 +345,74 @@ void Ninja::CreateThrownWeapon()
 	this->SetState(GetThrowingState());
 }
 bool PantherAppear = false;
+void Ninja::Additem(GameItem * gameitem)
+{
+	bool addItem = false;
+	switch (gameitem->GetItemType())
+	{
+		case Item::FLAMES:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::JUMPANDFLASH:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::FIREWHEELS:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::SPIRITPOINTBLUE:
+		{
+			addItem = true;
+			int heathpoint = ((SpiritPointBlue*)gameitem)->GetHeathPoint();
+			this->stamina += heathpoint;
+			break;
+		}
+		case Item::SPIRITPOINTRED:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::TIMEFREEZE:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::THROWINGSTAR:
+		{
+			addItem = true;
+			Shurikens.push_back(new Shuriken());
+			break;
+		}
+		case Item::BONUSPOINTBLUE:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::BONUSPOINTRED:
+		{
+			addItem = true;
+			break;
+		}
+		case Item::HEALTHITEM:
+		{
+			addItem = true;
+			
+			break;
+		}
+	default:
+		break;
+	}
+	if (addItem == true)
+	{
+		int gameitemindex = Grid::GetInstance()->GetGameItemIndexById(gameitem->GetId());
+		Grid::GetInstance()->DeleteGameItem(gameitemindex);
+	}
+}
 void Ninja::Update(DWORD dt)
 {
 	if (Game::GetInstance()->GetStage() == Stage::STAGE_31)

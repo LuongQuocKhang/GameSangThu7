@@ -8,7 +8,7 @@ private:
 public:
 	JumpAndFlash();
 	~JumpAndFlash();
-	static JumpAndFlash * CreateJumpAndFlash(float posx, float posy, float dt);
+	static JumpAndFlash * CreateJumpAndFlash(int GameItemId, float posx, float posy, float dt);
 
 	void Update(DWORD dt) override;
 	void Render() override;

@@ -37,7 +37,7 @@ void Enemy::SetItemType(int itemtype)
 		this->itemtype = Item::JUMPANDFLASH;
 		break;
 	case 4:
-		this->itemtype = Item::FIREWHEELS ;
+		this->itemtype = Item::FIREWHEELS;
 	break;	
 	case 5:
 		this->itemtype = Item::SPIRITPOINTBLUE;

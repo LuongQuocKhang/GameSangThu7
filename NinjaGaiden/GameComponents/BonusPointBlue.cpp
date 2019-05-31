@@ -1,7 +1,7 @@
-#include "SpiritPointRed.h"
+#include "BonusPointBlue.h"
 #include "Grid.h"
 
-SpiritPointRed::SpiritPointRed()
+BonusPointBlue::BonusPointBlue()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ SpiritPointRed::SpiritPointRed()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void SpiritPointRed::LoadResources()
+void BonusPointBlue::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 2; i < 3; i++)
+	for (int i = 16; i < 17; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH - 8;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -37,10 +37,9 @@ void SpiritPointRed::LoadResources()
 
 	animations.push_back(anim);
 
-
 }
 
-void SpiritPointRed::Update(DWORD dt)
+void BonusPointBlue::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -58,10 +57,7 @@ void SpiritPointRed::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
-			//float moveX = trunc(this->GetSpeedX()* dt);
 			float moveY = trunc(this->GetSpeedY()* dt);
-
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 		}
 		else
@@ -72,12 +68,7 @@ void SpiritPointRed::Update(DWORD dt)
 
 			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
-
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
-
-
-			//if (nx != 0) this->SetSpeedX(0);
 			if (ny != 0) this->SetSpeedY(0);
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
@@ -90,41 +81,39 @@ void SpiritPointRed::Update(DWORD dt)
 	}
 }
 
-void SpiritPointRed::Render()
+void BonusPointBlue::Render()
 {
+	Animation * anim = new Animation(100);
+	for (int i = 11; i < 12; i++)
+	{
+		RECT rect;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 6;
+		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
+		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
+		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
 
-	SpriteData spriteEnemyData;
+		anim->AddFrame(sprite);
+	}
 
-	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
-	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
-	spriteEnemyData.x = this->GetPositionX();
-	spriteEnemyData.y = this->GetPositionY();
-
-	spriteEnemyData.scale = 1;
-	spriteEnemyData.angle = 0;
-
-	this->animations[0]->Render(spriteEnemyData);
+	animations.push_back(anim);
 }
 
-
-
-SpiritPointRed *  SpiritPointRed::CreateSpiritPointRed(float posx, float posy, float dt)
+BonusPointBlue *  BonusPointBlue::CreateBonusPointBlue(int GameItemId,float posx, float posy, float dt)
 {
-	SpiritPointRed * spirit = new SpiritPointRed();
-	spirit->Active = true;
-	spirit->x = posx;
-	spirit->y = posy;
+	BonusPointBlue * bonus = new BonusPointBlue();
+	bonus->Id = GameItemId;
+	bonus->Active = true;
+	bonus->x = posx;
+	bonus->y = posy;
+	bonus->SetItemType(Item::BONUSPOINTBLUE);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	bonus->collider.x = posx;
+	bonus->collider.y = posy;
+	bonus->dt = dt;
 
-	spirit->collider.x = posx;
-	spirit->collider.y = posy;
-	spirit->dt = dt;
-
-	return spirit;
+	return bonus;
 }
-SpiritPointRed::~SpiritPointRed()
+BonusPointBlue::~BonusPointBlue()
 {
 }

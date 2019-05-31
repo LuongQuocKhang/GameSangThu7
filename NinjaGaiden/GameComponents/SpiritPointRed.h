@@ -8,7 +8,7 @@ private:
 public:
 	SpiritPointRed();
 	~SpiritPointRed();
-	static SpiritPointRed * CreateSpiritPointRed(float posx, float posy, float dt);
+	static SpiritPointRed * CreateSpiritPointRed(int GameItemId ,float posx, float posy, float dt);
 
 	void Update(DWORD dt) override;
 	void Render() override;

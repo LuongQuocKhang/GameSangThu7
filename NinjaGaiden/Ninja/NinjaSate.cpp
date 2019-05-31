@@ -89,7 +89,6 @@ void NinjaSate::Climb()
 		break;
 	case NINJA_ANI_IDLE:
 	{
-		/*ninja->SetIsClimbing(true);*/
 		ninja->SetState(ninja->GetClimbState());
 	}
 	break;
@@ -375,7 +374,9 @@ void NinjaSate::Update(DWORD dt)
 	#pragma endregion
 
 	#pragma	region Collide with item
-
+	vector<GameItem * > gameitems = Grid::GetInstance()->GetGameItem();
+	ninja->SetDt(dt);
+	ninja->CalcPotentialCollisionsWithGameItem(gameitems);
 	#pragma endregion
 
 	#pragma region Ninja death
@@ -387,7 +388,8 @@ void NinjaSate::Update(DWORD dt)
 	#pragma endregion
 
 	#pragma region	 Update shuriken after throwing
-	if (ninja->GetShuriken().size() > 0)
+	shurikens = ninja->GetShuriken();
+	if (shurikens.size() > 0)
 	{
 		if (ninja->IsLeft() == true && shurikens[0]->IsActive() == true)
 		{

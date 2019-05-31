@@ -168,31 +168,31 @@
     <ClCompile Include="GameComponents\GameItem.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="JumpAndFlash.cpp">
+    <ClCompile Include="GameComponents\JumpAndFlash.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="FireWheels.cpp">
+    <ClCompile Include="GameComponents\BonusPointBlue.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="SpiritPointBlue.cpp">
+    <ClCompile Include="GameComponents\BonusPointRed.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="SpiritPointRed.cpp">
+    <ClCompile Include="GameComponents\FireWheels.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="TimeFreeze.cpp">
+    <ClCompile Include="GameComponents\HealthItem.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="ThrowingStar.cpp">
+    <ClCompile Include="GameComponents\SpiritPointBlue.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="BonusPointBlue.cpp">
+    <ClCompile Include="GameComponents\SpiritPointRed.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="BonusPointRed.cpp">
+    <ClCompile Include="GameComponents\ThrowingStar.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="HealthItem.cpp">
+    <ClCompile Include="GameComponents\TimeFreeze.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -335,33 +335,6 @@
     <ClInclude Include="GameComponents\GameItem.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="JumpAndFlash.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="FireWheels.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="SpiritPointBlue.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="SpiritPointRed.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeFreeze.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="ThrowingStar.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="BonusPointBlue.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="BonusPointRed.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthItem.h">
-      <Filter>Header Files\GameComponents</Filter>
-    </ClInclude>
     <ClInclude Include="GameComponents\SpiritPointBlue.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
@@ -375,6 +348,18 @@
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\HealthItem.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\FireWheels.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\JumpAndFlash.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\SpiritPointRed.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\TimeFreeze.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

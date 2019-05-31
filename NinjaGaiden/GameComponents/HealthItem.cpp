@@ -1,7 +1,7 @@
-#include "SpiritPointBlue.h"
+#include "HealthItem.h"
 #include "Grid.h"
 
-SpiritPointBlue::SpiritPointBlue()
+HealthItem::HealthItem()
 {
 	LoadResources();
 
@@ -20,14 +20,14 @@ SpiritPointBlue::SpiritPointBlue()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void SpiritPointBlue::LoadResources()
+void HealthItem::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 0; i < 1; i++)
+	for (int i = 14; i < 15; i++)
 	{
 		RECT rect;
 		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 2;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -37,10 +37,9 @@ void SpiritPointBlue::LoadResources()
 
 	animations.push_back(anim);
 
-
 }
 
-void SpiritPointBlue::Update(DWORD dt)
+void HealthItem::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -58,10 +57,8 @@ void SpiritPointBlue::Update(DWORD dt)
 
 		if (coEvents.size() == 0)
 		{
-			//float moveX = trunc(this->GetSpeedX()* dt);
 			float moveY = trunc(this->GetSpeedY()* dt);
 
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 		}
 		else
@@ -72,12 +69,8 @@ void SpiritPointBlue::Update(DWORD dt)
 
 			float moveX = min_tx * this->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * this->GetSpeedY() * dt + ny * 0.4;
-
-			//this->SetPositionX(this->GetPositionX() + moveX);
 			this->SetPositionY(this->GetPositionY() + moveY);
 
-
-			//if (nx != 0) this->SetSpeedX(0);
 			if (ny != 0) this->SetSpeedY(0);
 		}
 		for (UINT i = 0; i < coEvents.size(); i++)
@@ -90,41 +83,40 @@ void SpiritPointBlue::Update(DWORD dt)
 	}
 }
 
-void SpiritPointBlue::Render()
+void HealthItem::Render()
 {
+	Animation * anim = new Animation(100);
+	for (int i = 12; i < 13; i++)
+	{
+		RECT rect;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 8;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 4;
+		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
+		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
+		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
 
-	SpriteData spriteEnemyData;
+		anim->AddFrame(sprite);
+	}
 
-	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
-	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
-	spriteEnemyData.x = this->GetPositionX();
-	spriteEnemyData.y = this->GetPositionY();
+	animations.push_back(anim);
 
-	spriteEnemyData.scale = 1;
-	spriteEnemyData.angle = 0;
-
-	this->animations[0]->Render(spriteEnemyData);
 }
 
-
-
-SpiritPointBlue *  SpiritPointBlue::CreateSpiritPointBlue(float posx, float posy, float dt)
+HealthItem *  HealthItem::CreateHealthItem(int GameItemId,float posx, float posy, float dt)
 {
-	SpiritPointBlue * spirit = new SpiritPointBlue();
-	spirit->Active = true;
-	spirit->x = posx;
-	spirit->y = posy;
+	HealthItem * heatlh = new HealthItem();
+	heatlh->Id = GameItemId;
+	heatlh->Active = true;
+	heatlh->x = posx;
+	heatlh->y = posy;
+	heatlh->SetItemType(Item::HEALTHITEM);
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	heatlh->collider.x = posx;
+	heatlh->collider.y = posy;
+	heatlh->dt = dt;
 
-	spirit->collider.x = posx;
-	spirit->collider.y = posy;
-	spirit->dt = dt;
-
-	return spirit;
+	return heatlh;
 }
-SpiritPointBlue::~SpiritPointBlue()
+HealthItem::~HealthItem()
 {
 }

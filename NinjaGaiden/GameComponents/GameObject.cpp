@@ -65,52 +65,52 @@ void GameObject::AddGameItem(Enemy * enemy)
 		{
 			case Item::FLAMES:
 			{
-				gameitem = Flames::CreateFlames(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = Flames::CreateFlames(GameItem::GetGameItemId(),enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::JUMPANDFLASH:
 			{
-				gameitem = JumpAndFlash::CreateJumpAndFlash (enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = JumpAndFlash::CreateJumpAndFlash(GameItem::GetGameItemId(),enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::FIREWHEELS:
 			{
-				gameitem = FireWheels::CreateFireWheels(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = FireWheels::CreateFireWheels(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::SPIRITPOINTBLUE:
 			{
-				gameitem = SpiritPointBlue::CreateSpiritPointBlue(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = SpiritPointBlue::CreateSpiritPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::SPIRITPOINTRED:
 			{
-				gameitem = SpiritPointRed ::CreateSpiritPointRed(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = SpiritPointRed ::CreateSpiritPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::TIMEFREEZE:
 			{
-				gameitem = TimeFreeze::CreateTimeFreeze(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = TimeFreeze::CreateTimeFreeze(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::THROWINGSTAR:
 			{
-				gameitem = ThrowingStar::CreateThrowingStar(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = ThrowingStar::CreateThrowingStar(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::BONUSPOINTBLUE:
 			{
-				gameitem = BonusPointBlue::CreateBonusPointBlue(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = BonusPointBlue::CreateBonusPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::BONUSPOINTRED:
 			{
-				gameitem = BonusPointRed::CreateBonusPointRed(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = BonusPointRed::CreateBonusPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			case Item::HEALTHITEM:
 			{
-				gameitem = HealthItem::CreateHealthItem(enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+				gameitem = HealthItem::CreateHealthItem(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 				Grid::GetInstance()->AddGameItem(gameitem);
 			}break;
 			default:
@@ -176,6 +176,7 @@ void GameObject::CalcPotentialCollisions(
 
 	sort(coEvents.begin(), coEvents.end(), CollisionEvent::compare);
 }
+
 void GameObject::CalcPotentialCollisionsWithEnemy(
 	vector<Enemy *> &enemies,
 	vector<LPCOLLISIONEVENT> &coEvents)
@@ -184,6 +185,28 @@ void GameObject::CalcPotentialCollisionsWithEnemy(
 	CalcPotentialNinjaCollideWithEnemy(enemies, coEvents,CollisionWithEnemy::COLLIDING);
 }
 
+void GameObject::CalcPotentialCollisionsWithGameItem(vector<GameItem *> &gameitems)
+{
+	UpdateObjectCollider();
+	CalcPotentialNinjaCollideWithGameItem(gameitems);
+}
+
+void GameObject::CalcPotentialNinjaCollideWithGameItem(vector<GameItem *> &gameitems)
+{
+	for (int i = 0; i < gameitems.size(); i++)
+	{
+		if (gameitems[i]->IsActive() == true)
+		{
+			GameItem * gameitem = gameitems[i];
+
+			if (this->IsCollideWithGameItem(gameitem))
+			{
+				// update item effect for ninja
+				Ninja::GetInstance()->Additem(gameitem);
+			}
+		}
+	}
+}
 void GameObject::FilterCollision(
 	vector<LPCOLLISIONEVENT> &coEvents,
 	vector<LPCOLLISIONEVENT> &coEventsResult,
@@ -333,6 +356,52 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 			}
 		}
 		else 
+		{
+			return false;
+		}
+	}
+	return false;
+}
+bool GameObject::IsCollideWithGameItem(GameItem * gameitem)
+{
+	Collider MainObject = this->collider;
+	RECT rec;
+	rec.top = MainObject.y;
+	rec.left = MainObject.x;
+	rec.right = MainObject.x + MainObject.width;
+	rec.bottom = MainObject.y - MainObject.height;
+
+	Collider TargetObject = gameitem->collider;
+	if (MainObject.direction == 1)
+	{
+		if (TargetObject.x > rec.left && TargetObject.x < rec.right)
+		{
+			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
+				|| (rec.top > TargetObject.y && rec.bottom < TargetObject.y))
+			{
+				return true;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else if (MainObject.direction == -1)
+	{
+		if (TargetObject.x + TargetObject.width > rec.left && TargetObject.x + TargetObject.width < rec.right)
+		{
+			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
+				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
 		{
 			return false;
 		}

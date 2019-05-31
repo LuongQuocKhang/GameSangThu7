@@ -8,7 +8,7 @@ private:
 public:
 	BonusPointRed();
 	~BonusPointRed();
-	static BonusPointRed * CreateBonusPointRed(float posx, float posy, float dt);
+	static BonusPointRed * CreateBonusPointRed(int GameItemId,float posx, float posy, float dt);
 
 	void Update(DWORD dt) override;
 	void Render() override;

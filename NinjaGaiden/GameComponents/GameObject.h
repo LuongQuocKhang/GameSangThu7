@@ -8,6 +8,7 @@
 #include "Sprite.h"
 #include "Animation.h"
 
+class GameItem;
 struct Collider
 {
 	float x, y;
@@ -125,8 +126,12 @@ public:
 	void CalcPotentialCollisionsWithEnemy(
 		vector<Enemy *> &enemies,
 		vector<LPCOLLISIONEVENT> &coEvents);
+	void CalcPotentialCollisionsWithGameItem(
+		vector<GameItem *> &gameitems);
+	void CalcPotentialNinjaCollideWithGameItem(vector<GameItem *> &gameitems);
 
 	bool IsCollide(GameObject * CollisionObject);
+	bool IsCollideWithGameItem(GameItem * gameitem);
 
 	GameObject();
 	GameObject(float x, float y, float width, float height);

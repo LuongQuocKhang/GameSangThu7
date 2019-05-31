@@ -107,16 +107,15 @@ void Flames::Render()
 
 
 
-Flames *  Flames::CreateFlames(float posx, float posy, float dt)
+Flames *  Flames::CreateFlames(int GameItemId ,float posx, float posy, float dt)
 {
 	Flames * flames = new Flames();
+	flames->Id = GameItemId;
 	flames->Active = true;
 	flames->x = posx;
 	flames->y = posy;
 
-	//float vx = Flames_SPEED * (isLeft == true ? -1 : 1);
-	//this->vx = vx;
-	//this->collider.vx = vx;
+	flames->SetItemType(Item::FLAMES);
 
 	flames->collider.x = posx;
 	flames->collider.y = posy;
