@@ -23,11 +23,11 @@ BonusPointRed::BonusPointRed()
 void BonusPointRed::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 16; i < 17; i++)
+	for (int i = 12; i < 13; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 5;
+		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 8;
+		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 4;
 		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
 		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
 		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
@@ -36,6 +36,7 @@ void BonusPointRed::LoadResources()
 	}
 
 	animations.push_back(anim);
+
 
 }
 
@@ -84,20 +85,17 @@ void BonusPointRed::Update(DWORD dt)
 
 void BonusPointRed::Render()
 {
-	Animation * anim = new Animation(100);
-	for (int i = 12; i < 13; i++)
-	{
-		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH + 8;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH + 4;
-		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
-		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
-		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
+	SpriteData spriteEnemyData;
 
-		anim->AddFrame(sprite);
-	}
+	spriteEnemyData.width = FLAMES_SPRITE_WIDTH + 20;
+	spriteEnemyData.height = FLAMES_SPRITE_HEIGHT + 20;
+	spriteEnemyData.x = this->GetPositionX();
+	spriteEnemyData.y = this->GetPositionY();
 
-	animations.push_back(anim);
+	spriteEnemyData.scale = 1;
+	spriteEnemyData.angle = 0;
+
+	this->animations[0]->Render(spriteEnemyData);
 }
 
 BonusPointRed *  BonusPointRed::CreateBonusPointRed(int GameItemId ,float posx, float posy, float dt)

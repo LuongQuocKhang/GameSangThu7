@@ -373,11 +373,11 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	#pragma	region Collide with item
+	/*#pragma	region Collide with item
 	vector<GameItem * > gameitems = Grid::GetInstance()->GetGameItem();
 	ninja->SetDt(dt);
 	ninja->CalcPotentialCollisionsWithGameItem(gameitems);
-	#pragma endregion
+	#pragma endregion*/
 
 	#pragma region Ninja death
 

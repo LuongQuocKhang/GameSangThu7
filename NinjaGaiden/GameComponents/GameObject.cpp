@@ -59,63 +59,121 @@ void GameObject::Render()
 void GameObject::AddGameItem(Enemy * enemy)
 {
 	GameItem * gameitem;
-	if (enemy->GetEnemyType() == EnemyType::REDBIRD)
+	if (enemy->GetEnemyType() == EnemyType::REDBIRD && Game::GetInstance()->GetStage() == Stage::STAGE_31)
 	{
 		switch (enemy->GetItemType())
 		{
-			case Item::FLAMES:
-			{
-				gameitem = Flames::CreateFlames(GameItem::GetGameItemId(),enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::JUMPANDFLASH:
-			{
-				gameitem = JumpAndFlash::CreateJumpAndFlash(GameItem::GetGameItemId(),enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::FIREWHEELS:
-			{
-				gameitem = FireWheels::CreateFireWheels(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::SPIRITPOINTBLUE:
-			{
-				gameitem = SpiritPointBlue::CreateSpiritPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::SPIRITPOINTRED:
-			{
-				gameitem = SpiritPointRed ::CreateSpiritPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::TIMEFREEZE:
-			{
-				gameitem = TimeFreeze::CreateTimeFreeze(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::THROWINGSTAR:
-			{
-				gameitem = ThrowingStar::CreateThrowingStar(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::BONUSPOINTBLUE:
-			{
-				gameitem = BonusPointBlue::CreateBonusPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::BONUSPOINTRED:
-			{
-				gameitem = BonusPointRed::CreateBonusPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			case Item::HEALTHITEM:
-			{
-				gameitem = HealthItem::CreateHealthItem(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
-				Grid::GetInstance()->AddGameItem(gameitem);
-			}break;
-			default:
-				break;
-			}
+		case Item::FLAMES:
+		{
+			gameitem = Flames::CreateFlames(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::JUMPANDFLASH:
+		{
+			gameitem = JumpAndFlash::CreateJumpAndFlash(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::FIREWHEELS:
+		{
+			gameitem = FireWheels::CreateFireWheels(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::SPIRITPOINTBLUE:
+		{
+			gameitem = SpiritPointBlue::CreateSpiritPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::SPIRITPOINTRED:
+		{
+			gameitem = SpiritPointRed::CreateSpiritPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::TIMEFREEZE:
+		{
+			gameitem = TimeFreeze::CreateTimeFreeze(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::THROWINGSTAR:
+		{
+			gameitem = ThrowingStar::CreateThrowingStar(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::BONUSPOINTBLUE:
+		{
+			gameitem = BonusPointBlue::CreateBonusPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::BONUSPOINTRED:
+		{
+			gameitem = BonusPointRed::CreateBonusPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::HEALTHITEM:
+		{
+			gameitem = HealthItem::CreateHealthItem(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		default:
+			break;
+		}
+	}
+	else if (enemy->GetEnemyType() == EnemyType::BLOODYBIRD && Game::GetInstance()->GetStage() == Stage::STAGE_32)
+	{
+		switch (enemy->GetItemType())
+		{
+		case Item::FLAMES:
+		{
+			gameitem = Flames::CreateFlames(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::JUMPANDFLASH:
+		{
+			gameitem = JumpAndFlash::CreateJumpAndFlash(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::FIREWHEELS:
+		{
+			gameitem = FireWheels::CreateFireWheels(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::SPIRITPOINTBLUE:
+		{
+			gameitem = SpiritPointBlue::CreateSpiritPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::SPIRITPOINTRED:
+		{
+			gameitem = SpiritPointRed::CreateSpiritPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::TIMEFREEZE:
+		{
+			gameitem = TimeFreeze::CreateTimeFreeze(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::THROWINGSTAR:
+		{
+			gameitem = ThrowingStar::CreateThrowingStar(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::BONUSPOINTBLUE:
+		{
+			gameitem = BonusPointBlue::CreateBonusPointBlue(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::BONUSPOINTRED:
+		{
+			gameitem = BonusPointRed::CreateBonusPointRed(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		case Item::HEALTHITEM:
+		{
+			gameitem = HealthItem::CreateHealthItem(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			Grid::GetInstance()->AddGameItem(gameitem);
+		}break;
+		default:
+			break;
+		}
 	}
 }
 

@@ -118,6 +118,7 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, in
 		break;
 	case BLOODYBIRD:
 		enemy = new BloodyBird(posx, posy);
+		enemy->SetItemType(GameItem);
 		break;
 	case GREENCANONSOLDIER:
 		enemy = new GreenCanonSoldier(posx, posy);

@@ -10,6 +10,7 @@ class Hud :public GameObject
 
 	static Hud * __instance;
 	vector<Animation *> animations;
+	int timecount;
 public:
 	Hud(float posx, float posy);
 
