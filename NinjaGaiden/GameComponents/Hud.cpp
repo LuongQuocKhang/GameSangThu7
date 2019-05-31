@@ -996,7 +996,7 @@ void Hud::Render()
 		spriteEnemyData.x = locx;
 		this->animations[27]->Render(spriteEnemyData);
 		locx = spriteEnemyData.x + 15;
-			switch (scores / 10)
+			switch (timecount / 10)
 			{
 			case 0:
 			{
@@ -1060,7 +1060,7 @@ void Hud::Render()
 			}break;
 			}
 
-			switch (scores % 10)
+			switch (timecount % 10)
 			{
 			case 0:
 			{
@@ -1134,7 +1134,7 @@ void Hud::Render()
 		this->animations[27]->Render(spriteEnemyData);
 		locx = spriteEnemyData.x + 15;
 	}
-		switch (scores)
+		switch (timecount)
 		{
 		case 0:
 		{
