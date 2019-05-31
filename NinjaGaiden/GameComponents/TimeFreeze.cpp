@@ -34,9 +34,7 @@ void TimeFreeze::LoadResources()
 
 		anim->AddFrame(sprite);
 	}
-
 	animations.push_back(anim);
-
 }
 
 void TimeFreeze::Update(DWORD dt)

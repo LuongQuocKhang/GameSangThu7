@@ -368,8 +368,12 @@ void Ninja::Additem(GameItem * gameitem)
 		case Item::SPIRITPOINTBLUE:
 		{
 			addItem = true;
-			int heathpoint = ((SpiritPointBlue*)gameitem)->GetHeathPoint();
-			this->stamina += heathpoint;
+			if (this->stamina < 100 )
+			{
+				int heathpoint = ((SpiritPointBlue*)gameitem)->GetHeathPoint();
+				this->stamina += heathpoint;
+			}
+			if (this->stamina > 100) this->stamina = 100;
 			break;
 		}
 		case Item::SPIRITPOINTRED:
