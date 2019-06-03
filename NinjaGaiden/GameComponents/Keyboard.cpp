@@ -172,7 +172,7 @@ void Keyboard::OnKeyDown(int KeyCode)
 		case DIK_UP:
 			if (ninja->IsClimbing() == true)
 			{
-				ninja->SetPositionY(ninja->GetPositionY() + 0.5 * ninja->GetDt());
+				ninja->SetPositionY(ninja->GetPositionY() + NINJA_CLIMB_SPEED * ninja->GetDt());
 			}
 	}
 }
