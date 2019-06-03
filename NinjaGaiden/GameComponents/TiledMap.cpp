@@ -51,6 +51,10 @@ Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
 		{
 			if (find(_BrickStage_32.begin(), _BrickStage_32.end(), curTile.tileId) != _BrickStage_32.end())
 				curTile.type = ObjectType::BRICK;
+			else if (curTile.tileId == 25)
+				curTile.type = ObjectType::VINES;
+			else if (curTile.tileId == 28 || curTile.tileId == 29)
+				curTile.type = ObjectType::BRICK_NOCOLLISION_BOTTOM;
 			else
 				curTile.type = ObjectType::DEFAULT;
 		}

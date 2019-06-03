@@ -151,9 +151,10 @@ void Keyboard::OnKeyDown(int KeyCode)
 	{
 		case DIK_SPACE:
 			ninja->Jump();
+			ninja->SetIsClimbing(false);
 			break;
 		case DIK_S:
-			if (true == ninja->IsGrounded())
+			if (true == ninja->IsGrounded() )
 			{
 				ninja->Attack();
 			}
@@ -168,6 +169,11 @@ void Keyboard::OnKeyDown(int KeyCode)
 		case DIK_D:
 			ninja->CreateThrownWeapon();
 			break;
+		case DIK_UP:
+			if (ninja->IsClimbing() == true)
+			{
+				ninja->SetPositionY(ninja->GetPositionY() + 0.5 * ninja->GetDt());
+			}
 	}
 }
 void Keyboard::OnKeyUp(int KeyCode)

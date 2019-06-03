@@ -252,18 +252,24 @@ void Grid::Update(DWORD dt)
 		{
 			if (ninjaRCell + 5 < 34 && Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
 			{
-				for (int j = ninjaLCell; j <= ninjaRCell + 5; j++)
+				for (int j = ninjaLCell - 2; j <= ninjaRCell + 5; j++)
+				{
+					cells[i][j]->InsertEnemies(curEnemies);
+				}
+				for (int j = ninjaLCell; j <= ninjaRCell; j++)
 				{
 					cells[i][j]->InsertTiles(curTiles);
-					cells[i][j]->InsertEnemies(curEnemies);
 				}
 			}
 			else if(ninjaRCell + 5 >= 34 && Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
 			{
 				for (int j = ninjaLCell - 2; j <= ninjaRCell; j++)
+				{	
+					cells[i][j]->InsertEnemies(curEnemies);
+				}
+				for (int j = ninjaLCell; j <= ninjaRCell; j++)
 				{
 					cells[i][j]->InsertTiles(curTiles);
-					cells[i][j]->InsertEnemies(curEnemies);
 				}
 			}
 			else if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)

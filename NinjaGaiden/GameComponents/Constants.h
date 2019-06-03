@@ -31,7 +31,8 @@ enum ObjectType
 {
 	DEFAULT,
 	BRICK,
-	VINES
+	VINES,
+	BRICK_NOCOLLISION_BOTTOM
 };
 enum Column
 {

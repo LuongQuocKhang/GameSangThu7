@@ -284,7 +284,10 @@ void NinjaSate::Update(DWORD dt)
 
 	#pragma region	Collide with brick
 	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
-	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
+	if (state != NINJA_ANI_CLIMBING)
+	{
+		ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
+	}
 
 	coEvents.clear();
 	ninja->SetDt(dt);
@@ -325,7 +328,7 @@ void NinjaSate::Update(DWORD dt)
 		delete coEvents[i];
 	#pragma endregion
 
-	#pragma region Collide with enemy
+	/*#pragma region Collide with enemy
 
 	if (ninja->IsUntouchable() == false)
 	{
@@ -371,13 +374,13 @@ void NinjaSate::Update(DWORD dt)
 			ninja->SetUntouchable(false);
 		}
 	}
-	#pragma endregion
+	#pragma endregion*/
 
-	/*#pragma	region Collide with item
+	#pragma	region Collide with item
 	vector<GameItem * > gameitems = Grid::GetInstance()->GetGameItem();
 	ninja->SetDt(dt);
 	ninja->CalcPotentialCollisionsWithGameItem(gameitems);
-	#pragma endregion*/
+	#pragma endregion
 
 	#pragma region Ninja death
 

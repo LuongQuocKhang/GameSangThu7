@@ -47,7 +47,7 @@ public:
 	void SetIsClimbing(bool isClimbing) { this->isClimbing = isClimbing; }
 	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
 	void SetState(State * state);
-
+	State * GetSate() { return this->state; }
 	static Ninja * GetInstance();
 
 	DWORD GetLastFrameTime() { return this->lastFrameTime; }
@@ -69,7 +69,7 @@ public:
 	bool IsLeft() { return isLeft; }
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
 	bool IsThrowing() { return this->isThrowing; }
-
+	void SetClimming(bool value) { this->isClimbing = value; }
 	void Idle();
 	void Attack();
 	void Walk();

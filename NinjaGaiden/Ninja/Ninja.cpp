@@ -165,7 +165,7 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// NINJA_ANI_CLIMBING
-	anim = new Animation(100);
+	anim = new Animation(200);
 	for (int i = 4; i < 6; i++)
 	{
 		RECT rect;

@@ -201,26 +201,46 @@ void GameObject::CalcPotentialMapCollisions(
 	vector<Tile *> &tiles,
 	vector<LPCOLLISIONEVENT> &coEvents)
 {
-
 	LPGAMEOBJECT solidTileDummy = new GameObject(0, 0, 16, 16);
 	for (int i = 0; i < tiles.size(); i++)
 	{
 		Tile * curTile = tiles[i];
-		if (curTile->type == 1)
-		{
-			solidTileDummy->SetPositionX(curTile->x);
-			solidTileDummy->SetPositionY(curTile->y);
-			solidTileDummy->UpdateTileCollider();
+		solidTileDummy->SetPositionX(curTile->x);
+		solidTileDummy->SetPositionY(curTile->y);
+		solidTileDummy->UpdateTileCollider();
 
+		if (curTile->type == ObjectType::BRICK || curTile->type == ObjectType::BRICK_NOCOLLISION_BOTTOM)
+		{	
 			LPCOLLISIONEVENT e = SweptAABBEx(solidTileDummy);
 			e->collisionID = 1;
 
 			if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
+			{
 				coEvents.push_back(e);
+				Ninja::GetInstance()->SetClimming(false);
+			}
 			else
 			{
 				delete e;
 			}
+		}
+		else if (curTile->type == ObjectType::VINES)
+		{
+			LPCOLLISIONEVENT e = SweptAABBEx(solidTileDummy);
+			e->collisionID = 1;
+
+			if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
+			{
+				Ninja* ninja = Ninja::GetInstance();
+				ninja->SetState(ninja->GetClimbState());
+				ninja->SetSpeedY(0);
+				ninja->SetSpeedX(0);
+				ninja->SetClimming(true);
+			}
+		}
+		else 
+		{
+			
 		}
 	}
 }
