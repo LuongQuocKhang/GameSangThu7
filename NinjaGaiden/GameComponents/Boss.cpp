@@ -51,10 +51,11 @@ Boss::Boss(float posx, float posy)
 	Type = EnemyType::BOSS;
 
 	stamina = 100;
+	count = 0;
 }
 void Boss::LoadResources()
 {
-	// Enemy_ANI_IDLE
+	// BOSS_ANI_IDLE
 	Animation * anim = new Animation(100);
 	for (int i = 0; i < 1; i++)
 	{
@@ -68,9 +69,9 @@ void Boss::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	this->animations.push_back(anim);
-	// NINJA_ANI_WALKING
+	// NOSS_ANI_WALKING
 	anim = new Animation(200);
-	for (int i = 0; i < 2; i++)
+	for (int i = 1; i < 2; i++)
 	{
 		RECT rect;
 		rect.left = (i % BOSS_TEXTURE_COLUMNS) * BOSS_SPRITE_WIDTH;
@@ -98,27 +99,59 @@ void Boss::Update(DWORD dt)
 	state->Update(dt);
 	if (checkloc)
 	{
-		this->isLeft = true;
-		this->SetPositionX((int)(this->GetPositionX() + -0.1*dt));
-		float locx = this->GetPositionX();
-		float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
-		this->SetPositionY(y);
-		if (locx < 2)
+		count += dt;
+		if (count >= 2000)
 		{
-			checkloc = false;
+			this->SetState(walkingState);
+			this->isLeft = true;
+			this->SetPositionX((int)(this->GetPositionX() + -0.1*dt));
+			float locx = this->GetPositionX();
+			float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
+			this->SetPositionY(y);
+
+			if (locx < 2)
+			{	
+				checkloc = false;
+				count = 0;
+			}
 		}
+		else
+		{
+			this->SetState(idleState);
+			this->SetPositionX(340);
+			this->SetPositionY(80);
+			this->isLeft = true;
+		}
+
+		
+		
 	}
 	else
 	{
-		this->isLeft = false;
-		this->SetPositionX((int)(this->GetPositionX() + 0.15*dt));
-		float locx = this->GetPositionX();
-		float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
-		this->SetPositionY(y);
-		if (locx > 330)
+		count += dt;
+		if (count >= 2000)
 		{
-			checkloc = true;
+			this->SetState(walkingState);
+			this->isLeft = false;
+			this->SetPositionX((int)(this->GetPositionX() + 0.15*dt));
+			float locx = this->GetPositionX();
+			float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
+			this->SetPositionY(y);
+			if (locx > 330)
+			{
+				checkloc = true;
+				count = 0;
+			}
 		}
+		else
+		{
+			this->SetState(idleState);
+			this->SetPositionX(30);
+			this->SetPositionY(80);
+			this->isLeft = false;
+		}
+		
+		
 	}
 }
 //Hàm render

@@ -17,7 +17,7 @@ void Game::Init()
 	keyboard = Keyboard::GetInstance();
 	keyboard->InitKeyboard(hWnd);
 
-	this->stage = STAGE_31;
+	this->stage = STAGE_BOSS;
 	LoadResources();
 	OutputDebugString(L"[INFO] InitGame done;\n");
 }
@@ -80,7 +80,7 @@ void Game::LoadResources()
 	if (NULL == ninja)
 		ninja = Ninja::GetInstance();
 	if (NULL == tiledMap)
-		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_31);
+		tiledMap = TiledMap::GetInstance(TILES_MATRIX_STAGE_BOSS);
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
 	if (grid == NULL)

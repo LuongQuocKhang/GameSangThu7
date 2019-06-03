@@ -5,6 +5,7 @@
 
 class Boss :public Enemy
 {
+	int count;
 public:
 	Boss();
 	Boss(float posx, float posy);
@@ -13,7 +14,7 @@ public:
 	void Walk();
 
 	int GetStamina() { return this->stamina; }
-
+	
 	bool checkloc = true;
 	//Hàm cập nhật
 	void Update(DWORD dt) override;

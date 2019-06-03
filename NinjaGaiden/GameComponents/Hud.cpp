@@ -10,6 +10,7 @@ Hud::Hud(float posx, float posy)
 
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
+	count = 0;
 	timecount = 150;
 }
 void Hud::Reset()
@@ -455,10 +456,15 @@ void Hud::LoadResources()
 //Hàm c?p nh?t
 void Hud::Update(DWORD dt)
 {
-	timecount -= dt*0.00005;
-	if (timecount < 1)
+	count += dt;
+	if (count >= 1000)
 	{
-		timecount = 0;
+		timecount -= 1;
+		count = 0;
+		if (timecount <= 0)
+		{
+			timecount = 0;
+		}
 	}
 	Ninja * ninja = Ninja::GetInstance();
 	int right = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - SCREEN_WIDTH / 2);
