@@ -20,6 +20,8 @@ public:
 		this->dt = dt;
 	}
 	int GetDamage() { return this->damage; }
+
+	void ResetCollider();
 	~Sword();
 };
 

@@ -1311,14 +1311,51 @@ void Hud::Render()
 	locx = spriteEnemyData.x + 13;
 
 	//Health
-	spriteEnemyData.scale = 1;
-	for (int i = 0; i < 16; i++)
+	if (Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
 	{
-		spriteEnemyData.x = locx;
-		this->animations[28]->Render(spriteEnemyData);
-		locx = spriteEnemyData.x + 10;
+		spriteEnemyData.scale = 1;
+		for (int i = 0; i < 16; i++)
+		{
+			spriteEnemyData.x = locx;
+			this->animations[28]->Render(spriteEnemyData);
+			locx = spriteEnemyData.x + 10;
+		}
+		spriteEnemyData.scale = 1.8;
 	}
-	spriteEnemyData.scale = 1.8;
+	else if (Game::GetInstance()->GetStage() == Stage::STAGE_BOSS)
+	{
+		spriteEnemyData.scale = 1;
+		vector<Enemy* > enemies = Grid::GetInstance()->GetAllEnemies();
+		if (enemies.size() > 0)
+		{
+			Boss * boss = (Boss*)(enemies[0]);
+			float bossheath = boss->GetStamina() / STAMINA;
+			for (int i = 0; i < (int)round(bossheath); i++)
+			{
+				spriteEnemyData.x = locx;
+				this->animations[HEATH_LEFT]->Render(spriteEnemyData);
+				locx = spriteEnemyData.x + 10;
+			}
+
+			for (int i = 0; i < 16 - (int)round(bossheath); i++)
+			{
+				spriteEnemyData.x = locx;
+				this->animations[HEATH_LOST]->Render(spriteEnemyData);
+				locx = spriteEnemyData.x + 10;
+			}
+		}
+		else
+		{
+			spriteEnemyData.scale = 1;
+			for (int i = 0; i < 16; i++)
+			{
+				spriteEnemyData.x = locx;
+				this->animations[28]->Render(spriteEnemyData);
+				locx = spriteEnemyData.x + 10;
+			}
+			spriteEnemyData.scale = 1.8;
+		}
+	}
 	#pragma endregion
 
 }

@@ -101,45 +101,48 @@ void Keyboard::Poll_Keyboard()
 // update trạng thái nhân vật khi nhấn nút
 void Keyboard::UpdateKeyStates()
 {
-	Ninja * ninja = Game::GetInstance()->GetNinja();
+	Ninja * ninja = Ninja::GetInstance();
 
-	if (IsKeyDown(DIK_RIGHT))
+	if (ninja->IsClimbing() == false)
 	{
-		if (!IsKeyDown(DIK_LEFT) && !ninja->IsAttacking() && ninja->IsGrounded() && !ninja->IsClimbing())
+		if (IsKeyDown(DIK_RIGHT))
 		{
-			ninja->TurnRight();
-			if (!IsKeyDown(DIK_DOWN))
+			if (!IsKeyDown(DIK_LEFT) && !ninja->IsAttacking() && ninja->IsGrounded() && !ninja->IsClimbing())
 			{
-				ninja->Walk();
+				ninja->TurnRight();
+				if (!IsKeyDown(DIK_DOWN))
+				{
+					ninja->Walk();
+				}
+				else
+					ninja->Crouch();
 			}
-			else
-				ninja->Crouch();
+			else if (!IsKeyDown(DIK_DOWN))
+				ninja->Idle();
 		}
-		else if (!IsKeyDown(DIK_DOWN))
-			ninja->Idle();
-	}
-	else if (IsKeyDown(DIK_LEFT))
-	{
-		if (!IsKeyDown(DIK_RIGHT) && !ninja->IsAttacking() && ninja->IsGrounded() && !ninja->IsClimbing())
+		else if (IsKeyDown(DIK_LEFT))
 		{
-			ninja->TurnLeft();
-			if (!IsKeyDown(DIK_DOWN))
+			if (!IsKeyDown(DIK_RIGHT) && !ninja->IsAttacking() && ninja->IsGrounded() && !ninja->IsClimbing())
 			{
-				ninja->Walk();
+				ninja->TurnLeft();
+				if (!IsKeyDown(DIK_DOWN))
+				{
+					ninja->Walk();
+				}
+				else
+					ninja->Crouch();
 			}
-			else
-				ninja->Crouch();
+			else if (!IsKeyDown(DIK_DOWN))
+				ninja->Idle();
 		}
-		else if (!IsKeyDown(DIK_DOWN))
-			ninja->Idle();
-	}
-	else if (IsKeyDown(DIK_DOWN))
-	{
-		ninja->Crouch();
-		if (IsKeyDown(DIK_S))
+		else if (IsKeyDown(DIK_DOWN))
 		{
-			ninja->SetIsCrouching(true);
-			ninja->Attack();
+			ninja->Crouch();
+			if (IsKeyDown(DIK_S))
+			{
+				ninja->SetIsCrouching(true);
+				ninja->Attack();
+			}
 		}
 	}
 }

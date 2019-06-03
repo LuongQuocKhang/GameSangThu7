@@ -217,7 +217,7 @@ void GameObject::CalcPotentialMapCollisions(
 			if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
 			{
 				coEvents.push_back(e);
-				Ninja::GetInstance()->SetClimming(false);
+				//Ninja::GetInstance()->SetClimming(false);
 			}
 			else
 			{
@@ -228,10 +228,10 @@ void GameObject::CalcPotentialMapCollisions(
 		{
 			LPCOLLISIONEVENT e = SweptAABBEx(solidTileDummy);
 			e->collisionID = 1;
+			Ninja* ninja = Ninja::GetInstance();
 
 			if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
 			{
-				Ninja* ninja = Ninja::GetInstance();
 				ninja->SetState(ninja->GetClimbState());
 				ninja->SetSpeedY(0);
 				ninja->SetSpeedX(0);
@@ -424,7 +424,7 @@ bool GameObject::IsCollide(GameObject * CollisionObject)
 		if (TargetObject.x + TargetObject.width > rec.left && TargetObject.x + TargetObject.width < rec.right)
 		{
 			if ((rec.top < TargetObject.y && rec.top > TargetObject.y - TargetObject.height)
-				|| (rec.top > TargetObject.y && rec.bottom > TargetObject.y))
+				|| (rec.top > TargetObject.y && rec.bottom < TargetObject.y))
 			{
 				return true;
 			}

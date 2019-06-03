@@ -21,6 +21,8 @@ Boss::Boss()
 	collider.width = BOSS_SPRITE_WIDTH;
 	collider.height = BOSS_SPRITE_HEIGHT;
 
+	stamina = 100;
+
 	Type = EnemyType::BOSS;
 }
 Boss::Boss(float posx, float posy)
@@ -47,6 +49,8 @@ Boss::Boss(float posx, float posy)
 	collider.height = BOSS_SPRITE_HEIGHT;
 
 	Type = EnemyType::BOSS;
+
+	stamina = 100;
 }
 void Boss::LoadResources()
 {

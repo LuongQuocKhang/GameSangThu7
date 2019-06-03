@@ -12,6 +12,8 @@ public:
 	void Idle();
 	void Walk();
 
+	int GetStamina() { return this->stamina; }
+
 	bool checkloc = true;
 	//Hàm cập nhật
 	void Update(DWORD dt) override;

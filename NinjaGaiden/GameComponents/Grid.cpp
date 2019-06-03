@@ -245,7 +245,9 @@ void Grid::Update(DWORD dt)
 	}
 
 	int ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell;
+
 	this->GetNinjaPosOnGrid(ninjaLCell, ninjaRCell, ninjaTCell, ninjaBCell);
+
 	for (int i = ninjaBCell; i <= ninjaTCell; i++)
 	{
 		if (ninjaLCell - 2 >= 0)
@@ -292,7 +294,9 @@ void Grid::Update(DWORD dt)
 			}
 		}
 	}
+
 	ninja->Update(dt);
+
 	for (size_t i = 0; i < deathanimations.size(); i++)
 	{
 		if (deathanimations[i]->IsActive() == true)
@@ -304,6 +308,7 @@ void Grid::Update(DWORD dt)
 			deathanimations.erase(deathanimations.begin() + i);
 		}
 	}
+
 	for (size_t i = 0; i < gameitems.size(); i++)
 	{
 		if (gameitems[i]->IsActive() == true)

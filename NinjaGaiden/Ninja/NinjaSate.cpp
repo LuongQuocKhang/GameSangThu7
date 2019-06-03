@@ -35,7 +35,12 @@ void NinjaSate::Jump()
 		}
 	}
 	break;
-
+	case NINJA_ANI_CLIMBING :
+		ninja->SetIsGrounded(false);
+		ninja->SetSpeedY(NINJA_JUMP_SPEED_Y);
+		ninja->SetState(ninja->GetJumpingState());
+		ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() == true ? 1 : -1));
+		break;
 	}
 }
 
@@ -201,7 +206,7 @@ void NinjaSate::Throw()
 		break;
 	}
 }
-
+bool ShuriKenTurn = false;
 void NinjaSate::Update(DWORD dt)
 {
 	#pragma region Get enemies and create event
@@ -252,6 +257,8 @@ void NinjaSate::Update(DWORD dt)
 		sword->SetSpeedX(ninja->GetSpeedX());
 
 		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
+
+		//sword->ResetCollider();
 	}
 
 	vector <Shuriken* > shurikens = ninja->GetShuriken();
@@ -328,7 +335,7 @@ void NinjaSate::Update(DWORD dt)
 		delete coEvents[i];
 	#pragma endregion
 
-	/*#pragma region Collide with enemy
+	#pragma region Collide with enemy
 
 	if (ninja->IsUntouchable() == false)
 	{
@@ -346,9 +353,10 @@ void NinjaSate::Update(DWORD dt)
 			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
 			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-			ninja->SetPositionY(ninja->GetPositionY() + moveY);
-
-
+			if (ninja->GetPositionY() > 50)
+			{
+				ninja->SetPositionY(ninja->GetPositionY() + moveY);
+			}
 			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
 			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
@@ -374,7 +382,7 @@ void NinjaSate::Update(DWORD dt)
 			ninja->SetUntouchable(false);
 		}
 	}
-	#pragma endregion*/
+	#pragma endregion
 
 	#pragma	region Collide with item
 	vector<GameItem * > gameitems = Grid::GetInstance()->GetGameItem();
@@ -392,13 +400,16 @@ void NinjaSate::Update(DWORD dt)
 
 	#pragma region	 Update shuriken after throwing
 	shurikens = ninja->GetShuriken();
+
 	if (shurikens.size() > 0)
 	{
 		if (ninja->IsLeft() == true && shurikens[0]->IsActive() == true)
 		{
-			if (abs(shurikens[0]->GetDistance()) >= 150)
+			if (abs(shurikens[0]->GetDistance()) >= 150 && ShuriKenTurn == false)
 			{
-				ninja->DescreaseShuriken();
+				//ninja->DescreaseShuriken();
+				shurikens[0]->SetSpeedX(shurikens[0]->GetSpeedX() * (-1));
+				ShuriKenTurn = true;
 			}
 			else
 			{
@@ -407,9 +418,11 @@ void NinjaSate::Update(DWORD dt)
 		}
 		else if (ninja->IsLeft() == false && shurikens[0]->IsActive() == true)
 		{
-			if (shurikens[0]->GetDistance() >= 150)
+			if (shurikens[0]->GetDistance() >= 150 && ShuriKenTurn == false)
 			{
-				ninja->DescreaseShuriken();
+				//ninja->DescreaseShuriken();
+				shurikens[0]->SetSpeedX(shurikens[0]->GetSpeedX() * (-1));
+				ShuriKenTurn = true;
 			}
 			else
 			{
