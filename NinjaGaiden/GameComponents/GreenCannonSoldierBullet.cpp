@@ -11,7 +11,7 @@ GreenCannonSoldierBullet::GreenCannonSoldierBullet(Enemy* enemy)
 	this->y = enemy->GetPositionY();
 
 	width = GREEN_CANNON_SOLDIER_BULLET_WIDTH;
-	height = SHURIKEN_HEIGHT;
+	height = GREEN_CANNON_SOLDIER_BULLET_HEIGHT;
 
 	vx = GREEN_CANNON_SOLDIER_BULLET_SPEED;
 
@@ -47,29 +47,22 @@ void GreenCannonSoldierBullet::Update(DWORD dt)
 	shootTime += dt;
 	if (shootTime >= 1500)
 	{
-		if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
+		if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 		{
-			if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
+			this->Active = true;
+			if (abs(distance) >= 100)
 			{
-				Active = true;
-				if (abs(distance) >= 100)
-				{
-					Reset();
-				}
-				else
-				{
-					this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt * (-1)));
-					distance += vx * dt;
-				}
+				Reset();
 			}
 			else
 			{
-				Active = false;
+				this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt * (-1)));
+				distance += vx * dt;
 			}
 		}
 		else
 		{
-			Active = false;
+			this->Active = false;
 		}
 	}
 }

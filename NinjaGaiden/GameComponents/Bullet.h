@@ -14,7 +14,7 @@ protected:
 public:
 	Bullet();
 
-	int GetDamge() { return this->damage; }
+	int GetDamage() { return this->damage; }
 
 	bool IsActive() { return this->Active; }
 	bool SetActive(bool value) { this->Active = value; }

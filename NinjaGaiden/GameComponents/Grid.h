@@ -56,7 +56,7 @@ public:
 
 	void GetCameraPosOnGrid(int &l, int &r, int &t, int &b);
 	void GetNinjaPosOnGrid(int &l, int &r, int &t, int &b);
-	/*vector<Bullet*> GetEnemyBullet() { return enemiesbullet; }*/
+	vector<Bullet*> GetEnemyBullet() { return enemiesbullet; }
 
 	vector<Tile *> GetCurTiles() { return this->curTiles; }
 	vector<Tile *> GetCollisionTiles() { return this->CollisionTiles; }

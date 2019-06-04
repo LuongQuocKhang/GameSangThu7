@@ -262,7 +262,12 @@ void GameObject::CalcPotentialCollisionsWithEnemy(
 	UpdateObjectCollider();
 	CalcPotentialNinjaCollideWithEnemy(enemies, coEvents,CollisionWithEnemy::COLLIDING);
 }
-
+void GameObject::NinjaCollideWithEnemyBullet(vector<Bullet *> enemiesbullets,
+	vector<LPCOLLISIONEVENT> &coEvents)
+{
+	UpdateObjectCollider();
+	CalcPotentialNinjaCollideWithBullet(enemiesbullets, coEvents);
+}
 void GameObject::CalcPotentialCollisionsWithGameItem(vector<GameItem *> &gameitems)
 {
 	UpdateObjectCollider();
@@ -393,8 +398,45 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 		}
 	}
 }
-void GameObject::NinjaCollideWithEnemyBullet(vector<Bullet*> enemiesbullets)
+
+void GameObject::CalcPotentialNinjaCollideWithBullet(vector<Bullet*>& bullets, vector<LPCOLLISIONEVENT>& coEvents)
 {
+	LPGAMEOBJECT CollisionBullet = new GameObject(0, 0, 16, 16);
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		if (bullets[i]->IsActive() == true)
+		{
+			Bullet * bullet = bullets[i];
+
+			CollisionBullet->SetPositionX(bullet->x);
+			CollisionBullet->SetPositionY(bullet->y);
+			CollisionBullet->SetSpeedX(bullet->vx);
+			CollisionBullet->SetSpeedY(bullet->vy);
+			CollisionBullet->height = bullet->height;
+			CollisionBullet->width = bullet->width;
+			CollisionBullet->UpdateObjectCollider();
+
+			CollisionBullet->collider.width = bullet->width;
+			CollisionBullet->collider.height = bullet->height;
+
+			LPCOLLISIONEVENT e = SweptAABBEx(CollisionBullet);
+			e->collisionID = 0;
+
+			if (e->t >= 0 && e->t < 1.0f)
+			{
+				Ninja::GetInstance()->TakeDamage(bullet->GetDamage());
+				if (Ninja::GetInstance()->GetStamina() <= 0)
+				{
+					Ninja::GetInstance()->Reset();
+				}
+				coEvents.push_back(e);
+			}
+			else
+			{
+				delete e;
+			}
+		}
+	}
 }
 // hàm sai
 bool GameObject::IsCollide(GameObject * CollisionObject)
