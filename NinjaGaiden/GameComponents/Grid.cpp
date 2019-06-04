@@ -121,8 +121,12 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, in
 		enemy->SetItemType(GameItem);
 		break;
 	case GREENCANONSOLDIER:
+	{
 		enemy = new GreenCanonSoldier(posx, posy);
+		auto bullet = new GreenCannonSoldierBullet(enemy);
+		AddBullet(bullet);
 		break;
+	}
 	case GREENRUNNINGSOLDIER:
 		enemy = new GreenRunningSoldier(posx, posy);
 		break;
@@ -320,6 +324,11 @@ void Grid::Update(DWORD dt)
 			gameitems.erase(gameitems.begin() + i);
 		}
 	}
+
+	for (size_t i = 0; i < enemiesbullet.size(); i++)
+	{
+		enemiesbullet[i]->Update(dt);
+	}
 }
 void Grid::Render()
 {
@@ -358,6 +367,11 @@ void Grid::Render()
 		{
 			gameitems[i]->Render();
 		}
+	}
+
+	for (size_t i = 0; i < enemiesbullet.size(); i++)
+	{
+		enemiesbullet[i]->Render();
 	}
 }
 

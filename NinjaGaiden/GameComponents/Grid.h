@@ -5,6 +5,7 @@
 #include "Ninja.h"
 #include "DeathAnimation.h"
 #include "GameItem.h"
+#include "Bullet.h"
 
 #include <vector>
 
@@ -34,6 +35,8 @@ private:
 	vector<Tile *> CollisionTiles;
 	vector<Enemy* > enemies;
 
+	vector<Bullet* > enemiesbullet;
+
 	vector<GameItem* > gameitems;
 
 	vector<DeathAnimation* > deathanimations;
@@ -53,6 +56,7 @@ public:
 
 	void GetCameraPosOnGrid(int &l, int &r, int &t, int &b);
 	void GetNinjaPosOnGrid(int &l, int &r, int &t, int &b);
+	/*vector<Bullet*> GetEnemyBullet() { return enemiesbullet; }*/
 
 	vector<Tile *> GetCurTiles() { return this->curTiles; }
 	vector<Tile *> GetCollisionTiles() { return this->CollisionTiles; }
@@ -78,6 +82,8 @@ public:
 	void AddDeathAnimation(DeathAnimation* animation) { this->deathanimations.push_back(animation); }
 
 	void AddGameItem(GameItem* gameitem) { this->gameitems.push_back(gameitem); }
+
+	void AddBullet(Bullet* enemybullet) { this->enemiesbullet.push_back(enemybullet); }
 
 	int GetEnemyIndexById(int Id);
 	int GetGameItemIndexById(int Id);

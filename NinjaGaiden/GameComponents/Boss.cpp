@@ -120,11 +120,8 @@ void Boss::Update(DWORD dt)
 			this->SetState(idleState);
 			this->SetPositionX(340);
 			this->SetPositionY(80);
-			this->isLeft = true;
+			//this->isLeft = true;
 		}
-
-		
-		
 	}
 	else
 	{
@@ -148,10 +145,8 @@ void Boss::Update(DWORD dt)
 			this->SetState(idleState);
 			this->SetPositionX(30);
 			this->SetPositionY(80);
-			this->isLeft = false;
-		}
-		
-		
+			//this->isLeft = false;
+		}	
 	}
 }
 //Hàm render

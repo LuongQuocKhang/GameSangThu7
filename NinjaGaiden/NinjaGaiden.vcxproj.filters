@@ -195,6 +195,12 @@
     <ClCompile Include="GameComponents\TimeFreeze.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\Bullet.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GreenCannonSoldierBullet.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\ThrowingState.h">
@@ -360,6 +366,12 @@
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\TimeFreeze.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Bullet.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GreenCannonSoldierBullet.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>

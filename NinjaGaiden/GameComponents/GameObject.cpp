@@ -393,6 +393,9 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 		}
 	}
 }
+void GameObject::NinjaCollideWithEnemyBullet(vector<Bullet*> enemiesbullets)
+{
+}
 // hàm sai
 bool GameObject::IsCollide(GameObject * CollisionObject)
 {

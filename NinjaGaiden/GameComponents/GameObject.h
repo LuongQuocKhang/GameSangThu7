@@ -8,6 +8,7 @@
 #include "Sprite.h"
 #include "Animation.h"
 
+class Bullet;
 class GameItem;
 struct Collider
 {
@@ -129,6 +130,8 @@ public:
 	void CalcPotentialCollisionsWithGameItem(
 		vector<GameItem *> &gameitems);
 	void CalcPotentialNinjaCollideWithGameItem(vector<GameItem *> &gameitems);
+
+	void NinjaCollideWithEnemyBullet(vector<Bullet *> enemiesbullets);
 
 	bool IsCollide(GameObject * CollisionObject);
 	bool IsCollideWithGameItem(GameItem * gameitem);

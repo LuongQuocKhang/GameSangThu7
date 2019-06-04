@@ -28,6 +28,7 @@
     <ClCompile Include="GameComponents\BossState.cpp" />
     <ClCompile Include="GameComponents\BrownBird.cpp" />
     <ClCompile Include="GameComponents\BrownBirdState.cpp" />
+    <ClCompile Include="GameComponents\Bullet.cpp" />
     <ClCompile Include="GameComponents\DeathAnimation.cpp" />
     <ClCompile Include="GameComponents\Debug.cpp" />
     <ClCompile Include="GameComponents\Enemy.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="GameComponents\GameItem.cpp" />
     <ClCompile Include="GameComponents\GameObject.cpp" />
     <ClCompile Include="GameComponents\Graphics.cpp" />
+    <ClCompile Include="GameComponents\GreenCannonSoldierBullet.cpp" />
     <ClCompile Include="GameComponents\GreenCanonSoldier.cpp" />
     <ClCompile Include="GameComponents\GreenCanonSoldierState.cpp" />
     <ClCompile Include="GameComponents\GreenRunningSoldier.cpp" />
@@ -84,6 +86,7 @@
     <ClInclude Include="GameComponents\BossState.h" />
     <ClInclude Include="GameComponents\BrownBird.h" />
     <ClInclude Include="GameComponents\BrownBirdState.h" />
+    <ClInclude Include="GameComponents\Bullet.h" />
     <ClInclude Include="GameComponents\Constants.h" />
     <ClInclude Include="GameComponents\DeathAnimation.h" />
     <ClInclude Include="GameComponents\Debug.h" />
@@ -95,6 +98,7 @@
     <ClInclude Include="GameComponents\GameItem.h" />
     <ClInclude Include="GameComponents\GameObject.h" />
     <ClInclude Include="GameComponents\Graphics.h" />
+    <ClInclude Include="GameComponents\GreenCannonSoldierBullet.h" />
     <ClInclude Include="GameComponents\GreenCanonSoldier.h" />
     <ClInclude Include="GameComponents\GreenCanonSoldierState.h" />
     <ClInclude Include="GameComponents\GreenRunningSoldier.h" />

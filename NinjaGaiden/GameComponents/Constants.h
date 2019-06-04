@@ -98,9 +98,22 @@ enum Item {
 #define TILES_HEIGHT_PER_TILE	16
 #define TILES_TRANSCOLOR D3DCOLOR_XRGB(255, 0, 255)
 
-//
-//Ryu
-//
+// Bullet
+#define GREEN_CANNON_SOLDIER_BULLET L"Resources\\Enemy\\Bullet\\GreenCanonSoldierBullet.png"
+#define GREEN_CANNON_SOLDIER_BULLET_WIDTH 15
+#define GREEN_CANNON_SOLDIER_BULLET_HEIGHT 14
+#define GREEN_CANNON_SOLDIER_BULLET_SPEED 0.125f
+#define GREEN_SOLDIER_BULLET L"Resources\\Enemy\\Bullet\\GreenSoldierBullet.png"
+#define GREEN_SOLDIER_BULLET_WIDTH 17
+#define GREEN_SOLDIER_BULLET_HEIGHT 13
+
+#define PINK_WITCH_BULLET L"Resources\\Enemy\\Bullet\\WitcherBullet.png"
+#define PINK_WITCH_BULLET_WIDTH 17
+#define PINK_WITCH_BULLET_HEIGHT 25
+
+#define BOSS_MAP_33_BULLET L"Resources\\Enemy\\Bullet\\BossBullet.png"
+#define BOSS_MAP_33_BULLET_WIDTH 16
+#define BOSS_MAP_33_BULLET_HEIGHT 16
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define NINJA_WALKING_SPEED		0.125f

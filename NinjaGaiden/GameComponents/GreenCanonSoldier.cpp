@@ -1,5 +1,6 @@
 #include "GreenCanonSoldier.h"
 #include "GreenCanonSoldierState.h"
+#include "Grid.h"
 
 GreenCanonSoldier::GreenCanonSoldier()
 {
@@ -47,6 +48,8 @@ GreenCanonSoldier::GreenCanonSoldier(float posx, float posy)
 	collider.height = GREEN_CANON_SOLDIER_SPRITE_HEIGHT;
 
 	Type = EnemyType::GREENCANONSOLDIER;
+
+	//bullet = new GreenCannonSoldierBullet(this);
 }
 void GreenCanonSoldier::LoadResources()
 {
@@ -91,10 +94,12 @@ void GreenCanonSoldier::Walk()
 //Hàm c?p nh?t
 void GreenCanonSoldier::Update(DWORD dt)
 {
+	//bullet->Update(dt);
 	state->Update(dt);
 }
 //Hàm render
 void GreenCanonSoldier::Render()
 {
+	//bullet->Render();
 	state->Render();
 }
