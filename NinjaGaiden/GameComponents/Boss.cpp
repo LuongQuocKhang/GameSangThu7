@@ -102,26 +102,37 @@ void Boss::Update(DWORD dt)
 		count += dt;
 		if (count >= 2000)
 		{
+			initloc = false;
 			this->SetState(walkingState);
-			this->isLeft = true;
 			this->SetPositionX((int)(this->GetPositionX() + -0.1*dt));
+			this->isLeft = true;
 			float locx = this->GetPositionX();
-			float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
+			float y = (((double)-16 / 4205) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)1248 / 841) + ((double)12880 / 841));
 			this->SetPositionY(y);
 
-			if (locx < 2)
-			{	
+			if (locx <= 50)
+			{
 				checkloc = false;
 				count = 0;
 			}
 		}
 		else
 		{
+			if (initloc)
+			{
+				this->isLeft = true;
+			}
+			else
+			{
+				this->isLeft = false;
+			}
 			this->SetState(idleState);
 			this->SetPositionX(340);
 			this->SetPositionY(80);
-			//this->isLeft = true;
 		}
+
+
+
 	}
 	else
 	{
@@ -132,9 +143,9 @@ void Boss::Update(DWORD dt)
 			this->isLeft = false;
 			this->SetPositionX((int)(this->GetPositionX() + 0.15*dt));
 			float locx = this->GetPositionX();
-			float y = (((double)-4 / 1445) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)16 / 17) + 80);
+			float y = (((double)-16 / 4205) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)1248 / 841) + ((double)12880 / 841));
 			this->SetPositionY(y);
-			if (locx > 330)
+			if (locx >= 340)
 			{
 				checkloc = true;
 				count = 0;
@@ -143,10 +154,12 @@ void Boss::Update(DWORD dt)
 		else
 		{
 			this->SetState(idleState);
-			this->SetPositionX(30);
+			this->SetPositionX(50);
 			this->SetPositionY(80);
-			//this->isLeft = false;
-		}	
+			this->isLeft = true;
+		}
+
+
 	}
 }
 //Hàm render
