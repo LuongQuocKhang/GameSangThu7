@@ -50,7 +50,7 @@
     <ClCompile Include="GameComponents\GridCell.cpp" />
     <ClCompile Include="GameComponents\HealthItem.cpp" />
     <ClCompile Include="GameComponents\Hud.cpp" />
-    <ClCompile Include="GameComponents\JumpAndFlash.cpp" />
+    <ClCompile Include="GameComponents\WindmillStar.cpp" />
     <ClCompile Include="GameComponents\Keyboard.cpp" />
     <ClCompile Include="GameComponents\PinkWitch.cpp" />
     <ClCompile Include="GameComponents\PinkWitchState.cpp" />
@@ -109,7 +109,7 @@
     <ClInclude Include="GameComponents\GridCell.h" />
     <ClInclude Include="GameComponents\HealthItem.h" />
     <ClInclude Include="GameComponents\Hud.h" />
-    <ClInclude Include="GameComponents\JumpAndFlash.h" />
+    <ClInclude Include="GameComponents\WindmillStar.h" />
     <ClInclude Include="GameComponents\Keyboard.h" />
     <ClInclude Include="GameComponents\PinkWitch.h" />
     <ClInclude Include="GameComponents\PinkWitchState.h" />

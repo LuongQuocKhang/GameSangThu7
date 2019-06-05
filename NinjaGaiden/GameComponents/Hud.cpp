@@ -467,6 +467,21 @@ void Hud::LoadResources()
 		anim->AddFrame(sprite);
 	}
 	this->animations.push_back(anim);
+
+	//Item Windmill star:31
+	anim = new Animation(200);
+	for (int i = 1; i < 2; i++)
+	{
+		RECT rect;
+		rect.left = (i % 2) * SHURIKEN_WIDTH;
+		rect.right = rect.left + SHURIKEN_WIDTH-5;
+		rect.top = (i / 2) * (FLAMES_SPRITE_HEIGHT);
+		rect.bottom = rect.top + (FLAMES_SPRITE_HEIGHT);
+		Sprite * sprite = new Sprite(GAMEITEM_2, rect, D3DCOLOR_XRGB(0, 0, 0));
+
+		anim->AddFrame(sprite);
+	}
+	this->animations.push_back(anim);
 }
 
 //Hàm c?p nh?t
@@ -1529,6 +1544,11 @@ void Hud::Render()
 	case Item::THROWINGSTAR:
 	{
 		this->animations[30]->Render(spriteEnemyData);
+		locx = spriteEnemyData.x + 50;
+	}break;
+	case Item::WINDMILLSTAR:
+	{
+		this->animations[31]->Render(spriteEnemyData);
 		locx = spriteEnemyData.x + 50;
 	}break;
 	default:

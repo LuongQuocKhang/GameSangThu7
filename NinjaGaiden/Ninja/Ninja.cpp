@@ -356,9 +356,10 @@ void Ninja::Additem(GameItem * gameitem)
 		ninja_item = Item::FLAMES;
 		break;
 	}
-	case Item::JUMPANDFLASH:
+	case Item::WINDMILLSTAR:
 	{
 		addItem = true;
+		ninja_item = Item::WINDMILLSTAR;
 		break;
 	}
 	case Item::FIREWHEELS:

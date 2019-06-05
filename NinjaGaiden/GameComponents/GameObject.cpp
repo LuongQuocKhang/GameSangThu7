@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Sword.h"
 #include "Flames.h"
-#include "JumpAndFlash.h"
+#include "WindmillStar.h"
 #include "FireWheels.h"
 #include "HealthItem.h"
 #include "BonusPointBlue.h"
@@ -68,9 +68,9 @@ void GameObject::AddGameItem(Enemy * enemy)
 			gameitem = Flames::CreateFlames(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 			Grid::GetInstance()->AddGameItem(gameitem);
 		}break;
-		case Item::JUMPANDFLASH:
+		case Item::WINDMILLSTAR:
 		{
-			gameitem = JumpAndFlash::CreateJumpAndFlash(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			gameitem = WindmillStar::CreateWindmillStar(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 			Grid::GetInstance()->AddGameItem(gameitem);
 		}break;
 		case Item::FIREWHEELS:
@@ -126,9 +126,9 @@ void GameObject::AddGameItem(Enemy * enemy)
 			gameitem = Flames::CreateFlames(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 			Grid::GetInstance()->AddGameItem(gameitem);
 		}break;
-		case Item::JUMPANDFLASH:
+		case Item::WINDMILLSTAR:
 		{
-			gameitem = JumpAndFlash::CreateJumpAndFlash(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
+			gameitem = WindmillStar::CreateWindmillStar(GameItem::GetGameItemId(), enemy->GetPositionX(), enemy->GetPositionY(), enemy->GetDt());
 			Grid::GetInstance()->AddGameItem(gameitem);
 		}break;
 		case Item::FIREWHEELS:

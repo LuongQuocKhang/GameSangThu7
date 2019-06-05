@@ -1,7 +1,7 @@
-#include "JumpAndFlash.h"
+#include "WindmillStar.h"
 #include "Grid.h"
 
-JumpAndFlash::JumpAndFlash()
+WindmillStar::WindmillStar()
 {
 	LoadResources();
 
@@ -20,17 +20,17 @@ JumpAndFlash::JumpAndFlash()
 	collider.height = FLAMES_SPRITE_HEIGHT;
 }
 
-void JumpAndFlash::LoadResources()
+void WindmillStar::LoadResources()
 {
 	Animation * anim = new Animation(100);
-	for (int i = 6; i < 7; i++)
+	for (int i = 1; i < 2; i++)
 	{
 		RECT rect;
-		rect.left = (i % FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_WIDTH;
-		rect.right = rect.left + FLAMES_SPRITE_WIDTH;
-		rect.top = (i / FLAMES_TEXTURE_COLUMNS) * FLAMES_SPRITE_HEIGHT;
-		rect.bottom = rect.top + FLAMES_SPRITE_HEIGHT + 2;
-		Sprite * sprite = new Sprite(FLAMES_TEXTURE_LOCATION, rect, FLAMES_TEXTURE_TRANS_COLOR);
+		rect.left = (i % 2) * SHURIKEN_WIDTH;
+		rect.right = rect.left + SHURIKEN_WIDTH;
+		rect.top = (i / 2) * (FLAMES_SPRITE_HEIGHT);
+		rect.bottom = rect.top + (FLAMES_SPRITE_HEIGHT);
+		Sprite * sprite = new Sprite(GAMEITEM_2, rect, D3DCOLOR_XRGB(0, 0, 0));
 
 		anim->AddFrame(sprite);
 	}
@@ -39,7 +39,7 @@ void JumpAndFlash::LoadResources()
 
 }
 
-void JumpAndFlash::Update(DWORD dt)
+void WindmillStar::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
@@ -89,7 +89,7 @@ void JumpAndFlash::Update(DWORD dt)
 	}
 }
 
-void JumpAndFlash::Render()
+void WindmillStar::Render()
 {
 
 	SpriteData spriteEnemyData;
@@ -105,14 +105,14 @@ void JumpAndFlash::Render()
 	this->animations[0]->Render(spriteEnemyData);
 }
 
-JumpAndFlash*  JumpAndFlash::CreateJumpAndFlash(int GameItemId, float posx, float posy, float dt)
+WindmillStar*  WindmillStar::CreateWindmillStar(int GameItemId, float posx, float posy, float dt)
 {
-	JumpAndFlash * jumpFlash = new JumpAndFlash();
+	WindmillStar * jumpFlash = new WindmillStar();
 	jumpFlash->Id = GameItemId;
 	jumpFlash->Active = true;
 	jumpFlash->x = posx;
 	jumpFlash->y = posy;
-	jumpFlash->SetItemType(Item::JUMPANDFLASH);
+	jumpFlash->SetItemType(Item::WINDMILLSTAR);
 
 	jumpFlash->collider.x = posx;
 	jumpFlash->collider.y = posy;
@@ -120,6 +120,6 @@ JumpAndFlash*  JumpAndFlash::CreateJumpAndFlash(int GameItemId, float posx, floa
 
 	return jumpFlash;
 }
-JumpAndFlash::~JumpAndFlash()
+WindmillStar::~WindmillStar()
 {
 }

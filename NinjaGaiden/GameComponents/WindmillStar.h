@@ -1,14 +1,14 @@
 #pragma once
 #include "GameItem.h"
-class JumpAndFlash :
+class WindmillStar :
 	public GameItem
 {
 private:
 	void LoadResources();
 public:
-	JumpAndFlash();
-	~JumpAndFlash();
-	static JumpAndFlash * CreateJumpAndFlash(int GameItemId, float posx, float posy, float dt);
+	WindmillStar();
+	~WindmillStar();
+	static WindmillStar * CreateWindmillStar(int GameItemId, float posx, float posy, float dt);
 
 	void Update(DWORD dt) override;
 	void Render() override;
