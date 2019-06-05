@@ -1,7 +1,7 @@
 #pragma once
-#include "GameObject.h"
+#include "GameItem.h"
 
-class Shuriken : public GameObject
+class Shuriken : public GameItem
 {
 	int damage = 10;
 

@@ -1558,7 +1558,7 @@ void Hud::Render()
 	}
 	//E
 	spriteEnemyData.x = locx;
-	spriteEnemyData.y = this->GetPositionY() - 40;
+	spriteEnemyData.y = this->GetPositionY() - 46;
 	this->animations[4]->Render(spriteEnemyData);
 	locx = spriteEnemyData.x + 13;
 
