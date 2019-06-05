@@ -9,7 +9,7 @@ Ninja::Ninja()
 {
 	LoadResources();
 
-	idleState = new NinjaSate(this,NINJA_ANI_IDLE);
+	idleState = new NinjaSate(this, NINJA_ANI_IDLE);
 	walkingState = new NinjaSate(this, NINJA_ANI_WALKING);
 	attackingState = new NinjaSate(this, NINJA_ANI_STANDING_ATTACKING);
 	jumpingState = new NinjaSate(this, NINJA_ANI_JUMPING);
@@ -91,7 +91,7 @@ void Ninja::LoadResources()
 
 			anim->AddFrame(sprite);
 		}
-		else if (11 == i || 13 == i )
+		else if (11 == i || 13 == i)
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -120,7 +120,7 @@ void Ninja::LoadResources()
 
 			anim->AddFrame(sprite);
 		}
-		else if (26 == i || 28 == i )
+		else if (26 == i || 28 == i)
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -165,7 +165,7 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// NINJA_ANI_CLIMBING
-	anim = new Animation(300);
+	anim = new Animation(200);
 	for (int i = 4; i < 6; i++)
 	{
 		RECT rect;
@@ -350,64 +350,68 @@ void Ninja::Additem(GameItem * gameitem)
 	bool addItem = false;
 	switch (gameitem->GetItemType())
 	{
-		case Item::FLAMES:
+	case Item::FLAMES:
+	{
+		addItem = true;
+		ninja_item = Item::FLAMES;
+		break;
+	}
+	case Item::JUMPANDFLASH:
+	{
+		addItem = true;
+		break;
+	}
+	case Item::FIREWHEELS:
+	{
+		addItem = true;
+		break;
+	}
+	case Item::SPIRITPOINTBLUE:
+	{
+		addItem = true;
+		support_item = Item::SPIRITPOINTBLUE;
+		if (this->stamina < 100)
 		{
-			addItem = true;
-			break;
+			int heathpoint = ((SpiritPointBlue*)gameitem)->GetHeathPoint();
+			this->stamina += heathpoint;
 		}
-		case Item::JUMPANDFLASH:
-		{
-			addItem = true;
-			break;
-		}
-		case Item::FIREWHEELS:
-		{
-			addItem = true;
-			break;
-		}
-		case Item::SPIRITPOINTBLUE:
-		{
-			addItem = true;
-			if (this->stamina < 100 )
-			{
-				int heathpoint = ((SpiritPointBlue*)gameitem)->GetHeathPoint();
-				this->stamina += heathpoint;
-			}
-			if (this->stamina > 100) this->stamina = 100;
-			break;
-		}
-		case Item::SPIRITPOINTRED:
-		{
-			addItem = true;
-			break;
-		}
-		case Item::TIMEFREEZE:
-		{
-			addItem = true;
-			break;
-		}
-		case Item::THROWINGSTAR:
-		{
-			addItem = true;
-			Shurikens.push_back(new Shuriken());
-			break;
-		}
-		case Item::BONUSPOINTBLUE:
-		{
-			addItem = true;
-			break;
-		}
-		case Item::BONUSPOINTRED:
-		{
-			addItem = true;
-			break;
-		}
-		case Item::HEALTHITEM:
-		{
-			addItem = true;
-			
-			break;
-		}
+		if (this->stamina > 100) this->stamina = 100;
+		break;
+	}
+	case Item::SPIRITPOINTRED:
+	{
+		addItem = true;
+		support_item = Item::SPIRITPOINTRED;
+		break;
+	}
+	case Item::TIMEFREEZE:
+	{
+		addItem = true;
+		break;
+	}
+	case Item::THROWINGSTAR:
+	{
+		addItem = true;
+		ninja_item = Item::THROWINGSTAR;
+		Shurikens.push_back(new Shuriken());
+		break;
+	}
+	case Item::BONUSPOINTBLUE:
+	{
+		addItem = true;
+		break;
+	}
+	case Item::BONUSPOINTRED:
+	{
+		addItem = true;
+		break;
+	}
+	case Item::HEALTHITEM:
+	{
+		addItem = true;
+
+		break;
+	}
 	default:
 		break;
 	}

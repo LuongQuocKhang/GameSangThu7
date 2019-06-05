@@ -31,6 +31,8 @@ class Ninja : public GameObject
 	DWORD lastFrameTime;
 
 	int score = 0;
+	int ninja_item = 0;
+	int support_item = 0;
 	int stamina;
 
 	bool isUntouchable;
@@ -39,8 +41,13 @@ class Ninja : public GameObject
 	vector<Shuriken *> Shurikens;
 
 	bool isThrowing;
+	bool checkItem;
+
 public:
 	void LoadResources();
+
+	void SetCheckItem(bool x) { this->checkItem = x; }
+	bool GetCheckItem() { return this->checkItem; }
 
 	void SetIsGrounded(bool isGrounded) { this->isGrounded = isGrounded; }
 	void SetIsCrouching(bool isCrouching) { this->isCrouching = isCrouching; }
@@ -93,6 +100,8 @@ public:
 
 	void DescreaseShuriken();
 	int GetStamina() { return this->stamina; }
+	int GetItem() { return this->ninja_item; }
+	int GetSupportItem() { return this->support_item; }
 	void TakeDamage(int value) { this->stamina -= value; }
 	void SetThrowing(bool value) { this->isThrowing = value; }
 	void Reset();

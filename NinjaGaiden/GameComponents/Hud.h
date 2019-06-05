@@ -12,6 +12,7 @@ class Hud :public GameObject
 	vector<Animation *> animations;
 	int timecount;
 	int count;
+	int spirit_score;
 public:
 	Hud(float posx, float posy);
 
