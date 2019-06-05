@@ -2,9 +2,12 @@
 #include "GameObject.h"
 #include "Constants.h"
 #include "Enemy.h"
+#include "GreenSoldierBullet.h"
 
 class GreenSolider :public Enemy
 {
+private:
+	GreenSoldierBullet* bullet_gs;
 public:
 	GreenSolider();
 	GreenSolider(float posx, float posy);

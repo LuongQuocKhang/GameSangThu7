@@ -106,6 +106,7 @@ enum Item {
 #define GREEN_SOLDIER_BULLET L"Resources\\Enemy\\Bullet\\GreenSoldierBullet.png"
 #define GREEN_SOLDIER_BULLET_WIDTH 17
 #define GREEN_SOLDIER_BULLET_HEIGHT 13
+#define GREEN_SOLDIER_BULLET_SPEED 0.125f
 
 #define PINK_WITCH_BULLET L"Resources\\Enemy\\Bullet\\WitcherBullet.png"
 #define PINK_WITCH_BULLET_WIDTH 17

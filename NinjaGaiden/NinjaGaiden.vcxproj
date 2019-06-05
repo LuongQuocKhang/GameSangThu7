@@ -67,6 +67,7 @@
     <ClCompile Include="GameComponents\YellowPantherState.cpp" />
     <ClCompile Include="GameComponents\YellowSolider.cpp" />
     <ClCompile Include="GameComponents\YellowSoliderState.cpp" />
+    <ClCompile Include="GreenSoldierBullet.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
     <ClCompile Include="Ninja\NinjaSate.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="GameComponents\YellowPantherState.h" />
     <ClInclude Include="GameComponents\YellowSolider.h" />
     <ClInclude Include="GameComponents\YellowSoliderState.h" />
+    <ClInclude Include="GreenSoldierBullet.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\NinjaSate.h" />
     <ClInclude Include="Ninja\Shuriken.h" />

@@ -51,15 +51,8 @@ void GreenCannonSoldierBullet::Update(DWORD dt)
 		if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 		{
 			this->Active = true;
-			if (abs(distance) >= 100)
-			{
-				Reset();
-			}
-			else
-			{
 				this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt ));
 				distance += vx * dt;
-			}
 		}
 		else
 		{

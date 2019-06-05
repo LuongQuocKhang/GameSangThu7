@@ -114,8 +114,13 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, in
 		enemy = new PinkWitch(posx, posy);
 		break;
 	case GREENSOLDIER:
+	{
 		enemy = new GreenSolider(posx, posy);
+		auto bullet_gs = new GreenSoldierBullet(enemy);
+		AddBullet(bullet_gs);
 		break;
+	}
+
 	case BLOODYBIRD:
 		enemy = new BloodyBird(posx, posy);
 		enemy->SetItemType(GameItem);

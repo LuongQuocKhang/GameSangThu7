@@ -201,6 +201,9 @@
     <ClCompile Include="GameComponents\WindmillStar.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GreenSoldierBullet.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ninja\ThrowingState.h">
@@ -372,6 +375,9 @@
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\WindmillStar.h">
+      <Filter>Header Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenSoldierBullet.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
