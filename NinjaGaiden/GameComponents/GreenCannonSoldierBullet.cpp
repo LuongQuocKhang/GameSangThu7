@@ -8,12 +8,12 @@ GreenCannonSoldierBullet::GreenCannonSoldierBullet(Enemy* enemy)
 	this->enemy = enemy;
 
 	this->x = enemy->GetPositionX();
-	this->y = enemy->GetPositionY();
+	this->y = enemy->GetPositionY() - 10;
 
 	width = GREEN_CANNON_SOLDIER_BULLET_WIDTH;
 	height = GREEN_CANNON_SOLDIER_BULLET_HEIGHT;
 
-	vx = GREEN_CANNON_SOLDIER_BULLET_SPEED;
+	vx = -GREEN_CANNON_SOLDIER_BULLET_SPEED;
 
 	collider.x = x;
 	collider.y = y;
@@ -23,6 +23,7 @@ GreenCannonSoldierBullet::GreenCannonSoldierBullet(Enemy* enemy)
 	collider.height = GREEN_CANNON_SOLDIER_BULLET_HEIGHT;
 
 	isLeft = true;
+	damage = 5;
 }
 
 void GreenCannonSoldierBullet::LoadResources()
@@ -32,9 +33,9 @@ void GreenCannonSoldierBullet::LoadResources()
 	{
 		RECT rect;
 		rect.left = (i % SHURIKEN_TEXTURE_COLUMNS) * GREEN_CANNON_SOLDIER_BULLET_WIDTH;
-		rect.right = rect.left + SHURIKEN_WIDTH;
+		rect.right = rect.left + GREEN_CANNON_SOLDIER_BULLET_WIDTH;
 		rect.top = (i / SHURIKEN_TEXTURE_COLUMNS) * GREEN_CANNON_SOLDIER_BULLET_HEIGHT;
-		rect.bottom = rect.top + GREEN_CANNON_SOLDIER_BULLET_WIDTH;
+		rect.bottom = rect.top + GREEN_CANNON_SOLDIER_BULLET_HEIGHT;
 		Sprite * sprite = new Sprite(GREEN_CANNON_SOLDIER_BULLET, rect, NINJA_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
@@ -56,7 +57,7 @@ void GreenCannonSoldierBullet::Update(DWORD dt)
 			}
 			else
 			{
-				this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt * (-1)));
+				this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt ));
 				distance += vx * dt;
 			}
 		}
@@ -76,7 +77,7 @@ void GreenCannonSoldierBullet::Render()
 		spriteEnemyData.width = GREEN_CANNON_SOLDIER_BULLET_WIDTH;
 		spriteEnemyData.height = GREEN_CANNON_SOLDIER_BULLET_HEIGHT + 10;
 		spriteEnemyData.x = this->GetPositionX();
-		spriteEnemyData.y = this->GetPositionY() - 10;
+		spriteEnemyData.y = this->GetPositionY();
 
 		spriteEnemyData.scale = 1;
 		spriteEnemyData.angle = 0;
@@ -90,7 +91,7 @@ void GreenCannonSoldierBullet::Render()
 void GreenCannonSoldierBullet::Reset()
 {
 	this->x = enemy->GetPositionX();
-	this->y = enemy->GetPositionY();
+	this->y = enemy->GetPositionY() - 10;
 	this->Active = false;
 	distance = 0;
 	shootTime = 0;
