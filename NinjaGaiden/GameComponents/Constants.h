@@ -121,6 +121,8 @@ enum Item {
 #define NINJA_GRAVITY			0.025f
 #define NINJA_CLIMB_SPEED		0.5f
 //Các số để chạy animation của Ninja
+
+#define  ATTACKTIME 300
 #define NINJA_ANI_IDLE					0
 #define NINJA_ANI_WALKING 				1
 #define NINJA_ANI_STANDING_ATTACKING 	2

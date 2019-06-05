@@ -360,6 +360,10 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 				if (this->IsCollide(CollisionEnemy))
 				{
 					enemy->TakeDamage(Sword::GetInstance()->GetDamage());
+
+					LPCOLLISIONEVENT e = new CollisionEvent(0.0f, 0.0f, 0.0f, NULL);
+					coEvents.push_back(e);
+
 					if (enemy->GetEnemyStamina() <= 0)
 					{
 						// add death animation when kill enemy
@@ -373,7 +377,7 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 						int score = Ninja::GetInstance()->GetScore() + enemy->GetPoint();
 						Ninja::GetInstance()->SetScore(score);
 						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
-					}
+					}	
 				}
 			}
 			else
@@ -545,6 +549,10 @@ void GameObject::UpdateObjectCollider()
 void GameObject::UpdateSwordCollider(int direction)
 {
 	collider.x = x + direction * 5;
+	if (Game::GetInstance()->GetStage() == STAGE_BOSS)
+	{
+		collider.x = x + direction * width;
+	}
 	collider.y = y;
 	collider.vx = vx;
 	collider.vy = vy;

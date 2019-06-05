@@ -7,6 +7,7 @@ Sword::Sword()
 	height = NINJA_SPRITE_HEIGHT / 3;
 
 	vy = 0;
+	attacktime = ATTACKTIME;
 }
 
 
@@ -17,6 +18,11 @@ Sword * Sword::GetInstance()
 		__instance = new Sword();
 	}
 	return __instance;
+}
+
+void Sword::ResetAttackTime()
+{
+	this->attacktime = ATTACKTIME;
 }
 
 void Sword::ResetCollider()

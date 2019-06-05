@@ -9,6 +9,8 @@ private :
 	static Sword * __instance;
 
 	int damage = 5;
+
+	int attacktime;
 public:
 	static Sword * GetInstance();
 	void SetPosition(float posx, float posy , float dt)
@@ -20,7 +22,11 @@ public:
 		this->dt = dt;
 	}
 	int GetDamage() { return this->damage; }
+	int GetAttackTime() { return this->attacktime; }
+	void SetAttackTime(int value) { this->attacktime -= value; }
 
+
+	void ResetAttackTime();
 	void ResetCollider();
 	~Sword();
 };

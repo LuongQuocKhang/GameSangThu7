@@ -254,12 +254,20 @@ void NinjaSate::Update(DWORD dt)
 	{
 		int direction = (ninja->IsLeft() == true) ? -1 : 1;
 		Sword * sword = Sword::GetInstance();
-		sword->SetPosition(ninja->GetPositionX(), ninja->GetPositionY() - ninja->GetHeight() / 4,dt);
-		sword->SetSpeedX(ninja->GetSpeedX());
 
-		sword->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
+		sword->SetAttackTime(dt);
+		if (sword->GetAttackTime() <= 0)
+		{
+			sword->SetPosition(ninja->GetPositionX(), ninja->GetPositionY() - ninja->GetHeight() / 4, dt);
+			sword->SetSpeedX(ninja->GetSpeedX());
 
-		//sword->ResetCollider();
+			sword->CalcPotentialCollisionsAttackingEnemy(enemies, coEvents);
+
+			if (coEvents.size() > 0)
+			{
+				sword->ResetAttackTime();
+			}
+		}	
 	}
 
 	vector <Shuriken* > shurikens = ninja->GetShuriken();
@@ -354,12 +362,12 @@ void NinjaSate::Update(DWORD dt)
 			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
 			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-			if (ninja->GetPositionY() > 50)
+			if (ninja->IsGrounded() == false)
 			{
 				ninja->SetPositionY(ninja->GetPositionY() + moveY);
 			}
 			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+			//if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
 			if (coEventsResult[0]->collisionID == 1)
 			{
