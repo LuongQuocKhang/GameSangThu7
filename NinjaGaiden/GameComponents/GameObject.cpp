@@ -285,6 +285,7 @@ void GameObject::CalcPotentialNinjaCollideWithGameItem(vector<GameItem *> &gamei
 			if (this->IsCollideWithGameItem(gameitem))
 			{
 				// update item effect for ninja
+				Ninja::GetInstance()->SetCheckItem(true);
 				Ninja::GetInstance()->Additem(gameitem);
 			}
 		}
