@@ -6,6 +6,8 @@ class Bullet :
 {
 protected:
 	vector<Animation *> animations;
+	Enemy* enemy;
+
 	bool Active;
 	float distance;
 	int damage;
@@ -13,12 +15,11 @@ protected:
 	int shootTime;
 public:
 	Bullet();
-
 	int GetDamage() { return this->damage; }
 
 	bool IsActive() { return this->Active; }
 	bool SetActive(bool value) { this->Active = value; }
-
+	Enemy* GetEnemy() { return this->enemy; }
 	virtual void Update(DWORD dt);
 	virtual void Render();
 

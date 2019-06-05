@@ -84,6 +84,7 @@ public:
 	void AddGameItem(GameItem* gameitem) { this->gameitems.push_back(gameitem); }
 
 	void AddBullet(Bullet* enemybullet) { this->enemiesbullet.push_back(enemybullet); }
+	void DeleteBullet(Enemy * enemy);
 
 	int GetEnemyIndexById(int Id);
 	int GetGameItemIndexById(int Id);

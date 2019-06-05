@@ -375,6 +375,18 @@ void Grid::Render()
 	}
 }
 
+void Grid::DeleteBullet(Enemy * enemy)
+{
+	for (size_t i = 0; i < enemiesbullet.size(); i++)
+	{
+		if (enemiesbullet[i]->GetEnemy()->GetId() == enemy->GetId())
+		{
+			this->enemiesbullet.erase(enemiesbullet.begin() + i);
+			return;
+		}
+	}
+}
+
 int Grid::GetEnemyIndexById(int Id)
 {
 	for (size_t i = 0; i < enemies.size(); i++)

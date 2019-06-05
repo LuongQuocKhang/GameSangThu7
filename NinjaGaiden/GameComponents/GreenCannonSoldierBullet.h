@@ -5,8 +5,6 @@
 class GreenCannonSoldierBullet :
 	public Bullet
 {
-	Enemy* enemy;
-
 public:
 	GreenCannonSoldierBullet(Enemy* enemy );
 	void LoadResources();

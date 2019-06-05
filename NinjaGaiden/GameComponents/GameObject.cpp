@@ -369,14 +369,14 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 						// add death animation when kill enemy
 						DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
 						Grid::GetInstance()->AddDeathAnimation(animation);
-
 						AddGameItem(enemy);
-
 						// delete enemy
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
 						int score = Ninja::GetInstance()->GetScore() + enemy->GetPoint();
 						Ninja::GetInstance()->SetScore(score);
 						Grid::GetInstance()->DeleteEnemy(EnemyIndex);
+						// delete bullet of enemy
+						Grid::GetInstance()->DeleteBullet(enemy);
 					}	
 				}
 			}
@@ -434,6 +434,7 @@ void GameObject::CalcPotentialNinjaCollideWithBullet(vector<Bullet*>& bullets, v
 					Ninja::GetInstance()->Reset();
 				}
 				bullets[i]->Reset();
+				Grid::GetInstance()->DeleteBullet(bullet->GetEnemy());
 				coEvents.push_back(e);
 			}
 			else

@@ -362,12 +362,13 @@ void NinjaSate::Update(DWORD dt)
 			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
 			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-			if (ninja->IsGrounded() == false)
+			ninja->SetPositionY(ninja->GetPositionY() + moveY);
+
+			/*if (ninja->IsGrounded() == false)
 			{
-				ninja->SetPositionY(ninja->GetPositionY() + moveY);
-			}
+			}*/
 			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-			//if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
 			if (coEventsResult[0]->collisionID == 1)
 			{
