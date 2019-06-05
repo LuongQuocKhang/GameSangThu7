@@ -29,6 +29,9 @@ protected:
 	int point = 1;
 
 	Item itemtype;
+
+	int distance;
+
 public:
 	Enemy();
 	void LoadResources();
@@ -53,11 +56,16 @@ public:
 
 	void TurnLeft();
 	void TurnRight();
+
 	void SetId(int Id)
 	{
 		this->Id = Id;
 	}
 	int GetId() { return this->Id; }
+
+	int GetDistance() { return this->distance; }
+	void ResetDistance() { distance = 0; }
+	void SetDistance(int value) { this->distance += value; }
 	void SetActive(bool value) { this->active = value; }
 	int GetPoint() { return this->point; }
 

@@ -79,6 +79,34 @@ void PinkWitchState::Update(DWORD dt)
 			if (nx != 0) enemy->SetSpeedX(0);
 			if (ny != 0) enemy->SetSpeedY(0);
 		}
+
+		enemy->SetDistance(enemy->GetSpeedX() * dt);
+
+		/*if (enemy->IsLeft() == true && enemy->IsActive() == true)
+		{
+			if (abs(enemy->GetDistance()) >= 150)
+			{
+				enemy->TurnRight();
+				enemy->ResetDistance();
+			}
+			else
+			{
+				enemy->Update(dt);
+			}
+		}
+		else if (enemy->IsLeft() == false && enemy->IsActive() == true)
+		{
+			if (enemy->GetDistance() >= 150)
+			{
+				enemy->TurnLeft();
+				enemy->ResetDistance();
+			}
+			else
+			{
+				enemy->Update(dt);
+			}
+		}*/
+
 		for (UINT i = 0; i < coEvents.size(); i++)
 			delete coEvents[i];
 	}

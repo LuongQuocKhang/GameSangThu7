@@ -344,104 +344,104 @@ void NinjaSate::Update(DWORD dt)
 		delete coEvents[i];
 	#pragma endregion
 
-	#pragma region Collide with enemy
+	//#pragma region Collide with enemy
 
-	if (ninja->IsUntouchable() == false)
-	{
-		coEvents.clear();
-		ninja->SetDt(dt);
-		ninja->CalcPotentialCollisionsWithEnemy(enemies, coEvents);
+	//if (ninja->IsUntouchable() == false)
+	//{
+	//	coEvents.clear();
+	//	ninja->SetDt(dt);
+	//	ninja->CalcPotentialCollisionsWithEnemy(enemies, coEvents);
 
-		if (coEvents.size() > 0)
-		{
-			float min_tx, min_ty, nx = 0, ny;
+	//	if (coEvents.size() > 0)
+	//	{
+	//		float min_tx, min_ty, nx = 0, ny;
 
-			ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+	//		ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
-			float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 3;
-			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
+	//		float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 3;
+	//		float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
-			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-			ninja->SetPositionY(ninja->GetPositionY() + moveY);
+	//		ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
+	//		ninja->SetPositionY(ninja->GetPositionY() + moveY);
 
-			/*if (ninja->IsGrounded() == false)
-			{
-			}*/
-			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+	//		/*if (ninja->IsGrounded() == false)
+	//		{
+	//		}*/
+	//		if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
+	//		if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
-			if (coEventsResult[0]->collisionID == 1)
-			{
-				if (ny == 1)
-				{
-					ninja->SetIsGrounded(true);
-				}
-			}
-			ninja->SetUntouchable(true);
+	//		if (coEventsResult[0]->collisionID == 1)
+	//		{
+	//			if (ny == 1)
+	//			{
+	//				ninja->SetIsGrounded(true);
+	//			}
+	//		}
+	//		ninja->SetUntouchable(true);
 
-		}
-		for (UINT i = 0; i < coEvents.size(); i++)
-			delete coEvents[i];
-	}
-	else
-	{
-		ninja->SetUntouchableTime(ninja->GetUntouchableTime() - dt);
-		if (ninja->GetUntouchableTime() <= 0)
-		{
-			ninja->SetUntouchableTime(400);
-			ninja->SetUntouchable(false);
-		}
-	}
-	#pragma endregion
+	//	}
+	//	for (UINT i = 0; i < coEvents.size(); i++)
+	//		delete coEvents[i];
+	//}
+	//else
+	//{
+	//	ninja->SetUntouchableTime(ninja->GetUntouchableTime() - dt);
+	//	if (ninja->GetUntouchableTime() <= 0)
+	//	{
+	//		ninja->SetUntouchableTime(400);
+	//		ninja->SetUntouchable(false);
+	//	}
+	//}
+	//#pragma endregion
 
-	#pragma region Collide with enemy bullet
-	vector<Bullet* > bullets = Grid::GetInstance()->GetEnemyBullet();
-	if (ninja->IsUntouchable() == false)
-	{
-		coEvents.clear();
-		ninja->SetDt(dt);
-		ninja->NinjaCollideWithEnemyBullet(bullets, coEvents);
+	//#pragma region Collide with enemy bullet
+	//vector<Bullet* > bullets = Grid::GetInstance()->GetEnemyBullet();
+	//if (ninja->IsUntouchable() == false)
+	//{
+	//	coEvents.clear();
+	//	ninja->SetDt(dt);
+	//	ninja->NinjaCollideWithEnemyBullet(bullets, coEvents);
 
-		if (coEvents.size() > 0)
-		{
-			float min_tx, min_ty, nx = 0, ny;
+	//	if (coEvents.size() > 0)
+	//	{
+	//		float min_tx, min_ty, nx = 0, ny;
 
-			ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
+	//		ninja->FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 
-			float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 3;
-			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
+	//		float moveX = min_tx * ninja->GetSpeedX() * dt + nx * 3;
+	//		float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
-			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-			if (ninja->GetPositionY() > 50)
-			{
-				ninja->SetPositionY(ninja->GetPositionY() + moveY);
-			}
-			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
-			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
+	//		ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
+	//		if (ninja->GetPositionY() > 50)
+	//		{
+	//			ninja->SetPositionY(ninja->GetPositionY() + moveY);
+	//		}
+	//		if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
+	//		if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
-			if (coEventsResult[0]->collisionID == 1)
-			{
-				if (ny == 1)
-				{
-					ninja->SetIsGrounded(true);
-				}
-			}
-			ninja->SetUntouchable(true);
+	//		if (coEventsResult[0]->collisionID == 1)
+	//		{
+	//			if (ny == 1)
+	//			{
+	//				ninja->SetIsGrounded(true);
+	//			}
+	//		}
+	//		ninja->SetUntouchable(true);
 
-		}
-		for (UINT i = 0; i < coEvents.size(); i++)
-			delete coEvents[i];
-	}
-	else
-	{
-		ninja->SetUntouchableTime(ninja->GetUntouchableTime() - dt);
-		if (ninja->GetUntouchableTime() <= 0)
-		{
-			ninja->SetUntouchableTime(400);
-			ninja->SetUntouchable(false);
-		}
-	}
-	#pragma endregion
+	//	}
+	//	for (UINT i = 0; i < coEvents.size(); i++)
+	//		delete coEvents[i];
+	//}
+	//else
+	//{
+	//	ninja->SetUntouchableTime(ninja->GetUntouchableTime() - dt);
+	//	if (ninja->GetUntouchableTime() <= 0)
+	//	{
+	//		ninja->SetUntouchableTime(400);
+	//		ninja->SetUntouchable(false);
+	//	}
+	//}
+	//#pragma endregion
 
 	#pragma	region Collide with item
 	vector<GameItem * > gameitems = Grid::GetInstance()->GetGameItem();
@@ -457,7 +457,7 @@ void NinjaSate::Update(DWORD dt)
 	}
 	#pragma endregion
 
-	#pragma region	 Update shuriken after throwing
+	#pragma region Update shuriken after throwing
 	shurikens = ninja->GetShuriken();
 
 	if (shurikens.size() > 0)

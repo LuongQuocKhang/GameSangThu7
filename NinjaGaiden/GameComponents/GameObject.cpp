@@ -552,7 +552,7 @@ void GameObject::UpdateSwordCollider(int direction)
 	collider.x = x + direction * 5;
 	if (Game::GetInstance()->GetStage() == STAGE_BOSS)
 	{
-		collider.x = x + direction * width;
+		collider.x = x + direction * width/2;
 	}
 	collider.y = y;
 	collider.vx = vx;

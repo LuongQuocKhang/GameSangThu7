@@ -177,6 +177,7 @@ void Keyboard::OnKeyDown(int KeyCode)
 			{
 				ninja->SetPositionY(ninja->GetPositionY() + NINJA_CLIMB_SPEED * ninja->GetDt());
 			}
+			break;
 	}
 }
 void Keyboard::OnKeyUp(int KeyCode)
