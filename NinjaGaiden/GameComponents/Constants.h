@@ -111,6 +111,7 @@ enum Item {
 #define PINK_WITCH_BULLET L"Resources\\Enemy\\Bullet\\WitcherBullet.png"
 #define PINK_WITCH_BULLET_WIDTH 17
 #define PINK_WITCH_BULLET_HEIGHT 25
+#define PINK_WITCH_BULLET_SPEED 0.125f
 
 #define BOSS_MAP_33_BULLET L"Resources\\Enemy\\Bullet\\BossBullet.png"
 #define BOSS_MAP_33_BULLET_WIDTH 16

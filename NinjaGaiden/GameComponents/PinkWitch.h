@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Constants.h"
 #include "Enemy.h"
+#include "PinkWitchBullet.h"
 
 class PinkWitch :public Enemy
 {

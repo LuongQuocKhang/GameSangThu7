@@ -76,6 +76,7 @@
     <ClCompile Include="Ninja\Subweapon.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
+    <ClCompile Include="PinkWitchBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Animation.h" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Ninja\ThrowingState.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
+    <ClInclude Include="PinkWitchBullet.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

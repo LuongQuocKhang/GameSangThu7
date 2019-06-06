@@ -60,8 +60,8 @@ void PinkWitchState::Update(DWORD dt)
 			float moveX = trunc(enemy->GetSpeedX()* dt);
 			float moveY = trunc(enemy->GetSpeedY()* dt);
 
-			enemy->SetPositionX(enemy->GetPositionX() + moveX);
-			enemy->SetPositionY(enemy->GetPositionY() + moveY);
+		/*	enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);*/
 		}
 		else
 		{
@@ -72,8 +72,8 @@ void PinkWitchState::Update(DWORD dt)
 			float moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
 
-			enemy->SetPositionX(enemy->GetPositionX() + moveX);
-			enemy->SetPositionY(enemy->GetPositionY() + moveY);
+			/*enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);*/
 
 
 			if (nx != 0) enemy->SetSpeedX(0);

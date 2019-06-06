@@ -68,16 +68,30 @@ void PinkWitch::LoadResources()
 	this->animations.push_back(anim);
 	// NINJA_ANI_WALKING
 	anim = new Animation(200);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		RECT rect;
-		rect.left = (i %  PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_WIDTH;
-		rect.right = rect.left + PINK_WITCH_SPRITE_WIDTH;
-		rect.top = (i / PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_HEIGHT;
-		rect.bottom = rect.top + PINK_WITCH_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(PINK_WITCH_TEXTURE_LOCATION, rect, PINK_WITCH_TEXTURE_TRANS_COLOR);
+		if (i == 0 || i == 1)
+		{
+			RECT rect;
+			rect.left = (i %  PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_WIDTH;
+			rect.right = rect.left + PINK_WITCH_SPRITE_WIDTH + 8;
+			rect.top = (i / PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_HEIGHT;
+			rect.bottom = rect.top + PINK_WITCH_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(PINK_WITCH_TEXTURE_LOCATION, rect, PINK_WITCH_TEXTURE_TRANS_COLOR);
 
-		anim->AddFrame(sprite);
+			anim->AddFrame(sprite);
+		}
+		if (i == 2)
+		{
+			RECT rect;
+			rect.left = (i %  PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_WIDTH+6;
+			rect.right = rect.left + PINK_WITCH_SPRITE_WIDTH +8;
+			rect.top = (i / PINK_WITCH_TEXTURE_COLUMNS) *  PINK_WITCH_SPRITE_HEIGHT;
+			rect.bottom = rect.top + PINK_WITCH_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(PINK_WITCH_TEXTURE_LOCATION, rect, PINK_WITCH_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}
 	}
 	this->animations.push_back(anim);
 }

@@ -6,8 +6,6 @@
 
 class GreenCanonSoldier :public Enemy
 {
-private :
-	GreenCannonSoldierBullet* bullet;
 public:
 	GreenCanonSoldier();
 	GreenCanonSoldier(float posx, float posy);
