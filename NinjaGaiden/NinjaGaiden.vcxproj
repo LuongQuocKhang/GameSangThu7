@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BossBullet.cpp" />
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\BloodyBird.cpp" />
     <ClCompile Include="GameComponents\BloodyBirdState.cpp" />
@@ -79,6 +80,7 @@
     <ClCompile Include="GameComponents\TiledMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BossBullet.h" />
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\BloodyBird.h" />
     <ClInclude Include="GameComponents\BloodyBirdState.h" />

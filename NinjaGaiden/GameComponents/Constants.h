@@ -116,6 +116,7 @@ enum Item {
 #define BOSS_MAP_33_BULLET L"Resources\\Enemy\\Bullet\\BossBullet.png"
 #define BOSS_MAP_33_BULLET_WIDTH 16
 #define BOSS_MAP_33_BULLET_HEIGHT 16
+#define BOSS_MAP_33_BULLET_SPEED 0.1f
 
 //Giá trị tốc độ đi, tốc độ nhảy, trọng lực
 #define NINJA_WALKING_SPEED		0.125f
