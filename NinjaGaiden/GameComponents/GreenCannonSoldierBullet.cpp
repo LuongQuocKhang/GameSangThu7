@@ -52,7 +52,6 @@ void GreenCannonSoldierBullet::Update(DWORD dt)
 		{
 			this->Active = true;
 			this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt ));
-			distance += vx * dt;
 		}
 		else
 		{
@@ -87,7 +86,6 @@ void GreenCannonSoldierBullet::Reset()
 	this->x = enemy->GetPositionX();
 	this->y = enemy->GetPositionY() - 10;
 	this->Active = false;
-	distance = 0;
 	shootTime = 0;
 }
 

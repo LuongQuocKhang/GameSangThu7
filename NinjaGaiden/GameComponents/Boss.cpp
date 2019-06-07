@@ -1,6 +1,6 @@
 #include "Boss.h"
 #include "BossState.h"
-
+Boss * Boss::__instance = NULL;
 Boss::Boss()
 {
 	LoadResources();
@@ -85,6 +85,13 @@ void Boss::LoadResources()
 	this->animations.push_back(anim);
 }
 
+Boss * Boss::GetInstance()
+{
+	if (__instance == NULL)
+		__instance = new Boss();
+	return __instance;
+}
+
 void Boss::Idle()
 {
 	state->Idle();
@@ -93,10 +100,19 @@ void Boss::Walk()
 {
 	state->Walk();
 }
+void Boss::ShootBullet()
+{
+	shootBullet = true;
+}
+void Boss::StopShootBullet()
+{
+	shootBullet = false;
+}
 //Hàm c?p nh?t
 void Boss::Update(DWORD dt)
 {
 	state->Update(dt);
+
 	if (checkloc)
 	{
 		count += dt;
@@ -129,10 +145,8 @@ void Boss::Update(DWORD dt)
 			this->SetState(idleState);
 			this->SetPositionX(340);
 			this->SetPositionY(80);
+			Boss::GetInstance()->ShootBullet();
 		}
-
-
-
 	}
 	else
 	{
