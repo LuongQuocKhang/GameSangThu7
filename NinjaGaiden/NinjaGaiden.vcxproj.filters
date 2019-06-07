@@ -201,10 +201,10 @@
     <ClCompile Include="GameComponents\WindmillStar.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="GreenSoldierBullet.cpp">
+    <ClCompile Include="GameComponents\GreenSoldierBullet.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="PinkWitchBullet.cpp">
+    <ClCompile Include="GameComponents\PinkWitchBullet.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
