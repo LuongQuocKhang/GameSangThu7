@@ -28,13 +28,13 @@ PinkWitchBullet::PinkWitchBullet(Enemy* enemy)
 
 void PinkWitchBullet::LoadResources()
 {
-	Animation * anim = new Animation(100);
-	for (int i = 0; i < 1; i++)
+	Animation * anim = new Animation(200);
+	for (int i = 0; i < 4; i++)
 	{
 		RECT rect;
-		rect.left = (i % SHURIKEN_TEXTURE_COLUMNS) * PINK_WITCH_BULLET_WIDTH;
-		rect.right = rect.left + PINK_WITCH_BULLET_WIDTH;
-		rect.top = (i / SHURIKEN_TEXTURE_COLUMNS) * PINK_WITCH_BULLET_HEIGHT;
+		rect.left = (i % 4) * PINK_WITCH_BULLET_WIDTH;
+		rect.right = rect.left + PINK_WITCH_BULLET_WIDTH ;
+		rect.top = (i / 4) * PINK_WITCH_BULLET_HEIGHT;
 		rect.bottom = rect.top + PINK_WITCH_BULLET_HEIGHT;
 		Sprite * sprite = new Sprite(PINK_WITCH_BULLET, rect, NINJA_TEXTURE_TRANS_COLOR);
 
@@ -58,7 +58,7 @@ void PinkWitchBullet::Update(DWORD dt)
 			this->Active = true;
 			this->SetPositionX((float)(this->GetPositionX() + -0.05*dt));
 			distance += vx * dt;
-			if (abs(distance) >= 70)
+			if (abs(distance) >= 80)
 			{
 				this->SetPositionY((float)(this->GetPositionY() - 2));
 			}
