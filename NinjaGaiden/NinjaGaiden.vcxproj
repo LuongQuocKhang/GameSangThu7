@@ -111,6 +111,7 @@
     <ClInclude Include="GameComponents\GridCell.h" />
     <ClInclude Include="GameComponents\HealthItem.h" />
     <ClInclude Include="GameComponents\Hud.h" />
+    <ClInclude Include="GameComponents\PinkWitchBullet.h" />
     <ClInclude Include="GameComponents\WindmillStar.h" />
     <ClInclude Include="GameComponents\Keyboard.h" />
     <ClInclude Include="GameComponents\PinkWitch.h" />
@@ -137,7 +138,6 @@
     <ClInclude Include="Ninja\ThrowingState.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
-    <ClInclude Include="PinkWitchBullet.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

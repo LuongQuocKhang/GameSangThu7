@@ -383,7 +383,7 @@
     <ClInclude Include="GreenSoldierBullet.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="PinkWitchBullet.h">
+    <ClInclude Include="GameComponents\PinkWitchBullet.h">
       <Filter>Header Files\GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
