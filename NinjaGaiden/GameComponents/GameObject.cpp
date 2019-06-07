@@ -435,7 +435,7 @@ void GameObject::CalcPotentialNinjaCollideWithBullet(vector<Bullet*>& bullets, v
 					Ninja::GetInstance()->Reset();
 				}
 				bullets[i]->Reset();
-				Grid::GetInstance()->DeleteBullet(bullet->GetEnemy());
+				//Grid::GetInstance()->DeleteBullet(bullet->GetEnemy());
 				coEvents.push_back(e);
 			}
 			else

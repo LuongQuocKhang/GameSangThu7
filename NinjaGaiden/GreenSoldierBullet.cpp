@@ -64,6 +64,7 @@ void GreenSoldierBullet::Update(DWORD dt)
 		else
 		{
 			this->Active = false;
+			Reset();
 		}
 	}
 }
@@ -90,7 +91,7 @@ void GreenSoldierBullet::Render()
 
 void GreenSoldierBullet::Reset()
 {
-	Grid::GetInstance()->DeleteBullet(enemy);
+	//Grid::GetInstance()->DeleteBullet(enemy);
 	this->x = enemy->GetPositionX();
 	this->y = enemy->GetPositionY() - 10;
 	this->Active = false;

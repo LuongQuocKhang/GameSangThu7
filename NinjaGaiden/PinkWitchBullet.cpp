@@ -75,6 +75,7 @@ void PinkWitchBullet::Update(DWORD dt)
 		else
 		{
 			this->Active = false;
+			Reset();
 		}
 	}
 }
@@ -101,7 +102,7 @@ void PinkWitchBullet::Render()
 void PinkWitchBullet::Reset()
 {
 	this->x = enemy->GetPositionX();
-	this->y = enemy->GetPositionY() - 10;
+	this->y = enemy->GetPositionY();
 	this->Active = false;
 	distance = 0;
 	shootTime = 0;

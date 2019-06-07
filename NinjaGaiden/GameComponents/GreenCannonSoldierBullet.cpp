@@ -46,7 +46,7 @@ void GreenCannonSoldierBullet::LoadResources()
 void GreenCannonSoldierBullet::Update(DWORD dt)
 {
 	shootTime += dt;
-	if (shootTime >= 1500)
+	if (shootTime >= 2000)
 	{
 		if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 		{
@@ -57,6 +57,7 @@ void GreenCannonSoldierBullet::Update(DWORD dt)
 		else
 		{
 			this->Active = false;
+			Reset();
 		}
 	}
 }

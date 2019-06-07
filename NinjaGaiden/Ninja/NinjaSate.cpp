@@ -412,10 +412,8 @@ void NinjaSate::Update(DWORD dt)
 			float moveY = min_ty * ninja->GetSpeedY() * dt + ny * 0.4;
 
 			ninja->SetPositionX(ninja->GetPositionX() + moveX * 4);
-			if (ninja->GetPositionY() > 50)
-			{
-				ninja->SetPositionY(ninja->GetPositionY() + moveY);
-			}
+			ninja->SetPositionY(ninja->GetPositionY() + moveY);
+
 			if (nx != 0) ninja->SetSpeedX(ninja->GetSpeedX() * -1);
 			if (ny != 0) ninja->SetSpeedY(ninja->GetSpeedY() * -1);
 
