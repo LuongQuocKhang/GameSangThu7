@@ -28,6 +28,9 @@ void State::Walk()
 {
 	
 }
+void State::Attacked()
+{
+}
 void State::Jump()
 {
 	

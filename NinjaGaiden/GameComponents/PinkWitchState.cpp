@@ -109,6 +109,15 @@ void PinkWitchState::Update(DWORD dt)
 
 		for (UINT i = 0; i < coEvents.size(); i++)
 			delete coEvents[i];
+
+		if (enemy->GetPositionX() > Ninja::GetInstance()->GetPositionX())
+		{
+			enemy->TurnLeft();
+		}
+		else
+		{
+			enemy->TurnRight();
+		}
 	}
 	else
 	{

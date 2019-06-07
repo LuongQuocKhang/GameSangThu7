@@ -17,6 +17,7 @@ public:
 	virtual void Attack();
 	virtual void Walk();
 
+	virtual void Attacked();
 
 	virtual void Update(DWORD dt);
 	virtual void Render();

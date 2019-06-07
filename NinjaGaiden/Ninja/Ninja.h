@@ -43,6 +43,7 @@ class Ninja : public GameObject
 	bool isThrowing;
 	bool checkItem;
 
+	bool isAttacked = false;
 public:
 	void LoadResources();
 
@@ -77,6 +78,9 @@ public:
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
 	bool IsThrowing() { return this->isThrowing; }
 	void SetClimming(bool value) { this->isClimbing = value; }
+	bool IsAttacked() { return this->isAttacked; }
+	void SetAttacked(bool value) { this->isAttacked = value; }
+
 	void Idle();
 	void Attack();
 	void Walk();
@@ -84,6 +88,7 @@ public:
 	void Crouch();
 	void Climb();
 	void JumpAttack();
+	void Attacked();
 
 	void SetColliderDemension(float width, float height)
 	{

@@ -207,6 +207,10 @@ void NinjaSate::Throw()
 		break;
 	}
 }
+void NinjaSate::Attacked()
+{
+	ninja->SetState(ninja->GetAttackedState());
+}
 bool ShuriKenTurn = false;
 void NinjaSate::Update(DWORD dt)
 {
@@ -601,24 +605,27 @@ void NinjaSate::Render()
 		ninja->GetAnimationsList()[NINJA_ANI_WALKING]->Render(spriteData);
 	}
 	break;
-	case NINJA_ANI_JUMPING_ATTACKING:
-	{
-		ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Render(spriteData);
-
-		if (ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->IsDone())
+		case NINJA_ANI_JUMPING_ATTACKING:
 		{
-			ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Reset();
-			ninja->SetState(ninja->GetJumpingState());
-		}
-	}
-	break;
-	case NINJA_ANI_THROWING:
-	{
-		ninja->GetAnimationsList()[NINJA_ANI_THROWING]->Render(spriteData);
-	}
-	break;
-	}
+			ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Render(spriteData);
 
+			if (ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->IsDone())
+			{
+				ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKING]->Reset();
+				ninja->SetState(ninja->GetJumpingState());
+			}
+		}
+		break;
+		case NINJA_ANI_THROWING:
+		{
+			ninja->GetAnimationsList()[NINJA_ANI_THROWING]->Render(spriteData);
+		}
+		break;
+		case NINJA_ANI_JUMPING_ATTACKED:
+			ninja->GetAnimationsList()[NINJA_ANI_JUMPING_ATTACKED]->Render(spriteData);
+			break;
+	}
+	
 	vector <Shuriken* > shurikens = ninja->GetShuriken();
 	//// ném nhiều phi tiêu 
 	/*for (size_t i = 0; i < shurikens.size(); i++)

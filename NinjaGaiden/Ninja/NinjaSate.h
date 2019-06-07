@@ -22,6 +22,8 @@ public:
 	void Walk() override;
 	void Throw();
 
+	void Attacked() override;
+
 	void NinjaDeath();
 
 	void Update(DWORD dt) override;

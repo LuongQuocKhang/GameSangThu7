@@ -316,6 +316,10 @@ void Ninja::JumpAttack()
 {
 	state->JumpAttack();
 }
+void Ninja::Attacked()
+{
+	state->Attacked();
+}
 void Ninja::TurnLeft()
 {
 	isLeft = true;
