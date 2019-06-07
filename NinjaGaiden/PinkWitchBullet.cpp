@@ -58,13 +58,13 @@ void PinkWitchBullet::Update(DWORD dt)
 			this->Active = true;
 			this->SetPositionX((float)(this->GetPositionX() + -0.05*dt));
 			distance += vx * dt;
-			if (abs(distance) >= 50)
+			if (abs(distance) >= 70)
 			{
 				this->SetPositionY((float)(this->GetPositionY() - 2));
 			}
 			else
 			{
-				this->SetPositionY((float)(this->GetPositionY() + 0.5f));
+				this->SetPositionY((float)(this->GetPositionY() + 0.8f));
 				
 			}
 			if ((float)this->GetPositionY() <= 40)

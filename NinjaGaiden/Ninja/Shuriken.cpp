@@ -40,9 +40,25 @@ void Shuriken::LoadResources()
 
 void Shuriken::Update(DWORD dt)
 {
-	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
+	this->SetSpeedY(0);
+	distance += abs(this->GetSpeedX() * dt);
+	Ninja* ninja = Ninja::GetInstance();
+	if (abs(ninja->GetPositionX() - this->GetPositionX()) >= 150)
+	{
+		distance = 0;
+		this->SetSpeedX(this->GetSpeedX() * -1);
+	}
+	if (ninja->GetPositionY() > this->GetPositionY())
+	{
+		this->SetSpeedY(0.125f);
+	}
+	else if (ninja->GetPositionY() < this->GetPositionY())
+	{
+		this->SetSpeedY(-0.125f);
+	}
 
-	distance += this->GetSpeedX() * dt;
+	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt*(isLeft == true ? -1 : 1)));
+	this->SetPositionY((float)(this->GetPositionY() + this->GetSpeedY()* dt));
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<Enemy* > enemies = Grid::GetInstance()->GetAllEnemies();
