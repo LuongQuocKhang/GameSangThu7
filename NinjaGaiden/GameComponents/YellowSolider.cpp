@@ -11,7 +11,7 @@ YellowSolider::YellowSolider()
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.2f;
+	this->vx = -YELLOW_SOLDIER_WALKING_SPEED;
 
 	this->width = YELLOW_SOLDIER_SPRITE_WIDTH;
 	this->height = YELLOW_SOLDIER_SPRITE_HEIGHT;
@@ -35,7 +35,7 @@ YellowSolider::YellowSolider(float posx , float posy )
 	state = walkingState;
 
 	this->isLeft = true;
-	this->vx = -0.075;
+	this->vx = -YELLOW_SOLDIER_WALKING_SPEED;
 	this->SetPositionX(posx);
 	this->SetPositionY(posy);
 

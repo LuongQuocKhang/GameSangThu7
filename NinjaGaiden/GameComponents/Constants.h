@@ -44,6 +44,8 @@ enum Column
 	Width,
 	Height,
 	ItemType,
+	MinPosX,
+	MaxPosX
 };
 enum EnemyType {
 	YELLOWSOLDIER,
@@ -111,6 +113,7 @@ enum Item {
 #define PINK_WITCH_BULLET L"Resources\\Enemy\\Bullet\\WitcherBullet.png"
 #define PINK_WITCH_BULLET_WIDTH 17
 #define PINK_WITCH_BULLET_HEIGHT 25
+#define PINK_WITCH_SPEED 0.025f
 #define PINK_WITCH_BULLET_SPEED 0.125f
 
 #define BOSS_MAP_33_BULLET L"Resources\\Enemy\\Bullet\\BossBullet.png"
@@ -194,6 +197,7 @@ enum Item {
 //Các số để chạy animation của ENEMY GREEN RUNNING SOLDIER
 #define GREEN_RUNNING_SOLDIER_ANI_IDLE					0
 #define GREEN_RUNNING_SOLDIER_ANI_WALKING 				1
+#define GREEN_RUNNING_SOLDIER_WALKING_SPEED 0.1f
 
 #define GREEN_RUNNING_SOLDIER_TEXTURE_LOCATION L"Resources\\Enemy\\GREEN_RUNNING_SOLDIER.png"
 #define GREEN_RUNNING_SOLDIER_TEXTURE_TRANS_COLOR D3DCOLOR_XRGB(255, 0, 255)

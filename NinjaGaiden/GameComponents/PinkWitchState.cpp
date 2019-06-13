@@ -42,7 +42,28 @@ void PinkWitchState::Walk()
 void PinkWitchState::Update(DWORD dt)
 {
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
-	{
+	{	
+		if (enemy->GetPositionX() > enemy->GetMaxPosX())
+		{
+			enemy->SetSpeedX(-PINK_WITCH_SPEED);
+			enemy->TurnLeft();
+		}
+		if (enemy->GetPositionX() < enemy->GetMinPosX())
+		{
+			enemy->SetSpeedX(PINK_WITCH_SPEED);
+			enemy->TurnRight();
+		}
+		/*if (Ninja::GetInstance()->GetPositionX() < enemy->GetPositionX() - 40 || Ninja::GetInstance()->GetPositionX() > enemy->GetPositionX() + 40)
+		{
+			if (enemy->GetPositionX() > Ninja::GetInstance()->GetPositionX())
+			{
+				enemy->TurnLeft();
+			}
+			else
+			{
+				enemy->TurnRight();
+			}
+		}*/
 		enemy->SetActive(true);
 		vector<LPCOLLISIONEVENT> coEvents;
 		vector<LPCOLLISIONEVENT> coEventsResult;
@@ -60,8 +81,8 @@ void PinkWitchState::Update(DWORD dt)
 			float moveX = trunc(enemy->GetSpeedX()* dt);
 			float moveY = trunc(enemy->GetSpeedY()* dt);
 
-		/*	enemy->SetPositionX(enemy->GetPositionX() + moveX);
-			enemy->SetPositionY(enemy->GetPositionY() + moveY);*/
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
 		}
 		else
 		{
@@ -72,52 +93,38 @@ void PinkWitchState::Update(DWORD dt)
 			float moveX = min_tx * enemy->GetSpeedX() * dt + nx * 0.4;
 			float moveY = min_ty * enemy->GetSpeedY() * dt + ny * 0.4;
 
-			/*enemy->SetPositionX(enemy->GetPositionX() + moveX);
-			enemy->SetPositionY(enemy->GetPositionY() + moveY);*/
+			enemy->SetPositionX(enemy->GetPositionX() + moveX);
+			enemy->SetPositionY(enemy->GetPositionY() + moveY);
 
 
 			if (nx != 0) enemy->SetSpeedX(0);
-			if (ny != 0) enemy->SetSpeedY(0);
-		}
+			if (ny != 0) enemy->SetSpeedY(0);		
+		}	
 
-		enemy->SetDistance(enemy->GetSpeedX() * dt);
+		/*if (enemy->GetMovingDistance() > 0)
+		{
+			enemy->SetDistance(enemy->GetDistance() + enemy->GetSpeedX() * dt);
 
-		/*if (enemy->IsLeft() == true && enemy->IsActive() == true)
-		{
-			if (abs(enemy->GetDistance()) >= 150)
+			if (enemy->IsLeft() == true)
 			{
-				enemy->TurnRight();
-				enemy->ResetDistance();
+ 				if (abs(enemy->GetDistance()) >= enemy->GetMovingDistance())
+				{
+					enemy->TurnRight();
+					enemy->ResetDistance();
+				}
 			}
-			else
+			else if (enemy->IsLeft() == false)
 			{
-				enemy->Update(dt);
-			}
-		}
-		else if (enemy->IsLeft() == false && enemy->IsActive() == true)
-		{
-			if (enemy->GetDistance() >= 150)
-			{
-				enemy->TurnLeft();
-				enemy->ResetDistance();
-			}
-			else
-			{
-				enemy->Update(dt);
+				if (enemy->GetDistance() >= enemy->GetMovingDistance())
+				{
+					enemy->TurnLeft();
+					enemy->ResetDistance();
+				}
 			}
 		}*/
 
 		for (UINT i = 0; i < coEvents.size(); i++)
-			delete coEvents[i];
-
-		if (enemy->GetPositionX() > Ninja::GetInstance()->GetPositionX())
-		{
-			enemy->TurnLeft();
-		}
-		else
-		{
-			enemy->TurnRight();
-		}
+			delete coEvents[i];	
 	}
 	else
 	{

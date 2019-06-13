@@ -50,6 +50,9 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 			int rowNum = 0 , posx = 0, posy = 0 , type = 0;
 			bool isleft = false;
 			int GameItem = -1;
+
+			int min_posx = 0 , max_posx = 0;
+
 			while ((pos = line.find(" ")) != string::npos)
 			{
 				token = stoi(line.substr(0, pos));
@@ -81,17 +84,25 @@ void Grid::LoadEnemy(LPCWSTR filePath, Stage gamestage)
 				{
 					GameItem = token;
 				}
+				else if (rowNum == Column::MinPosX)
+				{
+					min_posx = token;
+				}
+				else if (rowNum == Column::MaxPosX)
+				{
+					max_posx = token;
+				}
 				line.erase(0, pos + 1);
 				rowNum++;
 			}
 
-			CreateEnemy(Id,type, posx, posy,isleft, GameItem);
+			CreateEnemy(Id,type, posx, posy,isleft, GameItem, min_posx, max_posx);
 			Id++;
 		}
 		tilesInfo.close();
 	}
 }
-void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, int GameItem)
+void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, int GameItem, float min_posX , float max_posX)
 {
 	Enemy * enemy = NULL;
 
@@ -158,6 +169,8 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, in
 		break;
 	}
 	enemy->SetId(Id);
+	//enemy->SetMovingDistance(distance);
+	enemy->SetBoudary(min_posX, max_posX);
 	if (enemy != NULL)
 	{
 		enemy->Setleft(isLeft);

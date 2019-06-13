@@ -30,8 +30,8 @@ protected:
 
 	Item itemtype;
 
-	int distance;
-
+	int min_posx;
+	int max_posx;
 public:
 	Enemy();
 	void LoadResources();
@@ -50,6 +50,11 @@ public:
 
 	bool IsLeft() { return isLeft; }
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
+
+	void SetBoudary(int min_posx, int max_posx);
+	int GetMinPosX() { return this->min_posx; }
+	int GetMaxPosX() { return this->max_posx; }
+
 	//Các hàm hành động nhân vật
 	void Idle();
 	void Walk();
@@ -63,9 +68,6 @@ public:
 	}
 	int GetId() { return this->Id; }
 
-	int GetDistance() { return this->distance; }
-	void ResetDistance() { distance = 0; }
-	void SetDistance(int value) { this->distance += value; }
 	void SetActive(bool value) { this->active = value; }
 	int GetPoint() { return this->point; }
 

@@ -47,7 +47,7 @@ private:
 
 	void LoadEnemy(LPCWSTR filePath, Stage gamestage);
 
-	void CreateEnemy(int Id , int type, int posx, int posy, bool isLeft,int GameItem);
+	void CreateEnemy(int Id , int type, int posx, int posy, bool isLeft,int GameItem, float min_posX, float max_posX);
 	Grid();
 
 public:

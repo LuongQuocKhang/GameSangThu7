@@ -1,4 +1,4 @@
-#include "PinkWitchBullet.h"
+﻿#include "PinkWitchBullet.h"
 #include "Ninja.h"
 
 PinkWitchBullet::PinkWitchBullet(Enemy* enemy)
@@ -22,7 +22,7 @@ PinkWitchBullet::PinkWitchBullet(Enemy* enemy)
 	collider.width = PINK_WITCH_BULLET_WIDTH;
 	collider.height = PINK_WITCH_BULLET_HEIGHT;
 
-	isLeft = true;
+	isLeft = enemy->IsLeft();
 	damage = 5;
 }
 
@@ -51,25 +51,32 @@ int getPt(int n1, int n2, float perc)
 void PinkWitchBullet::Update(DWORD dt)
 {
 	shootTime += dt;
-	if (shootTime >= 50)
+	if (shootTime >= 100)
 	{
 		if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 		{
 			this->Active = true;
 			this->SetPositionX((float)(this->GetPositionX() + -0.05*dt));
 			distance += vx * dt;
-			if (abs(distance) >= 80)
+			if (enemy->IsLeft() == true)
 			{
-				this->SetPositionY((float)(this->GetPositionY() - 2));
+				if (abs(distance) >= 80)
+				{
+					this->SetPositionY((float)(this->GetPositionY() - 2));
+				}
+				else
+				{
+					this->SetPositionY((float)(this->GetPositionY() + 0.8f));
+
+				}
+				if ((float)this->GetPositionY() <= 40)
+				{
+					Reset();
+				}
 			}
 			else
 			{
-				this->SetPositionY((float)(this->GetPositionY() + 0.8f));
-				
-			}
-			if ((float)this->GetPositionY() <= 40)
-			{
-				Reset();
+				// ném đạn bên phải
 			}
 		}
 		else

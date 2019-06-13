@@ -53,7 +53,7 @@ PinkWitch::PinkWitch(float posx , float posy)
 void PinkWitch::LoadResources()
 {
 	// Enemy_ANI_IDLE
-	Animation * anim = new Animation(100);
+	Animation * anim = new Animation(200);
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
@@ -67,7 +67,7 @@ void PinkWitch::LoadResources()
 	}
 	this->animations.push_back(anim);
 	// NINJA_ANI_WALKING
-	anim = new Animation(200);
+	anim = new Animation(300);
 	for (int i = 0; i < 4; i++)
 	{
 		if (i == 0 || i == 1)

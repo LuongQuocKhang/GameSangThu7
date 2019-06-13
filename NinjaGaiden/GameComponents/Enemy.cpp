@@ -64,6 +64,11 @@ void Enemy::SetItemType(int itemtype)
 		break;
 	}
 }
+void Enemy::SetBoudary(int min_posx, int max_posx)
+{
+	this->min_posx = min_posx;
+	this->max_posx = max_posx;
+}
 void Enemy::Idle()
 {
 }

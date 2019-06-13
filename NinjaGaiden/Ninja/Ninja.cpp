@@ -36,7 +36,7 @@ Ninja::Ninja()
 	stamina = 100;
 
 	isUntouchable = false;
-	UntouchableTime = 200;
+	UntouchableTime = 2000;
 }
 Ninja * Ninja::GetInstance()
 {

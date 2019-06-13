@@ -52,6 +52,21 @@ void YellowSoliderState::Update(DWORD dt)
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
 	{
 		enemy->SetActive(true);
+
+		if (enemy->GetMaxPosX() > 0 && enemy->GetMinPosX() > 0)
+		{
+			if (enemy->GetPositionX() > enemy->GetMaxPosX())
+			{
+				enemy->SetSpeedX(-YELLOW_SOLDIER_WALKING_SPEED);
+				enemy->TurnLeft();
+			}
+			if (enemy->GetPositionX() < enemy->GetMinPosX())
+			{
+				enemy->SetSpeedX(YELLOW_SOLDIER_WALKING_SPEED);
+				enemy->TurnRight();
+			}
+		}
+
 		vector<LPCOLLISIONEVENT> coEvents;
 		vector<LPCOLLISIONEVENT> coEventsResult;
 
