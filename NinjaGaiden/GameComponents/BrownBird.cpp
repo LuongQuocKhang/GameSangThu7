@@ -89,6 +89,8 @@ void BrownBird::Walk()
 //Hàm c?p nh?t
 void BrownBird::Update(DWORD dt)
 {
+	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
+	this->SetPositionY((float)(this->GetPositionY() + this->GetSpeedY()* dt));
 	state->Update(dt);
 }
 //Hàm render

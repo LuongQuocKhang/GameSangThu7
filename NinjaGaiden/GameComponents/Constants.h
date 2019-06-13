@@ -216,6 +216,7 @@ enum Item {
 #define BROWN_BIRD_TEXTURE_ROWS 1
 #define BROWN_BIRD_SPRITE_WIDTH 30
 #define BROWN_BIRD_SPRITE_HEIGHT 40
+#define BROWN_BIRD_SPEED 0.075f
 //
 //Các số để chạy animation của ENEMY BLOODY BIRD
 #define BLOODY_BIRD_ANI_IDLE					0

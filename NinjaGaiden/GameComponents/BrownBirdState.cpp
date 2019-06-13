@@ -1,4 +1,5 @@
 #include "BrownBirdState.h"
+#include "Ninja.h"
 
 BrownBirdState::BrownBirdState(BrownBird * enemy, int enemystate)
 {
@@ -43,6 +44,34 @@ void BrownBirdState::Update(DWORD dt)
 	if (Viewport::GetInstance()->IsEnemyInCamera(enemy) == true)
 	{
 		enemy->SetActive(true);
+		Ninja* ninja = Ninja::GetInstance();
+
+		if (enemy->GetPositionX() < ninja->GetPositionX() - 30 &&
+			enemy->GetPositionY() < ninja->GetPositionY() + 40)
+		{
+			enemy->SetSpeedX(0);
+			enemy->SetSpeedY(BROWN_BIRD_SPEED);
+		}
+		else if (enemy->GetPositionX() < ninja->GetPositionX() - 30 &&
+			enemy->GetPositionY() > ninja->GetPositionY() + 40)
+		{
+			enemy->SetSpeedX(BROWN_BIRD_SPEED);
+			enemy->SetSpeedY(-BROWN_BIRD_SPEED);
+			enemy->TurnLeft();
+		}
+		else if (enemy->GetPositionX() >= ninja->GetPositionX() + 30 &&
+			enemy->GetPositionY() + 40)
+		{
+			enemy->SetSpeedX(-BROWN_BIRD_SPEED);
+			enemy->SetSpeedY(-BROWN_BIRD_SPEED);
+			enemy->TurnRight();
+		}
+		else if (enemy->GetPositionX() >= ninja->GetPositionX() + 30 &&
+			enemy->GetPositionY() < ninja->GetPositionY() + 40)
+		{
+			enemy->SetSpeedX(0);
+			enemy->SetSpeedY(BROWN_BIRD_SPEED);
+		}
 	}
 	else
 	{
