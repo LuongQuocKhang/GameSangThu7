@@ -48,14 +48,14 @@ void Shuriken::Update(DWORD dt)
 		distance = 0;
 		this->SetSpeedX(this->GetSpeedX() * -1);
 	}
-	if (ninja->GetPositionY() > this->GetPositionY())
+	/*if (ninja->GetPositionY() > this->GetPositionY())
 	{
 		this->SetSpeedY(0.125f);
 	}
 	else if (ninja->GetPositionY() < this->GetPositionY())
 	{
 		this->SetSpeedY(-0.125f);
-	}
+	}*/
 
 	this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt*(isLeft == true ? -1 : 1)));
 	this->SetPositionY((float)(this->GetPositionY() + this->GetSpeedY()* dt));

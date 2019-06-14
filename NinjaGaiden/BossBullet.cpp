@@ -45,18 +45,22 @@ void BossBullet::LoadResources()
 
 void BossBullet::Update(DWORD dt)
 {
-	if (Boss::GetInstance()->GetCheckBullet())
+	if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 	{
-		if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
+		if (Boss::GetInstance()->GetCheckBullet())
 		{
 			this->Active = true;
-			this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt));
 		}
 		else
 		{
-			this->Active = false;
 			Reset();
 		}
+		this->SetPositionX((float)(this->GetPositionX() + this->GetSpeedX()* dt*(isLeft == true ? 1 : -1)));
+	}
+	else
+	{
+		this->Active = false;
+		Reset();
 	}
 }
 
@@ -83,12 +87,10 @@ void BossBullet::Render()
 void BossBullet::Reset()
 {
 	this->x = enemy->GetPositionX();
-	this->y = enemy->GetPositionY() - 10;
+	this->y = this->GetPositionY();
 	this->Active = false;
 	Boss::GetInstance()->StopShootBullet();
 }
-
-
 BossBullet::~BossBullet()
 {
 }

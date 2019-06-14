@@ -154,12 +154,15 @@ void Grid::CreateEnemy(int Id , int type , int posx , int posy , bool isLeft, in
 	{
 		enemy = new Boss(posx, posy);
 		auto bossbullet1 = new BossBullet(enemy);
+
 		auto bossbullet2 = new BossBullet(enemy);
 		bossbullet2->SetPositionY(bossbullet1->GetPositionY() - 30);
 		bossbullet2->SetPositionX(bossbullet1->GetPositionX());
+
 		auto bossbullet3= new BossBullet(enemy);
 		bossbullet3->SetPositionY(bossbullet1->GetPositionY() - 50);
 		bossbullet3->SetPositionX(bossbullet1->GetPositionX());
+
 		AddBullet(bossbullet1);
 		AddBullet(bossbullet2);
 		AddBullet(bossbullet3);

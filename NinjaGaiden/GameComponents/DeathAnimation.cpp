@@ -39,7 +39,17 @@ DeathAnimation::DeathAnimation(EnemyType enemytype)
 DeathAnimation::~DeathAnimation()
 {
 }
+DeathAnimation * DeathAnimation::CreateDeateAnimation(Enemy * enemy, int posx, int posy)
+{
+	DeathAnimation* Animation = new DeathAnimation(enemy->GetEnemyType());
+	Animation->x = posx;
+	Animation->y = posy;
 
+	Animation->width = DEATH_EFFECT_WIDTH;
+	Animation->height = DEATH_EFFECT_HEIGHT;
+
+	return Animation;
+}
 DeathAnimation * DeathAnimation::CreateDeateAnimation(Enemy * enemy)
 {
 	DeathAnimation* Animation = new DeathAnimation(enemy->GetEnemyType());
@@ -51,7 +61,6 @@ DeathAnimation * DeathAnimation::CreateDeateAnimation(Enemy * enemy)
 
 	return Animation;
 }
-
 void DeathAnimation::Update(DWORD dt)
 {
 	time -= dt;

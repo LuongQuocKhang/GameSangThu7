@@ -129,7 +129,7 @@ void Boss::Update(DWORD dt)
 			if (locx <= 50)
 			{
 				checkloc = false;
-				count = 0;
+				count = 0;			
 			}
 		}
 		else
@@ -155,6 +155,7 @@ void Boss::Update(DWORD dt)
 		{
 			this->SetState(walkingState);
 			this->isLeft = false;
+
 			this->SetPositionX((int)(this->GetPositionX() + 0.15*dt));
 			float locx = this->GetPositionX();
 			float y = (((double)-16 / 4205) * pow(this->GetPositionX(), 2) + this->GetPositionX()* ((double)1248 / 841) + ((double)12880 / 841));
@@ -162,18 +163,17 @@ void Boss::Update(DWORD dt)
 			if (locx >= 340)
 			{
 				checkloc = true;
-				count = 0;
+				count = 0;	
 			}
 		}
 		else
 		{
+			
 			this->SetState(idleState);
 			this->SetPositionX(50);
-			this->SetPositionY(80);
-			this->isLeft = true;
+			this->SetPositionY(80);	
+
 		}
-
-
 	}
 }
 //Hàm render

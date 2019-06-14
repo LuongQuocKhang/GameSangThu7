@@ -368,9 +368,26 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 					if (enemy->GetEnemyStamina() <= 0)
 					{
 						// add death animation when kill enemy
-						DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
-						Grid::GetInstance()->AddDeathAnimation(animation);
-						AddGameItem(enemy);
+						if (enemy->GetEnemyType() == EnemyType::BOSS)
+						{
+							int posx = enemy->GetPositionX(), posy = enemy->GetPositionY();
+							DeathAnimation * animationtopleft = DeathAnimation::CreateDeateAnimation(enemy,posx,posy - enemy->GetHeight()/2);
+							DeathAnimation * animationbottomleft = DeathAnimation::CreateDeateAnimation(enemy,posx, posy - enemy->GetHeight());
+							DeathAnimation * animationtopright = DeathAnimation::CreateDeateAnimation(enemy,posx + enemy->GetWidth(), posy - enemy->GetHeight() / 2);
+							DeathAnimation * animationbottomright = DeathAnimation::CreateDeateAnimation(enemy,posx + enemy->GetWidth(), posy - enemy->GetHeight());
+
+							Grid::GetInstance()->AddDeathAnimation(animationtopleft);
+							Grid::GetInstance()->AddDeathAnimation(animationbottomleft);
+							Grid::GetInstance()->AddDeathAnimation(animationtopright);
+							Grid::GetInstance()->AddDeathAnimation(animationbottomright);
+
+						}
+						else
+						{
+							DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
+							Grid::GetInstance()->AddDeathAnimation(animation);
+							AddGameItem(enemy);
+						}
 						// delete enemy
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
 						int score = Ninja::GetInstance()->GetScore() + enemy->GetPoint();

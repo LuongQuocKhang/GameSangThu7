@@ -46,32 +46,36 @@ void BrownBirdState::Update(DWORD dt)
 		enemy->SetActive(true);
 		Ninja* ninja = Ninja::GetInstance();
 
-		if (enemy->GetPositionX() < ninja->GetPositionX() - 30 &&
-			enemy->GetPositionY() < ninja->GetPositionY() + 40)
+		/*if (enemy->GetPositionX() < ninja->GetPositionX() - 50 &&
+			enemy->GetPositionY() < ninja->GetPositionY() + 80)
 		{
-			enemy->SetSpeedX(0);
+			enemy->SetSpeedX(BROWN_BIRD_SPEED/2);
 			enemy->SetSpeedY(BROWN_BIRD_SPEED);
+			enemy->TurnRight();
+
 		}
-		else if (enemy->GetPositionX() < ninja->GetPositionX() - 30 &&
-			enemy->GetPositionY() > ninja->GetPositionY() + 40)
+		else if (enemy->GetPositionX() < ninja->GetPositionX() - 50 &&
+			enemy->GetPositionY() > ninja->GetPositionY() + 80)
 		{
 			enemy->SetSpeedX(BROWN_BIRD_SPEED);
 			enemy->SetSpeedY(-BROWN_BIRD_SPEED);
 			enemy->TurnLeft();
 		}
-		else if (enemy->GetPositionX() >= ninja->GetPositionX() + 30 &&
-			enemy->GetPositionY() + 40)
+		else if (enemy->GetPositionX() >= ninja->GetPositionX() + 50 &&
+			enemy->GetPositionY() > ninja->GetPositionY() + 80)
 		{
 			enemy->SetSpeedX(-BROWN_BIRD_SPEED);
 			enemy->SetSpeedY(-BROWN_BIRD_SPEED);
 			enemy->TurnRight();
 		}
-		else if (enemy->GetPositionX() >= ninja->GetPositionX() + 30 &&
-			enemy->GetPositionY() < ninja->GetPositionY() + 40)
+		else if (enemy->GetPositionX() >= ninja->GetPositionX() + 50 &&
+			enemy->GetPositionY() < ninja->GetPositionY() + 80)
 		{
-			enemy->SetSpeedX(0);
+			enemy->SetSpeedX(-BROWN_BIRD_SPEED/2);
 			enemy->SetSpeedY(BROWN_BIRD_SPEED);
-		}
+			enemy->TurnLeft();
+
+		}*/
 	}
 	else
 	{

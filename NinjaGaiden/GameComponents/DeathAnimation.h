@@ -20,6 +20,8 @@ public:
 	~DeathAnimation();
 
 	static DeathAnimation* CreateDeateAnimation(Enemy* gameobject);
+	static DeathAnimation * CreateDeateAnimation(Enemy * enemy, int posx, int posy);
+
 	void Update(DWORD dt) override;
 	void Render() override;
 
