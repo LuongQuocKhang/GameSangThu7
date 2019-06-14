@@ -51,16 +51,17 @@ int getPt(int n1, int n2, float perc)
 void PinkWitchBullet::Update(DWORD dt)
 {
 	shootTime += dt;
-	if (shootTime >= 100)
+	if (shootTime >= 300)
 	{
 		if (Viewport::GetInstance()->IsObjectInCamera(this) == true)
 		{
 			this->Active = true;
-			this->SetPositionX((float)(this->GetPositionX() + -0.05*dt));
 			distance += vx * dt;
-			if (enemy->IsLeft() == true)
+			if (enemy->IsLeft() == true )
 			{
-				if (abs(distance) >= 80)
+				this->SetPositionX((float)(this->GetPositionX() + -0.05*dt));
+				this->isLeft = true;
+ 				if (abs(distance) >= 80)
 				{
 					this->SetPositionY((float)(this->GetPositionY() - 2));
 				}
@@ -76,7 +77,21 @@ void PinkWitchBullet::Update(DWORD dt)
 			}
 			else
 			{
-				// ném đạn bên phải
+					this->SetPositionX((float)(this->GetPositionX() + 0.05*dt));
+					this->isLeft = false;
+					if (abs(distance) >= 80)
+					{
+						this->SetPositionY((float)(this->GetPositionY() - 2));
+					}
+					else
+					{
+						this->SetPositionY((float)(this->GetPositionY() + 0.8f));
+
+					}
+					if ((float)this->GetPositionY() <= 40)
+					{
+						Reset();
+					}
 			}
 		}
 		else

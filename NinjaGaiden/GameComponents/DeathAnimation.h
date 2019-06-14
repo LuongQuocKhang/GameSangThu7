@@ -24,6 +24,7 @@ public:
 
 	void Update(DWORD dt) override;
 	void Render() override;
+	void Render(float x,float y) ;
 
 	bool IsActive() { return this->Active; }
 	void SetActive(bool value) { this->Active = value; }
