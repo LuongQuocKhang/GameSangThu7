@@ -371,16 +371,15 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 						if (enemy->GetEnemyType() == EnemyType::BOSS)
 						{
 							int posx = enemy->GetPositionX(), posy = enemy->GetPositionY();
-							DeathAnimation * animationtopleft = DeathAnimation::CreateDeateAnimation(enemy,posx,posy - enemy->GetHeight()/2);
-							DeathAnimation * animationbottomleft = DeathAnimation::CreateDeateAnimation(enemy,posx, posy - enemy->GetHeight());
-							DeathAnimation * animationtopright = DeathAnimation::CreateDeateAnimation(enemy,posx + enemy->GetWidth(), posy - enemy->GetHeight() / 2);
-							DeathAnimation * animationbottomright = DeathAnimation::CreateDeateAnimation(enemy,posx + enemy->GetWidth(), posy - enemy->GetHeight());
+							DeathAnimation * animationtopleft = DeathAnimation::CreateDeateAnimation(enemy,posx,posy);
+							DeathAnimation * animationbottomleft = DeathAnimation::CreateDeateAnimation(enemy,posx, posy - enemy->GetHeight()/2);
+							DeathAnimation * animationtopright = DeathAnimation::CreateDeateAnimation(enemy,posx + enemy->GetWidth()/2, posy);
+							DeathAnimation * animationbottomright = DeathAnimation::CreateDeateAnimation(enemy,posx + enemy->GetWidth()/2, posy - enemy->GetHeight()/2);
 
 							Grid::GetInstance()->AddDeathAnimation(animationtopleft);
 							Grid::GetInstance()->AddDeathAnimation(animationbottomleft);
 							Grid::GetInstance()->AddDeathAnimation(animationtopright);
 							Grid::GetInstance()->AddDeathAnimation(animationbottomright);
-
 						}
 						else
 						{

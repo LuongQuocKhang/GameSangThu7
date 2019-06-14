@@ -8,7 +8,7 @@ private :
 	Sword();
 	static Sword * __instance;
 
-	int damage = 5;
+	int damage;
 
 	int attacktime;
 public:

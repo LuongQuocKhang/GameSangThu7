@@ -8,6 +8,7 @@ Sword::Sword()
 
 	vy = 0;
 	attacktime = ATTACKTIME;
+	damage = 500;
 }
 
 

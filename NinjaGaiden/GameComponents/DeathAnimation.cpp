@@ -86,19 +86,3 @@ void DeathAnimation::Render()
 
 	this->animations[0]->Render(spriteEnemyData);
 }
-void DeathAnimation::Render(float x,float y)
-{
-	SpriteData spriteEnemyData;
-
-	spriteEnemyData.width = DEATH_EFFECT_WIDTH + 20;
-	spriteEnemyData.height = DEATH_EFFECT_HEIGHT + 20;
-	spriteEnemyData.x = x;
-	spriteEnemyData.y = y;
-
-	spriteEnemyData.scale = 1;
-	spriteEnemyData.angle = 0;
-	spriteEnemyData.isLeft = false;
-	spriteEnemyData.isFlipped = false;
-
-	this->animations[0]->Render(spriteEnemyData);
-}
