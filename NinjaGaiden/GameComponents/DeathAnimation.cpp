@@ -11,10 +11,14 @@ DeathAnimation::DeathAnimation(EnemyType enemytype)
 {
 	Active = true;
 	time = 200;
+	this->SetEnemyType(enemytype);
 	LPCWSTR effectPath = L"";
 	if (enemytype == EnemyType::BOSS)
 	{
 		effectPath = DEATH_EFFECT_BOSS_TEXTTURE_LOCATION;
+		time = 500;
+		tempTime = 0;
+		checkTime = true;
 	}
 	else
 	{
@@ -67,7 +71,24 @@ void DeathAnimation::Update(DWORD dt)
 	if (time <= 0)
 	{
 		this->Active = false;
+		if (this->GetEnemyType() == EnemyType::BOSS)
+		{
+			this->SetTime(300);
+			checkTime = true;
+			tempTime +=  dt;
+			if (tempTime >= 50)
+			{
+				this->Active = false;
+				checkTime = false;
+
+			}
+		}
 	}
+	else
+	{
+		this->Active = true;
+	}
+
 }
 
 void DeathAnimation::Render()

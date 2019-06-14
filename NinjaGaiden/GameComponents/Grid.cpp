@@ -253,7 +253,7 @@ void Grid::Update(DWORD dt)
 	//Update ninja
 	curTiles.clear();
 	curEnemies.clear();
-	
+
 	for (size_t i = 0; i < cells.size(); i++)
 	{
 		for (size_t j = 0; j < cells[i].size(); j++)
@@ -304,10 +304,10 @@ void Grid::Update(DWORD dt)
 					cells[i][j]->InsertTiles(curTiles);
 				}
 			}
-			else if(ninjaRCell + 5 >= 34 && Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
+			else if (ninjaRCell + 5 >= 34 && Game::GetInstance()->GetStage() != Stage::STAGE_BOSS)
 			{
 				for (int j = ninjaLCell - 2; j <= ninjaRCell; j++)
-				{	
+				{
 					cells[i][j]->InsertEnemies(curEnemies);
 				}
 				for (int j = ninjaLCell; j <= ninjaRCell; j++)
@@ -340,7 +340,7 @@ void Grid::Update(DWORD dt)
 
 	for (size_t i = 0; i < deathanimations.size(); i++)
 	{
-		if (deathanimations[i]->IsActive() == true)
+		if (deathanimations[i]->IsActive() == true || deathanimations[i]->CheckStatus()==true)
 		{
 			deathanimations[i]->Update(dt);
 		}

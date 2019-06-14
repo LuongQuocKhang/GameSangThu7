@@ -14,10 +14,18 @@ private :
 	bool Active;
 	EnemyType enemytype;
 
-	int time;
+	int time, tempTime;
+	bool checkTime;
 public:
 	DeathAnimation(EnemyType enemytype);
 	~DeathAnimation();
+
+	void SetEnemyType(EnemyType x) { this->enemytype = x; }
+	EnemyType GetEnemyType() { return this->enemytype; }
+
+	void SetTime(int x) { this->time = x; }
+
+	bool CheckStatus() { return this->checkTime; }
 
 	static DeathAnimation* CreateDeateAnimation(Enemy* gameobject);
 	static DeathAnimation * CreateDeateAnimation(Enemy * enemy, int posx, int posy);
