@@ -392,10 +392,21 @@ void Grid::Render()
 	{
 		if (deathanimations[i]->IsActive() == true)
 		{
-			deathanimations[i]->Render();
+			if (i == deathanimations.size() - 1)
+			{
+				//deathanimations[i]->Render();
+				deathanimations[i]->Render(this->GetAllEnemies()[0]->GetPositionX(), this->GetAllEnemies()[0]->GetPositionY());
+				deathanimations[i]->Render(this->GetAllEnemies()[0]->GetPositionX() -10, this->GetAllEnemies()[0]->GetPositionY());
+				deathanimations[i]->Render(this->GetAllEnemies()[0]->GetPositionX(), this->GetAllEnemies()[0]->GetPositionY() +15);
+				deathanimations[i]->Render(this->GetAllEnemies()[0]->GetPositionX() -10, this->GetAllEnemies()[0]->GetPositionY() +15);
+			}
+			else
+			{
+				deathanimations[i]->Render();
+			}
 		}
 	}
-	for (size_t i = 0; i < gameitems.size(); i++)
+	for (size_t i = 0; i < gameitems.size(); i++)	
 	{
 		if (gameitems[i]->IsActive() == true)
 		{

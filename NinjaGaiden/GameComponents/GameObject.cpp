@@ -369,7 +369,15 @@ void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vec
 					{
 						// add death animation when kill enemy
 						DeathAnimation * animation = DeathAnimation::CreateDeateAnimation(enemy);
-						Grid::GetInstance()->AddDeathAnimation(animation);
+						if (enemy->GetEnemyType() == BOSS)
+						{
+
+							Grid::GetInstance()->AddDeathAnimation(animation);
+						}
+						else
+						{
+							Grid::GetInstance()->AddDeathAnimation(animation);
+						}			
 						AddGameItem(enemy);
 						// delete enemy
 						int EnemyIndex = Grid::GetInstance()->GetEnemyIndexById(enemy->GetId());
