@@ -32,6 +32,7 @@ protected:
 
 	int min_posx;
 	int max_posx;
+
 public:
 	Enemy();
 	void LoadResources();

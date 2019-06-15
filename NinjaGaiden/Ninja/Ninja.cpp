@@ -37,6 +37,12 @@ Ninja::Ninja()
 
 	isUntouchable = false;
 	UntouchableTime = 2000;
+
+/*  // Ném nhiều phi tiêu
+	Shurikens.push_back(new Shuriken());
+	Shurikens.push_back(new Shuriken());
+	Shurikens.push_back(new Shuriken());
+	Shurikens.push_back(new Shuriken());*/
 }
 Ninja * Ninja::GetInstance()
 {

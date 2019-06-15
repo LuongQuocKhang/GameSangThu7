@@ -135,6 +135,9 @@ public:
 		vector<LPCOLLISIONEVENT> &coEvents);
 	void CalcPotentialNinjaCollideWithBullet(vector<Bullet*>& bullets, vector<LPCOLLISIONEVENT>& coEvents);
 
+	void CalcPotentialNinjaSwordWithBullet(vector<Bullet*>& bullets, vector<LPCOLLISIONEVENT>& coEvents);
+	void CalcPotentialNinjaSwordWithBullet(vector<Bullet*>& bullets);
+
 	bool IsCollide(GameObject * CollisionObject);
 	bool IsCollideWithGameItem(GameItem * gameitem);
 

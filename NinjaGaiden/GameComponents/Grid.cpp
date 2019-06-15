@@ -408,7 +408,10 @@ void Grid::Render()
 
 	for (size_t i = 0; i < enemiesbullet.size(); i++)
 	{
-		enemiesbullet[i]->Render();
+		if (enemiesbullet[i]->IsActive() == true)
+		{
+			enemiesbullet[i]->Render();
+		}
 	}
 }
 
@@ -424,6 +427,16 @@ void Grid::DeleteBullet(Enemy * enemy)
 	}
 }
 
+void Grid::DeleteBossBullet()
+{
+	for (size_t i = 0; i < enemiesbullet.size(); i++)
+	{
+		if (enemiesbullet[i]->GetBulletType() == BulletType::BOSS_BULLET && enemiesbullet[i]->IsActive() == false)
+		{
+			enemiesbullet[i]->Reset();
+		}
+	}
+}
 int Grid::GetEnemyIndexById(int Id)
 {
 	for (size_t i = 0; i < enemies.size(); i++)

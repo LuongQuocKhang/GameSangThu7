@@ -28,6 +28,7 @@ public:
 	bool CheckStatus() { return this->checkTime; }
 
 	static DeathAnimation* CreateDeateAnimation(Enemy* gameobject);
+	static DeathAnimation* CreateDeateAnimationForGameObject(GameObject* gameobject);
 	static DeathAnimation * CreateDeateAnimation(Enemy * enemy, int posx, int posy);
 
 	void Update(DWORD dt) override;

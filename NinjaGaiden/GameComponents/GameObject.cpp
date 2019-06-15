@@ -336,6 +336,12 @@ void GameObject::CalcPotentialCollisionsAttackingEnemy(vector<Enemy*>& enemies, 
 	this->UpdateSwordCollider(direction);
 	CalcPotentialNinjaCollideWithEnemy(enemies, coEvents, CollisionWithEnemy::ATACKING);
 }
+void GameObject::CalcPotentialNinjaSwordWithBullet(vector<Bullet*>& bullets, vector<LPCOLLISIONEVENT>& coEvents)
+{
+	int direction = (Ninja::GetInstance()->IsLeft() == true) ? -1 : 1;
+	this->UpdateSwordCollider(direction);
+	CalcPotentialNinjaSwordWithBullet(bullets);
+}
 void GameObject::CalcPotentialNinjaCollideWithEnemy(vector<Enemy*>& enemies, vector<LPCOLLISIONEVENT>& coEvents, CollisionWithEnemy HitType)
 {
 	LPGAMEOBJECT CollisionEnemy = new GameObject(0, 0, 16, 16);
@@ -461,7 +467,44 @@ void GameObject::CalcPotentialNinjaCollideWithBullet(vector<Bullet*>& bullets, v
 		}
 	}
 }
-// hàm sai
+
+void GameObject::CalcPotentialNinjaSwordWithBullet(vector<Bullet*>& bullets)
+{
+	LPGAMEOBJECT CollisionBullet = new GameObject(0, 0, 16, 16);
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		if (bullets[i]->IsActive() == true && bullets[i]->GetBulletType() == BulletType::BOSS_BULLET)
+		{
+			Bullet * bullet = bullets[i];
+
+			CollisionBullet->SetPositionX(bullet->x);
+			CollisionBullet->SetPositionY(bullet->y);
+			CollisionBullet->SetSpeedX(bullet->vx);
+			CollisionBullet->SetSpeedY(bullet->vy);
+			CollisionBullet->height = bullet->height;
+			CollisionBullet->width = bullet->width;
+			CollisionBullet->UpdateObjectCollider();
+
+			CollisionBullet->collider.width = bullet->width;
+			CollisionBullet->collider.height = bullet->height;
+
+			LPCOLLISIONEVENT e = SweptAABBEx(CollisionBullet);
+			e->collisionID = 0;
+
+			if (e->t >= 0 && e->t < 1.0f)
+			{
+				DeathAnimation * animation = DeathAnimation::CreateDeateAnimationForGameObject(bullets[i]);
+				Grid::GetInstance()->AddDeathAnimation(animation);
+				bullets[i]->SetActive(false);
+				Grid::GetInstance()->DeleteBossBullet();
+			}
+			else
+			{
+				delete e;
+			}
+		}
+	}
+}
 bool GameObject::IsCollide(GameObject * CollisionObject)
 {
 	Collider MainObject = this->collider;
@@ -569,7 +612,7 @@ void GameObject::UpdateSwordCollider(int direction)
 	collider.x = x + direction * 5;
 	if (Game::GetInstance()->GetStage() == STAGE_BOSS)
 	{
-		collider.x = x + direction * width/2;
+		collider.x = x + direction * width/3;
 	}
 	collider.y = y;
 	collider.vx = vx;

@@ -26,7 +26,11 @@ enum Stage {
 	STAGE_32,
 	STAGE_BOSS
 };
-
+enum BulletType
+{
+	NORMAL,
+	BOSS_BULLET
+};
 enum ObjectType
 {
 	DEFAULT,

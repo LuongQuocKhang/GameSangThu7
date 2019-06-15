@@ -90,6 +90,9 @@ public:
 	int GetGameItemIndexById(int Id);
 
 	void DeleteGameItem(int pos) { this->gameitems.erase(gameitems.begin() + pos); }
+
+	void DeleteBossBullet();
+
 	static void SetNewGrid()
 	{
 		__instance = NULL;

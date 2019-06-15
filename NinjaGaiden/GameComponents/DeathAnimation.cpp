@@ -43,6 +43,17 @@ DeathAnimation::DeathAnimation(EnemyType enemytype)
 DeathAnimation::~DeathAnimation()
 {
 }
+DeathAnimation * DeathAnimation::CreateDeateAnimationForGameObject(GameObject * gameobject)
+{
+	DeathAnimation* Animation = new DeathAnimation(EnemyType::YELLOWSOLDIER);
+	Animation->x = gameobject->GetPositionX() - 10;
+	Animation->y = gameobject->GetPositionY();
+
+	Animation->width = DEATH_EFFECT_WIDTH;
+	Animation->height = DEATH_EFFECT_HEIGHT;
+
+	return Animation;
+}
 DeathAnimation * DeathAnimation::CreateDeateAnimation(Enemy * enemy, int posx, int posy)
 {
 	DeathAnimation* Animation = new DeathAnimation(enemy->GetEnemyType());

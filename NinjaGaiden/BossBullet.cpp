@@ -24,6 +24,8 @@ BossBullet::BossBullet(Enemy* enemy)
 
 	isLeft = true;
 	damage = 5;
+
+	bullettype = BulletType::BOSS_BULLET;
 }
 
 void BossBullet::LoadResources()
